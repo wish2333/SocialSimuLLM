@@ -1,0 +1,59 @@
+{
+    "memory": [
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "**Do something**: I will wake up, get dressed, and prepare for the busy day ahead at the trading post. It's going to be a hectic but productive day. I need to get everything in order before opening for customers.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:10",
+            "location": "Stonehill Inn",
+            "action": "I will finish getting ready for the day ahead. I quickly dress in my usual attire, making sure to look presentable before heading to the trading post. After gathering my belongings, I take a deep breath, knowing it will be a busy day with plenty of tasks to handle. Time to prepare myself for the long day ahead!",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        }
+    ]
+}

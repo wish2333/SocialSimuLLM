@@ -1,0 +1,92 @@
+====================== REPEAT 0 ======================
+=== LOCATIONS AT START OF REPEAT 0 ===
+Phandalin Town Square
+Stonehill Inn
+Barthen's Provisions
+Edermath Orchard
+Toblen Stonehill plans:
+8:00 - Wake up and get ready for the day.  
+9:00 - Organize the trading post inventory.  
+10:00 - Check for new stock deliveries.  
+11:00 - Update pricing on popular items.  
+12:00 - Lunch break.  
+13:00 - Assist customers with their purchases.  
+14:00 - Restock shelves and display items.  
+15:00 - Plan promotions for the upcoming week.  
+16:00 - Review sales reports from yesterday.  
+17:00 - Clean and tidy the trading post.  
+18:00 - Dinner time.  
+19:00 - Prepare for tomorrow’s trading post opening.  
+20:00 - Enjoy the night and go to bed.
+Daran Edermath plans:
+8:00 - Wake up and get ready for the day.  
+9:00 - Tend to the apple orchard and check for pests.  
+10:00 - Practice swordplay to keep my skills sharp.  
+11:00 - Brew some tea and enjoy the morning sun.  
+12:00 - Lunch break.  
+13:00 - Read a book on ancient legends and tales.  
+14:00 - Write letters to old adventuring friends.  
+15:00 - Take a walk through the nearby woods.  
+16:00 - Prepare a hearty stew for dinner.  
+17:00 - Check on the orchard for ripe apples.  
+18:00 - Dinner time.  
+19:00 - Reflect on my adventures and plan future ones.  
+20:00 - Enjoy the night and go to bed.  
+Linene Graywind plans:
+8:00 - Wake up and get ready for the day.  
+9:00 - Check inventory and restock supplies.  
+10:00 - Organize the trading post for better flow.  
+11:00 - Review pricing on popular items.  
+12:00 - Lunch break.  
+13:00 - Update the trading post's online listings.  
+14:00 - Meet with local suppliers and negotiate prices.  
+15:00 - Assist customers and provide excellent service.  
+16:00 - Clean and tidy the trading area.  
+17:00 - Prepare daily reports on sales and inventory.  
+18:00 - Dinner time.  
+19:00 - Plan marketing strategies for the trading post.  
+20:00 - Enjoy the night and go to bed.  
+Halia Thornton plans:
+8:00 - Wake up and get ready for the day.  
+9:00 - Review the mining reports for discrepancies.  
+10:00 - Meet with local miners to discuss their needs.  
+11:00 - Plan marketing strategies for the Miner's Exchange.  
+12:00 - Lunch break.  
+13:00 - Organize inventory and assess valuable finds.  
+14:00 - Check in with suppliers for new resources.  
+15:00 - Attend town meeting to assert guild influence.  
+16:00 - Network with other business owners in Phandalin.  
+17:00 - Prepare financial reports for upcoming investments.  
+18:00 - Dinner time.  
+19:00 - Reflect on the day's successes and challenges.  
+20:00 - Enjoy the night and go to bed.  
+Toblen Stonehill's hourly action:
+I’ll grab breakfast at the inn, chat with locals, and gather insights for my trading post inventory.
+Daran Edermath's hourly action:
+I wake up, stretch, and prepare for the day ahead, looking forward to tending to my orchard.
+Linene Graywind's hourly action:
+Begin my day by preparing the trading post, checking supplies, and organizing the inventory for the day's business.
+Halia Thornton's hourly action:
+I will head to the Miner's Exchange to review mining reports for discrepancies and prepare for the day's meetings.
+Toblen Stonehill executes action: "Communicate with locals[action]: As I sit down with my breakfast, I'll engage with a few locals at the nearby table. I'll say, 'Good morning, everyone! How's the day treating you? I'm curious to hear what items you feel are missing from the trading post. Is there anything specific you wish we carried?' [details]"
+Daran Edermath executes action: "Do something[action]: I wake up, stretch, and prepare for the day ahead, looking forward to tending to my orchard. I take a moment to enjoy the fresh morning air and the sweet scent of apples before heading out to the orchard. My thoughts wander to the tasks I have planned for the day, and I feel a sense of excitement to see how the apples are doing. After getting dressed, I make my way to the kitchen to brew a cup of tea to enjoy while I plan my activities."
+Linene Graywind executes action: Do something[action]: I’m going to begin my day by checking the inventory of Barthen's Provisions. I’ll take stock of all the items we have, ensuring that we have enough rations, backpacks, rope, and bedrolls to meet the needs of our customers today. I’ll also make a list of any items that need to be restocked, so I can prepare for the suppliers meeting later on. This will help me organize the shelves more effectively for better flow and accessibility. 
+Halia Thornton executes action: Do something[action]: I'm heading to the Miner's Exchange to review the latest mining reports. I want to check for any discrepancies in the quantities reported by the miners to ensure our records are accurate and trustworthy. This is crucial for maintaining the guild's reputation and influence in Phandalin. I'll also prepare my notes for the upcoming meetings with the miners, so I can address their needs effectively. [details]
+----------------------- SUMMARY FOR REPEAT 0 ----------
+----------------------- SUMMARY FOR REPEAT 0 ----------
+A simulation loop is a fundamental structure used in simulations to iterate through time steps or events, allowing for the evolution of a model over time. Here’s a typical summary of its components:
+
+1. **Initialization**: Set initial conditions, parameters, and state variables for the simulation.
+
+2. **Main Loop**: The core of the simulation, which typically includes:
+   - **Update State**: Calculate the next state of the system based on the current state and defined rules or equations.
+   - **Process Events**: Handle any events that occur during the current time step (e.g., collisions, interactions).
+   - **Collect Data**: Gather relevant data for analysis, such as performance metrics or state variables at specific intervals.
+
+3. **Termination Conditions**: Check if the simulation should stop (e.g., a certain time has elapsed, a condition has been met, or an error has occurred).
+
+4. **Output Results**: After the loop ends, compile and present the results of the simulation for analysis or visualization.
+
+This structure allows for the iterative refinement of the model, enabling the study of complex systems over time.---------- END OF REPEAT 0 ----------
+
+---------- END OF REPEAT 0 ----------
