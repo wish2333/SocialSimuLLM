@@ -32,7 +32,13 @@ Please follow these steps to set up your environment:
 Follow these steps to run the simulation:
 
 1. **Run the Main Program:** Execute the `simulation/main.py` file.
-    *   Alternatively, you can run the `test_main.py` file with `01_testMain.bat` for testing.
+    * ```bash
+      cd simulation
+      ..\env\python.exe main.py
+      pause
+      ```
+    
+    *   Alternatively, you can modify and run the `test_main.py` file with `01_testMain.bat` for testing.
 2. **Enter Project Name:** The program will prompt you to enter the project name.
 3. **Enter Simulation Repetitions:** The program will prompt you to input the number of times to repeat the simulation.
 
@@ -63,5 +69,5 @@ Huang Miaosen 黄淼森
 
 ## Acknowledgments
 
-*   [https://github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents), the License is attached in the License folder.
-*   [https://github.com/mkturkcan/generative-agents](https://github.com/mkturkcan/generative-agents), only serves as a reference for the overall idea based on the paper, and the Copy code is used.
+- [https://github.com/mkturkcan/generative-agents](https://github.com/mkturkcan/generative-agents), part of the code source, the license is attached in the License folder
+- [https://github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents), only for reference of the idea according to the paper, no copying of the code

@@ -28,7 +28,13 @@
 请按照以下步骤运行模拟：
 
 1.  **运行主程序：** 运行 `simulation/main.py` 文件。
-    *   或者，您可以使用 `01_testMain.bat` 文件运行 `test_main.py` 文件进行测试。
+    * ```bash
+      cd simulation
+      ..\env\python.exe main.py
+      pause
+      ```
+    
+    *   或者，您可以修改并使用 `01_testMain.bat` 文件运行 `test_main.py` 文件进行测试。
 2.  **输入项目名称：** 程序将提示您输入项目名称。
 3.  **输入重复次数：** 程序将提示您输入模拟的重复次数。
 
@@ -60,4 +66,4 @@
 ## 致谢
 
 *   [https://github.com/mkturkcan/generative-agents](https://github.com/mkturkcan/generative-agents)，部分代码来源，已在License文件夹中附上License
-*   [https://github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents)，仅根据论文做思路参考，并为Copy代码
+*   [https://github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents)，仅根据论文做思路参考，并未Copy代码
