@@ -1,4 +1,4 @@
-# simulation\utils\global_tools.py
+# simulation\utils\global_methods.py
 
 # -*- coding: utf-8 -*-
 """
@@ -10,7 +10,9 @@ First version created on 2025-02-19 20:12.
 import os
 import json
 import shutil
+import sqlite3
 from datetime import datetime, timedelta
+
 
 def load_meta_data(project_folder, project_name, global_time):
     meta_file = os.path.join(project_folder, "meta.json")
@@ -57,6 +59,14 @@ def load_town_data(project_folder):
             town_data = json.load(file)
             return town_data
         
+def save_location_change(project_folder, agent_name, location):
+    json_path = os.path.join(project_folder, 'town_data.json')
+    with open(json_path, 'r') as file:
+        town_data = json.load(file)
+    town_data['town_people'][agent_name]['starting_location'] = location
+    with open(json_path, 'w') as file:
+        json.dump(town_data, file, ensure_ascii=False, indent=4)
+        
 def load_agent_data(project_folder, agent_name):
     json_path = os.path.join(project_folder, 'agent_data', f'{agent_name}.json')
     
@@ -84,6 +94,19 @@ def exist_memory_file(agent_name, project_folder):
         memory_data = {"memory": []}
         with open(memory_file, "w", encoding="utf-8") as f:
             json.dump(memory_data, f, ensure_ascii=False, indent=4)
+    # db_file = os.path.join(project_folder, 'agent_data', f"{agent_name}_memory.db")
+    # if not os.path.exists(db_file):
+    #     conn = sqlite3.connect(db_file)
+    #     cursor = conn.cursor()
+    #     cursor.execute('''
+    #         CREATE TABLE IF NOT EXISTS action_embeddings (
+    #             action_description TEXT,
+    #             action_embedding TEXT
+    #         )
+    #     ''')
+    #     conn.commit()
+    #     conn.close()
+    
 
 
 

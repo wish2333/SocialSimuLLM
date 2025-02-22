@@ -1,0 +1,2126 @@
+{
+    "memory": [
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n**Day 1 Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Check for new shipments arriving today.  \n11:00 - Clean and restock the trading post shelves.  \n12:00 - Lunch break.  \n13:00 - Prepare pricing for new items.  \n14:00 - Meet with local suppliers for future orders.  \n15:00 - Assist customers with their purchases.  \n16:00 - Update the trading post's ledger.  \n17:00 - Plan promotions for the upcoming weekend.  \n18:00 - Dinner time.  \n19:00 - Review daily sales and adjust plans.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI\u2019ll have breakfast at the inn, chat with locals, and gather insights for my trading post inventory.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n[  \n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Restock popular items on the shelves.  \n11:00 - Check in with suppliers for new stock.  \n12:00 - Lunch break.  \n13:00 - Clean and tidy up the trading post.  \n14:00 - Review sales from the previous day.  \n15:00 - Assist a customer with their purchases.  \n16:00 - Update pricing for seasonal items.  \n17:00 - Plan promotional offers for the coming week.  \n18:00 - Dinner time.  \n19:00 - Prepare for tomorrow\u2019s business activities.  \n20:00 - Enjoy the night and go to bed.]  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI will have breakfast at the inn, chat with locals, and gather any helpful information for my trading post.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n**Day 1 Goals:**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Restock popular items on the shelves.  \n11:00 - Check emails and respond to inquiries.  \n12:00 - Lunch break.  \n13:00 - Meet with suppliers to discuss new stock.  \n14:00 - Update pricing for seasonal products.  \n15:00 - Handle customer orders and prepare shipments.  \n16:00 - Clean and tidy the trading post.  \n17:00 - Review financials and plan for next week.  \n18:00 - Dinner time.  \n19:00 - Reflect on the day's achievements.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI\u2019ll enjoy breakfast at the inn, socialize with locals, and gather insights about their needs for the trading post.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n**Day 1 Goals:**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Restock popular items on the shelves.  \n11:00 - Check deliveries scheduled for today.  \n12:00 - Lunch break.  \n13:00 - Attend to customer inquiries and requests.  \n14:00 - Prepare promotional materials for the week.  \n15:00 - Clean the trading post area.  \n16:00 - Update pricing on select items.  \n17:00 - Review sales reports from last week.  \n18:00 - Dinner time.  \n19:00 - Plan for upcoming trading events.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI\u2019ll grab breakfast at the inn, chat with locals, and gather insights for the trading post inventory.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Clean and organize the trading post.  \n10:00 - Check inventory and restock supplies.  \n11:00 - Prepare the daily sales report.  \n12:00 - Lunch break.  \n13:00 - Meet with local vendors for new products.  \n14:00 - Assist customers with their purchases.  \n15:00 - Update the trading post's pricing.  \n16:00 - Plan marketing strategies for next month.  \n17:00 - Review customer feedback and suggestions.  \n18:00 - Dinner time.  \n19:00 - Count cash and balance the register.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI\u2019ll enjoy breakfast, mingle with locals, and gather insights about their needs for my trading post.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n**Day 1 Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Clean the trading post and organize inventory.  \n10:00 - Restock supplies for the upcoming market day.  \n11:00 - Check in with local suppliers for new items.  \n12:00 - Lunch break.  \n13:00 - Update price lists for goods sold.  \n14:00 - Prepare promotions for customers and special deals.  \n15:00 - Meet with regular customers and gather feedback.  \n16:00 - Count cash register and balance the books.  \n17:00 - Settle any outstanding transactions with vendors.  \n18:00 - Dinner time.  \n19:00 - Review tomorrow's market plan and schedule.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI will greet the locals, order breakfast, and gather information about their needs for my trading post.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:00, Toblen Stonehill ,at Stonehill Inn, has done: \"I will greet the locals, order breakfast, and gather information about their needs for my trading post.\n\n\"Communicate with the locals[action]: Good morning, everyone! It's great to see so many familiar faces here at the Stonehill Inn. I'm Toblen Stonehill, and I own the trading post just across the way. I\u2019d love to hear what you all think about our inventory and if there's anything specific you feel we need more of in the shop. Also, I'm ordering breakfast\u2014any recommendations?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Greet locals and order breakfast.  \n10:00 - Gather feedback on inventory needs.  \n11:00 - Restock trading post with popular items.  \n12:00 - Lunch break.  \n13:00 - Organize items for better display.  \n14:00 - Meet with suppliers for new stock.  \n15:00 - Check in with customers at the post.  \n16:00 - Update inventory records and sales.  \n17:00 - Plan promotions for the upcoming week.  \n18:00 - Dinner time.  \n19:00 - Relax and review business strategies.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI will continue to engage with the locals, asking for their breakfast recommendations and feedback on the trading post inventory.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:00, Toblen Stonehill ,at Stonehill Inn, has done: \"Communicate with the locals[action]: \"I appreciate all the input! If anyone has specific items they\u2019ve been looking for or any ideas for new products, please feel free to share. I want to make sure the trading post has everything you need. And I'm still looking for breakfast recommendations\u2014what\u2019s the best dish here at the Inn?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:00, Toblen Stonehill ,at Stonehill Inn, has impressed: \"1. Emotional Status: Positive\n2. Social / Learning Drive: Active\n3. Confidence in Task Completion: Normal\n4. Information Acquisition Preference: Proactive Exploration\n5. Technology Acceptance Inclination: Open\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:10, Toblen Stonehill ,at Stonehill Inn, has done: \"I'm going to continue engaging with the locals in the common room of the Stonehill Inn. \n\nCommunicate with the locals[action]: \"Thank you all for your input so far! I\u2019m eager to hear more about what you think we could improve at the trading post. What items do you find yourself needing often that we might not have? Also, regarding breakfast, have any of you tried the pancakes or the smoked bacon here? I hear they're quite popular!\" \n\nI want to encourage a lively discussion and gather valuable feedback on my inventory.\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:20, Toblen Stonehill ,at Stonehill Inn, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562655263729168667396)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:30, Toblen Stonehill ,at Stonehill Inn, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562795109675716214816)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:40, Toblen Stonehill ,at Stonehill Inn, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562919357386739085035)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:50, Toblen Stonehill ,at Stonehill Inn, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212563035457298272459737)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nOrder breakfast and keep chatting with the locals. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: I'm still deciding on breakfast. Are the eggs here cooked to perfection? And do you all think we'd sell more fishing lures or new types of farming tools at the trading post? I'm looking to expand our inventory based on what the community needs. Also, has anyone here had any recent experiences trading with other towns that we could learn from?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:00, Toblen Stonehill ,at Stonehill Inn, has impressed: \"1. Emotional Status: Stable\n2. Social / Learning Drive: Active\n3. Confidence in Task Completion: Normal\n4. Information Acquisition Preference: Proactive Exploration\n5. Technology Acceptance Inclination: Neutral\n\nI\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:10, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good morning, neighbors! I'm still torn between the eggs and the pancakes for breakfast. What's your vote? Also, I've been thinking about adding some new items to the trading post. What do you think of the idea of stocking some quality leather goods? We could really use some new bags, belts, and such. And if anyone has any connections with leatherworkers in other towns, that would be great to know. Additionally, any insights on how business has been with other trading posts in the area? Are there any items they have that\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:20, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good morning, everyone. I'm still deciding on breakfast. It seems like the eggs and pancakes are both popular choices. Any last-minute advice? Also, I'm really interested in making the trading post more useful for you all. What about the idea of getting some fresh herbs in? We could sell them for cooking or for medicinal purposes. Do you think there would be a demand? And has anyone here noticed any trends in what other towns are trading that we might be missing out on?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:30, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good morning, everyone! I'm still on the fence about breakfast. What about the inn's porridge? Is it any good? And I'm really eager to hear more thoughts on what we should stock at the trading post. Would you prefer to see more varieties of seeds for our local farmers or perhaps some unique handicrafts from distant lands? Also, has anyone here heard of new trading routes opening up that we could potentially tap into for better inventory?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:40, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good morning, everyone! I'm still deciding between the eggs, pancakes, or porridge for breakfast. Any of you have a favorite? Also, I've been thinking about expanding the trading post's selection of clothing. Do you think there'd be interest in items like warm winter cloaks or sturdy work shirts? And are there any particular styles or colors you'd like to see? Additionally, has anyone noticed what the travelers passing through town seem to be looking for most?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 09:50, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with locals[action]: Good morning, everyone! I think I'm leaning towards the pancakes for breakfast. What do you recommend to go with them? Also, I'm still very interested in hearing your thoughts on the trading post. If we were to start carrying some simple jewelry, do you think that would be a popular item? And has anyone here heard any news about upcoming events in town that could affect our business?\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nGather feedback on inventory needs from locals. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good day, folks! I'm still mulling over what to have for lunch. How's the soup here today? Also, I'm really eager to know your thoughts on stocking some hunting supplies at the trading post. Things like arrows, bows, and maybe some decent hunting knives. Do you think there'd be a good demand for these? And has anyone here traded with other towns that deal in hunting gear? I'm always looking to learn from others' experiences.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:00, Toblen Stonehill ,at Stonehill Inn, has impressed: \"Stable Emotion, Active Social Drive, Routine Learning Drive, Normal Confidence in Task Completion, Willing to Actively Seek Information, Neutral to Technology (no impact from current events)\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:10, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Greetings, everyone! I'm still gathering thoughts on what to include in the trading post's inventory. What do you think about adding some high-quality fishing nets? We've noticed a bit of a shortage, and it seems like there's a fair bit of fishing activity around here. Also, has anyone been to other trading posts that have unique items we could try to get our hands on? I'm looking for any new and interesting products to bring in.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:20, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with locals[action]: Good morning, everyone! I'm still deciding on what to add to the trading post inventory. What do you think of getting in some sturdy work boots? I've noticed a lot of activity around here that could use some good footwear. Also, has anyone heard of any new farming techniques that might require specific tools we could start stocking? And how has business been with neighboring trading posts lately? Are there any unique items they have that we're missing out on?[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:30, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with locals[action]: Good morning again, everyone! I'm still considering what to stock at the trading post. What are your thoughts on adding some more basic cooking utensils? Things like good-quality pots and pans are always useful. And has anyone here had experience trading with larger cities? I'm wondering what kind of items we could start bringing in from there to meet the demands of our community better.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:40, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Good day, everyone! I'm still thinking about inventory. What about some strong ropes? We could use them for all sorts of things around here. And has anyone heard of any new mining tools that might be in demand? Also, how's the business with the trading post down the road? Do they have anything that our customers are asking for that we don't have?[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 10:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 10:50, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Communicate with the locals[action]: Greetings, friends! I've been asking around about inventory for the trading post, and I'm curious if there's any interest in stocking simple medical supplies like bandages and salves. Also, has anyone noticed a need for more affordable writing materials, like ink and parchment? And how about any unique local crafts that we could feature at the post?[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nRestock trading post with popular items as per plan. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to restock the trading post with popular items as per plan. I'll start by making a list of the items that have been in high demand recently based on the feedback I gathered from the locals earlier. Then, I'll head to my suppliers to pick up the necessary stock.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nMake a list of popular items to restock trading post. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to make a list of popular items to restock trading post. First on the list is definitely fishing nets. They've been in short supply, and considering the local fishing activity, there's a clear demand. Hunting supplies like arrows, bows, and hunting knives should also be on there. The locals seemed interested in these and they'd be useful for any hunters in the area. Sturdy work boots are a must - with all the activity around here, people need good footwear. Strong ropes are another item that came up frequently, they have multiple uses in\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:00, Toblen Stonehill ,at Stonehill Inn, has impressed: \"Stable Emotion, Active Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:10, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue making my list of popular items to restock the trading post. After fishing nets, hunting supplies, and sturdy work boots, I'll add basic cooking utensils as they seem to be in demand. Strong ropes are also needed as they have various uses. I'll also include simple medical supplies like bandages and salves, affordable writing materials such as ink and parchment, and any unique local crafts that the locals recommended. Once I have a complete list, I'll head to my suppliers to pick up the items.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:20, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue making my list of popular items to restock the trading post. I'll add high-quality pots and pans, as they were mentioned as useful cooking utensils. I'll also include mining tools if anyone mentioned specific ones during my conversations earlier. After that, I'll review the list to make sure I haven't missed anything important and then head over to the trading post to start restocking the shelves with these items once I've picked them up from the suppliers. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:30, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue making my list of popular items to restock the trading post. After adding high-quality pots and pans, I'll include any mining tools that were recommended during my conversations earlier. I recall someone mentioning something about new mining tools being in demand. I'll also double-check if there were any particular local crafts that stood out as potential restock items. Once I've finalized this list, I'll head over to my suppliers to pick up these items and start restocking the trading post shelves.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:40, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue making my list of popular items to restock the trading post. I'll check if there were any other items that locals specifically mentioned during my conversations earlier that I haven't added yet. After that, I'll finalize the list and head over to my suppliers to pick up these items and start restocking the trading post shelves.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 11:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 11:50, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue making my list of popular items to restock the trading post. I'll double-check if there were any other items that locals specifically mentioned during my conversations earlier that I haven't added yet. After that, I'll finalize the list and head over to my suppliers to pick up these items and start restocking the trading post shelves.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nTake my lunch break as per my daily plan. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to take my lunch break as per my daily plan. I'll head over to my usual spot for a meal and take some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:00, Toblen Stonehill ,at Stonehill Inn, has impressed: \"Stable Emotional Status, Active Social Drive, Normal Learning Drive, Confident in Task Completion, Proactive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:10, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to head over to my usual spot for a meal and take some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 12:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:10, Halia Thornton ,at Stonehill Inn, has done: \"\"Do something[action]: I'll find a quiet corner in the town square or perhaps a nearby eatery and relax while having my meal, taking this time to unwind before resuming my duties this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:20, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to head to my usual spot for lunch as per my daily plan. I'll take some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 12:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:20, Halia Thornton ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to find a quiet corner in the town square or a nearby eatery to take my lunch break as per the daily plan. I'll relax while having my meal and unwind before resuming my duties this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:30, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to take my lunch break as per my daily plan. I'll head to my usual spot and enjoy a meal, taking some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 12:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:30, Halia Thornton ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to find a quiet corner in the town square or perhaps a nearby eatery and relax while having my meal, taking this time to unwind before resuming my duties this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:40, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to take my lunch break as per my daily plan. I'll head to my usual spot and enjoy a meal, taking some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 12:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:40, Halia Thornton ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to find a quiet corner in the town square or perhaps a nearby eatery and relax while having my meal, taking this time to unwind before resuming my duties this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 12:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:50, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to take my lunch break as per my daily plan. I'll head to my usual spot and enjoy a meal, taking some time to relax and recharge before getting back to work this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 12:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 12:50, Halia Thornton ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to find a quiet corner in the town square or perhaps a nearby eatery and relax while having my meal, taking this time to unwind before resuming my duties this afternoon.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's hourly plan is:\nI'll head back to my trading post to organize items. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 13:00, Toblen Stonehill ,at Stonehill Inn, has done: \"\"Do something[action]: I'll head back to my trading post to organize items. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 13:00, Halia Thornton ,at Stonehill Inn, has done: \"\"Communicate with Miners[action]: I'm going to find the miners in town and have a discussion with them about their needs as planned for 1 PM. I'll be looking for any concerns they may have regarding equipment, payment, or access to markets for their mined goods. I'll also inquire about any new types of minerals they've discovered and if there are potential changes in the quantity they plan to bring to the Miner's Exchange in the coming days.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to organize items as per my daily plan. I'll make sure the display is attractive and the items are easy to access for customers.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:10, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way through the town square, nodding\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll focus on arranging the goods neatly and ensuring that similar items are grouped together for better visibility. I'll also check for any damaged or expired products and remove them from the shelves. Additionally, I'll make sure that the most popular items are easily accessible at the front of the store.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:20, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way through the town square and head\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll start by sorting through the inventory and separating the items into categories. Then, I'll arrange the categories on the shelves in a logical order, making sure that the most popular items are easily visible and accessible. I'll also check the condition of each item and remove any that are damaged or expired. Finally, I'll make a note of any items that need to be restocked and place an order with my suppliers.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:30, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I\\'ll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I\\'ll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I\\'ll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll walk through the town square,\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to organize items as per my daily plan. I'll focus on creating an attractive display that showcases the items to their best advantage. I'll group related items together and make sure that the most popular items are at eye level and easily accessible. I'll also take the time to clean the shelves and dust the merchandise to create a more inviting atmosphere for customers. Additionally, I'll check for any signs of damage or wear on the items and remove anything that isn't in good condition. Finally, I'll make sure that the pricing\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:40, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way home, looking forward to the peaceful\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll put the last few items in their proper places, making sure everything looks neat and appealing. I'll double-check that all the popular items are well-stocked and easy to find. I'll also take a look around to see if there's any other way to improve the organization and display of the trading post.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:50, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nHead to trading post to prepare for supplier meeting. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to the trading post to prepare for the supplier meeting. I'll make sure the inventory records are up-to-date and that I have a list of items that need restocking. I'll also tidy up the trading post and make sure it's presentable for the meeting. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:00, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll make my way along the familiar path, enjoying the sights and sounds of the town. Once I reach my cottage, I'll enter and find my favorite chair by the window. I'll select a book from my collection, run my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, losing myself in the quiet solitude and the escape into another world. Perhaps I'll also pour myself a cup of tea\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to prepare for the supplier meeting. I'll double-check that I've updated the inventory records. I'll make a detailed list of all the items that are running low and need restocking, including quantities and any specific product details. I'll ensure the trading post is clean and tidy, with the shelves neatly organized. I'll also move any boxes or crates that might be in the way and make sure there's enough space for the suppliers to walk around and view the merchandise easily. Additionally, I'll set out some refreshments like a\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to finalize preparations for the supplier meeting. I'll make sure that all the items are priced correctly and that the signage for each item is clearly visible. I'll also check that there are no dust marks on the merchandise and that the lighting in the trading post is bright. Additionally, I'll review the list of items that need restocking one more time to ensure that I haven't missed anything. Once I'm satisfied that everything is in order, I'll wait for the suppliers to arrive.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to the trading post to finalize all the preparations for the supplier meeting. I'll double-check that all items are priced accurately and their corresponding signage is clearly visible. I'll also ensure there are no dust marks on the merchandise and that the lighting in the trading post is bright enough. Additionally, I'll give one last review of the list of items that need restocking to make sure I haven't missed anything. After that, I'll wait for the suppliers to arrive.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to the trading post to finalize all the preparations for the supplier meeting. I'll double-check that all items are priced accurately and their corresponding signage is clearly visible. I'll also ensure there are no dust marks on the merchandise and that the lighting in the trading post is bright enough. Additionally, I'll give one last review of the list of items that need restocking to make sure I haven't missed anything. After that, I'll wait for the suppliers to arrive.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to the trading post and double-check one last time that everything is in perfect order for the supplier meeting. I'll make sure the inventory records are spot-on, every item is correctly priced with clear signage, there isn't a single dust mark on the merchandise, and the lighting is bright and inviting. I'll also review the list of items that need restocking to be certain I've included everything. Once I'm satisfied, I'll wait for the suppliers to arrive.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nCheck in with customers at my trading post. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Active Social Drive, Routine Learning Drive, Confident in Task Completion, Willing to Actively Seek Information, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to further flesh out the promotion plan for the Miner's Exchange. I'll start by creating a detailed list of the key selling points we can highlight, like our accurate weighing and measuring, fair pricing, and the special incentives we can offer. I'll also research the best ways to partner with other local businesses, such as Barthen's Provisions, to maximize the reach and impact of our promotions. I'll outline specific details for the combined package deal, including the discount percentage and any conditions attached. After that, I'll plan how to communicate these promotions\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finalize the promotion plan for the Miner's Exchange. I'll decide on the best channels to communicate the promotions, such as posters around town, announcements at the town square, and direct communication with the miners. I'll also create a timeline for the promotions and assign tasks to my staff if needed. Additionally, I'll reach out to Linene Graywind at Barthen's Provisions to discuss the combined package deal in more detail and finalize the terms. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finalize the promotion plan for the Miner's Exchange. I'll decide on the best channels to communicate the promotions, such as posters around town, announcements at the town square, and direct communication with the miners. I'll also create a timeline for the promotions and assign tasks to my staff if needed. Additionally, I'll reach out to Linene Graywind at Barthen's Provisions to discuss the combined package deal in more detail and finalize the terms. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finalize the promotion plan for the Miner's Exchange. I'll decide on the best channels to communicate the promotions, such as posters around town, announcements at the town square, and direct communication with the miners. I'll also create a timeline for the promotions and assign tasks to my staff if needed. Additionally, I'll reach out to Linene Graywind at Barthen's Provisions to discuss the combined package deal in more detail and finalize the terms. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 15:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will check in with customers at my trading post. I'll greet each customer with a warm smile and ask how they're doing. I'll inquire if they're finding everything they need and if there's anything specific they're looking for. I'll also pay attention to any feedback they might have about the trading post, such as the layout, the selection of items, or the pricing.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 15:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finalize the promotion plan for the Miner's Exchange. I'll decide on the best channels to communicate the promotions, such as posters around town, announcements at the town square, and direct communication with the miners. I'll also create a timeline for the promotions and assign tasks to my staff if needed. Additionally, I'll reach out to Linene Graywind at Barthen's Provisions to discuss the combined package deal in more detail and finalize the terms. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nUpdate inventory records and sales as per my plan.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 16:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 16:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 16:00, Halia Thornton ,at Phandalin Town Square, has done: \"\"Communicate with Toblen Stonehill[action]: Toblen, I've been thinking about ways our trading posts could collaborate. My Miner's Exchange could offer special deals for miners who also shop at your place, and vice versa. What do you think about creating a combined promotion package? We could attract more customers and increase business for both of us. Let's discuss the details like the discount percentage, any specific items included, and how we'd promote it.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:00, Toblen Stonehill ,at Barthen's Provisions, has impressed: \"1. Emotional Status: {Stable}\n   - I've been busy with my daily tasks like checking in with customers and now getting ready to update inventory records. Overall, it's been a routine and productive day so far, keeping my emotions in\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:10, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm already in the midst of hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations, greeting customers as they enter and highlighting the special offers. I'll make sure to mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to answer any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:20, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep greeting customers as they enter, highlighting the special offers on popular items like backpacks, bedrolls, and rations, and mention that for every purchase over a certain amount, they get a free small item like a rope or a set of matches. I'll also be ready to assist customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:30, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:40, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:50, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "Toblen Stonehill's hourly plan is:\nHead to my trading post to plan upcoming week's promotions. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:00, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll start by tidying up the display area. I'll make sure all the items are neatly arranged and the discounted product signage is still prominently visible. Then I'll check the cash register to reconcile the day's sales. I'll carefully count the money, comparing the amount in the register with the total from the sales receipts. I'll list out any discrepancies to investigate further. After that, I'll turn off the lights and secure the front door, getting Barthen's Provisions ready for the night.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotion, Routine Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Passive Information Acquisition, Neutral to Technology\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:10, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll finish writing letters and head to the post office. Since it's 17:10, I should double-check all the letters to Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider are sealed properly with wax. Then I'll gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. I'll make sure to walk\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:20, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll make my way to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are still sealed properly with wax. I'll then head out, enjoying the fresh air as I go, looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:30, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll make my way to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are still sealed properly with wax. I'll then head out, enjoying the fresh air as I go, looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:40, Daran Edermath ,at Phandalin Town Square, has done: \"Do something[action]: I'm going to finish writing letters and head to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are sealed properly with wax. I'll then gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. As I walk, I'll enjoy the fresh air\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:50, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are sealed properly with wax. I'll then gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. As I walk, I'll enjoy the fresh air.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nHead back to trading post for dinner as per my plan. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my trading post as per my plan to have dinner. I'm looking forward to a relaxing meal after a day of work and planning.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner as it\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home for dinner as per my daily plan. I'll enjoy a simple meal of bread, cheese, and warm tea while reflecting on the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to carefully double - check all the calculations in the income statements, expense reports, and profit margins one last time. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home for dinner as per my daily plan. I'll enjoy a simple meal of bread, cheese, and warm tea while reflecting on the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to carefully double - check all the calculations in the income statements, expense reports, and profit margins one last time. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nHead back to trading post to relax and review strategies. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to prepare for tomorrow's miner arrivals as per my plan. First, I'll make sure the weighing scales and measuring tools are in perfect working condition. I'll double - check the accuracy of the scales by using standard weights and calibrate them if necessary. For the measuring tools, I'll clean and inspect them to ensure precise measurements. Then, I'll ensure we have an adequate supply of payment vouchers and coins. I'll count the available coins to make sure we have enough to pay the miners for their finds. I'll also prepare the ledger where we record\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish preparing for tomorrow's miner arrivals as per my plan. After checking the weighing scales and measuring tools and ensuring we have enough payment vouchers and coins, I'll continue to prepare the ledger where we record the miners' transactions. I'll make sure all the columns are labeled correctly and the pages are in good condition. I'll also set out pens and any other necessary supplies for easy record - keeping. Once I'm satisfied that everything is in order, I'll mentally review the entire process one last time to ensure a smooth operation tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to mentally review the entire process one last time to ensure a smooth operation tomorrow. I'll double-check that all the preparations are in place, from the working weighing scales and measuring tools to the sufficient supply of payment vouchers and coins, and the properly set-up ledger with all columns labeled correctly and necessary supplies ready. I'll also run through in my mind how the transactions will flow when the miners arrive tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a final check of the Miner's Exchange to ensure everything is in place for tomorrow's miner arrivals. I'll start by going to the storage area where we keep the weighing scales and measuring tools. I'll double-check that they're still in perfect working condition, that the scales are calibrated correctly, and the tools are clean and ready for use. After that, I'll head to the cash box where we keep the payment vouchers and coins. I'll count the coins again to make sure we have enough to pay the miners for their finds. Once\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post as per my daily plan. I'll enjoy the walk, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a final mental run-through of tomorrow's miner arrival process. I'll visualize the miners coming in, getting their items weighed and measured, and then paid out. I'll think about any potential bottlenecks or issues that could arise and how I would handle them. After that, I'll head back to the Miner's Exchange to double-check that all the necessary supplies are stocked and that everything is in its proper place for the next day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post as per my daily plan. I'll enjoy the walk, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a last-minute check of the Miner's Exchange to ensure that everything is in its proper place. I'll start by checking the ledger to make sure that all the columns are labeled correctly and that everything is accounted for. After that, I'll review the inventory of payment vouchers and coins to ensure that we have enough to pay the miners for their finds. Finally, I'll make sure that all the necessary supplies, such as weighing scales and measuring tools, are in good working condition and that they're ready for use tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's daily plan is:\n[8:00 - Wake up, ready for work.\n9:00 - Open trading post early.\n10:00 - Check inventory levels.\n11:00 - Arrange store displays.\n12:00 - Take a short lunch break.\n13:00 - Update product prices.\n14:00 - Greet and assist customers.\n15:00 - Restock popular items.\n16:00 - Plan week's promotions.\n17:00 - Review business records.\n18:00 - Have dinner with friends.\n19:00 - Clean and tidy up post.\n20:00 - Relax then go to bed.] ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nHead back to my trading post to get ready for work. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll make sure everything is in place, check the inventory, and prepare for the day's business.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to wake up and head to the Miner's Exchange to check it. I'll start by making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Stable Emotion, Routine Social Drive, Routine Learning Drive, Confident in Normal Task Completion, Passive in Information Acquisition, Neutral to Technology\".",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll make sure everything is in place, check the inventory, and prepare for the day's business. I'll start by unlocking the door and turning on the lights. Then, I'll take a quick look around to make sure the place is tidy. Next, I'll check the inventory levels to see what needs to be restocked. After that, I'll start arranging the store displays to make the products more appealing. I'll also make sure to update the prices of\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Wake up and head to the Miner's Exchange to check it. \" is not a something you \"do now\". You have already completed it. You are now 10 minutes after waking up and heading to the exchange.\n\n\"Do something[action]: I'm going to start by making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll make sure everything is in place, check the inventory, and prepare for the day's business. I'll start by unlocking the door and turning on the lights. Then, I'll take a quick look around to make sure the place is tidy. Next, I'll check the inventory levels to see what needs to be restocked. After that, I'll start arranging the store displays to make the products more appealing. I'll also make sure to update the\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to start by making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll unlock the door, turn on the lights, check the inventory levels to see what needs restocking, arrange the store displays to make the products more appealing, and update the prices of the items. I'll also review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. Additionally, I'll consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to start by making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll unlock the door, turn on the lights, check the inventory levels to see what needs restocking, arrange the store displays to make the products more appealing, and update the prices of the items. I'll also review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. Additionally, I'll consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to continue making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll unlock the door, turn on the lights, check the inventory levels to see what needs restocking, arrange the store displays to make the products more appealing, and update the prices of the items. I'll also review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. Additionally, I'll consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to continue making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        }
+    ]
+}

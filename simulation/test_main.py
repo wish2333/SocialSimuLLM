@@ -35,7 +35,7 @@ log_memory = True
 print_locations = True
 print_actions = True
 print_plans = True
-print_ratings = True
+print_ratings = False
 print_memory = False
 
 summarize_locations = False
@@ -83,17 +83,21 @@ world_graph.add_edge(list(town_areas.keys())[0], list(town_areas.keys())[-1])
 print("Nodes in world_graph:", world_graph.nodes())
 
 # Create agents
-for name, description in town_people.items():
-    starting_location = description['starting_location']
+for name, detail in town_people.items():
+    starting_location = detail['starting_location']
     if starting_location not in world_graph.nodes():
         print(f"Warning: Starting location {starting_location} for agent {name} is not in world_graph.")
-    agents.append(Agent(name, description['description'], starting_location, world_graph))
+    description = json.dumps(detail['description']) #Convert the description to a string
+    agents.append(Agent(name, description, starting_location, world_graph))
 
 for agent in agents:
     exist_memory_file(agent.name, project_folder)
 memory = Memory(project_folder, agents, memory_limit)
+for agent in agents:
+    init_memory_list = memory.get_init_memory(agent.name)
+    agent.init_memory(init_memory_list[0], init_memory_list[1])
 
-for name, description in town_areas.items():
+for name, detail in town_areas.items():
     locations.add_location(name, description)
 
 print(f"=== MODULES INITIALIZED ===")
@@ -107,8 +111,8 @@ for repeat in range(repeats):
     new_day = if_new_day(global_time)
     new_hour = if_new_hour(global_time)
     log_output = ""
-    print(f"====================== ROUND {round} ========================\n")
-    log_output += f"====================== ROUND {round} ========================\n"
+    print(f"====================== ROUND {round} TIME {global_time} ========================\n")
+    log_output += f"====================== ROUND {round} TIME {global_time} ========================\n"
     if log_locations:
         log_output += f"=== LOCATIONS AT START OF ROUND {round} ===\n"
         log_output += str(locations) + "\n\n"
@@ -118,13 +122,12 @@ for repeat in range(repeats):
         if summarize_locations:
             summary_input += f"=== LOCATIONS AT START OF ROUND {round} ===\n"
             summary_input += str(locations) + "\n"
-
-
     
-    # Whether to proceed with daily plan
-    if new_day or repeat == 0:
+    # Whether to proceed with daily plan and initiate gotten_impression
+    if new_day:
         for agent in agents:
-            experience =agent.daily_planning(global_time, prompt_meta, ['待修改'], memory.get_newthings(agent.name, memory_limit))
+            gotten_impression = memory.get_impressions(agent.name, 3)
+            experience =agent.daily_planning(global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
             memory.add_experience(experience, 'plan')
             if log_plans:
                 log_output += f"=== DAILY PLAN FOR {agent.name} AT ROUND {round} ===\n"
@@ -133,28 +136,32 @@ for repeat in range(repeats):
                     print(f"{agent.name} plans:\n{agent.daily_plans}\n")
                 if summarize_plans:
                     summary_input += f"{agent.name} plans:\n{agent.daily_plans}\n"
-            if log_debug:
-                log_output = memory.get_newthings(agent.name, memory_limit)
+            # if log_debug:
+            #     log_output += memory.get_newthings_str(agent.name, memory_limit)
+    if not new_day:
+        gotten_impression = memory.get_impressions(agent.name, 3)
     
     # Whether to proceed with hourly plan
     if new_hour:
         for agent in agents:
-            experience =agent.hourly_planning(agents, locations.get_location(agent.location), global_time, town_areas, prompt_meta, ['待修改'], memory.get_newthings(agent.name, memory_limit))
+            if not new_day:
+                gotten_impression = memory.get_impressions(agent.name, 3)
+            experience =agent.hourly_planning(agents, locations.get_location(agent.location), global_time, town_areas, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
             memory.add_experience(experience, 'plan')
             if log_actions:
                 log_output += f"=== HOURLY PLAN FOR {agent.name} AT ROUND {round} ===\n"
-                log_output += f"{agent.name}'s hourly action:\n{agent.hourly_plans}\n\n"
+                log_output += f"{agent.name}'s hourly action:\n{agent.hourly_plan}\n\n"
                 if print_actions:
-                    print(f"{agent.name}'s hourly action:\n{agent.hourly_plans}\n")
+                    print(f"{agent.name}'s hourly action:\n{agent.hourly_plan}\n")
                 if summarize_actions:
-                    summary_input += f"{agent.name}'s hourly action:\n{agent.hourly_plans}\n"
+                    summary_input += f"{agent.name}'s hourly action:\n{agent.hourly_plan}\n"
     
     # Execute planned actions and update memory
     for agent in agents:
         # Execute the action
-        action = agent.execute_action(global_time, prompt_meta, ['待修改'], memory.get_newthings(agent.name, memory_limit))
-        priority = agent.rate_experience(locations, global_time, prompt_meta, ['待修改'], memory.get_newthings(agent.name, memory_limit), action)
-        experience = agent.format_experience(agents, global_time, priority, 'action')
+        action = agent.execute_action(global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
+        priority = agent.rate_experience(prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit), action)
+        experience = agent.memory_actions(agents, global_time, priority)
         memory.add_experience(experience, 'action')
         if log_actions:
             log_output += f"=== ACTION EXECUTION FOR {agent.name} AT ROUND {round} ===\n"
@@ -165,9 +172,9 @@ for repeat in range(repeats):
                 summary_input += f"{agent.name} executes action: {action}\n"
 
     # Rate locations and determine where agents will go next
-    if new_hour and repeat != 0:
+    if new_hour:
         for agent in agents:
-            place_ratings = agent.rate_locations(locations, global_time, prompt_meta, ['待修改'], memory.get_newthings(agent.name, memory_limit))
+            place_ratings = agent.rate_locations(locations, global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
             if log_ratings:
                 log_output += f"=== UPDATED LOCATION RATINGS {global_time} FOR {agent.name}===\n"
                 log_output += f"{agent.name} location ratings: {place_ratings}\n"
@@ -176,19 +183,31 @@ for repeat in range(repeats):
                     print(f"{agent.name} location ratings: {place_ratings}\n")
                 if summarize_ratings:
                     summary_input += f"{agent.name} location ratings: {place_ratings}\n"
-            
             old_location = agent.location
-
             new_location_name = place_ratings[0][0]
-            agent.move(new_location_name)
-            if log_locations:
-                log_output += f"=== UPDATED LOCATIONS AT TIME {global_time} FOR {agent.name}===\n"
-                log_output += f"{agent.name} moved from {old_location} to {new_location_name}\n\n"
-                if print_locations:
-                    print(f"=== UPDATED LOCATIONS AT TIME {global_time} FOR {agent.name}===\n")
-                    print(f"{agent.name} moved from {old_location} to {new_location_name}\n")
-                if summarize_locations:
-                    summary_input += f"{agent.name} moved from {old_location} to {new_location_name}\n"
+            if new_location_name != agent.location:
+                agent.move(new_location_name)
+                agent.memory_location_change(global_time, old_location, new_location_name)
+                save_location_change(project_folder, agent.name, new_location_name)
+                if log_locations:
+                    log_output += f"{agent.name} moved from {old_location} to {new_location_name}\n\n"
+                    if print_locations:
+                        print(f"{agent.name} moved from {old_location} to {new_location_name}\n")
+                    if summarize_locations:
+                        summary_input += f"{agent.name} moved from {old_location} to {new_location_name}\n"
+
+    # Form recent impressions
+    if new_hour:
+        for agent in agents:
+            impression = agent.form_impression(global_time, prompt_meta, memory.get_newthings_str(agent.name, memory_limit))
+            memory.add_experience(impression, 'thought')
+            if log_actions:
+                log_output += f"=== RECENT IMPRESSIONS FOR {agent.name} AT ROUND {round} ===\n"
+                log_output += f"{agent.name}'s recent impression: {impression['action']}\n\n"
+                if print_actions:
+                    print(f"{agent.name}'s recent impression: {impression['action']}\n")
+                if summarize_actions:
+                    summary_input += f"{agent.name}'s recent impression: {impression['action']}\n"
 
     # Whether to summary
     if new_day and repeat != 0:

@@ -30,37 +30,37 @@ from prompt_templates.template_agents import *
     #     """
     #     self.memory.update_memory(self, agents, global_time, action_results)
 
-def rate_experience(self, locations, global_time, prompt_meta, recent_impressions, nearby_situations, experience):
+def rate_experience(self, prompt_meta, recent_impressions, nearby_situations, experience):
     """
     Rates the agent's experience based on the agent's preferences and experiences.
     """
     system = rate_experiences_system
-    prompt = rate_experiences_prompt.format(self.name, self.hourly_plans, global_time, locations.get_location(self.location), self.description, recent_impressions, nearby_situations, experience)
+    prompt = rate_experiences_prompt.format(self.name, self.description, recent_impressions, nearby_situations, experience)
     res = GPT_request(system, prompt_meta.format(prompt), {"max_tokens": 5, "temperature": 0.7})
     rating = get_rating(res)
     return rating
 
 
 
-def format_experience(self, agents, global_time, priority, exp_type='action'):
+def memory_actions(self, agents, global_time, priority):
     """
+    Formats the agent's experience based on the agent's preferences and experiences.
     """
     other_agents = []
-    if exp_type == 'action':
-        for agent in agents:
-            if agent.location == self.location:
-                other_agents.append(agent.name)
-        # experience = [self.name, global_time, self.location, self.action, other_agents, exp_type]
-        experience={
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": self.location,
-            "action": self.action,
-            "other_agents": other_agents,
-            "exp_type": exp_type,
-            "priority": priority
-        }
-        return experience
+    for agent in agents:
+        if agent.location == self.location:
+            other_agents.append(agent.name)
+    # experience = [self.name, global_time, self.location, self.action, other_agents, exp_type]
+    experience={
+        "agent_name": self.name,
+        "global_time": global_time,
+        "location": self.location,
+        "action": f"In {global_time}, {self.name} ,at {self.location}, has done: \"{self.action}\"",
+        "other_agents": other_agents,
+        "exp_type": 'action',
+        "priority": priority
+    }
+    return experience
     
 def memory_daily_plans(self, global_time):
     experience={
@@ -71,5 +71,41 @@ def memory_daily_plans(self, global_time):
         "other_agents": [self.name],
         "exp_type": 'plan',
         "priority": 3
+    }
+    return experience
+
+def memory_hourly_plan(self, global_time):
+    experience={
+        "agent_name": self.name,
+        "global_time": global_time,
+        "location": self.location,
+        "action": f"{self.name}'s hourly plan is:\n{self.hourly_plan}",
+        "other_agents": [self.name],
+        "exp_type": 'plan',
+        "priority": 2
+    }
+    return experience
+
+def memory_location_change(self, global_time, old_location, new_location):
+    experience={
+        "agent_name": self.name,
+        "global_time": global_time,
+        "location": old_location,
+        "action": f"In {global_time}, {self.name} has moved from {old_location} to {new_location}.",
+        "other_agents": [self.name],
+        "exp_type": 'action',
+        "priority": 2
+    }
+    return experience
+
+def memory_impression(self, global_time, impression):
+    experience={
+        "agent_name": self.name,
+        "global_time": global_time,
+        "location": self.location,
+        "action": f"In {global_time}, {self.name} ,at {self.location}, has impressed: \"{impression}\".",
+        "other_agents": [self.name],
+        "exp_type": 'thought',
+        "priority": 4
     }
     return experience

@@ -1,3 +1,4 @@
+=======
 ## Project Description
 
 The project aims to simulate social interactions and agent behavior, providing a customizable framework for the study and exploration of various social scenarios. Through simulation, you can observe interactions between agents, analyze behavioral patterns, and gain a deeper understanding of social dynamics.
@@ -24,6 +25,7 @@ Please follow these steps to set up your environment:
 
 4. **Configure OpenAI API Key:**
 
+   *   Prepare a API containing models for `complements` and `embedding` together. 
    *   Add your OpenAI API key to the `simulation/utils/config.py` file under the `openai_api_key` variable.
    *   You can also adjust `openai_base_url`, `key_owner`, and `DefaultModel` according to your needs.
 
@@ -37,9 +39,9 @@ Follow these steps to run the simulation:
       ..\env\python.exe main.py
       pause
       ```
-    
-    *   Alternatively, you can modify and run the `test_main.py` file with `01_testMain.bat` for testing.
+    *   Alternatively, you can run the `test_main.py` file with `01_testMain.bat` for testing.
 2. **Enter Project Name:** The program will prompt you to enter the project name.
+    *   **Note:** The project can be continued, but it is advisable to implement incremental backups to prevent data loss.
 3. **Enter Simulation Repetitions:** The program will prompt you to input the number of times to repeat the simulation.
 
 ## Simulation Storage Location
@@ -49,6 +51,7 @@ Simulation data is stored in the following location(s):
 *   **Project Directory:** `projects/{project_name}/`, where `{project_name}` is the project name you input when running the simulation.
 *   **Simulation Log:** `projects/{project_name}/simulation_log.txt`
 *   **Simulation Summary:** `projects/{project_name}/simulation_summary.txt`
+*   **Agent Memory:** `projects/{project_name}/agent_data/`
 
 ## Customization
 
@@ -61,7 +64,13 @@ You can customize the simulation in the following ways:
 5. **Modify Locations:** Modify the files in the `simulation/locations/` directory to alter the management of the simulation world locations.
 6. **Modify Memory:** Change the memory management by modifying the files in the `simulation/retrieve/` directory.
 
-Module descriptions can be found in:
+Module descriptions can be found in:  [Module_Description.md](/docs/Module_Description.md)
+
+## Update Introduction
+
+In the V2.0 version, the project underwent significant updates, including optimizing memory retrieval, improving agent state evaluation, refining memory management, laying the groundwork for database interaction, and optimizing the main program and Prompt.
+
+Updated documentation can be found in: [Update-v2.0-20250222.md](/docs/Update-v2.0-20250222.md)
 
 ## Authors and References
 

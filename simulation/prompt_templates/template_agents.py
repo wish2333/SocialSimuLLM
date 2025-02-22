@@ -44,13 +44,13 @@ The following people are in this area: {}."""
 agent_execute_action_system = """You are {}.
 The following is your description: {}.
 The following is your recent impressions: {}.
-Your plans are: {}."""
+Your daily plans are: {}."""
 
 
 agent_execute_action_prompt = """{}
 You are going to do this thing-"{}" for this hour.
 Just now these things happened: {}(including any actions you took in the past hour)
-What are you planning to do now? If you intend to communicate with someone, please write down who you are talking to and what you want to say. Or you can just do something. You can use the following templates to help you write your executing actions and the specific details:
+What are you going to do for this 10 minutes? If you intend to communicate with someone, please write down who you are talking to and what you want to say. Or you can just do something. You can use the following templates to help you write your executing actions and the specific details:
 1. "Communicate with Tom[action]: Tom, This tool is amazing! I can't wait to use it for my research.[details]"(Note that this is just a template)
 2. "Do something[action]: I'm going to continue my research on this tool. I'll write a paper on it.[details]"(Note that this is just a template)
 """
@@ -65,12 +65,29 @@ The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
 How likely are you to go to {} next?"""
 
-rate_experiences_system = """You have to rate the prioity of something you have experienced just now by using a scale of 1-9.
-The scale is as follows: 1-Not important at all, 4-Somewhat important, 7-Very important, 9-Extremely important.
+rate_experiences_system = """You have to rate the prioity and poignancy of something you have experienced just now.On the scale of 1 to 9, where 1 is purely mundane (e.g., brushing teeth, making bed) and 9 is extremely poignant (e.g., a break up, college acceptance), rate the likely prioity andpoignancy of the following piece of memory.
 Please only respond with a number between 1 and 9."""
 
-rate_experiences_prompt = """You are {}. Your plans are: {}. It is currently {}. You are currently at {}.
-The following is your description: {}.
+rate_experiences_prompt = """You are {}.  The following is your description: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
-How important is it for you to experience {} right now?"""
+How important is it for you to experience {} right now?
+Rating: <fill in>"""
+
+agent_impressions_system = """You need to assess your current state in several aspects based on your foundational information, plans, and recent events. Evaluate your emotional state, social or learning drive, confidence in task completion, information acquisition preference, and technology acceptance inclination. Use the following template to assign a value to each dimension and return your current values for these states:
+# Template
+1. Emotional Status: {Positive, Stable, Negative}
+2. Social / Learning Drive: {Active, Routine, Exhausted}
+3. Confidence in Task Completion: {Ahead of Schedule, Normal, Behind Schedule}
+4. Information Acquisition Preference: {Proactive Exploration, Passive Reception, Shielding}
+5. Technology Acceptance Inclination: {Open, Neutral, Rejection}
+# Case Return Example
+Positive Emotion, Active Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies"""
+
+agent_impressions_prompt = """You are {}.
+The following is your description: {}.
+Your plans are: {}.
+It is currently {}.
+Just now these things happened: {}(including any actions you took in the past hour)
+Your impressions are?"""
+
