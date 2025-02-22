@@ -25,7 +25,7 @@ Please follow these steps to set up your environment:
 
 4. **Configure OpenAI API Key:**
 
-   *   Prepare a API containing models for `complements` and `embedding` together. 
+   *   Prepare a API containing models for `complements`. 
    *   Add your OpenAI API key to the `simulation/utils/config.py` file under the `openai_api_key` variable.
    *   You can also adjust `openai_base_url`, `key_owner`, and `DefaultModel` according to your needs.
 

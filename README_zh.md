@@ -21,7 +21,7 @@
     env\python.exe -m pip install -r requirements.txt
     ```
 4.  **配置 OpenAI API 密钥：**
-5.  *   要准备一个包含 complements 和 embedding 模型的 api
+5.  *   要准备一个包含 complements 模型的 api
     *   将您的 OpenAI API 密钥添加到 `simulation/utils/config.py` 文件中的 `openai_api_key` 变量。
     *   您还可以根据需要修改 `openai_base_url`、`key_owner` 和 `DefaultModel`。
 
