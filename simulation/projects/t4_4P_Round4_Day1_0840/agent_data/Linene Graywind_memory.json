@@ -1,0 +1,81 @@
+{
+    "memory": [
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize merchandise on display shelves.  \n11:00 - Meet with suppliers to negotiate prices.  \n12:00 - Lunch break.  \n13:00 - Assist customers with their purchases.  \n14:00 - Update pricing on new items.  \n15:00 - Clean and tidy the trading post.  \n16:00 - Prepare orders for outgoing shipments.  \n17:00 - Review financials and sales from the week.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for upcoming promotions.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize merchandise on display shelves.  \n11:00 - Meet with suppliers to negotiate prices.  \n12:00 - Lunch break.  \n13:00 - Assist customers with their purchases.  \n14:00 - Update pricing on new items.  \n15:00 - Clean and tidy the trading post.  \n16:00 - Prepare orders for outgoing shipments.  \n17:00 - Review financials and sales from the week.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for upcoming promotions.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Do something[action]: I'm going to get myself ready for the day. I'll freshen up, gather my thoughts, and mentally prepare for the tasks ahead. After that, I will check the inventory for trading post supplies. It's important to ensure we have everything we need to serve our customers well today.[details]",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:10",
+            "location": "Barthen's Provisions",
+            "action": "Do something[action]: I have finished getting myself ready for the day. Now, I will check the inventory for trading post supplies to ensure everything is in order for the day ahead. It's essential to verify that we have enough stock to serve customers efficiently. [details]",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:20",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n08:00 - Wake up and get ready for the day.  \n09:00 - Check inventory for trading post supplies.  \n10:00 - Organize shelves and restock items as needed.  \n11:00 - Prepare the trading post for opening hours.  \n12:00 - Lunch break.  \n13:00 - Assist customers with their purchases.  \n14:00 - Evaluate prices and adjust if necessary.  \n15:00 - Take note of low stock items.  \n16:00 - Clean the trading post and keep it tidy.  \n17:00 - Review daily sales and plan for tomorrow.  \n18:00 - Dinner time.  \n19:00 - Respond to customer inquiries and feedback.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:20, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to check the inventory for trading post supplies. I'll take careful notes on what items are available and what needs to be restocked. This is crucial to ensure that we have everything we need for the day ahead and can serve our customers efficiently.[details]\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:30, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to meticulously check the inventory for trading post supplies. I'll ensure to note down the quantities of each item available and highlight what needs to be restocked. This will help in preparing for the day ahead and guarantee that we are well-equipped to serve our customers efficiently. [details]\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        }
+    ]
+}

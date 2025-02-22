@@ -16,5 +16,5 @@ key_owner = "Huang Miaosen"
 class DefaultModel:
     # Set a model name for embedding
     embedding = "BAAI/bge-m3"
-    # Set a model name for completion, e.g. "gpt-4o-mini"
-    completion = "ep-m-20250222124648-lxbcs"
+    # Set a model name for completion
+    completion = "gpt-4o-mini"

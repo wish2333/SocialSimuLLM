@@ -70,13 +70,11 @@ class Agent:
         self.name = name
         self.description = description
         self.location = starting_location
-
-        # self.memory_ratings = []  #Not needed, memory module maintains
+        self.memory_ratings = []
         # self.memory = []  #Not needed, memory module maintains
-        # self.compressed_memory = []  #Not needed, memory module maintains
+        self.compressed_memory = []
         self.daily_plans = ""
-        self.hourly_plan = ""
-        self.impression = ""
+        self.hourly_plans = ""
         self.hourly_action_prompt = ""
         self.action = ""
         self.world_graph = world_graph
@@ -85,10 +83,9 @@ class Agent:
         self.move = MethodType(move, self)
         self.memory_location_change = MethodType(memory_location_change, self)
         self.rate_experience = MethodType(rate_experience, self)
-        self.memory_actions = MethodType(memory_actions, self)
+        self.format_experience = MethodType(format_experience, self)
         self.memory_daily_plans = MethodType(memory_daily_plans, self)
         self.memory_hourly_plan = MethodType(memory_hourly_plan, self)
-        self.memory_impression = MethodType(memory_impression, self)
         # self.update_memory = MethodType(update_memory, self) #Not needed, memory module maintains
         # self.compress_memory = MethodType(compress_recent_impressions, self) #Not needed, memory module maintains
         # self.memory = Memory(project_folder, self) #Not needed, memory module maintains
@@ -99,9 +96,8 @@ class Agent:
     def init_memory(self, daily_plans, hourly_plan):
         self.daily_plans = daily_plans
         self.hourly_plan = hourly_plan
-        # self.impression = impression
 
-    def daily_planning(self, global_time, prompt_meta, recent_impressions, newthings):
+    def daily_planning(self, global_time, prompt_meta,  newthings):
         """
         Generates the agent's daily plan.
 
@@ -117,7 +113,7 @@ class Agent:
             None: This method updates the self.daily_plans attribute but does not return any value.
                 该方法会更新self.daily_plans属性，但不返回任何值。
         """
-        system = agent_plan_system.format(self.name, self.description, recent_impressions, newthings)
+        system = agent_plan_system.format(self.name, self.description, newthings)
         global_hour = global_time.split(':')[0]
         prompt = agent_plan_prompt.format(str(global_hour))
         self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 300})
@@ -131,8 +127,7 @@ class Agent:
                     global_time: int, 
                     town_areas: dict, 
                     prompt_meta: str,
-                    recent_impressions: str,
-                    newthings: str) -> dict:
+                    newthings) -> list:
         """Executes the agent's action based on their current situation and interactions with other agents.
         根据代理当前的位置、时间、环境以及与其他代理的交互情况，
         生成并执行相应的动作。
@@ -169,19 +164,19 @@ class Agent:
 
         people = [agent.name for agent in agents if agent.location == location]
 
-        system = hourly_planning_system.format(self.name, self.description, recent_impressions, newthings, self.daily_plans)
+        system = hourly_planning_system.format(self.name, self.description, newthings, self.daily_plans)
 
         prompt = hourly_planning_prompt.format(location.name, town_areas[location.name], str(global_time), ', '.join(people))
         people_description = [f"{agent.name}: {agent.description}" for agent in agents if agent.location == location.name]
         prompt += ' You know the following about people: ' + '. '.join(people_description)
-        self.hourly_action_prompt = prompt.replace(str(global_time), '{}') # Replace the global time with {} to make it flexible for execute_action().
+        self.hourly_action_prompt = prompt.replace(str(global_time), '{}')
         prompt += "You can choose to interact with them or not. What do you do in the next hour? Use at most 20 words to explain."
 
-        self.hourly_plan = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 30})
-        experience = self.memory_hourly_plan(global_time)
+        self.hourly_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 30})
+        experience = self.memory_daily_plans(global_time)
         return experience
     
-    def execute_action(self, global_time, prompt_meta, recent_impressions, nearby_situations):
+    def execute_action(self, global_time, prompt_meta, nearby_situations):
         """
         Executes an action for the agent based on the global time, prompt metadata, recent impressions, and nearby situations.
 
@@ -201,19 +196,8 @@ class Agent:
             None: This method updates the self.action attribute but does not return any value.
             仅更新self.action属性，但不返回任何值。
         """
-        system = agent_execute_action_system.format(self.name, self.description, recent_impressions, self.daily_plans)
+        system = agent_execute_action_system.format(self.name, self.description, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
-        prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, nearby_situations)
+        prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plans, nearby_situations)
         self.action = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 80})
         return self.action
-    
-    def form_impression(self, global_time, prompt_meta, nearby_situations):
-        """
-        Forms an impression for the agent based on the global time, prompt metadata, recent impressions, and nearby situations.
-        """
-        system = agent_impressions_system
-        prompt = agent_impressions_prompt.format(self.name, self.description, self.daily_plans, global_time, nearby_situations)
-        self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 50})
-        experience = self.memory_impression(global_time, self.impression)
-        return experience
-

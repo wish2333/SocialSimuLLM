@@ -1,0 +1,92 @@
+{
+    "memory": [
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize goods for display and sale.  \n11:00 - Clean the trading post and surroundings.  \n12:00 - Lunch break.  \n13:00 - Meet with local suppliers for new stock.  \n14:00 - Update pricing and label new merchandise.  \n15:00 - Serve customers and handle transactions.  \n16:00 - Restock shelves and arrange displays.  \n17:00 - Review daily sales and adjust stock levels.  \n18:00 - Dinner time.  \n19:00 - Plan marketing strategies for the trading post.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Stonehill Inn",
+            "action": "**Do something**: I will wake up, get dressed, and prepare for the busy day ahead at the trading post. It's going to be a hectic but productive day. I need to get everything in order before opening for customers.",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:10",
+            "location": "Stonehill Inn",
+            "action": "I will finish getting ready for the day ahead. I quickly dress in my usual attire, making sure to look presentable before heading to the trading post. After gathering my belongings, I take a deep breath, knowing it will be a busy day with plenty of tasks to handle. Time to prepare myself for the long day ahead!",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:20",
+            "location": "Stonehill Inn",
+            "action": "Toblen Stonehill's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Open the trading post for customers.  \n10:00 - Restock shelves with new supplies.  \n11:00 - Assist customers with their purchases.  \n12:00 - Lunch break.  \n13:00 - Organize inventory and check stock levels.  \n14:00 - Meet with suppliers for new orders.  \n15:00 - Handle customer inquiries and complaints.  \n16:00 - Clean and tidy the trading post.  \n17:00 - Prepare for closing and balance the register.  \n18:00 - Dinner time.  \n19:00 - Plan for tomorrow's activities.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:20, Toblen Stonehill ,at Stonehill Inn, has done: \"Do something[action]: I'm going to head to the trading post and unlock the doors to start the day. I'll make sure everything is in order and ready for the first customers to arrive. I'll take a moment to check that the sign is properly displayed outside, and then prepare to welcome everyone in.\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 08:30, Toblen Stonehill ,at Stonehill Inn, has done: \"Do something[action]: I'm going to finalize my preparations at the trading post. I'll check the inventory for any last-minute items that need to be displayed before the customers arrive. I want to ensure that the shelves are stocked and organized to create a welcoming atmosphere. After that, I'll light the lanterns to make the place feel warm and inviting.\"",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        }
+    ]
+}

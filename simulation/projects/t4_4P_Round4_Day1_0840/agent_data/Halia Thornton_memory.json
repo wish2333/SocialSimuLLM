@@ -1,0 +1,81 @@
+{
+    "memory": [
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Halia Thornton's daily plan is:\n**Day 1: Schedule of Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Review today's trading post inventory and pricing.  \n10:00 - Meet with miners to discuss their recent finds.  \n11:00 - Plan marketing strategies for attracting more customers.  \n12:00 - Lunch break.  \n13:00 - Assess the competition and analyze their strengths.  \n14:00 - Host a workshop on best mining practices.  \n15:00 - Address any disputes between miners and traders.  \n16:00 - Evaluate progress towards guild authority in town.  \n17:00 - Prepare reports for the town council meeting.  \n18:00 - Dinner time.  \n19:00 - Network with local business owners for partnerships.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Halia Thornton's daily plan is:\n**Day 1: Schedule of Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Review today's trading post inventory and pricing.  \n10:00 - Meet with miners to discuss their recent finds.  \n11:00 - Plan marketing strategies for attracting more customers.  \n12:00 - Lunch break.  \n13:00 - Assess the competition and analyze their strengths.  \n14:00 - Host a workshop on best mining practices.  \n15:00 - Address any disputes between miners and traders.  \n16:00 - Evaluate progress towards guild authority in town.  \n17:00 - Prepare reports for the town council meeting.  \n18:00 - Dinner time.  \n19:00 - Network with local business owners for partnerships.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "I will take a moment to gather my thoughts, reviewing my goals for the day and mentally preparing for the tasks ahead. Since it's still early, I\u2019ll make sure my schedule is organized and clear in my mind. After this brief reflection, I\u2019ll head back to the Miner\u2019s Exchange to check on the inventory and pricing.",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:10",
+            "location": "Phandalin Town Square",
+            "action": "I will take a moment to gather my thoughts and mentally prepare for the day. Reviewing the schedule, I\u2019ll ensure I have a clear plan for the tasks ahead. Once this reflection is done, I\u2019ll head back to the Miner\u2019s Exchange to check on today\u2019s inventory and pricing.",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 9
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "Halia Thornton's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Review goals and organize today's tasks.  \n10:00 - Check inventory and pricing at the Exchange.  \n11:00 - Meet with local miners for updates.  \n12:00 - Lunch break.  \n13:00 - Evaluate new miner contracts and agreements.  \n14:00 - Attend to customer inquiries and sales.  \n15:00 - Plan strategies to increase Exchange influence.  \n16:00 - Review financial records and profits.  \n17:00 - Prepare reports for upcoming guild meetings.  \n18:00 - Dinner time.  \n19:00 - Network with townsfolk and gather local news.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:20, Halia Thornton ,at Phandalin Town Square, has done: \"Do something[action]: Now that I've mentally prepared for the day and reviewed my schedule, I\u2019ll head back to the Miner\u2019s Exchange. Once there, I\u2019ll start checking the inventory to ensure that we have enough supplies for the miners and assess the current pricing of the minerals in stock. This will help me make informed decisions when I meet with local miners later.\"",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 8
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: Now that I\u2019ve returned to the Miner\u2019s Exchange, I\u2019ll start checking the inventory. I\u2019ll assess our stock of minerals and supplies, ensuring we\u2019re well-prepared for the miners arriving later. I\u2019ll also review the current pricing to ensure our rates are competitive and fair. This information will be crucial when I meet with the local miners to discuss their finds and contracts.\"\"",
+            "other_agents": [
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 8
+        }
+    ]
+}

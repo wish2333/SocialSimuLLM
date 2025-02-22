@@ -13,30 +13,11 @@ from utils.text_generation import GPT_request, get_rating, get_embedding
 import networkx as nx
 from prompt_templates.template_agents import *
 
-def rate_locations(self, locations, global_time, prompt_meta, recent_impressions, nearby_situations):
-
-    """
-    Rates different locations in the simulated environment based on the agent's preferences and experiences.
-    
-    Parameters:
-    -----------
-    locations : Locations
-        The Locations object representing different areas in the simulated environment.
-    global_time : int
-        The current time in the simulation.
-    prompt_meta : str
-        The prompt used to rate the locations.
-
-    Returns:
-    --------
-    place_ratings : list
-        A list of tuples representing the location, its rating, and the generated response.
-
-    """
+def rate_locations(self, locations, global_time, prompt_meta,  nearby_situations):
 
     place_ratings = []
     for location in locations.locations.values():
-        prompt = rate_location_prompt.format(self.name, self.hourly_plan, global_time, locations.get_location(self.location), self.description, recent_impressions, nearby_situations, location.name)
+        prompt = rate_location_prompt.format(self.name, self.hourly_plans, global_time, locations.get_location(self.location), self.description, nearby_situations, location.name)
         res = GPT_request(rate_location_system, prompt_meta.format(prompt), {"max_tokens": 5, "temperature": 0.7})
         rating = get_rating(res)
         max_attempts = 2

@@ -9,11 +9,9 @@ First version created on 2025-02-20 13:46.
 
 Comment format: Use standard Google style docstring format for comments, bilingual in English and Chinese (note to write English comments first), compatible with VSCode intelligent prompts.
 """
-
 import os
 import json
-import sqlite3
-from utils.text_generation import get_embedding
+
 
 class Memory:
     """
@@ -67,7 +65,6 @@ class Memory:
                 agent_memory.append(experience)
                 agent_memory_full['memory'] = agent_memory
                 self.save_memory_file(agent.name, agent_memory_full)
-        # self.sort_memory(experience['agent_name'], experience['action'])
 
     def get_init_memory(self, agent_name):
         agent_memory_full = self.load_memory_file(agent_name)
@@ -91,57 +88,3 @@ class Memory:
         newthings = self.get_newthings(agent_name, num_experiences)
         newthings_str = f"'\n'.join(item['action'] for item in {newthings}\n"
         return newthings_str
-    
-    def get_importants(self, agent_name, num_experiences):
-        agent_memory_full = self.load_memory_file(agent_name)
-        agent_memory = agent_memory_full['memory']
-        action_memory = [action for action in agent_memory if action['exp_type'] == 'action']
-        importants_memory = [action for action in action_memory if action['priority'] > 4]
-        importants = importants_memory[-num_experiences:]
-        return importants
-    
-    def get_impressions(self, agent_name, num_experiences):
-        agent_memory_full = self.load_memory_file(agent_name)
-        agent_memory = agent_memory_full['memory']
-        impressions = [impression for impression in agent_memory if impression['exp_type'] == 'thought' and impression['priority'] == 4]
-        return impressions[-num_experiences:]
-
-    def get_impressions_str(self, agent_name, num_experiences):
-        impressions = self.get_impressions(agent_name, num_experiences)
-        impressions_str = f"'\n'.join(item['action'] for item in {impressions}\n"
-        return impressions_str
-
-    # def sort_memory(self, agent_name, action):
-    #     """
-    #     Sort the memory by embedding the action and storing it in the agent's SQLite database.
-    #     """
-    #     action_embedding = self.embed_action(action)
-    #     self.store_embedding_in_database(agent_name, action, action_embedding)
-
-    # def embed_action(self, action):
-    #     """
-    #     Embed the action using a pre-trained model or API.
-    #     """
-    #     embedding = get_embedding(action)
-    #     return embedding
-
-    # def store_embedding_in_database(self, agent_name, action, embedding):
-    #     """
-    #     Store the action embedding in the agent's SQLite database.
-    #     """
-    #     embedding = json.dumps(embedding)
-    #     db_file = os.path.join(self.project_folder, 'agent_data', f"{agent_name}_memory.db")
-    #     conn = sqlite3.connect(db_file)
-    #     cursor = conn.cursor()
-    #     cursor.execute('''
-    #         CREATE TABLE IF NOT EXISTS action_embeddings (
-    #             action_description TEXT,
-    #             action_embedding TEXT
-    #         )
-    #     ''')
-    #     cursor.execute('''
-    #         INSERT INTO action_embeddings (action_description, action_embedding)
-    #         VALUES (?, ?)
-    #     ''', (action, embedding))
-    #     conn.commit()
-    #     conn.close()
