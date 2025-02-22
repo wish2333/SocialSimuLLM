@@ -210,7 +210,7 @@ for repeat in range(repeats):
                     summary_input += f"{agent.name}'s recent impression: {impression['action']}\n"
 
     # Whether to summary
-    if new_day and repeat != 0:
+    if (new_day and repeat != 0) or (repeat == repeats-1):
         print(f"----------------------- SUMMARY FOR ROUND {round} -----------------------\n")
         log_output += f"----------------------- SUMMARY FOR ROUND {round} ----------\n"
         summary_output = summarize_simulation(summary_input)
