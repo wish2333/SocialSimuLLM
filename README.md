@@ -32,8 +32,19 @@ Please follow these steps to set up your environment:
 Follow these steps to run the simulation:
 
 1. **Run the Main Program:** Execute the `simulation/main.py` file.
-    *   Alternatively, you can run the `test_main.py` file with `01_testMain.bat` for testing.
+
+   * ```bash
+     cd simulation
+     ..\env\python.exe main.py
+     pause
+     ```
+
+   * Alternatively, you can run the `test_main.py` file with `01_testMain.bat` for testing.
+
 2. **Enter Project Name:** The program will prompt you to enter the project name.
+
+   *   **Note:** The project can be continued, but it is advisable to implement incremental backups to prevent data loss.
+
 3. **Enter Simulation Repetitions:** The program will prompt you to input the number of times to repeat the simulation.
 
 ## Simulation Storage Location
@@ -43,6 +54,7 @@ Simulation data is stored in the following location(s):
 *   **Project Directory:** `projects/{project_name}/`, where `{project_name}` is the project name you input when running the simulation.
 *   **Simulation Log:** `projects/{project_name}/simulation_log.txt`
 *   **Simulation Summary:** `projects/{project_name}/simulation_summary.txt`
+*   **Agent Memory:** `projects/{project_name}/agent_data/`
 
 ## Customization
 
@@ -55,7 +67,13 @@ You can customize the simulation in the following ways:
 5. **Modify Locations:** Modify the files in the `simulation/locations/` directory to alter the management of the simulation world locations.
 6. **Modify Memory:** Change the memory management by modifying the files in the `simulation/retrieve/` directory.
 
-Module descriptions can be found in:
+Module descriptions can be found in:  [Module_Description.md](/docs/Module_Description.md)
+
+## Update Introduction
+
+In the V2.0 version, the project underwent significant updates, including optimizing memory retrieval, improving agent state evaluation, refining memory management, laying the groundwork for database interaction, and optimizing the main program and Prompt.
+
+For details, please switch to the corresponding branch or download the source code of the corresponding release.
 
 ## Authors and References
 

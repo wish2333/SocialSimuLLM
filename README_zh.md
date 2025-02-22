@@ -27,10 +27,21 @@
 
 请按照以下步骤运行模拟：
 
-1.  **运行主程序：** 运行 `simulation/main.py` 文件。
-    *   或者，您可以使用 `01_testMain.bat` 文件运行 `test_main.py` 文件进行测试。
-2.  **输入项目名称：** 程序将提示您输入项目名称。
-3.  **输入重复次数：** 程序将提示您输入模拟的重复次数。
+1. **运行主程序：** 运行 `simulation/main.py` 文件。
+
+   * ```bash
+     cd simulation
+     ..\env\python.exe main.py
+     pause
+     ```
+
+   * 或者，您可以使用 `01_testMain.bat` 文件运行 `test_main.py` 文件进行测试。
+
+2. **输入项目名称：** 程序将提示您输入项目名称。
+
+   - **注意：** 项目可以沿用继续，但是需要注意增量备份，以防止数据丢失。
+
+3. **输入重复次数：** 程序将提示您输入模拟的重复次数。
 
 ## 模拟存储位置
 
@@ -39,6 +50,7 @@
 *   **项目目录：** `projects/{project_name}/`，其中 `{project_name}` 是您在运行模拟时输入的项目名称。
 *   **模拟日志：** `projects/{project_name}/simulation_log.txt`
 *   **模拟摘要：** `projects/{project_name}/simulation_summary.txt`
+*   **智能体记忆：** `projects/{project_name}/agent_data/`
 
 ## 自定义
 
@@ -51,7 +63,13 @@
 5.  **修改位置：** 修改 `simulation/locations/` 目录下的文件以更改模拟世界位置管理。
 6.  **修改记忆：** 修改 `simulation/retrieve/` 目录下的文件以更改记忆管理。
 
-模块说明请参照
+模块说明请参见 [Module_Description.md](/docs/Module_Description.md)
+
+## 更新介绍
+
+本项目在 V2.0 版本中进行了重大更新，包括优化记忆检索、改进 Agent 状态评估、完善记忆管理、为数据库交互奠定基础，并优化主程序和 Prompt。
+
+详情请切换到对应分支或下载对应release源代码
 
 ## 作者和引用
 
