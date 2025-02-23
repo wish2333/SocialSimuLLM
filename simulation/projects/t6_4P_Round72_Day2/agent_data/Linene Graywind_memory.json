@@ -1,0 +1,1983 @@
+{
+    "memory": [
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n[  \n8:00 - Wake up and get ready for the day.  \n9:00 - Check inventory for trading post supplies.  \n10:00 - Organize the trading post area.  \n11:00 - Review customer requests and orders.  \n12:00 - Lunch break.  \n13:00 - Restock popular items on the shelves.  \n14:00 - Prepare for afternoon customer visits.  \n15:00 - Engage with customers and offer assistance.  \n16:00 - Update pricing on new items.  \n17:00 - Take notes on sales trends and feedback.  \n18:00 - Dinner time.  \n19:00 - Plan tomorrow's inventory and sales strategy.  \n20:00 - Enjoy the night and go to bed.]  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will begin my day by getting ready to open the trading post for business.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n### Goals for Today\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Restock supplies for the upcoming week.  \n11:00 - Check for new shipments arriving today.  \n12:00 - Lunch break.  \n13:00 - Attend to customer inquiries and requests.  \n14:00 - Prepare promotional materials for sale.  \n15:00 - Update pricing on popular items.  \n16:00 - Clean and tidy the trading post area.  \n17:00 - Review financials and sales from last week.  \n18:00 - Dinner time.  \n19:00 - Plan next week's marketing strategies.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will start organizing the trading post inventory to prepare for the day ahead.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n[  \n8:00 - Wake up and get ready for the day.  \n9:00 - Organize trading post inventory.  \n10:00 - Check for new stock deliveries.  \n11:00 - Update pricing for popular items.  \n12:00 - Lunch break.  \n13:00 - Attend to customer inquiries.  \n14:00 - Restock shelves with new items.  \n15:00 - Clean and tidy the trading post.  \n16:00 - Review weekly sales report.  \n17:00 - Plan promotions for the upcoming week.  \n18:00 - Dinner time.  \n19:00 - Count cash register and balance books.  \n20:00 - Enjoy the night and go to bed.]  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will start my day by organizing the trading post inventory to ensure everything is in order for customers.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n[  \n8:00 - Wake up and get ready for the day.  \n9:00 - Organize trading post inventory.  \n10:00 - Check supplies and restock items.  \n11:00 - Clean and maintain the trading area.  \n12:00 - Lunch break.  \n13:00 - Set up promotions for the day.  \n14:00 - Attend to customer inquiries and requests.  \n15:00 - Review pricing for various goods.  \n16:00 - Make plans for future stock purchases.  \n17:00 - Count daily earnings and update records.  \n18:00 - Dinner time.  \n19:00 - Prepare for the next day\u2019s activities.  \n20:00 - Enjoy the night and go to bed.]  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will start my day by preparing the trading post for opening, ensuring everything is organized and ready for customers.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n**Day 1 Goals:**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Organize trading post inventory for efficiency.  \n10:00 - Review current market trends and prices.  \n11:00 - Meet with local suppliers for new stock.  \n12:00 - Lunch break.  \n13:00 - Update trading post signage and displays.  \n14:00 - Assist customers with their purchases.  \n15:00 - Restock popular items on shelves.  \n16:00 - Check and respond to customer inquiries.  \n17:00 - Plan promotions for the upcoming week.  \n18:00 - Dinner time.  \n19:00 - Clean and tidy the trading post.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will start organizing the trading post inventory for efficiency, ensuring everything is in its proper place.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n[  \n8:00 - Wake up and get ready for the day.  \n9:00 - Organize the trading post inventory.  \n10:00 - Check for new supplies arriving today.  \n11:00 - Attend to early morning customers.  \n12:00 - Lunch break.  \n13:00 - Restock shelves with popular items.  \n14:00 - Update pricing for better sales.  \n15:00 - Clean the trading post area.  \n16:00 - Review sales from yesterday.  \n17:00 - Plan promotions for the upcoming week.  \n18:00 - Dinner time.  \n19:00 - Count profits and prepare reports.  \n20:00 - Enjoy the night and go to bed.]  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI will wake up, get ready, and prepare to open the trading post for the day.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:00, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to wake up, get ready, and prepare to open Barthen's Provisions for the day. I'll tidy up the place, check that all the supplies are in order, and set everything up for the customers who might come in as soon as we open.\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Open Barthen's Provisions for customers.  \n10:00 - Stock shelves with new supplies.  \n11:00 - Assist customers with their purchases.  \n12:00 - Lunch break.  \n13:00 - Clean the shop front and windows.  \n14:00 - Check inventory and reorder supplies as needed.  \n15:00 - Prepare for any afternoon sales.  \n16:00 - Host a small event to attract customers.  \n17:00 - Wrap up sales for the day.  \n18:00 - Dinner time.  \n19:00 - Organize paperwork and accounts.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI'll finish tidying up the trading post and prepare to open Barthen's Provisions for customers at 9:00.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:00, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to finish tidying up the trading post. I'll organize the shelves, ensure that everything is neatly displayed, and double-check that all supplies are stocked and in order for when customers start to arrive at 9:00. I want to create a welcoming environment for everyone who comes in.\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"1. Emotional Status: Positive  \n2. Social / Learning Drive: Active  \n3. Confidence in Task Completion: Ahead of Schedule  \n4. Information Acquisition Preference: Proactive Exploration  \n5. Technology Acceptance Inclination: Open  \".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:10, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to finish tidying up the trading post. I'll organize the shelves, ensuring that everything is neatly displayed and accessible for customers. I\u2019ll double-check that all supplies are stocked and in order for when customers start to arrive at 9:00. Creating a welcoming environment is my priority right now.\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:20, Linene Graywind ,at Barthen's Provisions, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562723611302586169280)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:30, Linene Graywind ,at Barthen's Provisions, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562856699030475632613)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:40, Linene Graywind ,at Barthen's Provisions, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562976656875056808175)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:50, Linene Graywind ,at Barthen's Provisions, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212563087073260028301169)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nOpen Barthen's Provisions and welcome the customers. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotional Status, Active Social Drive, Routine Learning Drive, Confident in Normal Task Completion, Willing to Passively Receive Information, Neutral to New Technologies\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to open Barthen's Provisions and welcome the customers. I'll stand at the entrance with a warm smile and greet everyone as they come in, ready to assist them with their shopping needs. I'll also make sure the shop is in a presentable state, with all the items neatly arranged on the shelves. If any customers have questions right away, I'll do my best to answer them promptly.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nStock shelves with new supplies as per the plan.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to stock the shelves with new supplies as per the plan. I'll start by bringing in the boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll neatly arrange them on the appropriate shelves, making sure to follow the inventory system. I'll also check for any damaged items and set them aside for replacement or repair. Once the shelves are stocked, I'll take a moment to admire the organized and well-stocked trading post.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotion, Active Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue stocking the shelves with new supplies as per the plan. I'll bring in the boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll neatly arrange them on the appropriate shelves, making sure to follow the inventory system. I'll also check for any damaged items and set them aside for replacement or repair. Once the shelves are stocked, I'll take a moment to admire the organized and well-stocked trading post.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue stocking the shelves with new supplies as per the plan. I'll bring in the boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll neatly arrange them on the appropriate shelves, making sure to follow the inventory system. I'll also check for any damaged items and set them aside for replacement or repair. Once the shelves are stocked, I'll take a moment to admire the organized and well-stocked trading post.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue stocking the shelves with new supplies as per the plan. I'll bring in the boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll neatly arrange them on the appropriate shelves, making sure to follow the inventory system. I'll also check for any damaged items and set them aside for replacement or repair. Once the shelves are stocked, I'll take a moment to admire the organized and well-stocked trading post.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue stocking the shelves with new supplies as per the plan. I'll bring in more boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll carefully arrange them on the appropriate shelves, double-checking the inventory system as I go. I'll also thoroughly inspect each item for any damage and set aside anything that needs replacement or repair. Once the shelves are stocked, I'll take a moment to survey the organized and well-stocked trading post with satisfaction.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 10:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 10:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue stocking the shelves with new supplies as per the plan. I'll bring in more boxes of backpacks, bedrolls, rope, and rations from the storage room. Then, I'll carefully arrange them on the appropriate shelves, double-checking the inventory system as I go. I'll also thoroughly inspect each item for any damage and set aside anything that needs replacement or repair. Once the shelves are stocked, I'll take a moment to survey the organized and well-stocked trading post with satisfaction.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nAssist customers with their purchases at Barthen's Provisions.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure to provide\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nAssist customers with their purchases at Barthen's Provisions.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure to\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Positive Emotion, Active Social Drive, Active Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting the customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 11:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 11:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to assist customers with their purchases at Barthen's Provisions. I'll walk around the store, greeting customers, asking if they need help finding anything, and offering suggestions based on their needs. I'll also answer any questions they may have about the products, such as their quality, durability, or price. If a customer needs help carrying their purchases to their vehicle, I'll offer to assist them. If there are multiple customers waiting for assistance, I'll prioritize based on who arrived first and who seems to need help the most. I'll make sure\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nTake my lunch break as it's 12:00. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to take my lunch break as it's 12:00. I'll head to the backroom of Barthen's Provisions, where I have a small table and chair set up. I'll sit down and enjoy the meal I brought with me today, which is a hearty sandwich made with fresh bread, slices of roast beef, cheese, lettuce, and tomato. Along with the sandwich, I have a flask of cold tea to wash it down. After eating, I'll take a short break to relax and recharge before getting back to work\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotion, Routine Social Drive, Routine Learning Drive, Confident in Task Completion, Passive Information Acquisition, Neutral Technology Acceptance\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue relaxing during my lunch break. I'll finish the sandwich and drink the tea I brought, then take a few minutes to stretch and unwind, maybe close my eyes for a bit to recharge before getting back to work.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish relaxing during my lunch break. I'll take a few more minutes to stretch, maybe do a bit of light meditation if I can manage to clear my mind, then head back out to the store floor to check on things and get back to work.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to head back out to the store floor to check on things and get back to work. I'll walk around the store, making sure everything is in order, the shelves are stocked, and the customers are still being attended to. If there are any customers with questions, I'll answer them as best I can. I'll also keep an eye out for any potential shoplifting or other issues that may arise. Then I'll start preparing for the afternoon sales as per my schedule.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start preparing for the afternoon sales as per my schedule. I'll check inventory to ensure we have enough stock of the items that are likely to be in demand. I'll also make sure the sales displays are set up attractively and that any promotional materials are in place. I'll review the prices of our products to see if any adjustments need to be made for the sales. Additionally, I'll start thinking about any special offers or discounts that I could introduce to attract more customers.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 12:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 12:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue preparing for the afternoon sales. I'll double-check the inventory levels for all the popular items, making sure we have enough stock to meet the expected demand. I'll also ensure that the sales displays are visually appealing and prominently feature the products on sale. Additionally, I'll finalize the details of any special offers or discounts I plan to introduce and make sure all the promotional materials are in place. Once I'm satisfied with the preparations, I'll start thinking about how to attract more customers during the afternoon sales, perhaps by offering personalized recommendations or hosting\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nClean the shop front and windows as per my plan. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to clean the shop front and windows as per my plan. I'll start by gathering the necessary cleaning supplies, which include a bucket of soapy water, a sponge, a squeegee, and a clean cloth. First, I'll use the sponge to scrub the shop front gently, removing any dirt, dust, or fingerprints. I'll pay special attention to the display windows, making sure to get rid of any smudges or streaks. After scrubbing, I'll use the squeegee to wipe down the windows, starting from the top and\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"1. Emotional Status: Stable\n2. Social / Learning Drive: Routine\n3. Confidence in Task Completion: Normal\n4. Information Acquisition Preference: Passive Reception\n5. Technology Acceptance Inclination: Neutral\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue cleaning the shop front and windows as per my plan. After using the squeegee to wipe down the windows, I'll use the clean cloth to dry them thoroughly. Then I'll move on to scrubbing the rest of the shop front, making sure to clean any corners or crevices. Once I'm done scrubbing, I'll use the soapy water to rinse off the sponge and clean the cloth, then use the cloth to wipe down the shop front one last time to remove any excess moisture. Finally, I'll gather up the\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:10, Halia Thornton ,at Barthen's Provisions, has done: \"\"Communicate with Miners[action]: I'm going to start by walking around the common room here at Stonehill Inn to see if any miners are present. I'll approach them and begin the conversation about their needs. Specifically, I'll ask about how mining equipment is holding up, if they're satisfied with the payment process at the Miner's Exchange, and if there are any difficulties accessing the markets for their mined goods. I'll also inquire about any new minerals they've discovered recently and if they anticipate any changes in the quantity of minerals they'll bring to the Miner's Exchange in the coming\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue cleaning the shop front and windows as per my plan. After using the soapy water to rinse off the sponge and clean the cloth, I'll use the cloth to wipe down the shop front one last time to remove any excess moisture. Finally, I'll gather up the cleaning supplies and put them away.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:20, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to try and find some miners in the common room here at Stonehill Inn. Once I've located them, I'll start the conversation by asking about how their mining equipment is holding up. I'll inquire if they're facing any difficulties with it, such as frequent breakdowns or lack of proper functionality. Next, I'll move on to the payment process at the Miner's Exchange. I'll ask if they're satisfied with the current rates and the timeliness of payments. This is crucial as happy miners are more likely to continue doing business with us. Then\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue cleaning the shop front and windows as per my plan. After using the soapy water to rinse off the sponge and clean the cloth, I'll use the cloth to wipe down the shop front one last time to remove any excess moisture. Finally, I'll gather up the cleaning supplies and put them away.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:30, Halia Thornton ,at Barthen's Provisions, has done: \"\"Communicate with Miners[action]: I'm going to continue looking around the common room here at Stonehill Inn to find more miners. Once I've located them, I'll start by asking about their mining equipment again, any difficulties they've faced with it since we last spoke, and if they've noticed any new trends in the types of minerals they're finding. I'll also delve deeper into their satisfaction with the payment process at the Miner's Exchange, asking for specific examples of any issues or improvements they'd like to see. Additionally, I'll inquire about any challenges they've encountered in accessing\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue cleaning the shop front and windows as per my plan. After using the soapy water to rinse off the sponge and clean the cloth, I'll use the cloth to wipe down the shop front one last time to remove any excess moisture. Finally, I'll gather up the cleaning supplies and put them away.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:40, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start by walking around the common room here at Stonehill Inn to find any miners present. Once I locate them, I'll approach and begin the conversation about their needs. Specifically, I'll ask about how mining equipment is holding up, if they're satisfied with the payment process at the Miner's Exchange, and if there are any difficulties accessing the markets for their mined goods. I'll also inquire about any new minerals they've discovered recently and if they anticipate any changes in the quantity of minerals they'll bring to the Miner's Exchange in the coming days\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 13:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue cleaning the shop front and windows as per my plan. After using the soapy water to rinse off the sponge and clean the cloth, I'll use the cloth to wipe down the shop front one last time to remove any excess moisture. Finally, I'll gather up the cleaning supplies and put them away.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 13:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 13:50, Halia Thornton ,at Barthen's Provisions, has done: \"\"Communicate with Miners[action]: I'm going to start by walking around the common room here at Stonehill Inn to see if any miners are present. I'll approach them and begin the conversation about their needs. Specifically, I'll ask about how mining equipment is holding up, if they're satisfied with the payment process at the Miner's Exchange, and if there are any difficulties accessing the markets for their mined goods. I'll also inquire about any new minerals they've discovered recently and if they anticipate any changes in the quantity of minerals they'll bring to the Miner's Exchange in the coming\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nCheck inventory and reorder supplies as per plan.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to check inventory and reorder supplies as per plan. First, I'll take a look at the shelves to see what items are running low. I'll start with the backpacks, counting how many are left and comparing it to the number I usually sell in a day. Then I'll move on to the bedrolls, rope, and rations, noting any shortages. After that, I'll make a list of the items that need to be reordered. I'll consider the current demand for each item, looking at past sales records to estimate how\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:00, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to update the inventory by taking stock of our supplies of backpacks, bedrolls, rope, and rations. I'll compare the current quantities to the records I've been keeping and note any items that are running low. After that, I'll place orders for the supplies we need to restock based on the miners' demands and our sales trends, making sure to consider lead times and costs from our suppliers.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotional Status, Routine Social and Learning Drive, Confident in Normal Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue checking inventory and reorder supplies as per plan. I've already started with the backpacks. I counted that there are only 10 left, and I usually sell about 15 in a day. So, I'll mark backpacks on my list for reorder. Next, I'll move on to the bedrolls. I see there are 8 bedrolls remaining, and I typically sell around 10 per day. I'll add bedrolls to the reorder list. Then, I'll check the rope\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:10, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish updating the inventory by checking on the rope and rations. I'll note their quantities, compare them to our records and sales trends, and add anything that's running low to the order list. After that, I'll finalize the order for the supplies we need to restock based on the miners' demands, taking into account lead times and costs from our suppliers.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to keep checking inventory and reorder supplies. I've already counted 10 backpacks left, and I usually sell about 15 a day, so I'll mark them down for reorder. There are 8 bedrolls remaining, and I typically sell around 10 per day, so I'll add them to the list. Now I'm going to check the rope. There are 20 pieces of rope left, and I usually sell 10 a day. Since we have a good stockpile for now, I won\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:20, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to keep updating the inventory by checking on the rations. I'll note the quantity, compare it to our records and sales trends, and add it to the order list if it's running low. After that, I'll finalize the order for the supplies we need to restock based on the miners' demands, considering lead times and costs from our suppliers.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish checking inventory and reorder supplies as per plan. I've already counted 10 backpacks left, and I usually sell about 15 a day, so I'll mark them down for reorder. There are 8 bedrolls remaining, and I typically sell around 10 per day, so I'll add them to the list. I've checked the rope and we have a good stockpile for now. Now I'll check the rations. After that, I'll make a list of the items that need to be\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:30, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue updating the inventory by carefully checking on the rations. I'll note the quantity precisely, compare it meticulously to our records and sales trends, and add it to the order list if it's running low. After that, I'll finalize the order for the supplies we need to restock based on the miners' demands, taking into account lead times and costs from our suppliers. I'll start by counting the number of ration packs on the shelves. Then, I'll look at the sales data from the past few days to see if the number of r\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish checking inventory and reorder supplies as per plan. I've counted 10 backpacks left, usually selling 15 a day, so I'll mark them for reorder. There are 8 bedrolls remaining, typically selling 10 per day, so I'll add them to the list. The rope stockpile is good. Now I'm checking the rations. After that, I'll make a list of the items that need to be reordered and place the orders with consideration for lead times and costs from our suppliers.[\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:40, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue updating the inventory by carefully checking on the rations. I'll note the quantity precisely, compare it meticulously to our records and sales trends, and add it to the order list if it's running low. After that, I'll finalize the order for the supplies we need to restock based on the miners' demands, taking into account lead times and costs from our suppliers. I'll start by counting the number of ration packs on the shelves. Then, I'll look at the sales data from the past few days to see if the number of r\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 14:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish checking inventory and reorder supplies as per plan. I've counted 10 backpacks left, usually selling 15 a day, so I'll mark them for reorder. There are 8 bedrolls remaining, typically selling 10 per day, so I'll add them to the list. The rope stockpile is good. Now I'm checking the rations. After that, I'll make a list of the items that need to be reordered and place the orders with consideration for lead times and costs from our suppliers.\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 14:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 14:50, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue updating the inventory by carefully checking on the rations. I'll note the quantity precisely, compare it meticulously to our records and sales trends, and add it to the order list if it's running low. After that, I'll finalize the order for the supplies we need to restock based on the miners' demands, taking into account lead times and costs from our suppliers. I'll start by counting the number of ration packs on the shelves. Then, I'll look at the sales data from the past few days to see if the number of r\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nPrepare for any afternoon sales as per my plan. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to prepare for any afternoon sales as per my plan. I'll make sure all the items are neatly arranged on the shelves, especially the ones that are likely to be popular. I'll also set up any promotional displays if needed. After that, I'll double - check the inventory for any last - minute discrepancies and ensure that the pricing labels are clear and accurate. I'll be ready to assist customers promptly and efficiently when they arrive. [details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 15:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:00, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start planning upcoming promotions for the Miner's Exchange. I'll consider highlighting the fair prices we offer for miners' finds, our reliable weighing and measuring processes, and any special incentives like discounts on future trades. I'll also think about partnering with other local businesses to cross - promote. Maybe we could offer a combined package deal with Barthen's Provisions where miners get a discount on supplies if they bring their valuable minerals to us. I'll jot down these ideas and start fleshing them out into a proper promotion plan.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotion, Active Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll continue preparing for any afternoon sales as per my plan. I'll double-check the inventory for any last-minute discrepancies and ensure that the pricing labels are clear and accurate. I'll also make sure all the items are neatly arranged on the shelves, especially the ones that are likely to be popular. If there were any promotional displays planned, I'll set them up now. I'll be ready to assist customers promptly and efficiently when they arrive.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue preparing for any afternoon sales as per my plan. I'll double-check the inventory one more time for any last-minute discrepancies and ensure that the pricing labels are clear and accurate. I'll arrange the popular items even more neatly on the shelves. If there were any promotional displays planned, I'll make sure they're highly visible. I'll be fully ready to assist customers promptly and efficiently when they arrive.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to double-check the inventory one more time for any last-minute discrepancies and ensure that the pricing labels are clear and accurate. I'll arrange the popular items even more neatly on the shelves. If there were any promotional displays planned, I'll make sure they're highly visible. I'll be fully ready to assist customers promptly and efficiently when they arrive.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to double-check the inventory one more time for any last-minute discrepancies and ensure that the pricing labels are clear and accurate. I'll arrange the popular items even more neatly on the shelves. If there were any promotional displays planned, I'll make sure they're highly visible. I'll be fully ready to assist customers promptly and efficiently when they arrive.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 15:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 15:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to double-check the inventory one more time for any last-minute discrepancies and ensure that the pricing labels are clear and accurate. I'll arrange the popular items even more neatly on the shelves. If there were any promotional displays planned, I'll make sure they're highly visible. I'll be fully ready to assist customers promptly and efficiently when they arrive.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nHost a small event to attract customers as per plan. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to host a small event to attract customers as per my plan. I'll gather some of the popular items like backpacks, bedrolls, and rations and set up a display with discounted prices. I'll also announce that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll stand near the display and greet customers as they enter, highlighting the special offers.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotion, Active Social Drive, Routine Learning Drive, Confident in On - Schedule Task Completion, Willing to Actively Seek Information, Open to New Technologies\n\n1. Emotional Status: Stable. The tasks throughout the day have\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:10, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm already in the midst of hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations, greeting customers as they enter and highlighting the special offers. I'll make sure to mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to answer any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:20, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep greeting customers as they enter, highlighting the special offers on popular items like backpacks, bedrolls, and rations, and mention that for every purchase over a certain amount, they get a free small item like a rope or a set of matches. I'll also be ready to assist customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:30, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:40, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 16:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:50, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head back to my trading post to update the inventory records and sales. I'll start by going through the sales receipts from the day to record each transaction accurately. Then I'll count the remaining items in stock for each category, comparing the numbers with the initial inventory list. Any discrepancies will be noted, and I'll adjust the records accordingly. I'll make sure to double - check all the figures for accuracy before finalizing the updates.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 16:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 16:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to continue hosting the small event to attract customers. I'll keep standing near the display of discounted popular items like backpacks, bedrolls, and rations. I'll greet the customers as they enter, making sure to highlight the special offers. I'll mention that for every purchase over a certain amount, the customer gets a free small item like a rope or a set of matches. I'll also be ready to assist the customers with any questions they may have about the products and the deals.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nWrap up sales for the day as per my daily plan. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:00, Toblen Stonehill ,at Barthen's Provisions, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll start by tidying up the display area. I'll make sure all the items are neatly arranged and the discounted product signage is still prominently visible. Then I'll check the cash register to reconcile the day's sales. I'll carefully count the money, comparing the amount in the register with the total from the sales receipts. I'll list out any discrepancies to investigate further. After that, I'll turn off the lights and secure the front door, getting Barthen's Provisions ready for the night.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Stable Emotional Status, Active Social Drive, Routine Learning Drive, Confident in On - Schedule Task Completion, Passive Reception of Information, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:10, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll double - check the inventory levels one last time to make sure everything is accounted for. Then I'll finalize the sales records and prepare the cash for deposit at the local bank. After that, I'll make sure all the items on display are secure and the shop is tidy before officially closing for the day.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 17:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:10, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start by going through the latest income statements to see how much revenue we've generated from mineral trades so far today. Then I'll check the expense reports to identify any areas where we might be overspending. I'll analyze the profit margins to determine if our current pricing strategies are working. Based on these findings, I'll make adjustments to the budget as necessary, such as reallocating funds from one category to another or cutting back on unnecessary expenses. [details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:20, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll finalize the sales records and prepare the cash for deposit at the local bank. After that, I'll make sure all the items on display are secure and the shop is tidy before officially closing for the day.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 17:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:20, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to review financial reports and adjust budgets. I'll start by thoroughly going through the latest income statements to precisely calculate how much revenue we've generated from mineral trades so far today. Then, I'll meticulously check the expense reports to identify any areas where we might be overspending. I'll closely analyze the profit margins to accurately determine if our current pricing strategies are working. Based on these detailed findings, I'll make precise adjustments to the budget as necessary, such as reallocating funds from one category to another or carefully cutting back on unnecessary expenses. [\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:30, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll double - check the inventory levels one last time to make sure everything is accounted for. Then I'll finalize the sales records and prepare the cash for deposit at the local bank. After that, I'll make sure all the items on display are secure and the shop is tidy before officially closing for the day.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 17:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:30, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start by thoroughly going through the latest income statements to precisely calculate how much revenue we've generated from mineral trades so far today. Then, I'll meticulously check the expense reports to identify any areas where we might be overspending. I'll closely analyze the profit margins to accurately determine if our current pricing strategies are working. Based on these detailed findings, I'll make precise adjustments to the budget as necessary, such as reallocating funds from one category to another or carefully cutting back on unnecessary expenses.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:40, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll finalize the sales records and prepare the cash for deposit at the local bank. After that, I'll make sure all the items on display are secure and the shop is tidy before officially closing for the day.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 17:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:40, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start by thoroughly going through the latest income statements to precisely calculate how much revenue we've generated from mineral trades so far today. Then, I'll meticulously check the expense reports to identify any areas where we might be overspending. I'll closely analyze the profit margins to accurately determine if our current pricing strategies are working. Based on these detailed findings, I'll make precise adjustments to the budget as necessary, such as reallocating funds from one category to another or carefully cutting back on unnecessary expenses. [details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 17:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:50, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: I'll make sure all the items on display are secure one last time. Then I'll finally finalize the sales records, prepare the cash for deposit at the local bank, and officially close Barthen's Provisions for the day.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 17:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 17:50, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to start by thoroughly going through the latest income statements to precisely calculate how much revenue we've generated from mineral trades so far today. Then, I'll meticulously check the expense reports to identify any areas where we might be overspending. I'll closely analyze the profit margins to accurately determine if our current pricing strategies are working. Based on these detailed findings, I'll make precise adjustments to the budget as necessary, such as reallocating funds from one category to another or carefully cutting back on unnecessary expenses. [details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nHead home for dinner as per my daily plan. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 18:00, Linene Graywind ,at Barthen's Provisions, has done: \"\"Do something[action]: It's 18:00, so I'm going to head home for dinner as per my daily plan. I'll make sure the trading post is secure first, then lock up and set off for home.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 18:00, Halia Thornton ,at Barthen's Provisions, has done: \"\"Do something[action]: I'm going to finish going through the income statements, expense reports, and profit margins. Based on my findings, I'll make the necessary adjustments to the budget, such as reallocating funds from one category to another or cutting back on unnecessary expenses. Then I'll review the adjusted budget to ensure it aligns with my financial goals for the Miner's Exchange. After that, I'll head home for dinner as it's 18:00.[details]\"\"",
+            "other_agents": [
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Linene Graywind ,at Phandalin Town Square, has impressed: \"Stable Emotion, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner as it\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make sure the trading post is secure first. Then I'll lock up Barthen's Provisions and set off for home to have dinner as per my daily plan.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish up the financial reviews by carefully double - checking all the calculations in the income statements, expense reports, and profit margins. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home for dinner as per my daily plan. I'll enjoy a simple meal of bread, cheese, and warm tea while reflecting on the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to carefully double - check all the calculations in the income statements, expense reports, and profit margins one last time. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post for dinner as per my plan. I'm looking forward to a relaxing meal after a day of work and planning. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll prepare a simple meal, perhaps some bread and cheese, and maybe a cup of warm tea. I'll sit down and unwind, reflecting on the day and looking ahead to the week's promotions that I still need to finalize.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home for dinner as per my daily plan. I'll enjoy a simple meal of bread, cheese, and warm tea while reflecting on the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 18:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to carefully double - check all the calculations in the income statements, expense reports, and profit margins one last time. After ensuring the accuracy of these figures, I'll make any final tweaks to the budget. I'll recheck that all the reallocations of funds from one category to another or cuts to unnecessary expenses are well - founded. Then I'll quickly review the adjusted budget one last time to confirm it aligns perfectly with my financial goals for the Miner's Exchange. Once I'm satisfied, I'll head home for dinner.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "Linene Graywind's hourly plan is:\nHead home to organize paperwork and accounts. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to prepare for tomorrow's miner arrivals as per my plan. First, I'll make sure the weighing scales and measuring tools are in perfect working condition. I'll double - check the accuracy of the scales by using standard weights and calibrate them if necessary. For the measuring tools, I'll clean and inspect them to ensure precise measurements. Then, I'll ensure we have an adequate supply of payment vouchers and coins. I'll count the available coins to make sure we have enough to pay the miners for their finds. I'll also prepare the ledger where we record\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:00, Linene Graywind ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:10, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to finish preparing for tomorrow's miner arrivals as per my plan. After checking the weighing scales and measuring tools and ensuring we have enough payment vouchers and coins, I'll continue to prepare the ledger where we record the miners' transactions. I'll make sure all the columns are labeled correctly and the pages are in good condition. I'll also set out pens and any other necessary supplies for easy record - keeping. Once I'm satisfied that everything is in order, I'll mentally review the entire process one last time to ensure a smooth operation tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:20, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to mentally review the entire process one last time to ensure a smooth operation tomorrow. I'll double-check that all the preparations are in place, from the working weighing scales and measuring tools to the sufficient supply of payment vouchers and coins, and the properly set-up ledger with all columns labeled correctly and necessary supplies ready. I'll also run through in my mind how the transactions will flow when the miners arrive tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to relax and review business strategies as per my daily plan. I'll enjoy the walk back, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll then review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:30, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a final check of the Miner's Exchange to ensure everything is in place for tomorrow's miner arrivals. I'll start by going to the storage area where we keep the weighing scales and measuring tools. I'll double-check that they're still in perfect working condition, that the scales are calibrated correctly, and the tools are clean and ready for use. After that, I'll head to the cash box where we keep the payment vouchers and coins. I'll count the coins again to make sure we have enough to pay the miners for their finds. Once\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post as per my daily plan. I'll enjoy the walk, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:40, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a final mental run-through of tomorrow's miner arrival process. I'll visualize the miners coming in, getting their items weighed and measured, and then paid out. I'll think about any potential bottlenecks or issues that could arise and how I would handle them. After that, I'll head back to the Miner's Exchange to double-check that all the necessary supplies are stocked and that everything is in its proper place for the next day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post as per my daily plan. I'll enjoy the walk, taking in the sights and sounds of the town in the evening. Once at the trading post, I'll sit down and unwind, thinking about today's events and how they've impacted my business. I'll review the week's promotions that I still need to finalize, making any necessary adjustments to ensure they're effective in attracting customers. I'll also consider any new products or services that I could offer to diversify my inventory.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to organize paperwork and accounts as per my daily plan. I'll carefully review all the business transactions, invoices, and receipts from today. I'll make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made today and calculate the profit or loss for the day. Once I'm done with all these tasks, I'll look ahead to tomorrow's business and make any necessary preparations or adjustments to my plans.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 19:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 19:50, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to make a last-minute check of the Miner's Exchange to ensure that everything is in its proper place. I'll start by checking the ledger to make sure that all the columns are labeled correctly and that everything is accounted for. After that, I'll review the inventory of payment vouchers and coins to ensure that we have enough to pay the miners for their finds. Finally, I'll make sure that all the necessary supplies, such as weighing scales and measuring tools, are in good working condition and that they're ready for use tomorrow.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Linene Graywind's daily plan is:\n[8:00 - Wake up and prep for work\n9:00 - Check trading post stocks\n10:00 - Meet with potential suppliers\n11:00 - Update inventory records\n12:00 - Lunch break\n13:00 - Advertise new products\n14:00 - Train new staff member\n15:00 - Attend town meeting\n16:00 - Negotiate trade deals\n17:00 - Restock popular items\n18:00 - Dinner time\n19:00 - Plan for tomorrow's sales\n20:00 - Enjoy the night and Go to bed.]",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Linene Graywind's hourly plan is:\nWake up and start my prep for the day's work. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to get ready for work as per my daily plan. I'll make sure everything is in place, check the inventory, and prepare for the day's business.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Linene Graywind ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 2, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 2, 08:00, Halia Thornton ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to wake up and head to the Miner's Exchange to check it. I'll start by making sure all the weighing scales and measuring tools are in working order and calibrated correctly. Then, I'll check the inventory of payment vouchers and coins to ensure we have enough to pay the miners for their finds. After that, I'll review the ledger to make sure all the columns are labeled correctly and that everything is accounted for. Finally, I'll make sure all the necessary supplies are stocked and that everything is in its proper place for the day.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Linene Graywind",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:00, Linene Graywind ,at Stonehill Inn, has impressed: \"Stable Emotional Status, Active Social and Learning Drive, Confident in Normal Task Completion, Proactive Information Acquisition Preference, Open Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:10, Linene Graywind ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:20, Linene Graywind ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:30, Linene Graywind ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:40, Linene Graywind ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to wake up and start my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 2, 08:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 2, 08:50, Linene Graywind ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue with my prep for the day's work. I'll gather all the necessary paperwork and accounting tools I need. I'll make sure I have all the business transactions, invoices, and receipts from yesterday readily accessible. I'll also ensure I have a pen and paper handy to make any necessary notes during the process. I'll start by carefully reviewing all the paperwork to make sure everything is in order and reconcile any discrepancies. After that, I'll update the inventory records based on the sales made yesterday and calculate the profit or loss for the day.[details\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        }
+    ]
+}

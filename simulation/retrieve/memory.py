@@ -53,14 +53,14 @@ class Memory:
                     agent_memory.append(experience)
                     agent_memory_full['memory'] = agent_memory
                     self.save_memory_file(agent.name, agent_memory_full)
-        if exp_type == 'plan' or exp_type == 'thought':
+        elif exp_type == 'plan' or exp_type == 'thought':
             agent_name = experience['agent_name']
             agent_memory_full = self.load_memory_file(agent_name)
             agent_memory = agent_memory_full['memory']
             agent_memory.append(experience)
             agent_memory_full['memory'] = agent_memory
             self.save_memory_file(agent_name, agent_memory_full)
-        if exp_type == 'event':
+        elif exp_type == 'event':
             for agent in self.agents:
                 agent_memory_full = self.load_memory_file(agent.name)
                 agent_memory = agent_memory_full['memory']
@@ -89,16 +89,26 @@ class Memory:
 
     def get_newthings_str(self, agent_name, num_experiences):
         newthings = self.get_newthings(agent_name, num_experiences)
-        newthings_str = f"'\n'.join(item['action'] for item in {newthings}\n"
-        return newthings_str
+        things = [
+            action.get('action_des', 'No new things recorded')
+            for action in newthings
+        ]
+        return "\n".join(things)
     
-    def get_importants(self, agent_name, num_experiences):
+    def get_importants(self, agent_name, global_time):
+        day_str = global_time.split(',')[0]
         agent_memory_full = self.load_memory_file(agent_name)
         agent_memory = agent_memory_full['memory']
-        action_memory = [action for action in agent_memory if action['exp_type'] == 'action']
-        importants_memory = [action for action in action_memory if action['priority'] > 4]
-        importants = importants_memory[-num_experiences:]
-        return importants
+        daily_importants = [item for item in agent_memory if item['exp_type'] == 'action' and int(item.get('priority', 1) or 1) > 6 and item['global_time'].split(',')[0] == day_str]
+        return daily_importants
+    
+    def get_importants_str(self, agent_name, global_time):
+        daily_importants = self.get_importants(agent_name, global_time)
+        actions = [
+            item.get('action_des', 'No important things recorded')
+            for item in daily_importants
+        ]
+        return '\n'.join(actions)
     
     def get_impressions(self, agent_name, num_experiences):
         agent_memory_full = self.load_memory_file(agent_name)
@@ -108,8 +118,11 @@ class Memory:
 
     def get_impressions_str(self, agent_name, num_experiences):
         impressions = self.get_impressions(agent_name, num_experiences)
-        impressions_str = f"'\n'.join(item['action'] for item in {impressions}\n"
-        return impressions_str
+        actions = [
+            item.get('action', 'No impression recorded') 
+            for item in impressions
+        ]
+        return '\n'.join(actions)
 
     # def sort_memory(self, agent_name, action):
     #     """

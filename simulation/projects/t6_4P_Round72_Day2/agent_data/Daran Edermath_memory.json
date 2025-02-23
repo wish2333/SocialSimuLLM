@@ -1,0 +1,1491 @@
+{
+    "memory": [
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n**Day 1 Goals:**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Tend to the apple orchard and check the trees.  \n10:00 - Prepare a simple breakfast with fresh apples.  \n11:00 - Read a book on local history and lore.  \n12:00 - Lunch break.  \n13:00 - Organize tools in the shed for orchard work.  \n14:00 - Take a walk through the nearby woods.  \n15:00 - Write letters to old adventuring friends.  \n16:00 - Practice sword techniques in the backyard.  \n17:00 - Help a neighbor with their garden work.  \n18:00 - Dinner time.  \n19:00 - Relax with a cup of tea by the fire.  \n20:00 - Enjoy the night and go to bed.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will wake up and get ready for the day, preparing for my tasks in the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n### Day 1 Goals\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Tend to the apple orchard.  \n10:00 - Prepare a hearty breakfast.  \n11:00 - Clean and organize the cottage.  \n12:00 - Lunch break.  \n13:00 - Read a book by the fireplace.  \n14:00 - Practice sword techniques in the yard.  \n15:00 - Write letters to old friends.  \n16:00 - Take a stroll through the orchard.  \n17:00 - Brew some herbal tea.  \n18:00 - Dinner time.  \n19:00 - Reflect on past adventures.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI wake up, stretch, and prepare for the day ahead, eager to tend to the apple orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n**Day 1 Schedule**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Water the plants in the garden.  \n10:00 - Inspect the apple orchard for ripe fruit.  \n11:00 - Check supplies and restock if needed.  \n12:00 - Lunch break.  \n13:00 - Read a book by the fireplace.  \n14:00 - Practice sword techniques in the yard.  \n15:00 - Write letters to old adventuring friends.  \n16:00 - Prepare for the evening's gathering.  \n17:00 - Set up the cottage for guests.  \n18:00 - Dinner time.  \n19:00 - Share stories with friends around the fire.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will wake up, prepare breakfast, and enjoy a quiet moment in my garden before starting the day's tasks.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n**Day 1 Goals:**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Tend to the apple orchard.  \n10:00 - Check the cottage for any repairs needed.  \n11:00 - Read a book in the garden.  \n12:00 - Lunch break.  \n13:00 - Practice some sword techniques.  \n14:00 - Visit the local market for supplies.  \n15:00 - Write letters to old adventuring friends.  \n16:00 - Take a walk around the neighborhood.  \n17:00 - Prepare dinner with fresh ingredients.  \n18:00 - Dinner time.  \n19:00 - Enjoy a quiet evening by the fireplace.  \n20:00 - Reflect on the day and go to bed.  ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will wake up, freshen up, and prepare for a productive day in the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n**Day 1 Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Tend to the apple orchard.  \n10:00 - Check on the cottage's maintenance.  \n11:00 - Read a book in the sun.  \n12:00 - Lunch break.  \n13:00 - Practice my sword techniques.  \n14:00 - Write letters to old adventuring friends.  \n15:00 - Take a walk in the nearby woods.  \n16:00 - Prepare for the evening meal.  \n17:00 - Rest and enjoy some tea.  \n18:00 - Dinner time.  \n19:00 - Reflect on past adventures by the fireplace.  \n20:00 - Enjoy the night and go to bed.  ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will wake up, enjoy a hearty breakfast, and prepare for a day of tending to the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n**Day 1 Goals**\n\n8:00 - Wake up and get ready for the day.  \n9:00 - Water the apple trees in the orchard.  \n10:00 - Check on the cottage for any repairs needed.  \n11:00 - Gather fresh herbs from the garden.  \n12:00 - Lunch break.  \n13:00 - Read a book in the afternoon sun.  \n14:00 - Practice sword techniques in the yard.  \n15:00 - Write letters to old adventuring friends.  \n16:00 - Prepare supplies for the upcoming market day.  \n17:00 - Take a walk around the orchard.  \n18:00 - Dinner time.  \n19:00 - Enjoy a quiet evening by the fireplace.  \n20:00 - Reflect on the day and go to bed.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will wake up, prepare breakfast, and enjoy a peaceful morning in my cottage before tending to the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:00, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I will wake up, prepare breakfast, and enjoy a peaceful morning in my cottage before tending to the orchard. I'll make some oatmeal with fresh apples from the trees and brew a cup of herbal tea to start my day right. After breakfast, I'll take a moment to sit by the window and appreciate the view of the orchard, feeling grateful for the tranquility of my surroundings.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 5
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n8:00 - Wake up and get ready for the day.  \n9:00 - Prepare breakfast with fresh apples and tea.  \n10:00 - Tend to the orchard and check on the trees.  \n11:00 - Prune any overgrown branches in the orchard.  \n12:00 - Lunch break.  \n13:00 - Read a book by the window.  \n14:00 - Take a walk around the orchard.  \n15:00 - Check inventory for supplies needed.  \n16:00 - Write letters to old adventuring friends.  \n17:00 - Water the flowers in the garden.  \n18:00 - Dinner time.  \n19:00 - Enjoy a quiet evening with some tea.  \n20:00 - Reflect on the day and go to bed.  ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI will prepare breakfast with fresh apples and herbal tea, enjoying the peaceful morning view from my cottage window.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:00, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I will prepare some oatmeal with fresh apples from my orchard and brew a cup of herbal tea to enjoy for breakfast. After enjoying my meal, I'll take a moment to sit by the window, appreciating the peaceful view of the orchard and reflecting on my life as the morning sun warms my cottage. This tranquil start to the day will set a positive tone for the tasks that lie ahead.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 6
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:00, Daran Edermath ,at Edermath Orchard, has impressed: \"1. Emotional Status: Positive  \n2. Social / Learning Drive: Active  \n3. Confidence in Task Completion: Normal  \n4. Information Acquisition Preference: Proactive Exploration  \n5. Technology Acceptance Inclination: Open  \".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:10, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I will prepare breakfast with fresh apples and herbal tea now. I'll slice up some apples and add them to the oatmeal as it cooks, letting the sweet aroma fill my cottage. While I wait for the oatmeal, I'll brew a pot of herbal tea, letting the calming scent of chamomile waft through the air. After everything is ready, I\u2019ll take my meal to the window, savoring the peaceful morning view of the orchard and reflecting on the beauty of the day ahead.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 7
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:20, Daran Edermath ,at Edermath Orchard, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562684872456954682851)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:30, Daran Edermath ,at Edermath Orchard, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562821125161265336116)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:40, Daran Edermath ,at Edermath Orchard, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212562947070933300431353)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:50, Daran Edermath ,at Edermath Orchard, has done: \"ERROR: Error code: 403 - {'error': {'message': '\u8be5\u4ee4\u724c\u65e0\u6743\u4f7f\u7528\u6a21\u578b\uff1adoubao-1-5-lite-32k-250115 (request id: 2025022212563060282273764383058)', 'type': 'one_api_error'}}\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nPrepare breakfast with fresh apples and herbal tea. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will prepare breakfast with fresh apples and herbal tea. I'll start by slicing some of the delicious apples from my orchard and adding them to a pot of oatmeal. As the oatmeal cooks, the sweet aroma of the apples will fill my cottage. While waiting for the oatmeal to be ready, I'll brew a pot of herbal tea, perhaps a soothing chamomile blend. The calming scent of the tea will add to the peaceful ambiance of the morning. Once everything is prepared, I'll take my breakfast to the window and enjoy it while looking out at the beautiful or\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Positive Emotion, Routine Social Drive, Routine Learning Drive, Confident in Task Completion, Passive Information Acquisition, Neutral Technology Acceptance\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue with preparing breakfast. I'll carefully slice the fresh apples from my orchard, making sure to get even pieces. Then I'll add them to the pot of oatmeal that's been cooking gently on the stove, letting the sweet fragrance of the apples meld with the oats. As the apples cook down slightly, I'll stir them in, making sure they're evenly distributed. While the oatmeal with apples is finishing up, I'll focus on brewing the herbal tea. I'll take out my favorite teapot and measure out the right amount of chamomile tea\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will finish preparing breakfast with fresh apples and herbal tea. I'll make sure the oatmeal with sliced apples is cooked to perfection, with a nice creamy texture. Then, I'll pour the freshly brewed herbal tea into a cup, perhaps adding a touch of honey for sweetness. After that, I'll carry my breakfast tray to the window, where I can enjoy the view of the orchard while savoring my morning meal.[details]\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will finish preparing breakfast with fresh apples and herbal tea. I'll make sure the oatmeal with sliced apples is cooked to perfection, with a nice creamy texture. Then, I'll pour the freshly brewed herbal tea into a cup, perhaps adding a touch of honey for sweetness. After that, I'll carry my breakfast tray to the window, where I can enjoy the view of the orchard while savoring my morning meal.[details]\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will finish preparing breakfast with fresh apples and herbal tea. I'll make sure the oatmeal with sliced apples is cooked to perfection, with a nice creamy texture. Then, I'll pour the freshly brewed herbal tea into a cup, perhaps adding a touch of honey for sweetness. After that, I'll carry my breakfast tray to the window, where I can enjoy the view of the orchard while savoring my morning meal.[details]\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will finish preparing breakfast with fresh apples and herbal tea. I'll make sure the oatmeal with sliced apples is cooked to perfection, with a nice creamy texture. Then, I'll pour the freshly brewed herbal tea into a cup, perhaps adding a touch of honey for sweetness. After that, I'll carry my breakfast tray to the window, where I can enjoy the view of the orchard while savoring my morning meal.[details]\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nTend to the orchard and check on the apple trees.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will tend to the orchard and check on the apple trees. I'll start by walking through the rows, looking for any signs of disease or pests. I'll examine the leaves, branches, and fruit carefully. If I spot any issues, I'll take notes on what I see. After that, I'll check the soil moisture levels. I'll use my finger to dig a small hole in a few places around the trees. If the soil feels dry, I'll make a mental note to water the orchard soon. I'll also look for any signs of\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Normal Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue tending to the orchard and check on the apple trees. I'll carefully examine each tree, looking closely at the leaves for any discoloration or signs of pests. I'll check the branches for any signs of damage or unusual growth. And I'll take a close look at the fruit, making sure it's developing properly. After checking the trees, I'll move on to the soil. I'll use my gardening trowel to dig a bit deeper near each tree, checking the moisture level a few inches down. If the soil seems too dry, I'll\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue tending to the orchard and checking on the apple trees. I'll make my way along the rows, inspecting the leaves for any signs of discoloration or pest damage. I'll look closely at the branches to see if there are any broken or overgrown ones that need attention. After that, I'll carefully examine the fruit, ensuring it's growing well and there are no signs of premature ripening or rot. Once I've thoroughly checked the trees, I'll use my gardening trowel to dig a little deeper into the soil around\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue tending to the orchard and checking on the apple trees. I'll make my way along the rows, inspecting the leaves for any signs of discoloration or pest damage. I'll look closely at the branches to see if there are any broken or overgrown ones that need attention. After that, I'll carefully examine the fruit, ensuring it's growing well and there are no signs of premature ripening or rot. Once I've thoroughly checked the trees, I'll use my gardening trowel to dig a little deeper into the soil around\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue tending to the orchard and check on the apple trees. I'll keep walking through the rows, looking for any signs of disease or pests on the leaves, branches, and fruit. I'll use my finger to gently feel the texture of the fruit to see if there are any soft spots indicating rot. After that, I'll check the soil moisture levels again by digging small holes around the trees with my gardening trowel and seeing how moist the soil is a few inches down. If the soil is dry, I'll make a note of which areas\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 10:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 10:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue tending to the orchard and check on the apple trees. I'll keep a sharp eye out for any signs of trouble. I'll look closely at the leaves again, checking for any new discolorations or signs of pests having returned. I'll also examine the branches for any signs of new growth that seems off or any further damage. I'll walk around the fruit, making sure none of it is starting to show signs of premature ripening or rot. After that, I'll use my gardening trowel to dig a bit deeper around the base\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nPrune any overgrown branches in the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will start pruning any overgrown branches in the orchard. First, I'll gather my pruning shears and head out to the rows of apple trees. I'll begin by looking for branches that are crossing each other, as these can rub against each other and cause damage. I'll carefully cut those branches back to a point where they no longer touch. Then, I'll check for any branches that are growing too close to the main trunk. I'll prune these to improve air circulation and sunlight penetration. Next, I'll look for any branches that are weak\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nStart pruning any overgrown branches in the orchard.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will start pruning any overgrown branches in the orchard. First, I'll gather my pruning shears and head out to the rows of apple trees. I'll begin by looking for branches that are crossing each other, as these can rub against each other and cause damage. I'll carefully cut those branches back to a point where they no longer touch. Then, I'll check for any branches that are growing too close to the main trunk. I'll prune these to improve air circulation and sunlight penetration. Next, I'll look for any branches that are weak\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Stable Emotion, Routine Social & Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue pruning any overgrown branches in the orchard. After gathering my pruning shears, I'll make my way through the rows of apple trees. I'll keep an eye out for branches that are growing at odd angles or seem overly thick. I'll carefully trim them back to promote better growth and a more aesthetically pleasing shape. I'll also look for any branches that are dead or diseased and remove them completely to prevent the spread of any issues. As I work, I'll make sure to cut at the proper angle just outside the branch collar to\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue pruning any overgrown branches in the orchard. I'll focus on trimming back branches that are growing too thickly, as this can impede the growth of the fruit and reduce air circulation. I'll use my pruning shears to carefully cut each branch at a 45-degree angle, just outside the branch collar. This will help the tree to heal more quickly and prevent the spread of disease. After I've finished pruning the thick branches, I'll turn my attention to any branches that are growing in awkward directions. I'll trim these back to a\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue pruning any overgrown branches in the orchard. I'll keep an eye out for branches that are growing too close together or in a way that might block sunlight or air circulation. I'll use my pruning shears to carefully trim them back. I'll also look for any dead or diseased branches and remove them. As I work, I'll make sure to cut at the appropriate angle just outside the branch collar to promote healthy growth. I'll start with the next row of apple trees, moving systematically through the orchard to ensure all the branches are\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue pruning any overgrown branches in the orchard. I'll keep moving through the rows of apple trees, looking for branches that are growing too thickly or in odd directions. I'll use my pruning shears to carefully trim them back, making sure to cut at a 45-degree angle just outside the branch collar. This will help the tree to heal more quickly and prevent the spread of disease. I'll also keep an eye out for any dead or diseased branches and remove them. As I work, I'll make sure to check that I\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 11:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 11:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will continue pruning any overgrown branches in the orchard. I'll keep moving through the rows, carefully inspecting each tree for branches that need trimming. I'll look for those growing at odd angles, crossing other branches, or growing too close to the main trunk. Once I've identified a branch to cut, I'll position my pruning shears at a 45-degree angle just outside the branch collar and make a clean cut. I'll be sure to collect all the trimmed branches and dispose of them properly to keep the orchard tidy.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nTake my lunch break in the cottage. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 12:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will take my lunch break in the cottage. I'll head inside, put together a simple meal of fresh apples, some bread, and a cup of tea. After that, I'll sit at my table and enjoy my lunch, taking a well-deserved rest from tending to the orchard.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:00, Daran Edermath ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social Drive, Routine Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:10, Daran Edermath ,at Phandalin Town Square, has done: \"Do something[action]: I will head inside the cottage, put together a simple meal of fresh apples, some bread, and a cup of tea. After that, I'll sit at my table and enjoy my lunch, taking a well-deserved rest from tending to the orchard.[details] I'll start by selecting a few of the ripest apples from the orchard, giving them a gentle rinse under the water pump outside. Then I'll slice them up and arrange them on a plate. Next, I'll grab a loaf of the fresh bread I bought from the market last week. After\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:20, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will sit at my table in the cottage and enjoy my lunch of fresh apples, bread, and tea. I'll take my time to relax and savor the meal, perhaps reflecting on how well the orchard is coming along this season. I'll be grateful for the simple pleasures of this quiet lunch break in my cozy cottage.[details] I'll start by taking a bite of the crisp apple slices, enjoying the sweet juiciness that bursts forth. Then I'll take a piece of the bread, savoring the texture and the taste of the grains. I\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:30, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will continue to enjoy my lunch of fresh apples, bread, and tea. I'll take my time to savor each bite and perhaps think about any thoughts or plans related to the orchard, like how the pruning today might affect the growth and yield of the apple trees this season.[details] I'll start by taking another bite of the apple slices, relishing the tart yet sweet flavor. Then I'll have another piece of bread and take a sip of the warm tea, letting it soothe my throat as I sit comfortably at the table in my cottage.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:40, Daran Edermath ,at Phandalin Town Square, has done: \"Do something[action]: I will continue to enjoy my lunch of fresh apples, bread, and tea. I'll take my time to savor each bite and perhaps think about any thoughts or plans related to the orchard, like how the pruning today might affect the growth and yield of the apple trees this season. [details] I'll start by taking another bite of the apple slices, relishing the tart yet sweet flavor. Then I'll have another piece of bread and take a sip of the warm tea, letting it soothe my throat as I sit comfortably at the table in my cottage. \"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 12:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 12:50, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will continue to enjoy my lunch of fresh apples, bread, and tea. I'll take my time to savor each bite and perhaps think about any thoughts or plans related to the orchard, like how the pruning today might affect the growth and yield of the apple trees this season.[details] I'll start by taking another bite of the apple slices, relishing the tart yet sweet flavor. Then I'll have another piece of bread and take a sip of the warm tea, letting it soothe my throat as I sit comfortably at the table in my cottage.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:00",
+            "location": "Phandalin Town Square",
+            "action": "Daran Edermath's hourly plan is:\nHead back to my cottage to read a book. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:00, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details]\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:00, Daran Edermath ,at Phandalin Town Square, has impressed: \"Stable Emotion, Routine Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Passive Information Acquisition, Neutral Technology Acceptance\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to organize items as per my daily plan. I'll make sure the display is attractive and the items are easy to access for customers.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:10, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way through the town square, nodding\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll focus on arranging the goods neatly and ensuring that similar items are grouped together for better visibility. I'll also check for any damaged or expired products and remove them from the shelves. Additionally, I'll make sure that the most popular items are easily accessible at the front of the store.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:20, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way through the town square and head\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll start by sorting through the inventory and separating the items into categories. Then, I'll arrange the categories on the shelves in a logical order, making sure that the most popular items are easily visible and accessible. I'll also check the condition of each item and remove any that are damaged or expired. Finally, I'll make a note of any items that need to be restocked and place an order with my suppliers.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:30, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I\\'ll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I\\'ll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I\\'ll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll walk through the town square,\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head back to my trading post to organize items as per my daily plan. I'll focus on creating an attractive display that showcases the items to their best advantage. I'll group related items together and make sure that the most popular items are at eye level and easily accessible. I'll also take the time to clean the shelves and dust the merchandise to create a more inviting atmosphere for customers. Additionally, I'll check for any signs of damage or wear on the items and remove anything that isn't in good condition. Finally, I'll make sure that the pricing\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:40, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details] I'll make my way home, looking forward to the peaceful\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 13:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll head back to my trading post to organize items as per my daily plan. I'll put the last few items in their proper places, making sure everything looks neat and appealing. I'll double-check that all the popular items are well-stocked and easy to find. I'll also take a look around to see if there's any other way to improve the organization and display of the trading post.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 13:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 13:50, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage to read a book. I'll settle into my favorite chair by the window, perhaps with a cup of tea beside me, and lose myself in the pages of an old adventure tome. I'll start by selecting a book from my well - worn collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "Daran Edermath's hourly plan is:\nHead back to my cottage as per my daily plan. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to the trading post to prepare for the supplier meeting. I'll make sure the inventory records are up-to-date and that I have a list of items that need restocking. I'll also tidy up the trading post and make sure it's presentable for the meeting. [details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 14:00, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll make my way along the familiar path, enjoying the sights and sounds of the town. Once I reach my cottage, I'll enter and find my favorite chair by the window. I'll select a book from my collection, run my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, losing myself in the quiet solitude and the escape into another world. Perhaps I'll also pour myself a cup of tea\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion (since following the daily plan), Passive Information Acquisition Preference (as I'm mainly focused on reading which is a form of passive reception), Neutral Technology Accept\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll follow the familiar path, taking in the sights and sounds of the town. Once I'm at my cottage, I'll go inside and find my favorite chair by the window. I'll pick out a book from my collection, running my finger along the spines until I find the one that appeals to me today. Then I'll carefully open it to the first page and start reading, immersing myself in the quiet solitude and the escape into another world. Maybe I'll also pour myself a cup of tea\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll make my way along the path, enjoying the familiar scenery of the town. Once I reach my cottage, I'll enter and go directly to my favorite chair by the window. I'll run my finger along the spines of my well - worn book collection until I find the one that calls to me today. Then, I'll carefully open it to the first page and begin reading, looking forward to the quiet solitude and the escape into another world. Perhaps I'll also pour myself a cup of tea\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll follow the path through the orchard and into town, enjoying the fresh air and the sight of the trees. Once at my cottage, I'll enter and find my favorite chair by the window. I'll select a book from my collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, losing myself in the quiet solitude and the escape into another world. Perhaps I'll also pour myself\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll follow the path through the orchard and into town, enjoying the fresh air and the sight of the trees. Once at my cottage, I'll enter and find my favorite chair by the window. I'll select a book from my collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, losing myself in the quiet solitude and the escape into another world. Perhaps I'll also pour myself\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 14:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 14:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I will head back to my cottage as per my daily plan. I'll make my way along the path, perhaps pausing briefly to admire the apple trees in my orchard. Once I reach my cottage, I'll enter and find my favorite chair by the window. I'll select a book from my collection, running my finger along the spines until I find the one that calls to me today. Then I'll carefully open it to the first page and begin reading, enjoying the quiet solitude and the escape into another world. Maybe I'll also pour myself a cup of tea\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nI'll check inventory for supplies as per my plan. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll check inventory for supplies as per my plan. I'll start by making a list of all the items I regularly use in and around the orchard and cottage. Then I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. After that, I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:10, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'll start by making a list of all the items I regularly use in and around the orchard and cottage. Then I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. After that, I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can determine exactly what supplies I need to gather.[details]\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll continue checking inventory for supplies as per my plan. I'm currently making a list of all the items I regularly use in and around the orchard and cottage. After that, I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. Then I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can determine exactly\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll continue checking inventory for supplies as per my plan. I'm currently making a list of all the items I regularly use in and around the orchard and cottage. After that, I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. Then I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll continue checking inventory for supplies as per my plan. I'm making a list of all the items I regularly use in and around the orchard and cottage. Then I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. After that, I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can determine exactly\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 15:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 15:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll continue checking inventory for supplies as per my plan. I'm making a list of all the items I regularly use in and around the orchard and cottage. Then I'll head to my storage shed and carefully go through each shelf, noting down what needs to be restocked. I'll pay special attention to pruning shears, fertilizers, and any tools that might be getting worn out. After that, I'll check the pantry and see what food items are running low, like flour, tea, and apples. Once I have a complete list, I can determine exactly\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nStart writing letters to old adventuring friends.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 16:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'll start writing letters to old adventuring friends. First, I'll gather some nice parchment paper and a quill. I'll sit at my writing desk by the window in my cottage. I'll think about my friends - those wild souls I've adventured with across the lands. I'll start with Garret Stonehand. I'll tell him about my quiet life here by the orchard, how the apples are looking this year. I'll mention that I sometimes miss the thrill of the old days but also appreciate the peace I've found. I'll ask\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:00, Daran Edermath ,at Stonehill Inn, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:10",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:10, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I'll continue writing letters to old adventuring friends. I'll finish my letter to Garret Stonehand, detailing the idyllic life I've found in this quiet corner beside the orchard. I'll share how the apples are faring this year, their hues ranging from deep red to golden, promising a bountiful harvest. I'll admit to him that while I cherish the tranquility, there are moments when the nostalgia of our adventuring days tugs at my heartstrings. After that, I'll start a letter to Lyra Silverleaf. I'll pen\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:20",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:20, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to continue writing letters to old adventuring friends. I'll finish my letter to Lyra Silverleaf. I'll tell her about the new books I've been reading and how they've been inspiring me to reflect on our shared adventures. I'll also mention the beautiful flowers blooming in my garden and how they bring a touch of color to my days. After that, I'll start a letter to Elara Swiftfoot and let her know about the peaceful walks I take through the orchard each day. I'll describe the sounds of the birds and the gentle\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:30",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:30, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I will continue writing letters to old adventuring friends. I'll finish my letter to Elara Swiftfoot, sharing with her the serenity of my walks through the orchard. I'll describe the crisp autumn air, the crunch of fallen leaves underfoot, and the way the sunlight filters through the branches. After that, I'll start a letter to Thaddeus Blackthorn. I'll tell him about the new recipes I've been trying with the apples from my orchard, how they're turning out to be delicious additions to my meals. I'll also\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:40",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:40, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I'll continue writing letters to old adventuring friends. I'll finish my letter to Thaddeus Blackthorn, telling him about the new recipes I've been trying with the apples from my orchard, how they're turning out to be delicious additions to my meals. I'll also mention the sense of fulfillment I get from harvesting and using the fruits of my own labor. After that, I'll start a letter to Kaelan Windrider, sharing with him the beauty of the changing seasons here, how the orchard transforms with the passing of time.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 16:50",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 16:50, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I'm going to finish writing my letter to Kaelan Windrider, sharing with him the beauty of the changing seasons here, how the orchard transforms with the passing of time. I'll describe the vibrant colors of autumn, the bare branches in winter, the first blossoms in spring, and the lush greenery in summer. I'll also mention how these changes remind me of the cycle of life and how I find peace in observing them. After that, I'll gather all the letters, seal them with wax, and head to the post office in Phand\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:00",
+            "location": "Stonehill Inn",
+            "action": "Daran Edermath's hourly plan is:\nFinish writing letters and head to the post office. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:00",
+            "location": "Stonehill Inn",
+            "action": "In Day 1, 17:00, Daran Edermath ,at Stonehill Inn, has done: \"\"Do something[action]: I'll finish writing letters and head to the post office. I'm currently at Stonehill Inn. I'll make sure to double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are sealed properly with wax. I'll then gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:00, Daran Edermath ,at Phandalin Town Square, has impressed: \"Stable Emotional Status, Routine Social / Learning Drive, Confident in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:10, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll finish writing letters and head to the post office. Since it's 17:10, I should double-check all the letters to Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider are sealed properly with wax. Then I'll gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. I'll make sure to walk\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:20, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll make my way to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are still sealed properly with wax. I'll then head out, enjoying the fresh air as I go, looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:30, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll make my way to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are still sealed properly with wax. I'll then head out, enjoying the fresh air as I go, looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters.\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:40, Daran Edermath ,at Phandalin Town Square, has done: \"Do something[action]: I'm going to finish writing letters and head to the post office. I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are sealed properly with wax. I'll then gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. As I walk, I'll enjoy the fresh air\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 17:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head to my trading post to plan upcoming week's promotions. I'll start by looking at the inventory records I just updated to see what items we have in abundance and which ones are running low. Based on that, I'll decide on the key items to feature in the promotions. I'll consider offering discounts on slow - moving items, or creating bundle deals with complementary products. I'll also think about any new items I might be getting from suppliers soon and how to incorporate them into the promotions. I'll jot down some ideas for eye - catching posters or announcements\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 17:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 17:50, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'll double-check that all the letters to my friends - Garret Stonehand, Lyra Silverleaf, Elara Swiftfoot, Thaddeus Blackthorn, and Kaelan Windrider - are sealed properly with wax. I'll then gather them up and set off towards the post office in Phandalin. I'm looking forward to sharing the happenings of my quiet life beside the orchard with my old adventuring companions through these letters. As I walk, I'll enjoy the fresh air.\"[details]\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "Daran Edermath's hourly plan is:\nHead home to start getting ready for dinner. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"\"Do something[action]: I will head back to my trading post as per my plan to have dinner. I'm looking forward to a relaxing meal after a day of work and planning.[details]\"\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 18:00, Daran Edermath ,at Phandalin Town Square, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner\"",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Positive, Routine, Normal, Passive Reception, Neutral\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head home to start getting ready for dinner. I'll enjoy the walk through town, breathing in the fresh air and looking forward to a nice, quiet evening. Once I'm at home, I'll start preparing the fresh apples that I'll have with my meal. I'll also make sure to check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I go about these tasks, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 18:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 18:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm heading home to start getting ready for dinner. I'll enjoy the walk through town and then start preparing the fresh apples and tea that I'll have with my meal. I'll also check on the status of the flowers in my garden, ensuring they're ready for their evening watering later on. As I make my way home, I'll reflect on the day and how productive I've been with my letter - writing and preparations for sharing news with my old friends. Once at home, I'll tidy up a bit and start thinking about what simple yet delicious dinner.\"[\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nEnjoy a quiet evening with some tea at home. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:00, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Stable Emotional Status, Routine Social Drive, Ahead of Schedule in Task Completion, Passive Information Acquisition Preference, Neutral Technology Acceptance Inclination\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:40, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 19:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 19:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to enjoy a quiet evening with some tea at home. I'll sit by the window, savoring the warmth of the tea and the tranquility of the orchard views. It's been a productive day, and this moment of relaxation is well-deserved. I'll reflect on the day as I watch the sunset over the apple trees, perhaps thinking about the letters I sent to my friends and how they'll appreciate hearing about my simple life here. I'll also look forward to tomorrow's tasks, which will likely include more time in the orchard and\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n[8:00 - Wake and start day\n9:00 - Check on orchard trees\n10:00 - Water garden flowers\n11:00 - Write to old friends\n12:00 - Have a nice lunch\n13:00 - Pick fresh apples\n14:00 - Prepare apple dishes\n15:00 - Enjoy cup of tea\n16:00 - Stroll around town\n17:00 - Gather firewood\n18:00 - Have a good dinner\n19:00 - Sit and read a book\n20:00 - Relax then go to bed]",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nWake up and start my day as per my plan.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:00, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'm starting my day by waking up and stretching. I'll then head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:00, Daran Edermath ,at Edermath Orchard, has impressed: \"1. Emotional Status: Positive\n2. Social / Learning Drive: Routine\n3. Confidence in Task Completion: Ahead of Schedule\n4. Information Acquisition Preference: Passive Reception\n5. Technology Acceptance Inclination: Neutral\".",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:10, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm starting my day by waking up and stretching. I'll then head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:20, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:30, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"[details]\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:40, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 2, 08:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 2, 08:50, Daran Edermath ,at Edermath Orchard, has done: \"\"Do something[action]: I'm going to head outside to check on the orchard trees as per my plan. I'm looking forward to seeing how they've grown overnight and ensuring they're healthy. I'll take my time strolling through the rows, inspecting the leaves, branches, and fruit. I'll make sure there are no signs of pests or diseases. Once I'm satisfied, I'll head back to the cottage to get on with the rest of my day's tasks.\"\"",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        }
+    ]
+}

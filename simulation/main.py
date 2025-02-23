@@ -62,6 +62,7 @@ town_people = town_data['town_people']
 town_areas = town_data['town_areas']
 
 print(f"=== CONFIGURATIONS for {project_name} LOADED ===")
+print(f"==Global time: {global_time} Round: {round}==")
 
 # Create a graph of town areas
 world_graph = nx.Graph()
@@ -122,12 +123,11 @@ for repeat in range(repeats):
         if summarize_locations:
             summary_input += f"=== LOCATIONS AT START OF ROUND {round} ===\n"
             summary_input += str(locations) + "\n"
-    
+
     # Whether to proceed with daily plan and initiate gotten_impression
     if new_day:
         for agent in agents:
-            gotten_impression = memory.get_impressions(agent.name, 3)
-            experience =agent.daily_planning(global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
+            experience =agent.daily_planning(global_time, prompt_meta, memory.get_impressions(agent.name, 3), memory.get_newthings_str(agent.name, memory_limit))
             memory.add_experience(experience, 'plan')
             if log_plans:
                 log_output += f"=== DAILY PLAN FOR {agent.name} AT ROUND {round} ===\n"
@@ -140,13 +140,11 @@ for repeat in range(repeats):
             #     log_output += memory.get_newthings_str(agent.name, memory_limit)
     if not new_day and repeat == 0:
         gotten_impression = memory.get_impressions(agent.name, 3)
-    
+
     # Whether to proceed with hourly plan
     if new_hour:
         for agent in agents:
-            if not new_day:
-                gotten_impression = memory.get_impressions(agent.name, 3)
-            experience =agent.hourly_planning(agents, locations.get_location(agent.location), global_time, town_areas, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
+            experience =agent.hourly_planning(agents, locations.get_location(agent.location), global_time, town_areas, prompt_meta, memory.get_impressions(agent.name, 3), memory.get_newthings_str(agent.name, memory_limit))
             memory.add_experience(experience, 'plan')
             if log_actions:
                 log_output += f"=== HOURLY PLAN FOR {agent.name} AT ROUND {round} ===\n"
@@ -155,10 +153,11 @@ for repeat in range(repeats):
                     print(f"{agent.name}'s hourly action:\n{agent.hourly_plan}\n")
                 if summarize_actions:
                     summary_input += f"{agent.name}'s hourly action:\n{agent.hourly_plan}\n"
-    
+
     # Execute planned actions and update memory
     for agent in agents:
         # Execute the action
+        gotten_impression = memory.get_impressions(agent.name, 3)
         action = agent.execute_action(global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
         priority = agent.rate_experience(prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit), action)
         experience = agent.memory_actions(agents, global_time, priority)
@@ -174,7 +173,7 @@ for repeat in range(repeats):
     # Rate locations and determine where agents will go next
     if new_hour:
         for agent in agents:
-            place_ratings = agent.rate_locations(locations, global_time, prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit))
+            place_ratings = agent.rate_locations(locations, global_time, prompt_meta, memory.get_impressions(agent.name, 3), memory.get_newthings_str(agent.name, memory_limit))
             if log_ratings:
                 log_output += f"=== UPDATED LOCATION RATINGS {global_time} FOR {agent.name}===\n"
                 log_output += f"{agent.name} location ratings: {place_ratings}\n"
@@ -231,5 +230,5 @@ for repeat in range(repeats):
 
     meta_data['global_time'] = global_time
     meta_data['round'] = round
-    
+
     save_meta_data(project_folder, meta_data)

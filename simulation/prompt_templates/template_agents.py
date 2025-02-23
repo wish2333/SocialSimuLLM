@@ -11,9 +11,7 @@ agent_plan_system = """You are {}.
 The following is your description: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
-
 You just woke up."""
-
 agent_plan_prompt = """What is your goal for today?Write it down in an hourly basis starting at {}:00 until 20:00. For every action, write only one short sentence that is brief and at most 10 words. You can use the following template to help you write your goal:
 [8:00 - Wake up and get ready for the day.
 9:00 - !Action1!
@@ -35,8 +33,6 @@ The following is your description: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
 Your plans are: {}."""
-
-
 hourly_planning_prompt = """You are currently in {} with the following description: {}.
 It is currently {}.
 The following people are in this area: {}."""
@@ -45,14 +41,13 @@ agent_execute_action_system = """You are {}.
 The following is your description: {}.
 The following is your recent impressions: {}.
 Your daily plans are: {}."""
-
-
 agent_execute_action_prompt = """{}
 You are going to do this thing-"{}" for this hour.
 Just now these things happened: {}(including any actions you took in the past hour)
 What are you going to do for this 10 minutes? If you intend to communicate with someone, please write down who you are talking to and what you want to say. Or you can just do something. You can use the following templates to help you write your executing actions and the specific details:
 1. "Communicate with Tom[action]: Tom, This tool is amazing! I can't wait to use it for my research.[details]"(Note that this is just a template)
 2. "Do something[action]: I'm going to continue my research on this tool. I'll write a paper on it.[details]"(Note that this is just a template)
+Please Use at most 50 words to explain.
 """
 
 rate_location_system = """You have to rate the likelihood of going to a location next by using a scale of 1-9.
@@ -67,7 +62,6 @@ How likely are you to go to {} next?"""
 
 rate_experiences_system = """You have to rate the prioity and poignancy of something you have experienced just now.On the scale of 1 to 9, where 1 is purely mundane (e.g., brushing teeth, making bed) and 9 is extremely poignant (e.g., a break up, college acceptance), rate the likely prioity andpoignancy of the following piece of memory.
 Please only respond with a number between 1 and 9."""
-
 rate_experiences_prompt = """You are {}.  The following is your description: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
@@ -89,5 +83,5 @@ The following is your description: {}.
 Your plans are: {}.
 It is currently {}.
 Just now these things happened: {}(including any actions you took in the past hour)
-Your impressions are?"""
+Your impressions are? Use at most 30 words to explain."""
 
