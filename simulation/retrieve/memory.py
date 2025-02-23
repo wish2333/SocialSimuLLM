@@ -14,6 +14,7 @@ import os
 import json
 import sqlite3
 from utils.text_generation import get_embedding
+import numpy as np
 
 class Memory:
     """
@@ -53,21 +54,29 @@ class Memory:
                     agent_memory.append(experience)
                     agent_memory_full['memory'] = agent_memory
                     self.save_memory_file(agent.name, agent_memory_full)
-        if exp_type == 'plan' or exp_type == 'thought':
+                    self.sort_memory(experience['agent_name'], experience['action_des'])
+        elif exp_type == 'plan' or exp_type == 'thought':
             agent_name = experience['agent_name']
             agent_memory_full = self.load_memory_file(agent_name)
             agent_memory = agent_memory_full['memory']
             agent_memory.append(experience)
             agent_memory_full['memory'] = agent_memory
             self.save_memory_file(agent_name, agent_memory_full)
-        if exp_type == 'event':
+        elif exp_type == 'event':
             for agent in self.agents:
                 agent_memory_full = self.load_memory_file(agent.name)
                 agent_memory = agent_memory_full['memory']
                 agent_memory.append(experience)
                 agent_memory_full['memory'] = agent_memory
                 self.save_memory_file(agent.name, agent_memory_full)
-        # self.sort_memory(experience['agent_name'], experience['action'])
+        elif exp_type == 'reflection':
+            agent_name = experience['agent_name']
+            agent_memory_full = self.load_memory_file(agent_name)
+            agent_memory = agent_memory_full['memory']
+            agent_memory.append(experience)
+            agent_memory_full['memory'] = agent_memory
+            self.save_memory_file(agent_name, agent_memory_full)
+            self.sort_memory(experience['agent_name'], experience['action'])
 
     def get_init_memory(self, agent_name):
         agent_memory_full = self.load_memory_file(agent_name)
@@ -89,16 +98,27 @@ class Memory:
 
     def get_newthings_str(self, agent_name, num_experiences):
         newthings = self.get_newthings(agent_name, num_experiences)
-        newthings_str = f"'\n'.join(item['action'] for item in {newthings}\n"
-        return newthings_str
+        things = [
+            action.get('action_des', 'No new things recorded')
+            for action in newthings
+        ]
+        return "\n".join(things)
     
-    def get_importants(self, agent_name, num_experiences):
+    def get_importants(self, agent_name, global_time):
+        day_str = global_time.split(',')[0]
         agent_memory_full = self.load_memory_file(agent_name)
         agent_memory = agent_memory_full['memory']
-        action_memory = [action for action in agent_memory if action['exp_type'] == 'action']
-        importants_memory = [action for action in action_memory if action['priority'] > 4]
-        importants = importants_memory[-num_experiences:]
-        return importants
+        daily_importants = [item for item in agent_memory if item['exp_type'] == 'action' and int(item.get('priority', 1) or 1) > 6 and item['global_time'].split(',')[0] == day_str]
+        return daily_importants
+    
+    def get_importants_str(self, agent_name, global_time):
+        daily_importants = self.get_importants(agent_name, global_time)
+        actions = [
+            item.get('action_des', 'No important things recorded')
+            for item in daily_importants
+        ]
+        return '\n'.join(actions)
+        
     
     def get_impressions(self, agent_name, num_experiences):
         agent_memory_full = self.load_memory_file(agent_name)
@@ -108,40 +128,107 @@ class Memory:
 
     def get_impressions_str(self, agent_name, num_experiences):
         impressions = self.get_impressions(agent_name, num_experiences)
-        impressions_str = f"'\n'.join(item['action'] for item in {impressions}\n"
-        return impressions_str
+        actions = [
+            item.get('action', 'No impression recorded') 
+            for item in impressions
+        ]
+        return '\n'.join(actions)
 
-    # def sort_memory(self, agent_name, action):
-    #     """
-    #     Sort the memory by embedding the action and storing it in the agent's SQLite database.
-    #     """
-    #     action_embedding = self.embed_action(action)
-    #     self.store_embedding_in_database(agent_name, action, action_embedding)
+    def sort_memory(self, agent_name, action):
+        """
+        Sort the memory by embedding the action and storing it in the agent's SQLite database.
+        """
+        action_embedding = self.embed_action(action)
+        self.store_embedding_in_database(agent_name, action, action_embedding)
 
-    # def embed_action(self, action):
-    #     """
-    #     Embed the action using a pre-trained model or API.
-    #     """
-    #     embedding = get_embedding(action)
-    #     return embedding
+    def embed_action(self, action):
+        """
+        Embed the action using a pre-trained model or API.
+        """
+        embedding = get_embedding(action)
+        return embedding
 
-    # def store_embedding_in_database(self, agent_name, action, embedding):
-    #     """
-    #     Store the action embedding in the agent's SQLite database.
-    #     """
-    #     embedding = json.dumps(embedding)
-    #     db_file = os.path.join(self.project_folder, 'agent_data', f"{agent_name}_memory.db")
-    #     conn = sqlite3.connect(db_file)
-    #     cursor = conn.cursor()
-    #     cursor.execute('''
-    #         CREATE TABLE IF NOT EXISTS action_embeddings (
-    #             action_description TEXT,
-    #             action_embedding TEXT
-    #         )
-    #     ''')
-    #     cursor.execute('''
-    #         INSERT INTO action_embeddings (action_description, action_embedding)
-    #         VALUES (?, ?)
-    #     ''', (action, embedding))
-    #     conn.commit()
-    #     conn.close()
+    def store_embedding_in_database(self, agent_name, action, embedding):
+        """
+        Store the action embedding in the agent's SQLite database.
+        """
+        embedding = json.dumps(embedding)
+        db_file = os.path.join(self.project_folder, 'agent_data', f"{agent_name}_memory.db")
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS action_embeddings (
+                action_index INTEGER
+                action_description TEXT,
+                action_embedding TEXT
+            )
+        ''')
+        cursor.execute('SELECT MAX(action_index) FROM action_embeddings')
+        max_index = cursor.fetchone()[0] or 0
+        cursor.execute('''
+            INSERT INTO action_embeddings (action_index, action_description, action_embedding)
+            VALUES (?, ?, ?)
+        ''', (max_index+1, action, embedding))
+        conn.commit()
+        conn.close()
+
+    def get_related_things(self, agent_name, hourly_plan, num_related_things):
+        """
+        Get related things to the hourly plan.
+        """
+        plan_embedding = self.embed_action(hourly_plan)
+
+        db_file = os.path.join(self.project_folder, 'agent_data', f"{agent_name}_memory.db")
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT action_description, action_embedding
+            FROM action_embeddings
+            ORDER BY action_index DESC
+        ''')
+        rows = cursor.fetchall()
+        conn.close()
+        agent_memory_full = self.load_memory_file(agent_name)
+        agent_memory = agent_memory_full['memory']
+        action_memory = []
+        for item1 in agent_memory:
+            if item1['exp_type'] == 'action':
+                action_memory.append(item1)
+            if item1['exp_type'] == 'thought' and item1['priority'] == 7:
+                action_memory.append(item1)
+        action_map = {item['action_des']: item for item in action_memory}
+
+        weights = {
+            'similarity': 0.5,
+            'recency': 0.3,
+            'importance': 0.2
+        }
+
+        scored_actions = []
+        for idx, (action_des, emb_json) in enumerate(rows):
+            if action_des not in action_map:
+                continue
+            action = action_map[action_des]
+            action_embedding = np.array(json.loads(emb_json))
+            similarity = np.dot(plan_embedding, action_embedding)/(np.linalg.norm(plan_embedding)*np.linalg.norm(action_embedding))
+            recency = 1 - (idx/len(rows))
+            importance = int(action.get('priority') or 1)
+            normalized_importance = (min(max(importance, 1), 9) - 1) / 8
+            score = weights['similarity']*similarity + weights['recency']*recency + weights['importance']*normalized_importance + 0.0001
+            scored_actions.append((score, action))
+            scored_actions.sort(reverse=True, key=lambda x: x[0])
+        
+        return [item[1] for item in scored_actions[:num_related_things]]
+    
+    def get_related_things_str(self,agent_name, hourly_plan, num_related_things):
+        related_things = self.get_related_things(agent_name, hourly_plan, num_related_things)
+        actions = [
+            item.get('action_des', 'No related things recorded')
+            for item in related_things
+        ]
+        return '\n'.join(actions)
+
+            
+
+        
+        

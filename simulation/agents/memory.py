@@ -50,17 +50,31 @@ def memory_actions(self, agents, global_time, priority):
     for agent in agents:
         if agent.location == self.location:
             other_agents.append(agent.name)
+    action_des = self.simplify_action()
     # experience = [self.name, global_time, self.location, self.action, other_agents, exp_type]
     experience={
         "agent_name": self.name,
         "global_time": global_time,
         "location": self.location,
         "action": f"In {global_time}, {self.name} ,at {self.location}, has done: \"{self.action}\"",
+        "action_des": action_des,
         "other_agents": other_agents,
         "exp_type": 'action',
         "priority": priority
     }
     return experience
+
+def simplify_action(self):
+    system = action_simpilfy_system
+    prompt = action_simpilfy_system_prompt.format(self.name, self.action)
+    prompt_meta = "### Instruction:\n{}\n### Response:"
+    prompt = prompt_meta.format(prompt)
+    res = GPT_request(system, prompt, {
+        # "model": "glm-4-flash",
+        "max_tokens": 30,
+        "temperature": 0.7
+    })
+    return res
     
 def memory_daily_plans(self, global_time):
     experience={
@@ -92,6 +106,7 @@ def memory_location_change(self, global_time, old_location, new_location):
         "global_time": global_time,
         "location": old_location,
         "action": f"In {global_time}, {self.name} has moved from {old_location} to {new_location}.",
+        "action_des": f"{self.name} has moved from {old_location} to {new_location}.",
         "other_agents": [self.name],
         "exp_type": 'action',
         "priority": 2
@@ -104,8 +119,18 @@ def memory_impression(self, global_time, impression):
         "global_time": global_time,
         "location": self.location,
         "action": f"In {global_time}, {self.name} ,at {self.location}, has impressed: \"{impression}\".",
-        "other_agents": [self.name],
+        "action_des": f"{self.name} has impressed: \"{impression}\".",
         "exp_type": 'thought',
         "priority": 4
     }
+    return experience
+
+def memory_reflection(self, global_time, reflection):
+    experience={
+        "agent_name": self.name,
+        "global_time": global_time,
+        "action": f"In {global_time}, {self.name} has reflected: \"{reflection}\".",
+        "exp_type": 'thought',
+        "priority": 9
+        }
     return experience
