@@ -8,7 +8,7 @@ Comment format: Use standard Google style docstring format for comments, bilingu
 # simulation\utils\config.py
 
 # Copy and paste your OpenAI API Key
-openai_api_key = "sk-PXOrlVG5jkUMzKdM3125263aF92048D8Ae185dD76eC0676e"
+openai_api_key = "<your_api_key>"
 openai_base_url = "http://192.168.1.110:3001/v1"
 # Put your name
 key_owner = "Huang Miaosen"
