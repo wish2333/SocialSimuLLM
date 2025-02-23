@@ -79,16 +79,21 @@ class Agent:
         self.impression = ""
         self.hourly_action_prompt = ""
         self.action = ""
+        self.reflection = ""
         self.world_graph = world_graph
+
+        self.related_things = ""
 
         self.rate_locations = MethodType(rate_locations, self)
         self.move = MethodType(move, self)
         self.memory_location_change = MethodType(memory_location_change, self)
         self.rate_experience = MethodType(rate_experience, self)
         self.memory_actions = MethodType(memory_actions, self)
+        self.simplify_action = MethodType(simplify_action, self)
         self.memory_daily_plans = MethodType(memory_daily_plans, self)
         self.memory_hourly_plan = MethodType(memory_hourly_plan, self)
         self.memory_impression = MethodType(memory_impression, self)
+        self.memory_reflection = MethodType(memory_reflection, self)
         # self.update_memory = MethodType(update_memory, self) #Not needed, memory module maintains
         # self.compress_memory = MethodType(compress_recent_impressions, self) #Not needed, memory module maintains
         # self.memory = Memory(project_folder, self) #Not needed, memory module maintains
@@ -104,23 +109,11 @@ class Agent:
     def daily_planning(self, global_time, prompt_meta, recent_impressions, newthings):
         """
         Generates the agent's daily plan.
-
-        Args:
-            recent_impressions (list): A list of recent impressions.
-                                    近期的印象列表。
-            global_time (int): The current time in the simulation.
-                            当前模拟时间。
-            prompt_meta (str): The prompt used to generate the plan.
-                            用于生成计划的提示。
-
-        Returns:
-            None: This method updates the self.daily_plans attribute but does not return any value.
-                该方法会更新self.daily_plans属性，但不返回任何值。
         """
         system = agent_plan_system.format(self.name, self.description, recent_impressions, newthings)
         global_hour = global_time.split(':')[0]
         prompt = agent_plan_prompt.format(str(global_hour))
-        self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 300})
+        self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 200})
         experience = self.memory_daily_plans(global_time)
         return experience
 
@@ -133,44 +126,8 @@ class Agent:
                     prompt_meta: str,
                     recent_impressions: str,
                     newthings: str) -> dict:
-        """Executes the agent's action based on their current situation and interactions with other agents.
-        根据代理当前的位置、时间、环境以及与其他代理的交互情况，
-        生成并执行相应的动作。
-
-        Args:
-            agents (list): 
-                A list of other Agent objects in the simulation.
-                模拟中的其他代理对象列表。
-            location (Location): 
-                The current Location object where the agent is located.
-                代理当前所在的位置对象。
-            global_time (int): 
-                The current time in the simulation.
-                模拟中的当前时间。
-            town_areas (dict): 
-                A dictionary of Location objects representing different areas in the simulated environment.
-                表示模拟环境中不同区域的Location对象字典。
-            prompt_meta (str): 
-                The prompt used to generate the action.
-                用于生成动作的提示信息。
-
-        Returns:
-            str: 
-                The action executed by the agent.
-                由代理执行的动作描述字符串。
-
-        Example:
-            >>> agent.execute_action(agents=[agent1, agent2], 
-                                    location=current_location,
-                                    global_time=12345,
-                                    town_areas=town_map,
-                                    prompt_meta="Go to the store")
-        """
-
         people = [agent.name for agent in agents if agent.location == location]
-
         system = hourly_planning_system.format(self.name, self.description, recent_impressions, newthings, self.daily_plans)
-
         prompt = hourly_planning_prompt.format(location.name, town_areas[location.name], str(global_time), ', '.join(people))
         people_description = [f"{agent.name}: {agent.description}" for agent in agents if agent.location == location.name]
         prompt += ' You know the following about people: ' + '. '.join(people_description)
@@ -203,7 +160,7 @@ class Agent:
         """
         system = agent_execute_action_system.format(self.name, self.description, recent_impressions, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
-        prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, nearby_situations)
+        prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, self.related_things, nearby_situations)
         self.action = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 80})
         return self.action
     
@@ -213,7 +170,17 @@ class Agent:
         """
         system = agent_impressions_system
         prompt = agent_impressions_prompt.format(self.name, self.description, self.daily_plans, global_time, nearby_situations)
-        self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 50})
+        self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 45})
         experience = self.memory_impression(global_time, self.impression)
+        return experience
+    
+    def form_reflection(self, global_time, prompt_meta, recent_reflection, important_things):
+        """
+        Forms a reflection for the agent based on the global time, prompt metadata, recent impressions, and nearby situations.
+        """
+        system = agent_reflection_system.format(self.name, self.description, recent_reflection, self.daily_plans)
+        prompt = agent_reflection_prompt.format(important_things)
+        self.reflection = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 100})
+        experience = self.memory_reflection(global_time, self.reflection)
         return experience
 

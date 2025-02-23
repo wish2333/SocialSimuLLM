@@ -21,7 +21,7 @@
     env\python.exe -m pip install -r requirements.txt
     ```
 4.  **配置 OpenAI API 密钥：**
-5.  *   要准备一个包含 complements 和 embedding 模型的 api
+5.  *   要准备一个包含 complements 模型的 api
     *   将您的 OpenAI API 密钥添加到 `simulation/utils/config.py` 文件中的 `openai_api_key` 变量。
     *   您还可以根据需要修改 `openai_base_url`、`key_owner` 和 `DefaultModel`。
 
@@ -64,9 +64,13 @@
 
 ## 更新介绍
 
+本项目在V3.0版本中进行了重大更新，主要聚焦于智能体记忆和反思能力的提升，以及模拟提示词的优化，增强智能体的学习能力、适应能力和决策质量。
+
+更新日志请参见 [Update-v3.0-20250223_zh.md](/docs/Update-v3.0-20250223_zh.md)
+
 本项目在 V2.0 版本中进行了重大更新，包括优化记忆检索、改进 Agent 状态评估、完善记忆管理、为数据库交互奠定基础，并优化主程序和 Prompt。
 
-更新日志请参见 [Update-v2.0-20250222.md](/docs/Update-v2.0-20250222.md)
+更新日志请参见 [Update-v2.0-20250222_zh.md](/docs/Update-v2.0-20250222_zh.md)
 
 ## 作者和引用
 

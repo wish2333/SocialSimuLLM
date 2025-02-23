@@ -94,18 +94,19 @@ def exist_memory_file(agent_name, project_folder):
         memory_data = {"memory": []}
         with open(memory_file, "w", encoding="utf-8") as f:
             json.dump(memory_data, f, ensure_ascii=False, indent=4)
-    # db_file = os.path.join(project_folder, 'agent_data', f"{agent_name}_memory.db")
-    # if not os.path.exists(db_file):
-    #     conn = sqlite3.connect(db_file)
-    #     cursor = conn.cursor()
-    #     cursor.execute('''
-    #         CREATE TABLE IF NOT EXISTS action_embeddings (
-    #             action_description TEXT,
-    #             action_embedding TEXT
-    #         )
-    #     ''')
-    #     conn.commit()
-    #     conn.close()
+    db_file = os.path.join(project_folder, 'agent_data', f"{agent_name}_memory.db")
+    if not os.path.exists(db_file):
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS action_embeddings (
+                action_index INTEGER,
+                action_description TEXT,
+                action_embedding TEXT
+            )
+        ''')
+        conn.commit()
+        conn.close()
     
 
 

@@ -25,7 +25,7 @@ Please follow these steps to set up your environment:
 
 4. **Configure OpenAI API Key:**
 
-   *   Prepare a API containing models for `complements` and `embedding` together. 
+   *   Prepare a API containing models for `complements`. 
    *   Add your OpenAI API key to the `simulation/utils/config.py` file under the `openai_api_key` variable.
    *   You can also adjust `openai_base_url`, `key_owner`, and `DefaultModel` according to your needs.
 
@@ -67,6 +67,10 @@ You can customize the simulation in the following ways:
 Module descriptions can be found in:  [Module_Description.md](/docs/Module_Description.md)
 
 ## Update Introduction
+
+In the V3.0 version, the project underwent significant updates, primarily focusing on enhancing the agent's memory and reflection capabilities, as well as optimizing the simulated prompts. This improvement boosts the agent's learning capacity, adaptability, and decision-making quality.
+
+Updated documentation can be found in: [Update-v3.0-20250223.md](/docs/Update-v3.0-20250223.md)
 
 In the V2.0 version, the project underwent significant updates, including optimizing memory retrieval, improving agent state evaluation, refining memory management, laying the groundwork for database interaction, and optimizing the main program and Prompt.
 
