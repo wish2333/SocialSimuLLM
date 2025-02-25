@@ -44,6 +44,27 @@ class Memory:
         with open(memory_file, 'w') as f:
             json.dump(memory, f, indent=4)
 
+    def load_event_file(self):
+        event_file = os.path.join(self.project_folder, 'agent_data', 'event.json')
+        if not os.path.exists(event_file):
+            event = {'event': []}
+            with open(event_file, 'w') as f:
+                json.dump(event, f, indent=4)
+        else:
+            with open(event_file, 'r') as f:
+                event = json.load(f)
+        return event
+    
+    def save_and_load_event_file(self, new_event):
+        event = self.load_event_file()
+        event_list = event['event']
+        event_list.append(new_event)
+        event = {'event': event_list}
+        event_file = os.path.join(self.project_folder, 'agent_data', 'event.json')
+        with open(event_file, 'w') as f:
+            json.dump(event, f, indent=4)
+        return event
+
     def add_experience(self, experience, exp_type):
         if exp_type == 'action':
             other_agents = experience['other_agents']
@@ -227,8 +248,3 @@ class Memory:
             for item in related_things
         ]
         return '\n'.join(actions)
-
-            
-
-        
-        

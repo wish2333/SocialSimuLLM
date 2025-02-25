@@ -1,0 +1,175 @@
+{
+    "memory": [
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's daily plan is:\n[8:00 - Wake up and get ready\n9:00 - Open trading post\n10:00 - Arrange goods neatly\n11:00 - Serve customers well\n12:00 - Lunch break\n13:00 - Restock items\n14:00 - Advertise products\n15:00 - Check finances\n16:00 - Clean the store\n17:00 - Plan tomorrow's stock\n18:00 - Dinner time\n19:00 - Review the day\n20:00 - Enjoy night, go to bed] ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nI wake up, freshen up, and prepare to open the trading post. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:00, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I wake up, wash my face and brush my teeth. Then I put on work - appropriate clothes in preparation for opening the trading post.[details] \"",
+            "action_des": "\"Linene Graywind woke up, washed face and brushed teeth. She put on work - appropriate clothes.\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Feeling refreshed, ready to start the day at the trading post as planned. \".",
+            "action_des": "Linene Graywind has impressed: \"Feeling refreshed, ready to start the day at the trading post as planned. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:10, Linene Graywind ,at Barthen's Provisions, has done: \"Do something: I'll finish my preparations by double - checking my keys and money for the till, then head to open the trading post. \"",
+            "action_des": "\"Linene Graywind finished preparations and headed to open post\"",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:20, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'll do a final check of my appearance and gather necessary keys and tools to head to the trading post entrance.[details] \"",
+            "action_des": "Linene Graywind did a final appearance check and gathered keys and tools.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:30, Linene Graywind ,at Barthen's Provisions, has done: \"Do something: I'll head to the trading post entrance. With keys in hand, I'm set to unlock and open it for the day's business. \"",
+            "action_des": "Linene Graywind headed to the trading post entrance and unlocked it. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:40",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:40, Linene Graywind ,at Barthen's Provisions, has done: \"Do something: I'm going to turn on the lights inside the trading post and start setting up the display areas at the front. \"",
+            "action_des": "Linene Graywind turned on the lights and set up display areas. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 08:50",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 08:50, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'll double - check the price tags on the displayed items. Ensure they're correct and clearly visible for customers.[details] \"",
+            "action_des": "Linene Graywind double - checked the price tags on items.\nShe ensured they were correct and visible. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "Linene Graywind's hourly plan is:\nIt's 9:00. I'll start arranging the goods neatly now. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:00, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'll start sorting the backpacks on the shelves by size and type to arrange the goods neatly. [details] \"",
+            "action_des": "Linene Graywind started sorting backpacks by size and type.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:00",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:00, Linene Graywind ,at Barthen's Provisions, has impressed: \"Positive start to the workday, efficiently opening post and organizing goods as planned. \".",
+            "action_des": "Linene Graywind has impressed: \"Positive start to the workday, efficiently opening post and organizing goods as planned. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:10",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:10, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'm going to keep arranging the goods. Next, I'll sort the bedrolls by quality and thickness.[details] \"",
+            "action_des": "Linene Graywind arranged the goods and sorted the bedrolls. ",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:20",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:20, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'll keep arranging the goods. Next, I'll sort the rope by length and material.[details] \"",
+            "action_des": "Linene Graywind kept arranging the goods and sorted the rope.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Linene Graywind",
+            "global_time": "Day 1, 09:30",
+            "location": "Barthen's Provisions",
+            "action": "In Day 1, 09:30, Linene Graywind ,at Barthen's Provisions, has done: \"Do something[action]: I'll continue arranging the goods. Next, I'll sort the rations by type and expiration date.[details]\"",
+            "action_des": "Linene Graywind continued arranging the goods and sorted the rations.",
+            "other_agents": [
+                "Linene Graywind"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+----------------------- SUMMARY FOR ROUND 10 ----------
+This simulation loop documents the morning activities of four individuals in a day in Phandalin.
+
+### Morning Preparations (Before 9:00)
+- **Toblen Stonehill**: He heads back to his trading post at the Phandalin Town Square. He washes up, changes into work - appropriate clothes, checks his appearance and essentials, double - checks opening items, makes a final sweep, unlocks the post and makes final arrangements to open at 9:00. He expresses feeling fresh and looking forward to work tasks.
+- **Daran Edermath**: At the Edermath Orchard, he wakes up slowly, stretches, washes his face, changes clothes, freshens up in the washroom, does some light stretching outside, checks the weather, and grabs gardening tools. He feels refreshed and ready for a fulfilling day.
+- **Linene Graywind**: At Barthen's Provisions, she wakes up, washes her face, brushes her teeth, puts on work clothes, double - checks keys and money, heads to the trading post entrance, turns on the lights, sets up display areas, double - checks price tags. She is feeling refreshed and ready to work.
+- **Halia Thornton**: At the Phandalin Miner✦✩ Exchange, she heads back, washes up, puts on proper attire, and starts checking exchange accounts. She then continues to check and summarize trends in the accounts, analyzing different levels of transactions. She is in a positive emotional state, active in social and learning, confident in task completion, and proactive in information acquisition.
+
+### 9:00 and After
+- **Toblen Stonehill**: At 9:00, he opens his trading post and welcomes potential customers at the entrance. He tries to start conversations to promote his goods, aiming for a good business day.
+- **Daran Edermath**: He begins tending to the apple orchard. First, he checks the soil around the trees, then trims overgrown branches, waters the trees, removes weeds, and checks for pests. He has a peaceful start to the day and is on schedule.
+- **Linene Graywind**: She starts arranging the goods in the trading post. She sorts backpacks by size and type, bedrolls by quality and thickness, rope by length and material, and rations by type and expiration date, having a positive start to her workday
+

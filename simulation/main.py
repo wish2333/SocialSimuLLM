@@ -22,7 +22,12 @@ from utils.global_methods import *
 # Initialize global variables
 prompt_meta = '### Instruction:\n{}\n### Response:'
 global_time = 'Day 1, 08:00'
-project_name = str(input("Please enter the project name: "))
+while True:
+    project_name = str(input("Please enter the project name: "))
+    if project_name:
+        break
+    else:
+        print("Project name cannot be empty. Please try again.")
 project_folder = os.path.join(os.getcwd(), "projects", project_name)
 
 log_debug = True
@@ -94,9 +99,24 @@ for name, detail in town_people.items():
 for agent in agents:
     exist_memory_file(agent.name, project_folder)
 memory = Memory(project_folder, agents, memory_limit)
+
+new_event = str(input("Please enter a new event: ")) or "No new event."
+if new_event == "No new event.":
+    events = [event_json['action'] for event_json in memory.load_event_file()['event']]
+else:
+    new_event_experience={
+            "agent_name": "global_event",
+            "global_time": global_time,
+            "action": f"In {global_time}: \"{new_event}\".",
+            "exp_type": 'event',
+            "priority": 9
+            }
+    memory.add_experience(new_event_experience, 'event')
+    events = [event_json['action'] for event_json in memory.save_and_load_event_file(new_event_experience)['event']]
+
 for agent in agents:
     init_memory_list = memory.get_init_memory(agent.name)
-    agent.init_memory(init_memory_list[0], init_memory_list[1])
+    agent.init_memory(init_memory_list[0], init_memory_list[1], events)
 
 for name, detail in town_areas.items():
     locations.add_location(name, description)
@@ -105,7 +125,7 @@ print(f"=== MODULES INITIALIZED ===")
 
 
 # Start simulation loop
-repeats = int(input("Please enter the number of repeats: "))
+repeats = int(input("Please enter the number of repeats: ")) or 1
 for repeat in range(repeats):
     #log_output for one repeat
     round += 1

@@ -10,6 +10,7 @@ First version created on 2025-02-19 15:25.
 
 agent_plan_system = """You are {}.
 The following is your description: {}.
+The following is very popular things recently: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
 You just woke up."""
@@ -42,6 +43,7 @@ The following people are in this area: {}."""
 
 agent_execute_action_system = """You are {}.
 The following is your description: {}.
+The following is very popular things recently: {}.
 The following is your recent impressions: {}.
 Your daily plans are: {}."""
 agent_execute_action_prompt = """{}
@@ -73,21 +75,22 @@ How important is it for you to experience {} right now?
 Rating: <fill in>"""
 
 
-agent_impressions_system = """You need to assess your current state in several aspects based on your foundational information, plans, and recent events. Evaluate your emotional state, social or learning drive, confidence in task completion, information acquisition preference, and technology acceptance inclination. Use the following template to assign a value to each dimension and return your current values for these states:
+agent_impressions_system = """You are {}.
+The following is your description: {}.
+You need to assess your current state in several aspects based on your foundational information, plans, and recent events. Evaluate your emotional state, social or learning drive, confidence in task completion, information acquisition preference, and technology acceptance inclination. Use the following template to assign a value to each dimension and return your current values for these states:
 # Template
-1. Emotional Status: {Positive, Stable, Negative}
-2. Social / Learning Drive: {Active, Routine, Exhausted}
-3. Confidence in Task Completion: {Ahead of Schedule, Normal, Behind Schedule}
-4. Information Acquisition Preference: {Proactive Exploration, Passive Reception, Shielding}
-5. Technology Acceptance Inclination: {Open, Neutral, Rejection}
+1. Emotional Status: [Positive, Stable, Negative]
+2. Social / Learning Drive: [Active, Routine, Exhausted]
+3. Confidence in Task Completion: [Ahead of Schedule, Normal, Behind Schedule]
+4. Information Acquisition Preference: [Proactive Exploration, Passive Reception, Shielding]
+5. Technology Acceptance Inclination: [Open, Neutral, Rejection]
 # Case Return Example
 Positive Emotion, Active Social Drive, Routine Learning Drive, Confident in Timely Task Completion, Willing to Actively Seek Information, Open to New Technologies"""
-agent_impressions_prompt = """You are {}.
-The following is your description: {}.
+agent_impressions_prompt = """
 Your plans are: {}.
 It is currently {}.
 Just now these things happened: {}(including any actions you took in the past hour)
-Your impressions are? Use at most 20 words to explain."""
+Your impressions are? Use at most 30 words to explain."""
 
 
 action_simpilfy_system = """You are a linguist and text processing specialist, proficient in simplifying complex sentences into only 1 or 2 SVO (Subject-Verb-Object)-structured sentences and the verb may include simple adverbial phrases, outputting the action in the past tense.
@@ -100,4 +103,4 @@ The following is your recent reflections: {}.
 Your plans are: {}.
 """
 agent_reflection_prompt = """Here are something that is special for you about today: {}.
-Write a reflection on your day. How did you feel about new technologies, social interactions, and the challenges of today's work? What did you accomplish? What would you like to change for next time? Use at most 100 words to explain."""
+Write a reflection on your day. How did you feel about new technologies, social interactions, and the challenges of today's work? What did you accomplish? What would you like to change for next time? Use at most 75 words to explain."""
