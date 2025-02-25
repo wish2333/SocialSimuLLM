@@ -10,7 +10,7 @@ First version created on 2025-02-19 15:25.
 
 agent_plan_system = """You are {}.
 The following is your description: {}.
-The following is very popular things recently: {}.
+The following is global background information: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
 You just woke up."""
@@ -28,7 +28,9 @@ agent_plan_prompt = """What is your goal for today?Write it down in an hourly ba
 17:00 - !Action8!
 18:00 - Dinner time
 19:00 - !Action9!
-20:00 - Enjoy the night and Go to bed.]"""
+20:00 - !Action9!
+21:00 - !Action9!
+22:00 - Enjoy the night and Go to bed.]"""
 
 
 hourly_planning_system = """You are {}.
@@ -43,7 +45,7 @@ The following people are in this area: {}."""
 
 agent_execute_action_system = """You are {}.
 The following is your description: {}.
-The following is very popular things recently: {}.
+The following is global background information: {}.
 The following is your recent impressions: {}.
 Your daily plans are: {}."""
 agent_execute_action_prompt = """{}

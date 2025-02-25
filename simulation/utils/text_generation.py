@@ -128,9 +128,14 @@ def get_rating(x):
     else:
         return None
 
-def summarize_simulation(prompt):
+def summarize_simulation_daily(prompt):
     prompt = f"Summarize the simulation loop:\n{prompt}"
     response = GPT_request(system="You are a social science expert observing a social experiment. You will receive a timeline of actions taken by participants over the course of a day. Please summarize what happened during that day.", prompt=prompt, gpt_parameter={"max_tokens": 500})
+    return response
+
+def summarize_simulation_session(prompt):
+    prompt = f"Summarize the simulation loop:\n{prompt}"
+    response = GPT_request(system="You are a social science expert observing a social experiment. You will receive a timeline of actions taken by participants over the course of a session. Please summarize what happened during that session.", prompt=prompt, gpt_parameter={"max_tokens": 500})
     return response
 
 # def generate_prompt(curr_input, prompt_template):

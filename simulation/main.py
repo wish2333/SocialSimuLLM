@@ -16,7 +16,7 @@ import networkx as nx
 from agents.agent import Agent
 from locations.locations import Locations
 from retrieve.memory import Memory
-from utils.text_generation import summarize_simulation
+from utils.text_generation import summarize_simulation_daily, summarize_simulation_session
 from utils.global_methods import *
 
 # Initialize global variables
@@ -89,12 +89,16 @@ world_graph.add_edge(list(town_areas.keys())[0], list(town_areas.keys())[-1])
 print("Nodes in world_graph:", world_graph.nodes())
 
 # Create agents
+name_list = []
 for name, detail in town_people.items():
     starting_location = detail['starting_location']
     if starting_location not in world_graph.nodes():
         print(f"Warning: Starting location {starting_location} for agent {name} is not in world_graph.")
     description = json.dumps(detail['description']) #Convert the description to a string
     agents.append(Agent(name, description, starting_location, world_graph))
+    name_list.append(name)
+print(f"=== AGENTS INITIALIZED ===")
+print(f"Agents: {', '.join(name_list)}")
 
 for agent in agents:
     exist_memory_file(agent.name, project_folder)
@@ -122,6 +126,27 @@ for name, detail in town_areas.items():
     locations.add_location(name, description)
 
 print(f"=== MODULES INITIALIZED ===")
+
+
+new_action_agents_name = str(input("Please enter the agent name and more agents split by comma: ")) or "No new action."
+if new_action_agents_name == "No new action.":
+    pass
+else:
+    while True:
+        new_action = str(input("Please enter a new action: "))
+        if new_action_agents_name:
+            new_action_agent_names = [name.strip() for name in new_action_agents_name.split(",")]
+            for agent in agents:
+                if agent.name in new_action_agent_names:
+                    gotten_impression = memory.get_impressions_str(agent.name, 3)
+                    agent.action = new_action
+                    new_action_priority = agent.rate_experience(prompt_meta, gotten_impression, memory.get_newthings_str(agent.name, memory_limit), new_action)
+                    new_action_experiences = agent.memory_actions([agent], global_time, new_action_priority)
+                    memory.add_experience(new_action_experiences, 'action')
+            print("New action added.")
+            break
+        else:
+            print("Agent name cannot be empty. Please try again.")
 
 
 # Start simulation loop
@@ -257,10 +282,11 @@ for repeat in range(repeats):
             summary_input += f"\n{reflection}\n"
 
         # Whether to summary
-    if (if_new_day(new_global_time) and repeat != 0) or (repeat == repeats-1):
+    if (if_new_session(new_global_time) and repeat != 0) or (repeat == repeats-1):
         print(f"----------------------- SUMMARY FOR ROUND {round} -----------------------\n")
         log_output += f"----------------------- SUMMARY FOR ROUND {round} ----------\n"
-        summary_output = summarize_simulation(summary_input)
+        # summary_output = summarize_simulation_daily(summary_input)
+        summary_output = summarize_simulation_session(summary_input)
         summary_input = ""
         print(summary_output)
         log_output += summary_output + "\n\n"

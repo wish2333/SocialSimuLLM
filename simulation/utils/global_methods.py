@@ -119,7 +119,7 @@ def add_ten_minutes(global_time):
     time_format = "%H:%M"
     time_obj = datetime.strptime(time_part, time_format)
     new_time_obj = time_obj + timedelta(minutes=10)
-    if new_time_obj.time() >= datetime.strptime("20:00", time_format).time():
+    if new_time_obj.time() >= datetime.strptime("22:00", time_format).time():
         new_date = f"Day {day_number + 1}"
         new_time = "08:00"
     else:
@@ -136,6 +136,12 @@ def if_new_day(global_time):
     
 def if_new_hour(global_time):
     if global_time.split(", ")[1].split(":")[1] == "00":
+        return True
+    else:
+        return False
+    
+def if_new_session(global_time):
+    if global_time.split(", ")[1] == "08:00" or global_time.split(", ")[1] == "15:00":
         return True
     else:
         return False
