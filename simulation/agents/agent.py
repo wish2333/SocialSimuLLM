@@ -83,6 +83,7 @@ class Agent:
         self.world_graph = world_graph
 
         self.related_things = ""
+        self.event = []
 
         self.rate_locations = MethodType(rate_locations, self)
         self.move = MethodType(move, self)
@@ -101,19 +102,20 @@ class Agent:
     def __repr__(self):
         return f"Agent({self.name}, {self.description}, {self.location})"
     
-    def init_memory(self, daily_plans, hourly_plan):
+    def init_memory(self, daily_plans, hourly_plan, event:list):
         self.daily_plans = daily_plans
         self.hourly_plan = hourly_plan
         # self.impression = impression
+        self.event = ";".join(event)
 
     def daily_planning(self, global_time, prompt_meta, recent_impressions, newthings):
         """
         Generates the agent's daily plan.
         """
-        system = agent_plan_system.format(self.name, self.description, recent_impressions, newthings)
+        system = agent_plan_system.format(self.name, self.description, self.event, recent_impressions, newthings)
         global_hour = global_time.split(':')[0]
         prompt = agent_plan_prompt.format(str(global_hour))
-        self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 200})
+        self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 300})
         experience = self.memory_daily_plans(global_time)
         return experience
 
@@ -134,7 +136,7 @@ class Agent:
         self.hourly_action_prompt = prompt.replace(str(global_time), '{}') # Replace the global time with {} to make it flexible for execute_action().
         prompt += "You can choose to interact with them or not. What do you do in the next hour? Use at most 20 words to explain."
 
-        self.hourly_plan = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 30})
+        self.hourly_plan = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 45})
         experience = self.memory_hourly_plan(global_time)
         return experience
     
@@ -158,7 +160,7 @@ class Agent:
             None: This method updates the self.action attribute but does not return any value.
             仅更新self.action属性，但不返回任何值。
         """
-        system = agent_execute_action_system.format(self.name, self.description, recent_impressions, self.daily_plans)
+        system = agent_execute_action_system.format(self.name, self.description, self.event, recent_impressions, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
         prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, self.related_things, nearby_situations)
         self.action = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 80})
@@ -168,9 +170,9 @@ class Agent:
         """
         Forms an impression for the agent based on the global time, prompt metadata, recent impressions, and nearby situations.
         """
-        system = agent_impressions_system
-        prompt = agent_impressions_prompt.format(self.name, self.description, self.daily_plans, global_time, nearby_situations)
-        self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 45})
+        system = agent_impressions_system.format(self.name, self.description)
+        prompt = agent_impressions_prompt.format(self.daily_plans, global_time, nearby_situations)
+        self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 80})
         experience = self.memory_impression(global_time, self.impression)
         return experience
     
@@ -180,7 +182,7 @@ class Agent:
         """
         system = agent_reflection_system.format(self.name, self.description, recent_reflection, self.daily_plans)
         prompt = agent_reflection_prompt.format(important_things)
-        self.reflection = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 100})
+        self.reflection = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 120})
         experience = self.memory_reflection(global_time, self.reflection)
         return experience
 

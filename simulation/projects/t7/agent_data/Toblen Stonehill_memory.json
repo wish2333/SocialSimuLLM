@@ -1,0 +1,315 @@
+{
+    "memory": [
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's daily plan is:\n[8:00 - Wake up and get ready\n9:00 - Open trading post\n10:00 - Arrange stock display\n11:00 - Assist customers\n12:00 - Lunch break\n13:00 - Check incoming goods\n14:00 - Update price tags\n15:00 - Promote new items\n16:00 - Balance the accounts\n17:00 - Clean the store\n18:00 - Dinner time\n19:00 - Plan tomorrow's work\n20:00 - Enjoy the night and Go to bed]",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nI'll head back to my place and get ready to open the store. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll head back to my trading post. Once there, I'll wash up and put on appropriate work clothes.[details] \"",
+            "action_des": "Toblen Stonehill headed back to his trading post and washed up. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:00, Halia Thornton ,at Phandalin Town Square, has done: \"Do something[action]: I'll head back to the Phandalin Miner\u2726\u2729 Exchange, wash up, put on proper attire, and get mentally prepared for the day.[details] \"",
+            "action_des": "Halia Thornton headed to the exchange, washed up and dressed.\nHalia Thornton got mentally prepared for the day. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Fresh and ready to start the day at my trading post, looking forward to work tasks. \".",
+            "action_des": "Toblen Stonehill has impressed: \"Fresh and ready to start the day at my trading post, looking forward to work tasks. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll finish getting ready at my trading post. Check my appearance and ensure I have all essentials for the day ahead. [details] \"",
+            "action_des": "Toblen Stonehill finished getting ready at his trading post.\nToblen Stonehill checked his appearance and essentials. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:10, Halia Thornton ,at Phandalin Town Square, has done: \"Do something[action]: I'll ensure my appearance is presentable and gather essential documents at the exchange. Then I'll start checking exchange accounts as planned.[details] \"",
+            "action_des": "Halia Thornton ensured her appearance and gathered documents.\nHalia Thornton started checking exchange accounts. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'm going to double - check the opening items and ensure everything is in place before officially opening the trading post.[details] \"",
+            "action_des": "Toblen Stonehill double - checked opening items and ensured things were in place. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:20, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll continue checking exchange accounts, carefully reviewing each entry to ensure accuracy and identify potential opportunities. \"",
+            "action_des": "Halia Thornton continued checking exchange accounts and reviewed entries.",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll make a final sweep of my trading post to confirm everything is set for the 9:00 opening and lock up until then.[details] \"",
+            "action_des": "Toblen Stonehill made a final sweep of his trading post and locked up.",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:30, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll keep checking exchange accounts. I'll analyze transactions and ensure all entries are accurate to maintain financial clarity. \"",
+            "action_des": "Halia Thornton checked exchange accounts and analyzed transactions.",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:40, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something: I'm going to head out to the front of my trading post to unlock it. I'll be ready to open for business at 9:00. \"",
+            "action_des": "Toblen Stonehill headed out to unlock his trading post.",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:40",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:40, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll keep checking exchange accounts, looking for trends in transactions to better understand the day's financial landscape. \"",
+            "action_des": "Halia Thornton kept checking exchange accounts for trends. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 08:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:50, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll unlock my trading post and make final arrangements to open on time at 9:00.[details] \"",
+            "action_des": "Toblen Stonehill unlocked his trading post and made final arrangements. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 08:50",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 08:50, Halia Thornton ,at Phandalin Town Square, has done: \"Do something[action]: I'll finish checking exchange accounts and summarize the trends I've found. This will help with today's trade arrangements.[details] \"",
+            "action_des": "Halia Thornton finished checking accounts and summarized trends. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 3
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Phandalin Town Square",
+            "action": "Toblen Stonehill's hourly plan is:\nIt's 9:00, so I'll open my trading post now. ",
+            "other_agents": [
+                "Toblen Stonehill"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:00, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll open the door of my trading post, then welcome potential customers as I await their arrival.[details]\"",
+            "action_des": "Toblen Stonehill opened the trading - post door and welcomed customers. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 09:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:00, Halia Thornton ,at Phandalin Town Square, has done: \"Do something[action]: I'll continue checking and summarizing exchange account trends, focusing on recent high - value transactions. [details] \"",
+            "action_des": "Halia Thornton continued checking and summarizing trends. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:00",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:00, Toblen Stonehill ,at Phandalin Town Square, has impressed: \"Opened trading post smoothly, everything in order, looking forward to a good business day. \".",
+            "action_des": "Toblen Stonehill has impressed: \"Opened trading post smoothly, everything in order, looking forward to a good business day. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:10, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll stay at the trading post entrance to greet more customers and make them feel welcome.[details] \"",
+            "action_des": "Toblen Stonehill stayed at the trading post entrance to greet customers.",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 09:10",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:10, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll continue checking and summarizing exchange account trends. I'll focus on detailed data to ensure accuracy. \"",
+            "action_des": "Halia Thornton continued checking and summarizing trends.\nShe focused on detailed data for accuracy. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:20, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something[action]: I'll stay at the trading - post entrance, greet more customers, and try to start conversations to promote my goods. [details] \"",
+            "action_des": "Toblen Stonehill stayed at the trading - post entrance and greeted customers.\nExplanation: Extracted two main actions from the text and put",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 09:20",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:20, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll continue checking and summarizing exchange account trends. I'll focus on small - scale transactions for a thorough analysis. \"",
+            "action_des": "Halia Thornton continued checking and summarizing trends.\nShe focused on small - scale transactions.\nExplanation: Extracted main actions from original for",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Toblen Stonehill",
+            "global_time": "Day 1, 09:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:30, Toblen Stonehill ,at Phandalin Town Square, has done: \"Do something: I've opened the trading post and am greeting customers. I'll continue to welcome them in and keep the entrance inviting. \"",
+            "action_des": "Toblen Stonehill opened the trading post and greeted customers. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Halia Thornton",
+            "global_time": "Day 1, 09:30",
+            "location": "Phandalin Town Square",
+            "action": "In Day 1, 09:30, Halia Thornton ,at Phandalin Town Square, has done: \"Do something: I'll keep checking and summarizing exchange account trends. I'll focus on micro - level data to ensure accuracy. \"",
+            "action_des": "Halia Thornton checked and summarized exchange account trends.\nHalia Thornton focused on micro - level data for accuracy. ",
+            "other_agents": [
+                "Toblen Stonehill",
+                "Halia Thornton"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        }
+    ]
+}

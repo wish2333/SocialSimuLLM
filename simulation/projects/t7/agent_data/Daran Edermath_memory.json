@@ -1,0 +1,175 @@
+{
+    "memory": [
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's daily plan is:\n[8:00 - Wake up and get ready\n9:00 - Tend to apple orchard\n10:00 - Clean cottage indoors\n11:00 - Read old adventure logs\n12:00 - Lunch break\n13:00 - Walk around the area\n14:00 - Sharpen old weapons\n15:00 - Chat with neighbors\n16:00 - Organize storage shed\n17:00 - Check apple harvest\n18:00 - Dinner time\n19:00 - Watch sunset outside\n20:00 - Enjoy the night and Go to bed]",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 3
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nWake up, freshen up, and prepare for the day ahead. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:00, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'll slowly wake up, stretch my muscles, wash my face, and then change into suitable clothes for the day.[details] \"",
+            "action_des": "Daran Edermath slowly woke up and changed into suitable clothes. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:00, Daran Edermath ,at Edermath Orchard, has impressed: \"Awoke refreshed, ready to start the day with a fulfilling routine in my cozy home. \".",
+            "action_des": "Daran Edermath has impressed: \"Awoke refreshed, ready to start the day with a fulfilling routine in my cozy home. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:10, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll head to the washroom to freshen up. After that, I'll stretch a bit to loosen my muscles and fully prepare for the day. \"",
+            "action_des": "Daran Edermath headed to the washroom and stretched a bit.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:20, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll wash my face and brush my teeth in the washroom to fully freshen up and get ready for tending the orchard later. \"",
+            "action_des": "Daran Edermath washed his face and brushed his teeth.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:30, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'll finish freshening up, put on my outdoor boots, then head outside for some light stretching before tending to the orchard.[details] \"",
+            "action_des": "Daran Edermath finished freshening up and headed outside. \nExplanation: Extracted main actions from the sentence for SVO form. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:40",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:40, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll take a few deep breaths outside to soak in the fresh air and fully wake up for a productive day in the orchard. \"",
+            "action_des": "Daran Edermath took deep breaths outside to soak in air. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 08:50",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 08:50, Daran Edermath ,at Edermath Orchard, has done: \"Do something[action]: I'll finish my pre - day preparations. Check the weather and grab my gardening tools for the orchard work ahead.[details] \"",
+            "action_des": "Daran Edermath finished pre - day preparations and grabbed gardening tools. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "Daran Edermath's hourly plan is:\nIt's 9:00. I'll use tools to tend to the apple orchard. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "plan",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:00, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'm going to start tending to the apple orchard with the gardening tools. First, I'll check the soil around the apple trees. \"",
+            "action_des": "Daran Edermath started tending the apple orchard. He checked the soil around trees. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 1
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:00",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:00, Daran Edermath ,at Edermath Orchard, has impressed: \"A peaceful start to the day, I'm right on schedule tending to the orchard. Feeling positive. \".",
+            "action_des": "Daran Edermath has impressed: \"A peaceful start to the day, I'm right on schedule tending to the orchard. Feeling positive. \".",
+            "exp_type": "thought",
+            "priority": 4
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:10",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:10, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll keep tending to the orchard. After checking the soil, I'll trim any overgrown branches with the gardening tools. \"",
+            "action_des": "Daran Edermath kept tending to the orchard and trimmed overgrown branches. ",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:20",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:20, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll keep tending to the apple orchard. Next, I'll water the trees to keep them nourished. \"",
+            "action_des": "Daran Edermath tended to the apple orchard and watered the trees.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        },
+        {
+            "agent_name": "Daran Edermath",
+            "global_time": "Day 1, 09:30",
+            "location": "Edermath Orchard",
+            "action": "In Day 1, 09:30, Daran Edermath ,at Edermath Orchard, has done: \"Do something: I'll continue tending to the apple orchard. I'll remove any weeds around the trees and check for signs of pests. \"",
+            "action_des": "Daran Edermath continued tending to the apple orchard and removed weeds.",
+            "other_agents": [
+                "Daran Edermath"
+            ],
+            "exp_type": "action",
+            "priority": 2
+        }
+    ]
+}
