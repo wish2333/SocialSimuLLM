@@ -1,0 +1,18 @@
+{
+    "event": [
+        {
+            "agent_name": "global_event",
+            "global_time": "Day 1, 18:00",
+            "action": "In Day 1, 18:00: \"23\".",
+            "exp_type": "event",
+            "priority": 9
+        },
+        {
+            "agent_name": "global_event",
+            "global_time": "Day 4, 08:00",
+            "action": "In Day 4, 08:00: \"Due to the popularity of IVModel, recent news has been flooded with topics related to AI. Some new policies have emerged, adjusting to the trend. Now, schools and companies are deploying local AI, encouraging employees to use AI tools to enhance efficiency.\".",
+            "exp_type": "event",
+            "priority": 9
+        }
+    ]
+}

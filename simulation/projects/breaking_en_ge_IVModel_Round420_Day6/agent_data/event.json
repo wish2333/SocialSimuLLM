@@ -1,0 +1,18 @@
+{
+    "event": [
+        {
+            "agent_name": "global_event",
+            "global_time": "Day 1, 18:00",
+            "action": "In Day 1, 18:00: \"23\".",
+            "exp_type": "event",
+            "priority": 9
+        },
+        {
+            "agent_name": "global_event",
+            "global_time": "Day 2, 08:00",
+            "action": "In Day 2, 08:00: \"A new large model, IVModel, has suddenly gained immense popularity. Its appeal lies in its ease of deployment while maintaining high performance, along with its excellent compatibility. News about it is being reported enthusiastically nationwide. Even people who do not usually use AI are now following the trend and using it, making it a topic of discussion among the general public.\".",
+            "exp_type": "event",
+            "priority": 9
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "general": {
+        "global_time_limit": 24,
+        "max_attempts": 2,
+        "memory_limit": 15,
+        "prompt_meta": "### Instruction:\n{}\n### Response:"
+    },
+    "town_areas": {
+        "Yifei Hall": "Laboratory in the core research area of A University. Teachers and graduate students can freely enter and exit, while undergraduate students need to send messages to teachers or supervisors to explain their intentions and acquire authorization. Equipment is poor, and funding is limited",
+        "Main Building": "Classroom for undergraduate students in A University, can stay here for self-study when not in class",
+        "Maiyuan Building 2, Room 101": "Residence for undergraduate students in A University, beds with programming marathon medals/quantitative trading curves/handwritten novel drafts",
+        "Maiyuan Building 2, Room 103": "Residence for undergraduate students in A University, Jiang Yanzhou's desk equipped with a dual-screen workstation",
+        "Lan Garden Doctor's Building": "A University equipped with a local server, can run high-performance computing tasks",
+        "Time Capsule": "Café near A University, can drink coffee, chat, and play board games, teachers and students like to gather here when they are free",
+        "Innovation and Development Department of Wisdom": "University enterprise cooperation research center near A University, mainly research directions of quantitative trading, machine learning, and artificial intelligence, hardware configuration is high, clear process",
+        "Wenshu Yuan Building": "Teacher's residence near A University, students can arrange to meet here for exchange",
+        "Green Ivy Community": "A small residential area near A University, very poor network",
+        "Other outside locations": "Other locations outside A University, such as B vocational college, exhibition center, park, hospital, etc."
+    },
+    "town_people": {
+        "Lin Lingyue": {
+            "description": {
+                "gender": "Female, Undergraduate major in Computer Science and Technology",
+                "financial_status": "Good (Parents are senior executives in IT companies)",
+                "preferences": "Participating in Hackathons/Collecting mechanical keyboards",
+                "residence": "Maiyuan Building 2, Room 101",
+                "habits": "Checks GitHub trends every day/Returns to dorm at 21:30",
+                "relationships": "Shares experience with cousin Lin Xingyao, has a good relationship with Qin Yanqiu, has a general relationship with roommates, often discusses algorithms with Shen Ranxi in a coffee shop"
+            },
+            "starting_location": "Maiyuan Building 2, Room 101"
+        },
+        " Wang Mingzhe": {
+            "description": {
+                "gender": "Male Undergraduate Finance Studies Economic condition moderate (salary family)",
+                "likes": "Stock trading/Playing board games",
+                "location": "Maiyuan Building 2, Room 101",
+                "habits": "Willing to share new things with others/Lunchtime browsing financial news",
+                "relation": "The habit of staying in the dormitory and chatting with roommates, interning at Innovation and Development Department of Wisdom"
+            },
+            "starting_location": "Maiyuan Building 2, Room 101"
+        },
+        "Su Nuanyang": {
+            "description": {
+                "gender": "female",
+                "status": "undergraduate",
+                "major": "sociology",
+                "economic_condition": "poor (rural family left behind)",
+                "preferences": "writing web novels/engaging in online educational charity",
+                "residence": "Maiyuan Building 2, Room 101",
+                "habits": "self-study in classrooms during the day, return to dorms at night/hate using electronic notes",
+                "relationships": "willing to chat with dorm mates, has a good relationship with Wang Mingzhe"
+            },
+            "starting_location": "Maiyuan Building 2, Room 101"
+        },
+        "Jiang Yanzhou": {
+            "description": {
+                "Identity": "Male undergraduate student, Digital Media Art, in medium economic status (small business family)",
+                "Hobbies": "Making AI drawing emoticons, visiting anime exhibitions",
+                "Residence": "Maiyuan Building 2, Room 103",
+                "Habits": "Editing videos overnight, resisting face-to-face socializing",
+                "Relationship": "Living alone in the dormitory, interning at the Innovation and Development Department of Wisdom"
+            },
+            "starting_location": "Maiyuan Building 2, Room 103"
+        },
+        "Shen Ranxi": {
+            "description": {
+                "identity": "Female Postgraduate Artificial Intelligence Field Economically Moderate (Dependent on research subsidies)",
+                "preferences": "Robot Debugging/Collecting Open Source Hardware",
+                "residence": "Lan Garden Doctor's Building",
+                "habits": "Morning Jogging/Refusing to use cloud services (information leakage concerns)",
+                "relationships": "Responsible for Lin Lingyue's research guidance, has a general relationship with roommates Xu Yuanzhe"
+            },
+            "starting_location": "Lan Garden Doctor's Building"
+        },
+        "Xu Yuanzhe": {
+            "description": {
+                "identity": "Male undergraduate student, Biomedical Engineering, in good economic status (family healthcare industry)",
+                "preferences": "Writing industry white papers/Collecting tea leaves",
+                "residence": "Lan Garden Doctor's Building",
+                "habits": "Lunchtime browsing financial news/Checking device regularly",
+                "relationships": "Has academic competition with Shen Ranxi, has a good relationship with Wang Mingzhe"
+            },
+            "starting_location": "Lan Garden Doctor's Building"
+        },
+        "Qin Yanqiu": {
+            "description": {
+                "Identity": "Male Computer Science Professor with poor financial status (rejects horizontal and cutting-edge projects)",
+                "Hobbies": "Writing industry whitepapers/collection of tea",
+                "Residence": "Yifei Hall",
+                "Routines": "Lives in the laboratory/often inspects equipment",
+                "Affiliations": "Has the authority to approve funding, academically competing with Bai Qingyu"
+            },
+            "starting_location": "Yifei Hall"
+        },
+        "Bai Qingyu": {
+            "description": {
+                "identity": "Female Educative Technology Teacher, middle financial situation (relying on school-level research projects)",
+                "preferences": "Developing teaching robots/ bird watching",
+                "residence": "Wenshu Yuan Building",
+                "habit": "Weekly tea gathering in the teachers' dormitory every Thursday",
+                "relationship": "Advise Wang Mingzhe not to over-rely on AI writing, discourage Su Nuanyang from over-relying on web novels, general relationship with Qin Yanqiu"
+            },
+            "starting_location": "Wenshu Yuan Building"
+        },
+        "Lin Xingya": {
+            "description": {
+                "Identity": "Female, Marketing student (attending B College), Financial status low (dependent on Lin Lingyao's sponsorship)",
+                "Likes": "Stargazing/filming short videos",
+                "Residence": "Green Ivy Community",
+                "Habits": "Not attending college classes/working at a cafe every day",
+                "Relationship": "Will not enter any location in University A, shares an apartment with friend Jiang Qiaowei"
+            },
+            "starting_location": "Green Ivy Community"
+        },
+        "Jiang Qiaowei": {
+            "description": {
+                "Identity": "Female, Hospital Nurse, Moderate Economic Situation (Urban Individual Entrepreneur Family)",
+                "PREFERENCES": "Playing Visual Novel Games/Doing Nails",
+                "Residence": "Green Ivy Community",
+                "Habits": "Using AI Voice to Comfort Elderly Patients to Take Medicine (Internship Experience)",
+                "Relationships": "Wouldn't Enter any location in A University, Living in an Apartment with Close Friend Lin Xingyao/Have no insights into people in A University"
+            },
+            "starting_location": "Green Ivy Community"
+        }
+    }
+}
