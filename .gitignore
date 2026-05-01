@@ -19,3 +19,8 @@ build/
 
 *.db
 *.sqlite3
+
+# ClaudeCode
+runCC-DS.bat
+runCC-GLM.bat
+runCC-OR.bat

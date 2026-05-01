@@ -14,7 +14,7 @@ import re
 import os
 import time
 
-from socialsimullm.utils.config import *
+from socialsimullm.utils.config import DefaultModel, openai_api_key, openai_base_url
 
 def time_sleep(sec=0.1):
     time.sleep(sec)
