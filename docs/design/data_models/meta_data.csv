@@ -1,0 +1,4 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+project_name,str,"",Yes,Name of the project,Non-empty string, matches folder name
+global_time,str,"Day 1, 08:00",Yes,Current simulation time,"Format: ""Day X, HH:MM"""
+round,int,0,Yes,Current simulation round,Non-negative integer

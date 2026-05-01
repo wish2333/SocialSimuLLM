@@ -1,0 +1,3 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+name,str,"",Yes,Location unique identifier,Non-empty string, unique in town_areas
+description,str,"",Yes,Text description of location,Non-empty string

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "socialsimullm"
+version = "3.1.0"
+description = "A multi-agent social simulation framework powered by LLMs"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openai",
+    "networkx",
+    "numpy",
+]
+
+[project.scripts]
+socialsimullm = "socialsimullm.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/socialsimullm"]

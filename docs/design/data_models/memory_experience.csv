@@ -1,0 +1,9 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+agent_name,str,"",Yes,Name of agent who owns this memory,Must match an agent in town_people
+global_time,str,"",Yes,Timestamp of experience,"Format: ""Day X, HH:MM"""
+location,str,"",No,Where experience occurred,Must exist in town_areas (for actions)
+action,str,"",Yes,Narrative description of experience,Non-empty string
+action_des,str,"",No,Simplified SVO sentence,Max 20 words
+other_agents,list,[],No,Agents present during experience,List of agent names
+exp_type,str,"",Yes,Type of experience,"One of: action, plan, thought, event, reflection"
+priority,int,0,Yes,Importance rating 1-9,"Range: 1-9, 9=extremely important"

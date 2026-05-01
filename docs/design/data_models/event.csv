@@ -1,0 +1,7 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+event,list,[],Yes,List of global event objects,Array of event dicts
+event.*.agent_name,str,"global_event",Yes,Name of agent creating event,Usually "global_event"
+event.*.global_time,str,"",Yes,Timestamp of event,"Format: ""Day X, HH:MM"""
+event.*.action,str,"",Yes,Event description,Non-empty string
+event.*.exp_type,str,"event",Yes,Type of experience,Fixed: "event"
+event.*.priority,int,9,Yes,Event importance,Fixed: 9 (extremely important)

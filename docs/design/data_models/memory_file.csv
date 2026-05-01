@@ -1,0 +1,10 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+memory,list,[],Yes,Array of experience objects,Non-empty list after simulation starts
+memory.*.agent_name,str,"",Yes,Agent who owns the memory,Must match an agent name
+memory.*.global_time,str,"",Yes,Timestamp of experience,"Format: ""Day X, HH:MM"""
+memory.*.location,str,"",No,Location where experience occurred,Must be valid location (for actions)
+memory.*.action,str,"",Yes,Narrative description,Non-empty string
+memory.*.action_des,str,"",No,Simplified SVO sentence,Max 20 words
+memory.*.other_agents,list,[],No,Agents at location during experience,List of agent names
+memory.*.exp_type,str,"",Yes,Experience type,"One of: action, plan, thought, event, reflection"
+memory.*.priority,int,0,Yes,Importance rating,"Range: 1-9"

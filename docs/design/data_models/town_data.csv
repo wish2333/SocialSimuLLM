@@ -1,0 +1,5 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+general.memory_limit,int,5,Yes,Max recent experiences to retrieve,Positive integer
+town_people.*.description,str,"",Yes,Agent's description JSON,Valid JSON string
+town_people.*.starting_location,str,"",Yes,Agent's initial location,Must exist in town_areas
+town_areas.*,str,"",Yes,Location description,Non-empty string, key is location name

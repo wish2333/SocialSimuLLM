@@ -1,0 +1,13 @@
+Field Name,Type,Default,Required,Description,Validation Rules
+name,str,"",Yes,Agent unique identifier,Non-empty string
+description,str,"",Yes,JSON string of agent traits and background,Valid JSON string
+location,str,"",Yes,Current location name,Must exist in town_areas
+daily_plans,str,"",No,Agent's daily plans for today,Non-empty after 08:00
+hourly_plan,str,"",No,Agent's current hourly plan,Non-empty after xx:00
+action,str,"",No,Most recent executed action,Generated during simulation
+impression,str,"",No,Most recent impression,Generated after action execution
+reflection,str,"",No,Most recent daily reflection,Generated at end of day
+world_graph,object,null,Yes,NetworkX graph of town,Valid nx.Graph object
+related_things,str,"",No,Retrieved related memories,From get_related_things_str()
+event,list,[],No,Global events list,Array of event strings
+place_ratings,list,[],No,Location ratings for current hour,List of (name, rating, response) tuples
