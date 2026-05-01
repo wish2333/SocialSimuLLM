@@ -47,6 +47,11 @@ class SimulationConfig:
     memory_limit: int = 10
     checkpoint_interval: int = 0
     prompt_meta: str = "### Instruction:\n{}\n### Response:"
+    reflection_enabled: bool = True
+    reflection_importance_threshold: int = 15
+    reflection_min_observations: int = 3
+    reflection_token_limit: int = 150
+    reflection_include_in_planning: bool = True
 
 
 class DefaultModel:
@@ -172,6 +177,18 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
         default=0,
         help="Steps between checkpoints (0 = disabled, default: 0)",
     )
+    parser.add_argument(
+        "--no-reflection",
+        action="store_true",
+        default=False,
+        help="Disable the reflection system",
+    )
+    parser.add_argument(
+        "--reflection-threshold",
+        type=int,
+        default=15,
+        help="Cumulative importance to trigger mid-day reflection (default: 15)",
+    )
 
     args = parser.parse_args(argv)
 
@@ -195,6 +212,8 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
         max_steps=args.steps,
         memory_limit=args.memory_limit,
         checkpoint_interval=args.checkpoint_interval,
+        reflection_enabled=not args.no_reflection,
+        reflection_importance_threshold=args.reflection_threshold,
     )
 
     _apply_config_to_globals(config)

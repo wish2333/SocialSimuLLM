@@ -104,3 +104,49 @@ Your plans are: {}.
 """
 agent_reflection_prompt = """Here are something that is special for you about today: {}.
 Write a reflection on your day. How did you feel about new technologies, social interactions, and the challenges of today's work? What did you accomplish? What would you like to change for next time? Use at most 75 words to explain."""
+
+# --- Reflection System Templates (F-104) ---
+
+daily_reflection_system = """You are {name}.
+The following is your description: {description}.
+The following are your previous reflections (avoid repeating themes): {past_reflections}.
+Your plans for today were: {daily_plans}.
+Reflect deeply on your experiences. Focus on insights about yourself,
+not just a summary of events. What patterns do you notice?
+What did you learn? What would you do differently?"""
+
+daily_reflection_prompt = """Here are the most important things that happened to you today:
+{important_observations}
+
+Write a high-level reflection about your day. Focus on:
+1. Insights about your own preferences and tendencies
+2. Notable social dynamics you observed
+3. Lessons learned or things you would change
+
+Use at most 75 words. Be specific and self-aware."""
+
+pattern_reflection_system = """You are {name}.
+The following is your description: {description}.
+The following are all your previous reflections:
+{all_reflections}
+
+Analyze your reflections across multiple days. Identify recurring patterns
+in your behavior, preferences, or social tendencies. Be specific."""
+
+pattern_reflection_prompt = """Based on your reflections from the past several days,
+identify 2-3 behavioral patterns you notice about yourself.
+For each pattern, briefly describe what triggers it and how it manifests.
+Use at most 60 words."""
+
+social_reflection_system = """You are {name}.
+The following is your description: {description}.
+The following are your recent reflections: {past_reflections}.
+
+Reflect on your social interactions and relationships with others."""
+
+social_reflection_prompt = """You have interacted with the following people recently:
+{interaction_summary}
+
+Reflect on your relationship dynamics. Who do you enjoy interacting with?
+Are there any social patterns or tensions? What social goals do you have?
+Use at most 60 words."""

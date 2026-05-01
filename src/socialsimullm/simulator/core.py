@@ -20,6 +20,7 @@ import networkx as nx
 
 from socialsimullm.agents.agent import Agent
 from socialsimullm.agents.memory import AgentMemory
+from socialsimullm.agents.reflection import ReflectionConfig, ReflectionEngine
 from socialsimullm.locations.locations import Locations
 from socialsimullm.simulator.state import SimulationState
 from socialsimullm.utils.config import SimulationConfig
@@ -56,6 +57,7 @@ class SimulatorCore:
         self.project_folder = os.path.join(os.getcwd(), "projects", config.project_name)
         self.state: SimulationState | None = None
         self.logger: StructuredLogger | None = None
+        self.reflection_engine: ReflectionEngine | None = None
 
     def initialize(self) -> None:
         """Initialize the simulation world from project data.
@@ -92,6 +94,19 @@ class SimulatorCore:
         for agent in agents:
             exist_memory_file(agent.name, self.project_folder)
         memory = AgentMemory(self.project_folder, agents, memory_limit)
+
+        # Initialize reflection engine
+        reflection_config = ReflectionConfig(
+            threshold_importance=self.config.reflection_importance_threshold,
+            threshold_min_observations=self.config.reflection_min_observations,
+            reflection_token_limit=self.config.reflection_token_limit,
+            include_in_planning=self.config.reflection_include_in_planning,
+        )
+        self.reflection_engine = ReflectionEngine(
+            config=reflection_config,
+            memory=memory,
+            prompt_meta=self.config.prompt_meta,
+        )
 
         # Handle global events
         events = self._load_events(memory, global_time)
@@ -154,6 +169,17 @@ class SimulatorCore:
         # Action execution
         self._execute_actions(s, prompt_meta)
 
+        # Threshold-based mid-day reflection (skip near day boundary to avoid double)
+        approaching_day_boundary = if_new_day(add_ten_minutes(s.global_time))
+        if (
+            self.config.reflection_enabled
+            and self.reflection_engine is not None
+            and not approaching_day_boundary
+        ):
+            for agent in s.agents:
+                if self.reflection_engine.should_reflect(agent.name, s.global_time):
+                    self._run_reflection(s, agent, "threshold")
+
         # Location rating and movement
         if new_hour:
             self._movement(s, prompt_meta)
@@ -172,7 +198,9 @@ class SimulatorCore:
 
         # Daily reflection
         if if_new_day(new_global_time):
-            self._reflection(s, prompt_meta)
+            if self.config.reflection_enabled and self.reflection_engine is not None:
+                for agent in s.agents:
+                    self._run_reflection(s, agent, "scheduled")
 
         # Summary at day boundaries
         if if_new_day(new_global_time) and s.round != 1:
@@ -277,10 +305,14 @@ class SimulatorCore:
         """Execute daily planning for all agents."""
         assert self.logger is not None
         for agent in s.agents:
+            recent_reflections = ""
+            if self.config.reflection_include_in_planning:
+                recent_reflections = s.memory.format_reflections(agent.name, 3)
             experience = agent.daily_planning(
                 s.global_time, prompt_meta,
                 s.memory.format_impressions(agent.name, 3),
                 s.memory.format_recent(agent.name, s.memory.memory_limit),
+                recent_reflections=recent_reflections,
             )
             s.memory.store(experience)
             self.logger.log_event("daily_plan", step=s.round, agent_id=agent.name,
@@ -361,16 +393,27 @@ class SimulatorCore:
                                   data={"impression": impression["action"]})
             self.logger.add_summary(f"{agent.name}'s recent impression: {impression['action']}\n")
 
-    def _reflection(self, s: SimulationState, prompt_meta: str) -> None:
-        """Generate daily reflections for all agents."""
+    def _run_reflection(
+        self, s: SimulationState, agent: Agent, trigger: str
+    ) -> None:
+        """Run the reflection cycle for a single agent via ReflectionEngine."""
         assert self.logger is not None
-        for agent in s.agents:
-            reflection = agent.form_reflection(
-                s.global_time, prompt_meta,
-                s.memory.format_by_importance(agent.name, s.global_time),
-                s.memory.format_recent(agent.name, s.memory.memory_limit),
+        assert self.reflection_engine is not None
+        observations = self.reflection_engine.run_reflection_cycle(
+            agent, s.global_time, s.agents,
+        )
+        for obs in observations:
+            s.memory.store(obs)
+            if obs.get("exp_type") == "reflection":
+                agent.reflection = obs.get("action", "")
+            self.logger.log_event(
+                "reflection",
+                step=s.round,
+                agent_id=agent.name,
+                data={
+                    "reflection": obs.get("action", ""),
+                    "type": obs.get("reflection_type", "daily"),
+                    "trigger": trigger,
+                },
             )
-            s.memory.store(reflection)
-            self.logger.log_event("reflection", step=s.round, agent_id=agent.name,
-                                  data={"reflection": str(reflection)})
-            self.logger.add_summary(f"\n{reflection}\n")
+            self.logger.add_summary(f"\n{obs.get('action', '')}\n")

@@ -28,8 +28,6 @@ from socialsimullm.prompt_templates.template_agents import (
     agent_impressions_system,
     agent_plan_prompt,
     agent_plan_system,
-    agent_reflection_prompt,
-    agent_reflection_system,
     hourly_planning_prompt,
     hourly_planning_system,
     rate_experiences_prompt,
@@ -89,9 +87,10 @@ class Agent:
 
     # --- Planning methods ---
 
-    def daily_planning(self, global_time: str, prompt_meta: str, recent_impressions: str, newthings: str) -> dict:
+    def daily_planning(self, global_time: str, prompt_meta: str, recent_impressions: str, newthings: str, recent_reflections: str = "") -> dict:
         """Generate the agent's daily plan."""
-        system = agent_plan_system.format(self.name, self.description, self.event, recent_impressions, newthings)
+        reflection_context = f"\nYour past reflections on yourself:\n{recent_reflections}" if recent_reflections else ""
+        system = agent_plan_system.format(self.name, self.description, self.event, recent_impressions, newthings + reflection_context)
         global_hour = global_time.split(":")[0]
         prompt = agent_plan_prompt.format(str(global_hour))
         self.daily_plans = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 300})
@@ -137,14 +136,6 @@ class Agent:
         prompt = agent_impressions_prompt.format(self.daily_plans, global_time, nearby_situations)
         self.impression = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 80})
         experience = self.memory_impression(global_time, self.impression)
-        return experience
-
-    def form_reflection(self, global_time: str, prompt_meta: str, recent_reflection: str, important_things: str) -> dict:
-        """Form a reflection on the day's events."""
-        system = agent_reflection_system.format(self.name, self.description, recent_reflection, self.daily_plans)
-        prompt = agent_reflection_prompt.format(important_things)
-        self.reflection = GPT_request(system, prompt_meta.format(prompt), gpt_parameter={"max_tokens": 120})
-        experience = self.memory_reflection(global_time, self.reflection)
         return experience
 
     # --- Movement methods (from agents/movement.py) ---
@@ -284,14 +275,4 @@ class Agent:
             "action_des": f'{self.name} has impressed: "{impression}".',
             "exp_type": "thought",
             "priority": 4,
-        }
-
-    def memory_reflection(self, global_time: str, reflection: str) -> dict:
-        """Format a reflection as a memory experience dict."""
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "action": f'In {global_time}, {self.name} has reflected: "{reflection}".',
-            "exp_type": "thought",
-            "priority": 9,
         }

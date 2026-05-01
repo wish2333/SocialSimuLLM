@@ -77,3 +77,30 @@
   - log_round_end format consistent between file and console
 ```
 
+## Sprint 3
+
+```
+F-104 Reflection System Rewrite -- Complete
+Files Changed
+File	Action	Lines
+agents/reflection.py	Created	389
+agents/memory.py	Modified	320 (+23)
+agents/agent.py	Modified	278 (-19)
+simulator/core.py	Modified	419 (+25/-15)
+prompt_templates/template_agents.py	Modified	152 (+46)
+utils/config.py	Modified	222 (+15)
+What was built
+ReflectionEngine standalone class with Protocol-based coupling to AgentMemory and Agent
+3 reflection types: daily (end-of-day summary), pattern (cross-day behavioral patterns, requires >= 2 prior daily reflections), social (relationship trends with other agents)
+2 trigger mechanisms: scheduled (end of each day) + threshold (mid-day, when cumulative importance of un-reflected observations exceeds configurable threshold, default 15)
+Cached last-reflection times to avoid repeated JSON file reads for threshold checks
+Reflection-aware daily planning: past reflections injected into planning prompts
+New CLI flags: --no-reflection (disable entirely), --reflection-threshold N
+6 new prompt templates replacing 2 old ones
+Code review fixes applied
+Fixed race condition (double reflection on day boundaries)
+Fixed recall_reflections return order (now most-recent-first)
+Removed broken _reflection_fallback no-op
+Fixed "Day 999" sentinel to "Day 99999" for lexicographic safety
+```
+

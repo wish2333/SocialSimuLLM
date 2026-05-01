@@ -212,6 +212,29 @@ class AgentMemory:
         lines = [m.get("action_des", "No important things recorded") for m in items]
         return "\n".join(lines)
 
+    def recall_reflections(self, agent_name: str, n: int = 3) -> list[dict]:
+        """Return recent reflection-type memories for an agent.
+
+        Args:
+            agent_name: Name of the agent.
+            n: Maximum number of reflections to return.
+
+        Returns:
+            List of reflection observation dicts, most recent first.
+        """
+        memory_full = self._load_memory_file(agent_name)
+        reflections = [
+            m for m in memory_full["memory"]
+            if m.get("exp_type") == "reflection"
+        ]
+        return reflections[-n:][::-1] if reflections else []
+
+    def format_reflections(self, agent_name: str, n: int = 3) -> str:
+        """Format recent reflections as a newline-separated string."""
+        items = self.recall_reflections(agent_name, n)
+        lines = [m.get("action_des", "No reflection recorded") for m in items]
+        return "\n".join(lines)
+
     # --- Initialization ---
 
     def get_init_memory(self, agent_name: str) -> list[str]:
