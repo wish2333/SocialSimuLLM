@@ -1,92 +1,112 @@
-=======
-## Project Description
+# SocialSimuLLM
 
-The project aims to simulate social interactions and agent behavior, providing a customizable framework for the study and exploration of various social scenarios. Through simulation, you can observe interactions between agents, analyze behavioral patterns, and gain a deeper understanding of social dynamics.
+A multi-agent social simulation framework powered by Large Language Models, based on the Generative Agents architecture (Park et al. 2023).
+
+## Features
+
+- **Modular architecture**: Clean separation between simulation engine, agent cognition, memory, and reflection
+- **Structured memory system**: Typed `MemoryEntry` dataclass with multi-dimensional retrieval (semantic, temporal, spatial, importance)
+- **Multi-level reflection**: Daily summary, cross-day pattern recognition, and social relationship analysis
+- **Reproducible experiments**: JSONL structured logging, checkpoint save/restore, configurable simulation parameters
+- **OpenAI-compatible**: Works with any OpenAI-compatible API endpoint (customizable base URL and model)
 
 ## Project Structure
 
 ```
 SocialSimuLLM/
-├── pyproject.toml                # Project config & dependencies
-├── src/socialsimullm/            # Source package
-│   ├── __main__.py               # Entry point
-│   ├── agents/                   # Agent behavior & memory actions
-│   ├── locations/                # Location management
-│   ├── prompt_templates/         # Prompt templates for LLM
-│   ├── retrieve/                 # Memory retrieval & reflection
-│   ├── utils/                    # Config, text generation, helpers
-│   └── data/                     # Template data files
-├── tests/                        # Test files
-├── projects/                     # Simulation output data
-└── docs/                         # Documentation
+├── pyproject.toml                     # Project config & dependencies
+├── src/socialsimullm/
+│   ├── __main__.py                    # CLI entry point
+│   ├── agents/                        # Agent cognition layer
+│   │   ├── agent.py                   # Agent class
+│   │   ├── memory.py                  # AgentMemory: storage & retrieval
+│   │   ├── memory_entry.py            # MemoryEntry dataclass
+│   │   └── reflection.py              # ReflectionEngine
+│   ├── simulator/                     # Simulation engine
+│   │   ├── core.py                    # SimulatorCore
+│   │   ├── state.py                   # SimulationState
+│   │   └── events.py                  # EventBus
+│   ├── locations/                     # Spatial world
+│   ├── prompt_templates/              # LLM prompts
+│   ├── utils/                         # Config, logger, LLM API
+│   └── data/                          # Template data
+├── projects/                          # Simulation output data
+└── docs/                              # Documentation
 ```
 
-## Environment Setup
+## Quick Start
 
-1. **Install Dependencies:** [uv](https://docs.astral.sh/uv/) is used for dependency management. Install dependencies with:
+### Install Dependencies
 
-   ```bash
-   uv sync
-   ```
+[uv](https://docs.astral.sh/uv/) is used for dependency management:
 
-2. **Configure OpenAI API Key:**
+```bash
+uv sync
+```
 
-   *   Prepare an API containing models for `completions`.
-   *   Add your OpenAI API key to `src/socialsimullm/utils/config.py` under the `openai_api_key` variable.
-   *   You can also adjust `openai_base_url`, `key_owner`, and `DefaultModel` according to your needs.
+### Configure API Key
 
-## Running the Simulation
+Set environment variables (recommended):
 
-1. **Run the Main Program:** Execute from the project root directory:
+```bash
+export OPENAI_API_KEY="your-api-key"
+export OPENAI_BASE_URL="https://your-endpoint/v1"  # optional
+```
 
-   ```bash
-   uv run python -m socialsimullm
-   ```
+### Run Simulation
 
-   Or use the script entry point:
+```bash
+# Interactive mode
+uv run socialsimullm
 
-   ```bash
-   uv run socialsimullm
-   ```
+# With arguments
+uv run socialsimullm --project my_town --steps 288 --model deepseek-chat
+```
 
-2. **Enter Project Name:** The program will prompt you to enter the project name.
-   *   **Note:** The project can be continued, but it is advisable to implement incremental backups to prevent data loss.
-3. **Enter Simulation Repetitions:** The program will prompt you to input the number of times to repeat the simulation.
+### CLI Options
 
-## Simulation Storage Location
-
-Simulation data is stored in the following location(s):
-
-*   **Project Directory:** `projects/{project_name}/`, where `{project_name}` is the project name you input when running the simulation.
-*   **Simulation Log:** `projects/{project_name}/simulation_log.txt`
-*   **Simulation Summary:** `projects/{project_name}/simulation_summary.txt`
-*   **Agent Memory:** `projects/{project_name}/agent_data/`
+| Argument | Default | Description |
+|----------|---------|-------------|
+| `--project` | (prompt) | Project name |
+| `--steps` | 144 | Simulation steps (1 step = 10 min) |
+| `--model` | Config default | LLM model name |
+| `--checkpoint-interval` | 10 | Checkpoint interval |
+| `--no-reflection` | (off) | Disable reflection |
+| `--reflection-threshold` | 15 | Importance threshold for mid-day reflection |
 
 ## Customization
 
-You can customize the simulation in the following ways:
+1. **Town data**: Modify `projects/<name>/town_data.json` after project creation
+2. **Agent behavior**: Edit files in `src/socialsimullm/agents/`
+3. **Prompt templates**: Edit `src/socialsimullm/prompt_templates/template_agents.py`
+4. **LLM configuration**: Set environment variables or modify `src/socialsimullm/utils/config.py`
+5. **Locations**: Edit `src/socialsimullm/locations/locations.py`
 
-1. **Modify Town Data:** After generating the project, change the `town_data.json` file in `projects/<your project name>/` to modify town data.
-2. **Modify Code:** Change the code in `src/socialsimullm/__main__.py` to alter simulation behavior.
-3. **Modify Configuration Files:** Adjust configurations in `src/socialsimullm/utils/config.py` such as OpenAI API key and default model.
-4. **Modify Agent Behavior:** Change agent behavior by modifying the files in `src/socialsimullm/agents/` directory.
-5. **Modify Locations:** Modify the files in `src/socialsimullm/locations/` directory to alter the management of the simulation world locations.
-6. **Modify Memory:** Change the memory management by modifying the files in `src/socialsimullm/retrieve/` directory.
-7. **Modify Prompt Templates:** Edit `src/socialsimullm/prompt_templates/template_agents.py` to change how agents interact with LLMs.
+## Output Structure
 
-Module descriptions can be found in: [Module_Description.md](/docs/Module_Description.md)
+```
+projects/{project_name}/
+├── town_data.json              # Town configuration
+├── simulation_log.txt          # Human-readable log
+├── events.jsonl                # Structured JSONL event log
+├── done.flag                   # Completion marker
+├── checkpoints/                # State snapshots
+└── agent_data/                 # Per-agent memory files
+```
 
-## Update Introduction
+## Documentation
 
-In the V3.1 version, the project was restructured to a modern Python `src` layout with `pyproject.toml` for dependency management via `uv`. Deprecated files were removed, imports were updated to use proper package paths, and test files were consolidated into a `tests/` directory.
+- [PRD v3.1.0](docs/PRD-3.1.0.md) - Product requirements and upgrade roadmap
+- [Development Guide](docs/dev_guide.md) - Architecture, conventions, and workflow
+- [System Design](docs/design/system_design.md) - Architecture diagrams and data flow
+- [Module Descriptions](docs/Module_Description.md) - Per-module API reference
+- [Changelog](docs/changelog.md) - Version history
 
-In the V3.0 version, the project underwent significant updates, primarily focusing on enhancing the agent's memory and reflection capabilities, as well as optimizing the simulated prompts. This improvement boosts the agent's learning capacity, adaptability, and decision-making quality.
+## Version History
 
-Updated documentation can be found in: [Update-v3.0-20250223.md](/docs/Update-v3.0-20250223.md)
-
-In the V2.0 version, the project underwent significant updates, including optimizing memory retrieval, improving agent state evaluation, refining memory management, laying the groundwork for database interaction, and optimizing the main program and Prompt.
-
-Updated documentation can be found in: [Update-v2.0-20250222.md](/docs/Update-v2.0-20250222.md)
+- **v3.1.0**: Architecture refactoring, structured memory, reflection system, reproducible experiments
+- **v3.0**: Enhanced agent memory and reflection capabilities
+- **v2.0**: Memory retrieval optimization, agent state evaluation, database groundwork
 
 ## Authors and References
 
@@ -94,5 +114,5 @@ Huang Miaosen
 
 ## Acknowledgments
 
-- [https://github.com/mkturkcan/generative-agents](https://github.com/mkturkcan/generative-agents), part of the code source, the license is attached in the License folder
-- [https://github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents), only for reference of the idea according to the paper, no copying of the code
+- [mkturkcan/generative-agents](https://github.com/mkturkcan/generative-agents) - Code source (license in License folder)
+- [joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents) - Paper reference

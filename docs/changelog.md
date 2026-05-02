@@ -1,149 +1,63 @@
 # Changelog
 
-> Version history for the project. Updated with each release.
+All notable changes to SocialSimuLLM will be documented in this file.
 
-## Format
-
-Each entry follows [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-<type>(<scope>): <description>
-
-[optional body]
-```
-
-Types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `perf`, `ci`
-
----
-
-## [Unreleased]
+## [3.1.0] - 2026-05-02
 
 ### Added
-- New `src` layout with `pyproject.toml` for uv-based dependency management
-- Entry point `socialsimullm` console script
-- Bilingual docstrings (English + Chinese) in all source files
+
+- **F-101**: Split monolithic `__main__.py` into `simulator/core.py`, `simulator/state.py`, `simulator/events.py`
+- **F-102**: Merged MethodType-bound functions from `agents/memory.py` and `agents/movement.py` into Agent class as proper methods
+- **F-103**: Unified `AgentMemory` class replacing separate `agents/memory.py` and `retrieve/memory.py` modules
+- **F-104**: Complete reflection system rewrite with `ReflectionEngine` class
+  - Daily summary reflection (end-of-day trigger)
+  - Pattern reflection (cross-day behavioral patterns)
+  - Social reflection (relationship trends with other agents)
+  - Scheduled + importance-threshold trigger mechanisms
+  - Reflection-aware daily planning prompts
+- **F-105**: `MemoryEntry` frozen dataclass as canonical memory record type
+  - 13 typed fields with auto-generated UUID
+  - Backward-compatible deserialization for v3.0 data
+  - All recall methods return `list[MemoryEntry]`
+  - Combined filtering via `recall_filtered()`
+- **F-106**: `StructuredLogger` with JSONL structured logging + text logs + checkpoint save/restore
+- **F-107**: `SimulationConfig` dataclass with CLI argument overrides and runtime validation
+- **F-108**: Fixed location description bug using stale `description` variable
 
 ### Changed
-- Reorganized project from flat `simulation/` directory to `src/socialsimullm/` package
-- Updated all imports to use absolute package paths
-- Moved test files to `tests/` directory
-- Removed deprecated batch scripts and old files
 
-### Fixed
-- Syntax error in numpy dot product calculation (inherited from generative-agents)
-- Import paths updated for new package structure
+- `__main__.py` reduced from 279 to 27 lines (CLI entry only)
+- Agent class now uses proper class methods (no MethodType binding)
+- Memory storage uses `MemoryEntry` dataclass instead of loose dicts
+- Field names renamed: `global_time` -> `timestamp`, `action` -> `content`, `action_des` -> `summary`, `exp_type` -> `event_type`, `priority` -> `importance`, `other_agents` -> `entities`, `location` -> `location_id`
 
 ### Removed
-- `requirements.txt` (replaced by `pyproject.toml`)
-- Windows batch scripts (`*.bat` files)
-- Old `simulation/` directory structure
-- `simulation/projects/` (moved to root `projects/`)
 
----
+- `retrieve/memory.py`, `retrieve/reflect.py`, `retrieve/__init__.py` (merged into `agents/memory.py` and `agents/reflection.py`)
+- `agents/movement.py` (merged into `agents/agent.py`)
+- All `MethodType` imports and wildcard imports
+- Deprecated `*_old` directories and `*.bat` files
 
-## [3.1.0] - 2026-05-01
+### New Files
 
-### Added
-- Modern Python project structure with `pyproject.toml`
-- `uv` as package manager
-- `src/socialsimullm/` as main package directory
-- Console script entry point: `socialsimullm`
-- Module `__init__.py` files for proper package structure
-- Comprehensive documentation suite:
-  - `docs/PRD.md`
-  - `docs/design/system_design.md`
-  - `docs/design/state_machine.md`
-  - `docs/business_rules.md`
-  - `docs/dev_guide.md`
-  - `docs/changelog.md`
-  - `docs/procedures/workflow_index.md`
-
-### Changed
-- All imports updated from `simulation.X` to `socialsimullm.X`
-- `main.py` moved to `__main__.py` with `main()` function
-- README.md and README_zh.md updated for new structure
-- `.gitignore` updated with modern Python patterns
-
-### Migration Notes
-- Users must run `uv sync` after pulling this version
-- Old `simulation/` directory is deprecated
-- Projects now stored in root `projects/` directory
-
----
+- `agents/memory_entry.py` - MemoryEntry dataclass
+- `agents/reflection.py` - ReflectionEngine standalone module
+- `simulator/core.py` - SimulatorCore class
+- `simulator/state.py` - SimulationState dataclass
+- `simulator/events.py` - EventBus pub/sub infrastructure
+- `utils/config.py` - SimulationConfig + load_config (rewrite)
+- `utils/logger.py` - StructuredLogger (rewrite)
 
 ## [3.0.0] - 2025-02-23
 
-### Added
-- Agent reflection capability (`form_reflection()`)
-- Important things filtering for daily reflection (priority > 6)
-- Event system with global events affecting all agents
-- `summarize_simulation()` for daily narrative summaries
-- Memory embeddings stored in SQLite for similarity search
-
-### Changed
-- Enhanced memory retrieval with combined scoring:
-  - 50% similarity (cosine similarity of embeddings)
-  - 30% recency (based on action index)
-  - 20% importance (normalized priority)
-- Improved prompt templates for more coherent agent behavior
-- `get_related_things()` now uses weighted scoring algorithm
-
-### Fixed
-- Memory initialization for continuing simulations
-- Location rating edge cases (missing ratings handled gracefully)
-
----
+- Enhanced agent memory and reflection capabilities
+- Optimized simulation prompts
+- Improved agent learning capacity and adaptability
 
 ## [2.0.0] - 2025-02-22
 
-### Added
-- Agent impression formation (`form_impression()`)
-- Five-dimension impression system:
-  1. Emotional Status (Positive/Stable/Negative)
-  2. Social/Learning Drive (Active/Routine/Exhausted)
-  3. Confidence in Task Completion (Ahead/Normal/Behind)
-  4. Information Acquisition Preference (Proactive/Passive/Shielding)
-  5. Technology Acceptance Inclination (Open/Neutral/Rejection)
-- Action simplification to SVO format (`simplify_action()`)
-- Enhanced memory management with experience types
-
-### Changed
-- Optimized memory retrieval algorithms
+- Optimized memory retrieval
 - Improved agent state evaluation
-- Refined memory management for better performance
-- Updated main program structure
-- Enhanced prompt templates
-
-### Fixed
-- Memory file initialization for new agents
-- Edge cases in location rating
-
----
-
-## [1.0.0] - 2025-02-20
-
-### Added
-- Initial release
-- Agent class with daily planning (`daily_planning()`)
-- Hourly planning (`hourly_planning()`)
-- Action execution (`execute_action()`)
-- Location rating (`rate_locations()`)
-- Movement between locations using NetworkX shortest path
-- Experience rating (1-9 scale)
-- Memory storage in JSON format
-- LLM integration via OpenAI API
-- Prompt templates for all agent interactions
-- Basic simulation loop with 10-minute increments
-- Project persistence (meta.json, town_data.json)
-- World graph creation from town areas
-- Console-based user input for project name, events, and repeats
-
-### Features
-- F-001: Agent Daily Planning
-- F-002: Agent Hourly Planning
-- F-003: Action Execution
-- F-004: Experience Rating
-- F-005: Location Rating and Movement
-- F-006: Memory Management (JSON)
-- F-007: Project Persistence
-- F-008: Simulation Log Output
+- Refined memory management
+- Database interaction groundwork
+- Optimized main program and prompts

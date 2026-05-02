@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD) - v3.1.0 Upgrade
 
 > Version: 3.1.0
-> Last Updated: 2026-05-01
-> Status: Draft
+> Last Updated: 2026-05-02
+> Status: Phase 1 Complete
 > Based on: `references/reference-3.1.0-3rdVersion.md`
 > Supersedes: `docs/PRD.md` (v3.0 baseline)
 
@@ -133,7 +133,7 @@ Functions from `agents/memory.py` and `agents/movement.py` are bound to Agent in
 
 #### F-101: Refactor `__main__.py` (P0, Week 1)
 
-**Status**: Planned
+**Status**: Done
 
 Split the 279-line monolith into focused modules:
 
@@ -200,7 +200,7 @@ src/socialsimullm/
 
 #### F-102: Refactor Agent Method Binding (P0, Week 1)
 
-**Status**: Planned
+**Status**: Done
 
 Merge MethodType-bound functions from `agents/memory.py` and `agents/movement.py` into the Agent class as proper methods.
 
@@ -232,7 +232,7 @@ class Agent:
 
 #### F-103: Merge/Unify Memory Module (P0, Week 1)
 
-**Status**: Planned
+**Status**: Done
 
 Consolidate `agents/memory.py` (agent-side operations) and `retrieve/memory.py` (storage/retrieval) into a unified `AgentMemory` class.
 
@@ -260,7 +260,7 @@ class AgentMemory:
 
 #### F-104: Full Rewrite of Reflection System (P0, Weeks 3-4)
 
-**Status**: Planned
+**Status**: Done
 
 Replace the current `agent.form_reflection()` mechanism with a complete reflection module following Generative Agents (Park et al. 2023).
 
@@ -289,7 +289,7 @@ Replace the current `agent.form_reflection()` mechanism with a complete reflecti
 
 #### F-105: Memory System Structured Upgrade (P0, Weeks 5-6)
 
-**Status**: Planned
+**Status**: Done
 
 Extend the existing JSON + SQLite storage with structured fields for multi-dimensional retrieval.
 
@@ -318,7 +318,7 @@ Extend the existing JSON + SQLite storage with structured fields for multi-dimen
 
 #### F-106: Checkpoint and Structured Logging (P0, Week 2)
 
-**Status**: Planned
+**Status**: Done
 
 **JSONL Event Log**: Write `{timestamp, step, agent_id, event_type, data}` per step.
 
@@ -339,7 +339,7 @@ runs/{experiment_id}/checkpoints/step_{N}/
 
 #### F-107: Configuration Management Improvement (P0, Week 2)
 
-**Status**: Planned
+**Status**: Done
 
 Extend `utils/config.py` to support:
 - CLI argument override: `--model deepseek-chat --steps 144`
@@ -359,7 +359,7 @@ uv run socialsimullm run --project my_experiment  # resume from checkpoint
 
 #### F-108: Bug Fix -- Location Description (P0, Week 1)
 
-**Status**: Planned
+**Status**: Done
 
 Fix `__main__.py` line 124 where `description` variable holds the last agent's JSON description instead of the location description.
 
@@ -531,20 +531,64 @@ src/socialsimullm/frontend/
 
 ## 5. Architecture Evolution
 
-### 5.1 Current Architecture
+### 5.1 Current Architecture (After Phase 1)
 
 ```
-__main__.py (279 lines, monolithic)
-  |-- Initialization (config, world graph, agents)
-  |-- Main loop (10-min steps, sequential)
-  |     |-- Daily planning (08:00)
-  |     |-- Hourly planning
-  |     |-- Action execution
-  |     |-- Location rating + movement
-  |     |-- Impression formation
-  |     |-- Reflection (day end)
-  |-- Global event handling
-  |-- Output (plain text log)
+__main__.py (27 lines, CLI entry only)
+  |-- load_config() -> SimulationConfig
+  |-- SimulatorCore(config).initialize().run()
+
+simulator/core.py (423 lines)
+  |-- SimulatorCore: initialize(), step(), run()
+  |     |-- _daily_planning()       (08:00 trigger)
+  |     |-- _hourly_planning()      (top of hour trigger)
+  |     |-- _execute_actions()      (agent actions)
+  |     |-- _movement()             (location rating + move)
+  |     |-- _impressions()          (agent impression formation)
+  |     |-- _run_reflection()       (scheduled + threshold trigger)
+  |     |-- _load_events()          (global event handling)
+  |-- SimulationState (dataclass, passed between methods)
+
+agents/agent.py (276 lines)
+  |-- Agent class (all methods as proper class methods)
+  |-- memory_actions(), memory_daily_plans(), memory_hourly_plan()
+  |-- memory_location_change(), memory_impression()
+  |-- rate_locations(), move(), simplify_action()
+
+agents/memory.py (374 lines)
+  |-- AgentMemory: unified store/recall API
+  |     |-- store(MemoryEntry) -> routes by event_type
+  |     |-- recall_recent(), recall_semantic(), recall_by_location()
+  |     |-- recall_time_span(), recall_by_importance(), recall_impressions()
+  |     |-- recall_reflections(), recall_filtered()
+  |-- JSON file storage + SQLite embedding DB per agent
+
+agents/memory_entry.py (153 lines)
+  |-- MemoryEntry frozen dataclass (13 fields)
+  |-- create() factory, to_dict()/from_dict() serialization
+  |-- v3.0 backward-compatible deserialization
+
+agents/reflection.py (392 lines)
+  |-- ReflectionEngine: Protocol-based coupling
+  |     |-- reflect_daily()      (end-of-day summary)
+  |     |-- reflect_pattern()    (cross-day patterns, >= 2 daily refs)
+  |     |-- reflect_social()     (relationship trends)
+  |     |-- reflect_all()        (complete cycle, returns MemoryEntry list)
+
+simulator/state.py (46 lines)
+  |-- SimulationState dataclass (global_time, round, agents, memory, ...)
+
+simulator/events.py (51 lines)
+  |-- EventBus: register/emit/clear (infrastructure for future use)
+
+utils/config.py (222 lines)
+  |-- SimulationConfig dataclass
+  |-- load_config() with CLI args + env var overrides
+  |-- validate_config()
+
+utils/logger.py (312 lines)
+  |-- StructuredLogger: JSONL events.jsonl + text simulation_log.txt
+  |-- Checkpoint save/restore, done.flag completion marker
 ```
 
 ### 5.2 Target Architecture (Conservative Path End State)

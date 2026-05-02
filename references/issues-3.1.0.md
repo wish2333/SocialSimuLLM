@@ -83,10 +83,10 @@
 F-104 Reflection System Rewrite -- Complete
 Files Changed
 File	Action	Lines
-agents/reflection.py	Created	389
-agents/memory.py	Modified	320 (+23)
+agents/reflection.py	Created	392
+agents/memory.py	Modified	344 (+24)
 agents/agent.py	Modified	278 (-19)
-simulator/core.py	Modified	419 (+25/-15)
+simulator/core.py	Modified	423 (+25/-15)
 prompt_templates/template_agents.py	Modified	152 (+46)
 utils/config.py	Modified	222 (+15)
 What was built
@@ -102,5 +102,29 @@ Fixed race condition (double reflection on day boundaries)
 Fixed recall_reflections return order (now most-recent-first)
 Removed broken _reflection_fallback no-op
 Fixed "Day 999" sentinel to "Day 99999" for lexicographic safety
+
+F-105 Memory System Structured Upgrade -- Complete
+Files Changed
+File	Action	Lines
+agents/memory_entry.py	Created	153
+agents/memory.py	Modified	374 (+54/-30)
+agents/agent.py	Modified	276 (+6/-118)
+agents/reflection.py	Modified	392 (+19/-17)
+simulator/core.py	Modified	423 (+14/-8)
+utils/logger.py	Modified	312 (+4/-2)
+What was built
+MemoryEntry frozen dataclass replacing loose dicts as the canonical memory record type
+13 typed fields: id (UUID), agent_name, timestamp, location_id, event_type, content, summary, entities, importance, embedding, reflection_link, reflection_type, metadata
+create() factory method with auto-generated UUID
+to_dict() / from_dict() serialization with full v3.0 backward compatibility (old field names: global_time, action, action_des, exp_type, priority, other_agents, location)
+All 5 agent memory_*() methods now return MemoryEntry instead of dict
+AgentMemory.store() accepts MemoryEntry, all recall_*() methods return list[MemoryEntry]
+reflection.py _build_observation_dict() returns MemoryEntry
+core.py uses attribute access (entry.content, entry.event_type) instead of dict key access
+logger.py snapshot_memory_stats() has backward-compat field name fallbacks
+Code review fixes applied
+Division-by-zero guard in recall_semantic cosine similarity
+step() captures log_output before flush
+store() explicitly writes to acting agent before fan-out
 ```
 
