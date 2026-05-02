@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 
 import networkx as nx
 
-from socialsimullm.utils.text_generation import GPT_request, get_rating
+from socialsimullm.utils.text_generation import GPT_request, get_rating, deepseek_v4_marker
 
 if TYPE_CHECKING:
     from socialsimullm.agents.agent import Agent
@@ -154,7 +154,7 @@ class PathPlanner:
 
         response = GPT_request(
             system,
-            self._prompt_meta.format(prompt),
+            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
             gpt_parameter={"max_tokens": 30},
         )
 

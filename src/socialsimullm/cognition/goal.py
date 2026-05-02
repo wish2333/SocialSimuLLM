@@ -19,7 +19,7 @@ from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import TYPE_CHECKING, Any
 
-from socialsimullm.utils.text_generation import GPT_request
+from socialsimullm.utils.text_generation import GPT_request, deepseek_v4_marker
 
 if TYPE_CHECKING:
     from socialsimullm.agents.agent import Agent
@@ -202,7 +202,7 @@ class GoalManager:
 
         response = GPT_request(
             system,
-            self._prompt_meta.format(prompt),
+            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
             gpt_parameter={"max_tokens": 120},
         )
 
@@ -247,7 +247,7 @@ class GoalManager:
 
         response = GPT_request(
             system,
-            self._prompt_meta.format(system),
+            self._prompt_meta.format(system) + deepseek_v4_marker("role_immersion"),
             gpt_parameter={"max_tokens": 80},
         )
 
@@ -277,7 +277,7 @@ class GoalManager:
 
         response = GPT_request(
             system,
-            self._prompt_meta.format(system),
+            self._prompt_meta.format(system) + deepseek_v4_marker("role_immersion"),
             gpt_parameter={"max_tokens": 100},
         )
 
@@ -640,7 +640,7 @@ class RecursiveTaskDecomposer:
 
         response = GPT_request(
             TASK_ORDERING_SYSTEM.format(tasks=tasks_text),
-            self._gm._prompt_meta.format("List the tasks in execution order:"),
+            self._gm._prompt_meta.format("List the tasks in execution order:") + deepseek_v4_marker("role_immersion"),
             gpt_parameter={"max_tokens": 100},
         )
 

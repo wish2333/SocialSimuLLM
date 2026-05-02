@@ -14,7 +14,61 @@ import re
 import os
 import time
 
-from socialsimullm.utils.config import DefaultModel, openai_api_key, openai_base_url
+from socialsimullm.utils.config import DefaultModel, openai_api_key, openai_base_url, embedding_api_key, embedding_base_url
+
+
+# --- DeepSeek V4 Role-Play Thinking Mode Markers ---
+# Reference: https://github.com/victorchen96/deepseek_v4_rolepaly_instruct
+# These markers are appended to user prompts to control the thinking chain style.
+# Only effective for deepseek-v4-flash and deepseek-v4-pro models.
+
+DEEPSEEK_V4_ROLE_IMMERSION_MARKER = (
+    "\n\n"
+    "In your thinking process, please follow these rules:\n"
+    "1. Use first-person inner monologue in parentheses, "
+    'e.g. "(thinking: ...)"\n'
+    '2. Describe the character\'s inner feelings in first person, '
+    'e.g. "I think", "I feel", "I secretly"\n'
+    "3. Stay immersed in the character, analyzing the situation "
+    "and planning responses through inner monologue"
+)
+
+DEEPSEEK_V4_PURE_ANALYSIS_MARKER = (
+    "\n\n"
+    "In your thinking process, please follow these rules:\n"
+    "1. Do NOT use parentheses for inner monologue. "
+    'e.g. no "(thinking: ...)"\n'
+    "2. Do NOT use first-person inner activity descriptions, "
+    'e.g. no "I think", "I feel". Use analytical language instead.\n'
+    "3. Focus on logical analysis and response planning, "
+    "not role-play style inner drama"
+)
+
+
+def _is_deepseek_v4(model: str | None = None) -> bool:
+    """Check if the model is a DeepSeek V4 model that supports thinking mode markers."""
+    effective = model or DefaultModel.completion
+    return effective.startswith("deepseek-v4-")
+
+
+def deepseek_v4_marker(mode: str = "role_immersion") -> str:
+    """Get the DeepSeek V4 thinking mode marker for the current model.
+
+    Args:
+        mode: 'role_immersion' for agent cognitive calls,
+              'pure_analysis' for rating/scoring calls,
+              'default' for no marker.
+
+    Returns:
+        The marker string, or empty string if model is not DeepSeek V4.
+    """
+    if not _is_deepseek_v4():
+        return ""
+    if mode == "role_immersion":
+        return DEEPSEEK_V4_ROLE_IMMERSION_MARKER
+    elif mode == "pure_analysis":
+        return DEEPSEEK_V4_PURE_ANALYSIS_MARKER
+    return ""
 
 def time_sleep(sec=0.1):
     time.sleep(sec)
@@ -99,7 +153,7 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
         return f"ERROR: {str(e)}"
 
 def get_embedding(text, model=DefaultModel.embedding):
-    client = OpenAI(api_key=openai_api_key, base_url=openai_base_url)
+    client = OpenAI(api_key=embedding_api_key, base_url=embedding_base_url)
     text = text.replace("\n", " ")
     if not text:
         text = "this is blank"

@@ -7,7 +7,6 @@
 
 experiment_id: exp_events_demo
 project: events_demo
-model: gpt-4o-mini
 simulation_steps: 288
 random_seed: 42
 checkpoint_interval: 10

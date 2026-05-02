@@ -90,7 +90,7 @@ class ExperimentConfig(BaseModel):
     batch execution. Converts to SimulationConfig via to_simulation_config().
 
     API keys are NOT stored here -- they come from environment variables
-    and are applied by _apply_config_to_globals() at runtime.
+    (or a .env file) and are applied by _apply_config_to_globals() at runtime.
 
     Usage::
 
@@ -109,9 +109,9 @@ class ExperimentConfig(BaseModel):
         default="",
         description="Project name under runs/. Defaults to experiment_id.",
     )
-    model: str = Field(default="gpt-4o-mini", description="LLM completion model")
+    model: str = Field(default="", description="LLM completion model (empty = env OPENAI_MODEL)")
     embedding_model: str = Field(
-        default="BAAI/bge-m3", description="Embedding model for memory retrieval"
+        default="", description="Embedding model (empty = env OPENAI_EMBEDDING_MODEL)"
     )
     simulation_steps: int = Field(
         default=144, ge=1, description="Number of 10-minute simulation steps"
@@ -203,21 +203,23 @@ class ExperimentConfig(BaseModel):
         """Convert to SimulationConfig for SimulatorCore consumption.
 
         Maps ExperimentConfig fields to SimulationConfig fields.
-        API keys are resolved from environment variables by
+        API keys are resolved from environment variables / .env by
         _apply_config_to_globals() at runtime.
 
         Returns:
             A SimulationConfig dataclass instance.
         """
+        import os
+
         from socialsimullm.utils.config import SimulationConfig as _SC
 
         return _SC(
             project_name=self.project,
-            openai_api_key="",  # resolved from env vars
-            openai_base_url="",  # resolved from env vars
-            key_owner="",  # resolved from env vars
-            embedding_model=self.embedding_model,
-            completion_model=self.model,
+            openai_api_key=os.environ.get("OPENAI_API_KEY", ""),
+            openai_base_url=os.environ.get("OPENAI_BASE_URL", ""),
+            key_owner=os.environ.get("SOCIALSIMU_KEY_OWNER", ""),
+            embedding_model=self.embedding_model or os.environ.get("OPENAI_EMBEDDING_MODEL", ""),
+            completion_model=self.model or os.environ.get("OPENAI_MODEL", ""),
             max_steps=self.simulation_steps,
             memory_limit=self.memory_limit,
             checkpoint_interval=self.checkpoint_interval,

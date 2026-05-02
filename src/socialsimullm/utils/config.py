@@ -19,6 +19,26 @@ import argparse
 import os
 from dataclasses import dataclass
 
+from dotenv import load_dotenv
+
+
+def _load_dotenv() -> None:
+    """Load .env file from CWD or project root into os.environ.
+
+    Searches in order:
+      1. ./.env  (current working directory)
+      2. .env    (same directory as this source file, i.e. project root)
+
+    Does not override existing environment variables (system env > .env).
+    """
+    load_dotenv(os.path.join(os.getcwd(), ".env"), override=False)
+    src_dir = os.path.dirname(os.path.abspath(__file__))
+    load_dotenv(os.path.join(src_dir, "..", "..", "..", ".env"), override=False)
+
+
+# Load .env as early as possible so all os.environ.get() calls pick it up
+_load_dotenv()
+
 
 @dataclass
 class SimulationConfig:
@@ -30,6 +50,8 @@ class SimulationConfig:
         openai_base_url: OpenAI-compatible API base URL.
         key_owner: Name of the API key owner.
         embedding_model: Model name for text embeddings.
+        embedding_base_url: Separate base URL for embedding API. Empty = same as openai_base_url.
+        embedding_api_key: Separate API key for embedding API. Empty = same as openai_api_key.
         completion_model: Model name for text completion.
         max_steps: Maximum simulation steps. 0 = interactive mode.
         memory_limit: Number of recent experiences to consider.
@@ -42,7 +64,9 @@ class SimulationConfig:
     openai_base_url: str = ""
     key_owner: str = ""
     embedding_model: str = "BAAI/bge-m3"
-    completion_model: str = "gpt-4o-mini"
+    embedding_base_url: str = ""
+    embedding_api_key: str = ""
+    completion_model: str = "deepseek-v4-flash"
     max_steps: int = 0
     memory_limit: int = 10
     checkpoint_interval: int = 0
@@ -64,13 +88,15 @@ class DefaultModel:
     """Model name constants (backward-compatible with text_generation.py)."""
 
     embedding: str = "BAAI/bge-m3"
-    completion: str = "gpt-4o-mini"
+    completion: str = "deepseek-v4-flash"
 
 
 # Backward-compatible module-level variables
 openai_api_key: str = ""
 openai_base_url: str = ""
 key_owner: str = ""
+embedding_api_key: str = ""
+embedding_base_url: str = ""
 
 
 def _apply_config_to_globals(config: SimulationConfig) -> None:
@@ -79,10 +105,12 @@ def _apply_config_to_globals(config: SimulationConfig) -> None:
     Why: text_generation.py imports openai_api_key and openai_base_url
     as module-level names. This keeps them in sync with the config.
     """
-    global openai_api_key, openai_base_url, key_owner
+    global openai_api_key, openai_base_url, key_owner, embedding_api_key, embedding_base_url
     openai_api_key = config.openai_api_key
     openai_base_url = config.openai_base_url
     key_owner = config.key_owner
+    embedding_api_key = config.embedding_api_key or config.openai_api_key
+    embedding_base_url = config.embedding_base_url or config.openai_base_url
     DefaultModel.embedding = config.embedding_model
     DefaultModel.completion = config.completion_model
 
@@ -102,7 +130,7 @@ def validate_config(config: SimulationConfig) -> None:
     if not config.openai_api_key or config.openai_api_key == "<your_api_key>":
         raise ValueError(
             "openai_api_key is not set. "
-            "Set OPENAI_API_KEY environment variable or configure in config."
+            "Set OPENAI_API_KEY in a .env file, environment variable, or CLI --api-key."
         )
 
     if not config.openai_base_url:
@@ -164,12 +192,12 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
     parser.add_argument(
         "--api-key",
         default=None,
-        help="OpenAI API key (or set OPENAI_API_KEY env var)",
+        help="OpenAI API key (or set OPENAI_API_KEY in .env / env var)",
     )
     parser.add_argument(
         "--base-url",
         default=None,
-        help="OpenAI-compatible base URL (or set OPENAI_BASE_URL env var)",
+        help="OpenAI-compatible base URL (or set OPENAI_BASE_URL in .env / env var)",
     )
     parser.add_argument(
         "--memory-limit",
@@ -210,11 +238,19 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
         ),
         openai_base_url=(
             args.base_url
-            or os.environ.get("OPENAI_BASE_URL", "http://192.168.1.110:3001/v1")
+            or os.environ.get("OPENAI_BASE_URL", "https://api.deepseek.com/v1")
         ),
         key_owner=os.environ.get("SOCIALSIMU_KEY_OWNER", ""),
-        embedding_model=args.embedding_model or DefaultModel.embedding,
-        completion_model=args.model or DefaultModel.completion,
+        embedding_model=(
+            args.embedding_model
+            or os.environ.get("OPENAI_EMBEDDING_MODEL", DefaultModel.embedding)
+        ),
+        embedding_base_url=os.environ.get("EMBEDDING_BASE_URL", ""),
+        embedding_api_key=os.environ.get("EMBEDDING_API_KEY", ""),
+        completion_model=(
+            args.model
+            or os.environ.get("OPENAI_MODEL", DefaultModel.completion)
+        ),
         max_steps=args.steps,
         memory_limit=args.memory_limit,
         checkpoint_interval=args.checkpoint_interval,

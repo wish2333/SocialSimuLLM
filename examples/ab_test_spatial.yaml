@@ -19,7 +19,6 @@
 
 experiment_id: ab_ring
 project: ab_spatial
-model: gpt-4o-mini
 simulation_steps: 144
 random_seed: 42
 checkpoint_interval: 10

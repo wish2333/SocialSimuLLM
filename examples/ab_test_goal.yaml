@@ -20,7 +20,6 @@
 
 experiment_id: ab_goal_off
 project: ab_goal
-model: gpt-4o-mini
 simulation_steps: 288
 random_seed: 42
 checkpoint_interval: 20

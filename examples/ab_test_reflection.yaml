@@ -22,7 +22,6 @@
 
 experiment_id: ab_reflect_off
 project: ab_reflection
-model: gpt-4o-mini
 simulation_steps: 288
 random_seed: 42
 checkpoint_interval: 20

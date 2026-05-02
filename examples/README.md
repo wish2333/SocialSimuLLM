@@ -5,9 +5,20 @@ Examples, configurations, and step-by-step instructions for testing and using So
 ## Quick Start
 
 ```bash
-# 1. Set API credentials
+# 1. Set API credentials (choose one method)
+
+#    Method A: .env file (recommended)
+cp .env.example .env
+# Edit .env and fill in OPENAI_API_KEY and OPENAI_BASE_URL
+
+#    Method B: System environment variables
 export OPENAI_API_KEY="your-key"
 export OPENAI_BASE_URL="http://your-server/v1"
+
+#    Method C: CLI arguments
+# --api-key <key> --base-url <url>
+
+# Priority: CLI args > system env vars > .env file > built-in defaults
 
 # 2. Run the minimal example (1-day simulation, 144 steps)
 uv run socialsimullm run --config examples/minimal.yaml

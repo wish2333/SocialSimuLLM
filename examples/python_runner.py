@@ -5,7 +5,7 @@
 #   uv run python examples/python_runner.py --run        # Run a single experiment
 #   uv run python examples/python_runner.py --run batch  # Run batch experiment
 #
-# Requires OPENAI_API_KEY and OPENAI_BASE_URL env vars for actual runs.
+# Requires OPENAI_API_KEY and OPENAI_BASE_URL env vars (or .env file) for actual runs.
 
 import argparse
 import os
@@ -29,8 +29,7 @@ def example_single_run() -> str:
     config = ExperimentConfig(
         experiment_id="api_test_001",
         project="api_demo",
-        model="gpt-4o-mini",
-        embedding_model="BAAI/bge-m3",
+        # model and embedding_model default to env vars (.env / OPENAI_MODEL)
         simulation_steps=144,
         memory_limit=10,
         random_seed=42,
@@ -53,7 +52,6 @@ def example_batch_run() -> list[str]:
     config = ExperimentConfig(
         experiment_id="api_batch",
         project="api_batch_demo",
-        model="gpt-4o-mini",
         simulation_steps=72,
         random_seed=0,
         checkpoint_interval=10,
@@ -77,7 +75,6 @@ def example_spatial_variants() -> None:
         config = ExperimentConfig(
             experiment_id=f"spatial_{topo}",
             project="spatial_comparison",
-            model="gpt-4o-mini",
             simulation_steps=72,
             random_seed=42,
             checkpoint_interval=10,
@@ -103,7 +100,6 @@ def example_cognitive_run() -> None:
     config = ExperimentConfig(
         experiment_id="cognitive_test",
         project="cognitive_demo",
-        model="gpt-4o-mini",
         simulation_steps=144,
         random_seed=42,
         checkpoint_interval=20,
@@ -213,7 +209,6 @@ def example_save_and_load_yaml() -> None:
     """Demonstrate YAML round-trip: create -> save -> load -> run."""
     config = ExperimentConfig(
         project="yaml_demo",
-        model="gpt-4o-mini",
         simulation_steps=144,
         random_seed=123,
     )

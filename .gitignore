@@ -15,7 +15,6 @@ build/
 *.egg
 
 .env
-.env.*
 
 *.db
 *.sqlite3

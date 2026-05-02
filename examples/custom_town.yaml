@@ -7,7 +7,6 @@
 
 experiment_id: exp_custom_town
 project: custom_town
-model: gpt-4o-mini
 simulation_steps: 72
 random_seed: 42
 checkpoint_interval: 10

@@ -7,8 +7,6 @@
 
 experiment_id: exp_batch_demo
 project: batch_demo
-model: gpt-4o-mini
-embedding_model: BAAI/bge-m3
 simulation_steps: 144
 memory_limit: 10
 random_seed: 0

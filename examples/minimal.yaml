@@ -5,7 +5,6 @@
 # A quick 1-day (144 steps) run using all defaults.
 # Suitable for first-time testing and CI validation.
 
-model: gpt-4o-mini
 simulation_steps: 144
 random_seed: 42
 checkpoint_interval: 10

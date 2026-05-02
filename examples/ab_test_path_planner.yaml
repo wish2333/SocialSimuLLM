@@ -20,7 +20,6 @@
 
 experiment_id: ab_path_legacy
 project: ab_path_planner
-model: gpt-4o-mini
 simulation_steps: 144
 random_seed: 42
 checkpoint_interval: 10
