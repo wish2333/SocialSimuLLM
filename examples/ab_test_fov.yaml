@@ -1,0 +1,30 @@
+# A/B Test: Field of View (FOV)
+#
+# A (control):  fov_enabled: false  (legacy: agents see only co-located)
+# B (treatment): fov_enabled: true, fov_distance: 0.0  (same-location perception)
+#
+# Note: fov_distance=0.0 B-group behaves identically to A-group in terms of
+# who is visible. To see a real difference, set fov_distance > 0 (requires
+# weighted edges in spatial_config). See ab_test_fov_extended.yaml.
+#
+# Metrics to compare:
+#   - Interaction frequency per agent pair
+#   - Hourly plan mentions of other agents
+#   - Action descriptions referencing other agents
+#   - Movement decisions influenced by visible agents
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_fov.yaml --id ab_fov_off
+#   # edit fov_enabled to true, then:
+#   uv run socialsimullm run --config examples/ab_test_fov.yaml --id ab_fov_on
+
+experiment_id: ab_fov_off
+project: ab_fov
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
+
+# --- TOGGLE: set true for B group ---
+fov_enabled: false
+fov_distance: 0.0

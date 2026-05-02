@@ -1,0 +1,33 @@
+# A/B Test: Goal-Driven Planning
+#
+# A (control):  goal_enabled: false
+# B (treatment): goal_enabled: true, max_active_goals: 3
+#
+# Hypothesis: Goal-driven agents maintain more consistent long-term behavior
+# and demonstrate purposeful action sequences.
+#
+# Metrics to compare:
+#   - Daily plan consistency (same-day vs across-day similarity)
+#   - Action diversity (focused vs scattered behavior)
+#   - goal_review event count
+#   - Whether daily plans reference prior goals
+#   - Task completion mentions in reflections
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_goal.yaml --id ab_goal_off
+#   # edit goal_enabled to true, then:
+#   uv run socialsimullm run --config examples/ab_test_goal.yaml --id ab_goal_on
+
+experiment_id: ab_goal_off
+project: ab_goal
+model: gpt-4o-mini
+simulation_steps: 288
+random_seed: 42
+checkpoint_interval: 20
+
+reflection_enabled: true
+reflection_include_in_planning: true
+
+# --- TOGGLE: set true for B group ---
+goal_enabled: false
+max_active_goals: 3

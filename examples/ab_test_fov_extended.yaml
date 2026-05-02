@@ -1,0 +1,39 @@
+# A/B Test: Field of View (Extended - with weighted graph)
+#
+# A (control):  fov_enabled: false
+# B (treatment): fov_enabled: true, fov_distance: 2.0
+#
+# This variant uses a weighted spatial graph so agents at graph-distance
+# <= 2.0 can perceive each other, enabling cross-location awareness.
+#
+# Metrics to compare:
+#   - Number of unique agent pairs that interact
+#   - Movement decisions toward visible (but not co-located) agents
+#   - Hourly plans that reference non-co-located agents
+#   - Whether agents form "social clusters" in FOV-enabled runs
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_fov_extended.yaml --id ab_fov_ext_off
+#   # edit fov_enabled to true, then:
+#   uv run socialsimullm run --config examples/ab_test_fov_extended.yaml --id ab_fov_ext_on
+
+experiment_id: ab_fov_ext_off
+project: ab_fov_extended
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
+
+# Weighted graph enables meaningful distance-based FOV
+spatial_config:
+  topology: small_world
+  num_locations: 5
+  edge_weight_min: 1.0
+  edge_weight_max: 3.0
+  seed: 42
+  small_world_k: 4
+  small_world_p: 0.3
+
+# --- TOGGLE: set true for B group ---
+fov_enabled: false
+fov_distance: 2.0

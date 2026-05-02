@@ -1,0 +1,33 @@
+# A/B Test: Spatial Graph Topology
+#
+# A (control):  no spatial_config (legacy ring topology)
+# B (treatment): spatial_config with small_world topology
+#
+# Hypothesis: Small-world topology (with shortcuts) produces different
+# movement patterns than ring topology (sequential neighbors only).
+#
+# Metrics to compare:
+#   - Location transition matrix entropy (diversity of transitions)
+#   - Most-visited locations
+#   - Average steps between location changes
+#   - Whether agents cluster in specific areas
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_spatial.yaml --id ab_ring
+#   # edit spatial_config topology to "small_world", then:
+#   uv run socialsimullm run --config examples/ab_test_spatial.yaml --id ab_smallworld
+
+experiment_id: ab_ring
+project: ab_spatial
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
+
+# --- TOGGLE: comment out spatial_config for A (ring legacy), set for B ---
+spatial_config:
+  topology: ring
+  num_locations: 5
+  edge_weight_min: 1.0
+  edge_weight_max: 1.0
+  seed: 42

@@ -1,0 +1,33 @@
+# A/B Test: Reflection System
+#
+# A (control):  reflection_enabled: false
+# B (treatment): reflection_enabled: true
+#
+# Hypothesis: Agents with reflection produce more coherent daily plans
+# and show behavioral adaptation over time.
+#
+# Metrics to compare:
+#   - Daily plan diversity (unique vs repeated plans)
+#   - Reflection event count and trigger types
+#   - Action diversity across simulation
+#   - Whether late-day behavior differs from early-day
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_reflection.yaml --id ab_reflect_off
+#   # edit reflection_enabled to true, then:
+#   uv run socialsimullm run --config examples/ab_test_reflection.yaml --id ab_reflect_on
+#
+# Analyze:
+#   notebooks/04_ab_analysis.ipynb
+
+experiment_id: ab_reflect_off
+project: ab_reflection
+model: gpt-4o-mini
+simulation_steps: 288
+random_seed: 42
+checkpoint_interval: 20
+
+# --- TOGGLE: set true for B group ---
+reflection_enabled: false
+reflection_importance_threshold: 15
+reflection_include_in_planning: false

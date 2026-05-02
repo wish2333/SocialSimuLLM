@@ -32,6 +32,12 @@ uv run streamlit run src/socialsimullm/frontend/app.py
 | `cognitive_enhanced.yaml` | Phase 3 | Goal-driven planning + reflection |
 | `nl_scenario.yaml` | Phase 3 | NL scenario generation (Python only) |
 | `python_runner.py` | API | Programmatic access to all features |
+| `ab_test_reflection.yaml` | A/B Test | Reflection on/off comparison |
+| `ab_test_fov.yaml` | A/B Test | Basic FOV on/off comparison |
+| `ab_test_fov_extended.yaml` | A/B Test | FOV with weighted graph |
+| `ab_test_path_planner.yaml` | A/B Test | A* vs legacy movement |
+| `ab_test_goal.yaml` | A/B Test | Goal planning on/off |
+| `ab_test_spatial.yaml` | A/B Test | Ring vs small_world |
 
 ---
 
@@ -264,6 +270,82 @@ patterns = assistant.identify_patterns("exp_abc123")
 hypotheses = assistant.suggest_hypotheses("exp_abc123")
 report = assistant.generate_report("exp_abc123")
 ```
+
+---
+
+## A/B Testing: Feature Validation
+
+Each Phase 3 feature is independently toggleable. The `ab_test_*.yaml` configs provide ready-to-run A/B pairs where the **control** (A) uses the legacy implementation and the **treatment** (B) enables the new feature. Every pair shares the same `random_seed` and `simulation_steps` so the only variable is the feature under test.
+
+### Feature Independence Matrix
+
+| Feature | Toggle Field | Default | Independent? |
+|---------|-------------|---------|-------------|
+| Reflection | `reflection_enabled` | true | Yes - no dependency on other features |
+| Spatial Generation | `spatial_config` | null (off) | Yes - fallback to legacy ring |
+| Field of View | `fov_enabled` | false | Yes - no dependency |
+| Path Planner | `path_planner_enabled` | false | Yes - no dependency |
+| Goal Planning | `goal_enabled` | false | Yes - no dependency (but synergizes with reflection) |
+
+### Available A/B Pairs
+
+| Config | A (Control) | B (Treatment) | Key Metric |
+|--------|-------------|---------------|------------|
+| `ab_test_reflection.yaml` | reflection off | reflection on | Plan consistency, action diversity |
+| `ab_test_fov.yaml` | fov off | fov on | Interaction count |
+| `ab_test_fov_extended.yaml` | fov off | fov on + weighted graph | Cross-location interactions |
+| `ab_test_path_planner.yaml` | rate_locations | A* pathfinding | Movement diversity |
+| `ab_test_goal.yaml` | goals off | goals on | Plan consistency, goal review count |
+| `ab_test_spatial.yaml` | ring topology | small_world | Transition entropy |
+
+### How to Run an A/B Test
+
+Each A/B config has a single toggle field. Run the control first, flip the toggle, then run the treatment:
+
+```bash
+# Step 1: Run control (A)
+uv run socialsimullm run --config examples/ab_test_reflection.yaml --id ab_reflect_off
+
+# Step 2: Edit ab_test_reflection.yaml: change reflection_enabled to true
+
+# Step 3: Run treatment (B) with same seed
+uv run socialsimullm run --config examples/ab_test_reflection.yaml --id ab_reflect_on
+```
+
+### Automated Analysis
+
+After running both groups, use the A/B analysis notebook:
+
+```bash
+cd notebooks
+# Open 04_ab_analysis.ipynb in Jupyter
+# Update experiment IDs in the ab_pairs dict if needed
+# Run all cells to get automated comparison
+```
+
+The notebook computes 7 metrics per pair and produces a verdict:
+
+| Metric | What It Measures | Interpretation |
+|--------|-----------------|----------------|
+| Action Diversity | Unique actions / total actions | Higher = more varied behavior |
+| Interaction Count | Agent-to-agent mentions | Higher = more social awareness |
+| Movement Diversity | Unique destinations / total moves | Higher = more exploration |
+| Reflection Count | Number of reflection events | Verifies reflection is active |
+| Daily Plan Consistency | Jaccard similarity across days | Higher = more persistent focus |
+| Transition Entropy | Shannon entropy of moves | Higher = more spread movement |
+| Goal Review Count | Number of goal review events | Verifies goal system is active |
+
+### Statistical Rigor
+
+For publication-quality results, combine A/B tests with batch seeds:
+
+```bash
+# Run 3 seeds per condition
+uv run socialsimullm batch --config examples/ab_test_goal.yaml --seeds 42,43,44
+# Flip goal_enabled, rename project, run again
+```
+
+This controls for LLM variance and provides confidence intervals.
 
 ---
 

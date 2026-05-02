@@ -1,0 +1,30 @@
+# A/B Test: Path Planner (A* movement)
+#
+# A (control):  path_planner_enabled: false  (legacy rate_locations)
+# B (treatment): path_planner_enabled: true, multi_hop: true
+#
+# Hypothesis: Path planner produces more intentional, goal-directed movement
+# compared to the legacy location-rating approach.
+#
+# Metrics to compare:
+#   - Movement frequency (moves per hour)
+#   - Location diversity (unique destinations visited)
+#   - Movement event structure (has path/intent fields in B)
+#   - Whether agents reach "preferred" locations more often
+#   - Multi-hop path completion rate (B only)
+#
+# Run:
+#   uv run socialsimullm run --config examples/ab_test_path_planner.yaml --id ab_path_legacy
+#   # edit path_planner_enabled to true, then:
+#   uv run socialsimullm run --config examples/ab_test_path_planner.yaml --id ab_path_astar
+
+experiment_id: ab_path_legacy
+project: ab_path_planner
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
+
+# --- TOGGLE: set true for B group ---
+path_planner_enabled: false
+multi_hop_movement: true
