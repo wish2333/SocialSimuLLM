@@ -35,6 +35,7 @@ from socialsimullm.prompt_templates.template_agents import (
     rate_location_prompt,
     rate_location_system,
 )
+from socialsimullm.agents.memory_entry import MemoryEntry
 from socialsimullm.utils.text_generation import GPT_request, get_rating
 
 if TYPE_CHECKING:
@@ -204,20 +205,20 @@ class Agent:
         rating = get_rating(res)
         return rating
 
-    def memory_actions(self, agents: list[Agent], global_time: str, priority: int | None) -> dict:
-        """Format the agent's current action as a memory experience dict."""
+    def memory_actions(self, agents: list[Agent], global_time: str, priority: int | None) -> MemoryEntry:
+        """Format the agent's current action as a MemoryEntry."""
         other_agents = [agent.name for agent in agents if agent.location == self.location]
         action_des = self.simplify_action()
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": self.location,
-            "action": f'In {global_time}, {self.name} ,at {self.location}, has done: "{self.action}"',
-            "action_des": action_des,
-            "other_agents": other_agents,
-            "exp_type": "action",
-            "priority": priority,
-        }
+        return MemoryEntry.create(
+            agent_name=self.name,
+            timestamp=global_time,
+            location_id=self.location,
+            event_type="action",
+            content=f'In {global_time}, {self.name} ,at {self.location}, has done: "{self.action}"',
+            summary=action_des,
+            entities=other_agents,
+            importance=priority or 1,
+        )
 
     def simplify_action(self) -> str:
         """Simplify the current action into 1-2 SVO sentences."""
@@ -228,51 +229,48 @@ class Agent:
         res = GPT_request(system, prompt, {"max_tokens": 30, "temperature": 0.7})
         return res
 
-    def memory_daily_plans(self, global_time: str) -> dict:
-        """Format daily plans as a memory experience dict."""
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": self.location,
-            "action": f"{self.name}'s daily plan is:\n{self.daily_plans}",
-            "other_agents": [self.name],
-            "exp_type": "plan",
-            "priority": 3,
-        }
+    def memory_daily_plans(self, global_time: str) -> MemoryEntry:
+        """Format daily plans as a MemoryEntry."""
+        return MemoryEntry.create(
+            agent_name=self.name,
+            timestamp=global_time,
+            location_id=self.location,
+            event_type="plan",
+            content=f"{self.name}'s daily plan is:\n{self.daily_plans}",
+            importance=3,
+        )
 
-    def memory_hourly_plan(self, global_time: str) -> dict:
-        """Format hourly plan as a memory experience dict."""
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": self.location,
-            "action": f"{self.name}'s hourly plan is:\n{self.hourly_plan}",
-            "other_agents": [self.name],
-            "exp_type": "plan",
-            "priority": 2,
-        }
+    def memory_hourly_plan(self, global_time: str) -> MemoryEntry:
+        """Format hourly plan as a MemoryEntry."""
+        return MemoryEntry.create(
+            agent_name=self.name,
+            timestamp=global_time,
+            location_id=self.location,
+            event_type="plan",
+            content=f"{self.name}'s hourly plan is:\n{self.hourly_plan}",
+            importance=2,
+        )
 
-    def memory_location_change(self, global_time: str, old_location: str, new_location: str) -> dict:
-        """Format a location change as a memory experience dict."""
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": old_location,
-            "action": f"In {global_time}, {self.name} has moved from {old_location} to {new_location}.",
-            "action_des": f"{self.name} has moved from {old_location} to {new_location}.",
-            "other_agents": [self.name],
-            "exp_type": "action",
-            "priority": 2,
-        }
+    def memory_location_change(self, global_time: str, old_location: str, new_location: str) -> MemoryEntry:
+        """Format a location change as a MemoryEntry."""
+        return MemoryEntry.create(
+            agent_name=self.name,
+            timestamp=global_time,
+            location_id=old_location,
+            event_type="action",
+            content=f"In {global_time}, {self.name} has moved from {old_location} to {new_location}.",
+            summary=f"{self.name} has moved from {old_location} to {new_location}.",
+            importance=2,
+        )
 
-    def memory_impression(self, global_time: str, impression: str) -> dict:
-        """Format an impression as a memory experience dict."""
-        return {
-            "agent_name": self.name,
-            "global_time": global_time,
-            "location": self.location,
-            "action": f'In {global_time}, {self.name} ,at {self.location}, has impressed: "{impression}".',
-            "action_des": f'{self.name} has impressed: "{impression}".',
-            "exp_type": "thought",
-            "priority": 4,
-        }
+    def memory_impression(self, global_time: str, impression: str) -> MemoryEntry:
+        """Format an impression as a MemoryEntry."""
+        return MemoryEntry.create(
+            agent_name=self.name,
+            timestamp=global_time,
+            location_id=self.location,
+            event_type="thought",
+            content=f'In {global_time}, {self.name} ,at {self.location}, has impressed: "{impression}".',
+            summary=f'{self.name} has impressed: "{impression}".',
+            importance=4,
+        )

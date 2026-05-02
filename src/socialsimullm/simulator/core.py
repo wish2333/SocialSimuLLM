@@ -291,15 +291,19 @@ class SimulatorCore:
         if new_event == "No new event.":
             return [event_json["action"] for event_json in memory.load_events()["event"]]
 
-        new_event_experience = {
-            "agent_name": "global_event",
-            "global_time": global_time,
-            "action": f'In {global_time}: "{new_event}".',
-            "exp_type": "event",
-            "priority": 9,
-        }
-        memory.store(new_event_experience)
-        return [event_json["action"] for event_json in memory.save_event(new_event_experience)["event"]]
+        from socialsimullm.agents.memory_entry import MemoryEntry
+
+        new_event_entry = MemoryEntry.create(
+            agent_name="global_event",
+            timestamp=global_time,
+            location_id="",
+            event_type="event",
+            content=f'In {global_time}: "{new_event}".',
+            importance=9,
+        )
+        memory.store(new_event_entry)
+        event_record = new_event_entry.to_dict()
+        return [event_json["action"] for event_json in memory.save_event(event_record)["event"]]
 
     def _daily_planning(self, s: SimulationState, prompt_meta: str) -> None:
         """Execute daily planning for all agents."""
@@ -390,8 +394,8 @@ class SimulatorCore:
             )
             s.memory.store(impression)
             self.logger.log_event("impression", step=s.round, agent_id=agent.name,
-                                  data={"impression": impression["action"]})
-            self.logger.add_summary(f"{agent.name}'s recent impression: {impression['action']}\n")
+                                  data={"impression": impression.content})
+            self.logger.add_summary(f"{agent.name}'s recent impression: {impression.content}\n")
 
     def _run_reflection(
         self, s: SimulationState, agent: Agent, trigger: str
@@ -404,16 +408,16 @@ class SimulatorCore:
         )
         for obs in observations:
             s.memory.store(obs)
-            if obs.get("exp_type") == "reflection":
-                agent.reflection = obs.get("action", "")
+            if obs.event_type == "reflection":
+                agent.reflection = obs.content
             self.logger.log_event(
                 "reflection",
                 step=s.round,
                 agent_id=agent.name,
                 data={
-                    "reflection": obs.get("action", ""),
-                    "type": obs.get("reflection_type", "daily"),
+                    "reflection": obs.content,
+                    "type": obs.reflection_type or "daily",
                     "trigger": trigger,
                 },
             )
-            self.logger.add_summary(f"\n{obs.get('action', '')}\n")
+            self.logger.add_summary(f"\n{obs.content}\n")

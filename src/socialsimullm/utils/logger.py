@@ -291,9 +291,9 @@ class StructuredLogger:
                 entries = memory_full.get("memory", [])
                 by_type: dict[str, int] = {}
                 for entry in entries:
-                    t = entry.get("exp_type", "unknown")
+                    t = entry.get("event_type", entry.get("exp_type", "unknown"))
                     by_type[t] = by_type.get(t, 0) + 1
-                latest = entries[-1].get("global_time", "") if entries else ""
+                latest = entries[-1].get("timestamp", entries[-1].get("global_time", "")) if entries else ""
                 summary["agents"][agent.name] = {
                     "total_entries": len(entries),
                     "by_type": by_type,

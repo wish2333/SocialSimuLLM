@@ -18,6 +18,11 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Protocol
 
+# Late import to avoid circular dependency
+def _memory_entry():
+    from socialsimullm.agents.memory_entry import MemoryEntry
+    return MemoryEntry
+
 
 class ReflectionType(Enum):
     """Extensible reflection types."""
@@ -107,7 +112,7 @@ class ReflectionEngine:
         cumulative = self._calculate_cumulative_importance(observations)
         return cumulative >= self._config.threshold_importance
 
-    def reflect_daily(self, agent: AgentData, global_time: str) -> dict:
+    def reflect_daily(self, agent: AgentData, global_time: str) -> MemoryEntry:
         """Generate a daily summary reflection for an agent.
 
         Retrieves high-importance observations and past reflections,
@@ -148,7 +153,7 @@ class ReflectionEngine:
             agent.name, global_time, reflection_text, ReflectionType.DAILY,
         )
 
-    def reflect_pattern(self, agent: AgentData, global_time: str) -> dict | None:
+    def reflect_pattern(self, agent: AgentData, global_time: str) -> MemoryEntry | None:
         """Generate a pattern reflection across multiple days.
 
         Only triggered when >= 2 prior daily reflections exist.
@@ -169,13 +174,13 @@ class ReflectionEngine:
         reflections = self._memory.recall_reflections(agent.name, n=10)
         daily_reflections = [
             r for r in reflections
-            if r.get("reflection_type", "daily") == "daily"
+            if r.reflection_type == "daily"
         ]
         if len(daily_reflections) < 2:
             return None
 
         all_ref_text = "\n".join(
-            f"- [{r.get('global_time', '')}] {r.get('action_des', r.get('action', ''))}"
+            f"- [{r.timestamp}] {r.summary or r.content}"
             for r in daily_reflections
         )
 
@@ -201,7 +206,7 @@ class ReflectionEngine:
         agent: AgentData,
         global_time: str,
         all_agents: list[AgentData],
-    ) -> dict | None:
+    ) -> MemoryEntry | None:
         """Generate a social reflection about relationships.
 
         Analyzes interaction patterns with other agents.
@@ -256,7 +261,7 @@ class ReflectionEngine:
         agent: AgentData,
         global_time: str,
         all_agents: list[AgentData],
-    ) -> list[dict]:
+    ) -> list[MemoryEntry]:
         """Run the complete reflection cycle for one agent.
 
         Generates daily reflection always, and conditionally generates
@@ -268,7 +273,7 @@ class ReflectionEngine:
             all_agents: All agents in the simulation.
 
         Returns:
-            List of observation dicts ready for memory.store().
+            List of MemoryEntry objects ready for memory.store().
         """
         results: list[dict] = []
 
@@ -298,7 +303,7 @@ class ReflectionEngine:
         reflections = self._memory.recall_reflections(agent_name, n=1)
         last_time: str | None = None
         if reflections:
-            last_time = reflections[-1].get("global_time")
+            last_time = reflections[-1].timestamp
         self._last_reflection_cache[agent_name] = last_time
         return last_time
 
@@ -306,7 +311,7 @@ class ReflectionEngine:
         self,
         agent_name: str,
         since_time: str | None,
-    ) -> list[dict]:
+    ) -> list:
         """Get all observations since the last reflection."""
         if since_time is None:
             return self._memory.recall_recent(agent_name, n=50)
@@ -316,9 +321,9 @@ class ReflectionEngine:
         )
 
     @staticmethod
-    def _calculate_cumulative_importance(observations: list[dict]) -> int:
-        """Sum the priority values of the given observations."""
-        return sum(int(m.get("priority", 0) or 0) for m in observations)
+    def _calculate_cumulative_importance(observations: list) -> int:
+        """Sum the importance values of the given observations."""
+        return sum(m.importance for m in observations)
 
     def _format_past_reflections(self, agent_name: str) -> str:
         """Format the agent's existing reflections as a string for prompts."""
@@ -344,11 +349,8 @@ class ReflectionEngine:
         )
 
         interaction_counts: dict[str, int] = {}
-        for obs in observations:
-            other = obs.get("other_agents", [])
-            if isinstance(other, str):
-                other = [other]
-            for name in other:
+        for entry in observations:
+            for name in entry.entities:
                 if name != agent_name and name:
                     interaction_counts[name] = interaction_counts.get(name, 0) + 1
 
@@ -359,7 +361,7 @@ class ReflectionEngine:
         recent = self._memory.recall_recent(agent_name, n=1)
         if not recent:
             return None
-        time_str = recent[-1].get("global_time", "")
+        time_str = recent[-1].timestamp
         try:
             return int(time_str.split(",")[0].replace("Day ", "").strip())
         except (ValueError, IndexError):
@@ -371,19 +373,20 @@ class ReflectionEngine:
         global_time: str,
         reflection_text: str,
         reflection_type: ReflectionType,
-    ) -> dict:
-        """Build a memory-compatible observation dict from reflection output."""
+    ) -> MemoryEntry:
+        """Build a MemoryEntry from reflection output."""
         priority_map = {
             ReflectionType.DAILY: self._config.daily_priority,
             ReflectionType.PATTERN: self._config.pattern_priority,
             ReflectionType.SOCIAL: self._config.social_priority,
         }
-        return {
-            "agent_name": agent_name,
-            "global_time": global_time,
-            "action": f'In {global_time}, {agent_name} reflected ({reflection_type.value}): "{reflection_text}".',
-            "action_des": f"{agent_name} reflected: {reflection_text}",
-            "exp_type": "reflection",
-            "priority": priority_map[reflection_type],
-            "reflection_type": reflection_type.value,
-        }
+        return _memory_entry().create(
+            agent_name=agent_name,
+            timestamp=global_time,
+            location_id="",
+            event_type="reflection",
+            content=f'In {global_time}, {agent_name} reflected ({reflection_type.value}): "{reflection_text}".',
+            summary=f"{agent_name} reflected: {reflection_text}",
+            importance=priority_map[reflection_type],
+            reflection_type=reflection_type.value,
+        )
