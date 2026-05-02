@@ -4,12 +4,18 @@ SocialSimuLLM 是一个基于大语言模型的多智能体社会仿真框架，
 
 ## 功能特性
 
-- **模块化架构**: 仿真引擎、智能体认知、记忆系统和反思机制清晰分离
+- **模块化架构**: 仿真引擎、智能体认知、记忆系统、反思机制、世界建模和目标规划清晰分离
 - **结构化记忆系统**: `MemoryEntry` 不可变数据类，支持多维度检索（语义、时间、空间、重要性）
 - **多层次反思**: 每日总结、跨天模式识别、社交关系分析
+- **空间世界建模**: `WorldVariationGenerator` 支持多种图拓扑（环形、小世界、网格、随机、无标度）
+- **近距感知**: 基于图距离的 `FieldOfView` 实现真实的智能体感知
+- **智能路径规划**: LLM 驱动的移动意图推断 + A* 最短路径 + 多跳遍历
+- **目标驱动规划**: 层次化目标管理与递归任务分解（ROMA 风格）
+- **自然语言场景构建**: 从自然语言描述生成完整的仿真配置
 - **可复现实验**: Pydantic 配置模型、JSONL 结构化日志、检查点保存/恢复、随机种子管理
 - **批量实验**: 使用不同随机种子运行多次实验，支持统计分析
-- **Web 界面**: Streamlit 前端，支持实验配置、启动和结果可视化
+- **Web 界面**: Streamlit 前端，支持实验配置、回放可视化、热力图和 AI 研究助手
+- **Jupyter 笔记本**: 行为分析、空间分析和对比研究的即用型分析模板
 - **OpenAI 兼容**: 支持任何 OpenAI 兼容的 API 端点（可自定义 base URL 和模型）
 
 ## 项目结构
@@ -28,15 +34,25 @@ SocialSimuLLM/
 │   │   ├── core.py                    # SimulatorCore
 │   │   ├── state.py                   # SimulationState
 │   │   └── events.py                  # EventBus
+│   ├── world/                         # 空间世界建模
+│   │   ├── spatial.py                 # WorldVariationGenerator（多拓扑）
+│   │   ├── field_of_view.py           # FieldOfView（近距感知）
+│   │   └── path_planner.py            # PathPlanner（LLM + A*）
+│   ├── cognition/                     # 认知模块
+│   │   └── goal.py                    # GoalManager + 递归任务分解
 │   ├── experiment/                    # 实验基础设施
 │   │   ├── config.py                  # ExperimentConfig (Pydantic)
 │   │   ├── runner.py                  # ExperimentRunner
 │   │   ├── storage.py                 # 运行目录管理与检查点
-│   │   └── analysis.py                # 结果加载与分析
+│   │   ├── analysis.py                # 结果加载与分析
+│   │   ├── scenario.py                # ScenarioGenerator（自然语言 -> 城镇数据）
+│   │   └── assistant.py               # ResearchAssistant（AI 分析）
 │   ├── frontend/                      # Streamlit Web 界面（可选依赖）
-│   │   ├── app.py                     # 主入口
-│   │   ├── pages/                     # 配置页与结果页
-│   │   └── components/                # 表单组件与可视化组件
+│   │   ├── app.py                     # 主入口（三标签页）
+│   │   ├── pages/                     # 配置页、结果页、助手页
+│   │   └── components/                # 表单、可视化、回放、热力图
+│   ├── notebooks/                     # Jupyter 分析模板
+│   │   └── data_loader.py             # 共享数据加载工具
 │   ├── locations/                     # 空间世界管理
 │   ├── prompt_templates/              # LLM 提示词模板
 │   ├── utils/                         # 配置、日志、LLM API
@@ -133,6 +149,24 @@ checkpoint_interval: 10
 events:
   - "一场奇怪的雾气笼罩了小镇。"
 reflection_enabled: true
+
+# Phase 3: 空间拓扑
+spatial_config:
+  topology: small_world
+  num_locations: 6
+  seed: 42
+
+# Phase 3: 近距感知
+fov_enabled: true
+fov_distance: 1
+
+# Phase 3: 智能移动
+path_planner_enabled: true
+multi_hop_movement: true
+
+# Phase 3: 目标驱动规划
+goal_enabled: true
+max_active_goals: 5
 ```
 
 ## 输出结构
@@ -177,7 +211,7 @@ runs/{project}/{experiment_id}/
 
 ## 版本历史
 
-- **v3.1.0**: 架构重构、结构化记忆、反思系统、可复现实验、Streamlit 前端
+- **v3.1.0**: 架构重构、结构化记忆、反思系统、可复现实验、Streamlit 前端、空间世界建模、目标驱动规划、AI 研究助手
 - **v3.0**: 增强智能体记忆和反思能力
 - **v2.0**: 优化记忆检索、改进 Agent 状态评估、数据库交互基础
 

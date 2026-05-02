@@ -4,12 +4,18 @@ A multi-agent social simulation framework powered by Large Language Models, base
 
 ## Features
 
-- **Modular architecture**: Clean separation between simulation engine, agent cognition, memory, and reflection
+- **Modular architecture**: Clean separation between simulation engine, agent cognition, memory, reflection, world modeling, and goal planning
 - **Structured memory system**: Typed `MemoryEntry` dataclass with multi-dimensional retrieval (semantic, temporal, spatial, importance)
 - **Multi-level reflection**: Daily summary, cross-day pattern recognition, and social relationship analysis
+- **Spatial world modeling**: Diverse graph topologies (ring, small-world, grid, random, scale-free) via `WorldVariationGenerator`
+- **Proximity perception**: Graph distance-based `FieldOfView` for realistic agent awareness
+- **Intelligent path planning**: LLM-driven movement intent with A* shortest path and multi-hop traversal
+- **Goal-driven planning**: Hierarchical goal management with recursive task decomposition (ROMA-inspired)
+- **NL scenario construction**: Generate complete simulation setups from natural language descriptions
 - **Reproducible experiments**: Pydantic-based config, JSONL structured logging, checkpoint save/restore, random seed management
 - **Batch execution**: Run multiple experiments with different seeds for statistical analysis
-- **Web UI**: Streamlit frontend for experiment configuration, launch, and result visualization
+- **Web UI**: Streamlit frontend with experiment configuration, replay visualization, heatmaps, and AI research assistant
+- **Jupyter notebooks**: Ready-to-use analysis templates for behavioral, spatial, and comparative studies
 - **OpenAI-compatible**: Works with any OpenAI-compatible API endpoint (customizable base URL and model)
 
 ## Project Structure
@@ -28,15 +34,25 @@ SocialSimuLLM/
 │   │   ├── core.py                    # SimulatorCore
 │   │   ├── state.py                   # SimulationState
 │   │   └── events.py                  # EventBus
+│   ├── world/                         # Spatial world modeling
+│   │   ├── spatial.py                 # WorldVariationGenerator (topologies)
+│   │   ├── field_of_view.py           # FieldOfView (proximity perception)
+│   │   └── path_planner.py            # PathPlanner (LLM + A*)
+│   ├── cognition/                     # Cognitive modules
+│   │   └── goal.py                    # GoalManager + RecursiveTaskDecomposer
 │   ├── experiment/                    # Experiment infrastructure
 │   │   ├── config.py                  # ExperimentConfig (Pydantic)
 │   │   ├── runner.py                  # ExperimentRunner
 │   │   ├── storage.py                 # Run directory & checkpoints
-│   │   └── analysis.py                # Result loading & analysis
+│   │   ├── analysis.py                # Result loading & analysis
+│   │   ├── scenario.py                # ScenarioGenerator (NL -> town_data)
+│   │   └── assistant.py               # ResearchAssistant (AI analysis)
 │   ├── frontend/                      # Streamlit web UI (optional)
-│   │   ├── app.py                     # Main entry
-│   │   ├── pages/                     # Configure & Results pages
-│   │   └── components/                # Forms & visualization
+│   │   ├── app.py                     # Main entry (3 tabs)
+│   │   ├── pages/                     # Configure, Results, Assistant
+│   │   └── components/                # Forms, viz, replay, heatmaps
+│   ├── notebooks/                     # Jupyter analysis templates
+│   │   └── data_loader.py             # Shared data loading utilities
 │   ├── locations/                     # Spatial world
 │   ├── prompt_templates/              # LLM prompts
 │   ├── utils/                         # Config, logger, LLM API
@@ -128,6 +144,24 @@ checkpoint_interval: 10
 events:
   - "A strange fog rolls into town."
 reflection_enabled: true
+
+# Phase 3: Spatial topology
+spatial_config:
+  topology: small_world
+  num_locations: 6
+  seed: 42
+
+# Phase 3: Proximity perception
+fov_enabled: true
+fov_distance: 1
+
+# Phase 3: Intelligent movement
+path_planner_enabled: true
+multi_hop_movement: true
+
+# Phase 3: Goal-driven planning
+goal_enabled: true
+max_active_goals: 5
 ```
 
 ## Customization
@@ -172,7 +206,7 @@ runs/{project}/{experiment_id}/
 
 ## Version History
 
-- **v3.1.0**: Architecture refactoring, structured memory, reflection system, reproducible experiments, Streamlit frontend
+- **v3.1.0**: Architecture refactoring, structured memory, reflection system, reproducible experiments, Streamlit frontend, spatial world modeling, goal-driven planning, AI research assistant
 - **v3.0**: Enhanced agent memory and reflection capabilities
 - **v2.0**: Memory retrieval optimization, agent state evaluation, database groundwork
 

@@ -460,9 +460,144 @@ F-306 (NL Scenario) [independent]                                     v
 F-311 (Research Assistant) [independent]                          F-310 (Adv Viz)
 ```
 
----
+# Phase 3 实现完成
 
-## New Config Fields (cumulative)
+## Sprint 1: Spatial Foundation (F-305 + F-301)
+
+```
+  Sprint 1 完成: F-305, F-301
+
+  已完成
+
+  ┌─────────┬────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Feature │ Status │                                            Details                                            │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-305   │ Done   │ WorldVariationGenerator (278 lines): ring, small_world, grid, random, scale_free 拓扑生成。      │
+  │         │        │ SpatialConfig dataclass (topology, num_locations, edge_weight_range, seed, extra_params)。      │
+  │         │        │ generate_graph() + generate_town_data() + topology_presets()。                                 │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-301   │ Done   │ FieldOfView (234 lines): 基于 graph distance 的 proximity perception。                        │
+  │         │        │ FOVConfig (enabled, distance_threshold, include_location_info)。                               │
+  │         │        │ PerceptibleAgent dataclass。get_visible_agents(), format_visible_agents(),                      │
+  │         │        │ format_nearby_context()。distance_threshold=0 保持 legacy 行为。                                │
+  └─────────┴────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Files Changed
+  - Created: world/__init__.py (13), world/spatial.py (278), world/field_of_view.py (234)
+  - Modified: simulator/core.py (427->571), experiment/config.py (216->289), utils/config.py (293->299)
+```
+
+## Sprint 2: Intelligent Movement (F-302 + F-303)
+
+```
+  Sprint 2 完成: F-302, F-303
+
+  已完成
+
+  ┌─────────┬────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Feature │ Status │                                            Details                                            │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-302   │ Done   │ PathPlanner (341 lines): LLM movement intent inference + A* shortest path。                    │
+  │         │        │ PathPlannerConfig, MovementIntent, PlannedPath dataclasses。                                   │
+  │         │        │ plan_movement(), execute_step() for multi-hop traversal。                                       │
+  │         │        │ Agent.planned_path attribute for persistent path state。                                       │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-303   │ Done   │ GoalManager + RecursiveTaskDecomposer (760 lines in cognition/goal.py)。                       │
+  │         │        │ Goal dataclass with GoalStatus enum (ACTIVE/IN_PROGRESS/COMPLETED/ABANDONED/BLOCKED)。         │
+  │         │        │ initialize_goals(), review_and_update_goals(), decompose_goal()。                              │
+  │         │        │ serialize/deserialize for checkpoint persistence。                                             │
+  │         │        │ Agent.goals attribute for persistent goal state。                                              │
+  └─────────┴────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Files Changed
+  - Created: world/path_planner.py (341), cognition/__init__.py (13), cognition/goal.py (760)
+  - Modified: agents/agent.py (276->283), simulator/core.py (->571), experiment/config.py (->289),
+    utils/config.py (->299), prompt_templates/template_agents.py (152, +new prompts)
+```
+
+## Sprint 3: Research Productivity (F-304 + F-307 + F-306)
+
+```
+  Sprint 3 完成: F-304, F-307, F-306
+
+  已完成
+
+  ┌─────────┬────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Feature │ Status │                                            Details                                            │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-304   │ Done   │ Jupyter analysis templates (4 notebooks + shared data_loader.py 218 lines)。                   │
+  │         │        │ 00_quick_start, 01_behavioral_analysis, 02_spatial_analysis, 03_experiment_comparison。       │
+  │         │        │ data_loader: load_experiment(), load_checkpoints(), extract_*_events(),                        │
+  │         │        │ build_agent_timeline(), compute_*_matrix()。                                                 │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-307   │ Done   │ RecursiveTaskDecomposer in cognition/goal.py。                                              │
+  │         │        │ decompose(), order_by_dependency(), get_immediate_tasks(), format_task_plan()。                 │
+  │         │        │ Goal decomposition prompt templates added to template_agents.py。                              │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-306   │ Done   │ ScenarioGenerator (370 lines): NL scenario -> town_data.json via LLM synthesis。              │
+  │         │        │ generate(), refine(), validate_town_data() (static + LLM validation)。                        │
+  │         │        │ save(), _parse_json_response(), _normalize_structure()。                                       │
+  │         │        │ experiment/config.py: scenario_description field。                                            │
+  │         │        │ experiment/__init__.py: ScenarioGenerator export。                                             │
+  └─────────┴────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Files Changed
+  - Created: experiment/scenario.py (370), notebooks/data_loader.py (218), 4 Jupyter notebooks
+  - Modified: cognition/goal.py (+RecursiveTaskDecomposer), experiment/config.py, experiment/__init__.py,
+    prompt_templates/template_agents.py
+```
+
+## Sprint 4: Advanced Analysis (F-310 + F-311)
+
+```
+  Sprint 4 完成: F-310, F-311
+
+  已完成
+
+  ┌─────────┬────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Feature │ Status │                                            Details                                            │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-310   │ Done   │ Replay component (141 lines): checkpoint timeline slider, agent positions, spatial graph,     │
+  │         │        │ step events。Heatmap component (199 lines): location occupancy, agent activity,                │
+  │         │        │ location transition frequency。results.py expanded to 266 lines with replay + heatmap tabs。   │
+  ├─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ F-311   │ Done   │ ResearchAssistant (298 lines): summarize_experiment(), identify_patterns(),                  │
+  │         │        │ suggest_hypotheses(), compare_runs(), generate_report()。                                      │
+  │         │        │ assistant.py page (177 lines): single/multi-experiment analysis UI。                          │
+  │         │        │ app.py expanded to 38 lines with Research Assistant tab。                                     │
+  └─────────┴────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Files Changed
+  - Created: frontend/components/replay.py (141), frontend/components/heatmap.py (199),
+    experiment/assistant.py (298), frontend/pages/assistant.py (177)
+  - Modified: frontend/pages/results.py (174->266), frontend/app.py (32->38)
+```
+
+### Phase 3 总计
+
+```
+新建文件 (12):
+  world/__init__.py (13), world/spatial.py (278), world/field_of_view.py (234),
+  world/path_planner.py (341), cognition/__init__.py (13), cognition/goal.py (760),
+  experiment/scenario.py (370), experiment/assistant.py (298),
+  frontend/components/replay.py (141), frontend/components/heatmap.py (199),
+  frontend/pages/assistant.py (177), notebooks/data_loader.py (218)
+  4 Jupyter notebooks (00-03)
+  总计: ~3,040 行新代码 + ~1,000 行 notebook
+
+修改文件 (9):
+  simulator/core.py (427->571, +144), agents/agent.py (276->283, +7),
+  experiment/config.py (216->289, +73), experiment/runner.py (+Spatial/FOV/Goal support),
+  experiment/__init__.py (+ScenarioGenerator, MemoryConfig exports),
+  utils/config.py (293->299, +6), utils/logger.py (+goal event types),
+  prompt_templates/template_agents.py (+movement intent, goal, decomposition prompts),
+  frontend/pages/results.py (174->266, +92), frontend/app.py (32->38, +6)
+
+未实现 (Phase 3 Aggressive path, deferred):
+  F-308: Lightweight cultural evolution
+  F-309: LiteLLM full integration
+  F-312: A2A/MCP prototype
+```
 
 **ExperimentConfig**: `spatial_config`, `fov_enabled`, `fov_distance`, `path_planner_enabled`, `multi_hop_movement`, `goal_enabled`, `max_active_goals`, `scenario_description`
 

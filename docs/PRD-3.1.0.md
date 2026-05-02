@@ -2,7 +2,7 @@
 
 > Version: 3.1.0
 > Last Updated: 2026-05-02
-> Status: Phase 1 + Phase 2 Complete
+> Status: Phase 1 + Phase 2 + Phase 3 Complete
 > Based on: `references/reference-3.1.0-3rdVersion.md`
 > Supersedes: `docs/PRD.md` (v3.0 baseline)
 
@@ -514,24 +514,24 @@ src/socialsimullm/frontend/
 
 | Feature ID | Feature | Path | Research Value |
 |------------|---------|------|---------------|
-| F-301 | FieldOfView spatial perception | Balanced | Proximity-based interaction realism |
-| F-302 | PathPlanner (LLM intent + A*) | Balanced | Intentional movement vs. random walk |
-| F-303 | Goal-driven hierarchical planning | Balanced | Multi-step coordination emergence |
-| F-304 | Jupyter analysis templates | Balanced | Lower analysis barrier |
-| F-305 | WorldVariationGenerator | Balanced | Environment robustness experiments |
-| F-306 | NL scenario construction | Aggressive | Lower experiment setup cost |
-| F-307 | Simplified ROMA planning | Aggressive | Multi-step task emergence |
-| F-308 | Lightweight cultural evolution | Aggressive | Social norm emergence research |
-| F-309 | LiteLLM full integration | Aggressive | Multi-model + tool calling |
-| F-310 | Advanced visualization (replay, heatmap) | Aggressive | Intuitive emergence display |
-| F-311 | Semi-auto research assistant | Aggressive | Research efficiency multiplier |
-| F-312 | A2A/MCP prototype | Aggressive | Inter-framework interoperability |
+| F-301 | FieldOfView spatial perception | Balanced | Proximity-based interaction realism | Done |
+| F-302 | PathPlanner (LLM intent + A*) | Balanced | Intentional movement vs. random walk | Done |
+| F-303 | Goal-driven hierarchical planning | Balanced | Multi-step coordination emergence | Done |
+| F-304 | Jupyter analysis templates | Balanced | Lower analysis barrier | Done |
+| F-305 | WorldVariationGenerator | Balanced | Environment robustness experiments | Done |
+| F-306 | NL scenario construction | Aggressive | Lower experiment setup cost | Done |
+| F-307 | Simplified ROMA planning | Aggressive | Multi-step task emergence | Done |
+| F-308 | Lightweight cultural evolution | Aggressive | Social norm emergence research | Deferred |
+| F-309 | LiteLLM full integration | Aggressive | Multi-model + tool calling | Deferred |
+| F-310 | Advanced visualization (replay, heatmap) | Aggressive | Intuitive emergence display | Done |
+| F-311 | Semi-auto research assistant | Aggressive | Research efficiency multiplier | Done |
+| F-312 | A2A/MCP prototype | Aggressive | Inter-framework interoperability | Deferred |
 
 ---
 
 ## 5. Architecture Evolution
 
-### 5.1 Current Architecture (After Phase 2)
+### 5.1 Current Architecture (After Phase 3)
 
 ```
 __main__.py (96 lines, CLI entry + subcommand dispatch)

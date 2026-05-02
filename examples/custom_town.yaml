@@ -1,6 +1,9 @@
-# Experiment config using a custom town data file
+# Config with custom town data (v3.1.0)
 # Usage: uv run socialsimullm run --config examples/custom_town.yaml
-# Output: runs/custom_town/{experiment_id}/
+# Output: runs/custom_town/exp_custom_town/
+#
+# Uses a hand-crafted town_data.json with Chinese setting.
+# This is the simplest way to define a custom world.
 
 experiment_id: exp_custom_town
 project: custom_town

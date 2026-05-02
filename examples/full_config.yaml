@@ -1,5 +1,9 @@
-# Full experiment config with all parameters
-# Usage: uv run socialsimullm run --config examples/full_config.yaml --id my_experiment
+# Full experiment config with all v3.1.0 parameters (v3.1.0)
+# Usage: uv run socialsimullm run --config examples/full_config.yaml
+# Output: runs/demo_project/full_demo/
+#
+# Demonstrates every available config option. Use this as a reference
+# when creating your own configs.
 
 experiment_id: full_demo
 project: demo_project
@@ -11,14 +15,52 @@ random_seed: 42
 checkpoint_interval: 20
 spatial_graph_path: ""
 budget_limit: 0.0
+
+# --- Reflection system ---
 reflection_enabled: true
 reflection_importance_threshold: 15
 reflection_min_observations: 3
 reflection_token_limit: 150
 reflection_include_in_planning: true
 
+# --- Memory retrieval weights ---
 memory_config:
   recency_weight: 0.3
   similarity_weight: 0.5
   importance_weight: 0.2
   importance_threshold: 6
+
+# --- Spatial graph generation (v3.1.0) ---
+# Set spatial_config to generate a world graph instead of loading from
+# spatial_graph_path. When set, spatial_graph_path is ignored.
+spatial_config:
+  topology: small_world
+  num_locations: 6
+  edge_weight_min: 1.0
+  edge_weight_max: 2.0
+  seed: 42
+  small_world_k: 4
+  small_world_p: 0.3
+
+# --- Field of View (v3.1.0) ---
+# Enable proximity-based agent perception. distance_threshold=0 means
+# agents only see co-located agents (legacy behavior).
+fov_enabled: true
+fov_distance: 0.0
+
+# --- Path Planner (v3.1.0) ---
+# Enable LLM intent + A* pathfinding instead of legacy rate_locations.
+path_planner_enabled: true
+multi_hop_movement: true
+
+# --- Goal-driven Planning (v3.1.0) ---
+# Enable hierarchical goal decomposition for daily planning.
+goal_enabled: true
+max_active_goals: 3
+
+# --- Global events ---
+events:
+  - "A traveling merchant arrives at the town square with exotic goods."
+
+# --- Prompt template ---
+prompt_meta: "### Instruction:\n{}\n### Response:"

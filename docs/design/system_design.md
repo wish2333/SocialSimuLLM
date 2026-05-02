@@ -19,13 +19,21 @@
 │                    │    │  initialize()                  │
 │  run_single()       │    │    ├── Load town_data.json     │
 │  run_batch()        │    │    ├── Create Agents, ...     │
+│                    │    │    ├── WorldVariationGenerator  │
+│  ExperimentConfig   │    │    ├── FieldOfView             │
+│    ↓ to_simulation  │    │    ├── PathPlanner            │
+│      _config()      │    │    ├── GoalManager            │
 │                    │    │    └── Assemble SimulationState │
-│  ExperimentConfig   │    │                                │
-│    ↓ to_simulation  │    │  step() per 10-min interval   │
-│      _config()      │    │    ├── _daily_planning()      │
-│                    │    │    ├── _hourly_planning()     │
-│  runs/{proj}/{id}/  │    │    ├── _execute_actions()     │
-└────────┬───────────┘    │    ├── _movement()            │
+│  runs/{proj}/{id}/  │    │                                │
+└────────┬───────────┘    │  step() per 10-min interval   │
+         │                │    ├── _daily_planning()      │
+         │                │    │     └── GoalManager       │
+         │                │    ├── _hourly_planning()     │
+         │                │    │     └── FOV context       │
+         │                │    ├── _execute_actions()     │
+         │                │    │     └── FOV context       │
+         │                │    ├── _movement()            │
+         │                │    │     └── PathPlanner       │
          │                │    ├── _impressions()         │
          │                │    ├── _run_reflection()      │
          │                │    └── _load_events()         │
@@ -36,21 +44,21 @@
          │                           │
     ┌────▼───────────────────────────▼───────────────────┐
     │  experiment/storage.py + analysis.py               │
-    │                                                    │
-    │  create_run_dir()  list_experiments()               │
-    │  load_checkpoint() find_run_dir()                  │
-    │  load_results()    get_experiment_summary()         │
-    │  compare_experiments()                              │
+    │  experiment/scenario.py (NL generation)            │
+    │  experiment/assistant.py (AI analysis)             │
     └────────────────────────────────────────────────────┘
 
 ┌────────────────────────────────────────────────────────┐
 │              Streamlit Frontend (frontend/)            │
 │                                                        │
-│  app.py ── tabs: Configure | Results                  │
+│  app.py ── tabs: Configure | Results | Assistant      │
 │  configure.py ── form + launch_experiment subprocess   │
-│  results.py ── checkpoint viewer + spatial graph + viz │
+│  results.py ── checkpoint viewer + replay + heatmaps   │
+│  assistant.py ── AI research analysis interface       │
 │  components/forms.py ── pydantic-to-streamlit mapping  │
 │  components/viz.py ── pyvis + plotly rendering        │
+│  components/replay.py ── checkpoint timeline replay    │
+│  components/heatmap.py ── occupancy/activity/transit   │
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -68,6 +76,10 @@ __main__.py
   │     │     └── agents/memory_entry.py
   │     ├── agents/reflection.py
   │     │     └── agents/memory_entry.py
+  │     ├── world/spatial.py          # Phase 3: WorldVariationGenerator
+  │     ├── world/field_of_view.py    # Phase 3: FieldOfView
+  │     ├── world/path_planner.py     # Phase 3: PathPlanner
+  │     ├── cognition/goal.py         # Phase 3: GoalManager + ROMA
   │     ├── locations/locations.py
   │     ├── utils/config.py
   │     ├── utils/logger.py
@@ -79,11 +91,16 @@ __main__.py
         ├── experiment/runner.py
         │     ├── experiment/config.py
         │     ├── experiment/storage.py
+        │     ├── world/spatial.py     # Phase 3: spatial graph generation
         │     └── simulator/core.py (lazy)
         ├── experiment/storage.py
         │     └── yaml
-        └── experiment/analysis.py
-              └── experiment/storage.py
+        ├── experiment/analysis.py
+        │     └── experiment/storage.py
+        ├── experiment/scenario.py     # Phase 3: NL scenario generation
+        │     └── utils/text_generation.py
+        └── experiment/assistant.py    # Phase 3: AI research assistant
+              └── experiment/storage.py, experiment/analysis.py
 
 frontend/ (optional deps, runs as separate Streamlit process)
   ├── frontend/pages/configure.py
@@ -92,7 +109,11 @@ frontend/ (optional deps, runs as separate Streamlit process)
   ├── frontend/pages/results.py
   │     ├── experiment/storage.py
   │     ├── experiment/analysis.py
-  │     └── frontend/components/viz.py
+  │     ├── frontend/components/viz.py
+  │     ├── frontend/components/replay.py   # Phase 3
+  │     └── frontend/components/heatmap.py  # Phase 3
+  ├── frontend/pages/assistant.py           # Phase 3
+  │     └── experiment/assistant.py
   ├── frontend/components/forms.py
   │     └── pydantic
   └── frontend/utils.py
@@ -113,13 +134,19 @@ CLI: socialsimullm run --config exp.yaml --id test001
             ├── random.seed(config.random_seed)
             ├── create_run_dir(project, experiment_id)
             ├── _prepare_project_data(config, run_dir)
-            │     └── copy town_data.json -> runs/{proj}/{id}/
+            │     ├── If spatial_config: WorldVariationGenerator.generate_town_data()
+            │     ├── If scenario_description: ScenarioGenerator.generate()
+            │     └── Else: copy town_data.json -> runs/{proj}/{id}/
             ├── config.to_yaml(run_dir / "config.yaml")
             ├── config.to_simulation_config() -> SimulationConfig
             │     └── project_name = str(run_dir)  # absolute path
             ├── _apply_config_to_globals() + validate_config()
             └── SimulatorCore(sim_config, initial_event)
                   ├── .initialize()
+                  │     ├── _create_world_graph()      # delegate to WorldVariationGenerator
+                  │     ├── FieldOfView(spatial_graph)  # if fov_enabled
+                  │     ├── PathPlanner(spatial_graph)  # if path_planner_enabled
+                  │     └── GoalManager()               # if goal_enabled
                   └── .run(max_steps)
                         └── logger.finalize() -> done.flag
 ```
@@ -184,6 +211,75 @@ reflect_all():
   4. Return list[MemoryEntry]
 ```
 
+### Spatial Perception Flow (Phase 3)
+
+```
+SimulatorCore._hourly_planning() / _execute_actions()
+  └── FieldOfView.get_visible_agents(observer, all_agents)
+        ├── Compute graph distance from observer to each agent
+        ├── Filter by distance_threshold
+        └── Return list[PerceptibleAgent]
+
+FieldOfView.format_nearby_context(observer, all_agents)
+  └── Formatted string for LLM prompt (who is visible, where, distance)
+```
+
+### Movement Planning Flow (Phase 3)
+
+```
+SimulatorCore._movement(agent)
+  └── PathPlanner.plan_movement(agent, hourly_plan, visible_agents)
+        ├── infer_movement_intent()  ──► LLM: where does agent want to go?
+        ├── find_path(origin, dest)   ──► A* shortest path on weighted graph
+        └── PlannedPath | None
+
+If multi_hop_movement:
+  └── PathPlanner.execute_step(planned_path)  ──► next node on path
+  └── Agent.planned_path updated with steps_remaining--
+```
+
+### Goal Management Flow (Phase 3)
+
+```
+SimulatorCore._daily_planning() (08:00)
+  └── GoalManager.review_and_update_goals(agent, recent_memories, global_time)
+        ├── Check existing goals for completion
+        ├── Create new goals from agent description + events
+        └── RecursiveTaskDecomposer.decompose() for active goals
+
+GoalManager.format_goals_context(goals)
+  └── Injected into daily planning LLM prompt
+```
+
+### Scenario Generation Flow (Phase 3)
+
+```
+ScenarioGenerator.generate(scenario_description)
+  ├── LLM generates town_data.json from natural language
+  ├── _normalize_structure() ensures schema compliance
+  ├── _static_validation() checks structural correctness
+  ├── _llm_validation() checks semantic coherence
+  └── Return validated town_data dict
+```
+
+### Research Assistant Flow (Phase 3)
+
+```
+ResearchAssistant.summarize_experiment(experiment_id, project)
+  ├── Load events from experiment storage
+  ├── Build summary context from events.jsonl
+  └── LLM generates natural language summary
+
+ResearchAssistant.identify_patterns(experiment_id, project)
+  ├── Load events + checkpoints
+  ├── Compute behavioral statistics
+  └── LLM identifies emergent patterns
+
+ResearchAssistant.compare_runs(experiment_ids, project)
+  ├── Load data from multiple experiments
+  └── LLM generates comparative analysis
+```
+
 ## Configuration Layers
 
 ```
@@ -198,6 +294,13 @@ Experiment mode adds:
 5. ExperimentConfig YAML file (experiment_id, random_seed, events, etc.)
    - Converts to SimulationConfig via to_simulation_config()
    - API keys always from env vars, never from YAML
+
+Phase 3 adds:
+6. SpatialConfig (topology, num_locations, edge_weight_range, seed)
+7. FOVConfig (enabled, distance_threshold)
+8. PathPlannerConfig (enabled, multi_hop, max_path_length)
+9. GoalConfig (enabled, max_active_goals, goal_retention_days)
+10. scenario_description (NL input for town_data generation)
 ```
 
 ## Storage Layout
@@ -214,7 +317,8 @@ projects/{name}/
 │   └── step_{N}/
 │       ├── spatial_graph.json  # NetworkX graph snapshot
 │       ├── agent_states.json   # All agent state snapshots
-│       └── memory_summary.json # Memory statistics
+│       ├── memory_summary.json # Memory statistics
+│       └── goals.json          # Phase 3: Goal state snapshot
 └── agent_data/
     ├── {name}_memory.json      # Memory records (MemoryEntry dicts)
     └── {name}_memory.db        # SQLite embedding DB
@@ -225,7 +329,7 @@ projects/{name}/
 ```
 runs/{project}/{experiment_id}/
 ├── config.yaml                # Full experiment config snapshot
-├── town_data.json             # Copied town configuration
+├── town_data.json             # Copied or generated town configuration
 ├── simulation_log.txt         # Human-readable text log
 ├── events.jsonl               # Structured JSONL event log
 ├── done.flag                  # Completion marker
@@ -234,6 +338,7 @@ runs/{project}/{experiment_id}/
 │       ├── spatial_graph.json  # NetworkX graph snapshot
 │       ├── agent_states.json   # All agent state snapshots
 │       ├── memory_summary.json # Memory statistics
+│       ├── goals.json          # Phase 3: Goal state snapshot
 │       └── meta.json           # Run metadata
 └── agent_data/
     ├── {name}_memory.json     # Memory records (MemoryEntry dicts)

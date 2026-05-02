@@ -1,0 +1,33 @@
+# Spatial topology comparison (v3.1.0 Phase 3)
+# Usage:
+#   uv run socialsimullm run --config examples/spatial_variants.yaml --id ring_run
+#   (change topology and --id for each variant)
+#
+# Purpose: Compare how different graph topologies affect agent movement
+# and interaction patterns. Run this config multiple times, changing only
+# the topology field, then compare results in the Streamlit frontend.
+#
+# Topology options:
+#   ring        - Circular chain (legacy default)
+#   small_world - Watts-Strogatz model (shortcuts)
+#   grid        - 2D grid layout
+#   random      - Erdos-Renyi random edges
+#   scale_free  - Barabasi-Albert preferential attachment
+
+experiment_id: exp_spatial_ring
+project: spatial_demo
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
+fov_enabled: true
+fov_distance: 0.0
+path_planner_enabled: true
+multi_hop_movement: true
+
+spatial_config:
+  topology: ring
+  num_locations: 5
+  edge_weight_min: 1.0
+  edge_weight_max: 1.0
+  seed: 42

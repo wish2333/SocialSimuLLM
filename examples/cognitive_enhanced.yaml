@@ -1,0 +1,34 @@
+# Goal-driven planning + reflection config (v3.1.0 Phase 3)
+# Usage: uv run socialsimullm run --config examples/cognitive_enhanced.yaml
+# Output: runs/cognitive_demo/exp_cognitive/
+#
+# Purpose: Test the goal-driven planning system with hierarchical
+# goal decomposition and reflection integration. Agents set goals,
+# decompose them into sub-tasks, and review progress daily.
+#
+# Compare with minimal.yaml to see the impact of cognitive enhancement
+# on agent behavior consistency and plan quality.
+
+experiment_id: exp_cognitive
+project: cognitive_demo
+model: gpt-4o-mini
+simulation_steps: 288
+random_seed: 42
+checkpoint_interval: 20
+
+reflection_enabled: true
+reflection_importance_threshold: 15
+reflection_include_in_planning: true
+
+goal_enabled: true
+max_active_goals: 3
+
+fov_enabled: true
+fov_distance: 0.0
+path_planner_enabled: true
+multi_hop_movement: true
+
+spatial_config:
+  topology: ring
+  num_locations: 4
+  seed: 42

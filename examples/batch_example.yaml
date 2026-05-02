@@ -1,6 +1,9 @@
-# Batch experiment config for seed comparison
+# Batch experiment config for seed comparison (v3.1.0)
 # Usage: uv run socialsimullm batch --config examples/batch_example.yaml --seeds 42,43,44
 # Output: runs/batch_demo/exp_batch_demo_seed42/, seed43/, seed44/
+#
+# Compares behavior variability across different random seeds.
+# All other factors (model, steps, config) are held constant.
 
 experiment_id: exp_batch_demo
 project: batch_demo

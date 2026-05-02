@@ -1,0 +1,15 @@
+# NL scenario generation example (v3.1.0 Phase 3)
+# Usage: uv run python examples/python_runner.py --demo scenario
+#
+# Purpose: Demonstrates how to create a complete simulation world
+# from a natural language description using ScenarioGenerator.
+#
+# This config is used programmatically - see python_runner.py
+# for the full scenario generation workflow.
+
+experiment_id: exp_nl_scenario
+project: scenario_demo
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10

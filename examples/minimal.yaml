@@ -1,6 +1,9 @@
-# Minimal experiment config
+# Minimal experiment config (v3.1.0)
 # Usage: uv run socialsimullm run --config examples/minimal.yaml
-# Output: runs/{project}/{experiment_id}/
+# Output: runs/minimal_demo/<auto_id>/
+#
+# A quick 1-day (144 steps) run using all defaults.
+# Suitable for first-time testing and CI validation.
 
 model: gpt-4o-mini
 simulation_steps: 144

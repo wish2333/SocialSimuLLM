@@ -1,6 +1,9 @@
-# Experiment config with global events injection
+# Config with global events injection (v3.1.0)
 # Usage: uv run socialsimullm run --config examples/with_events.yaml
-# Output: runs/events_demo/{experiment_id}/
+# Output: runs/events_demo/exp_events_demo/
+#
+# Demonstrates how to inject global events that shape agent behavior.
+# Events are joined and passed to all agents at initialization.
 
 experiment_id: exp_events_demo
 project: events_demo
