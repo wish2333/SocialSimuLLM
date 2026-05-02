@@ -2,7 +2,7 @@
 
 > Version: 3.1.0
 > Last Updated: 2026-05-02
-> Status: Phase 1 Complete
+> Status: Phase 1 + Phase 2 Complete
 > Based on: `references/reference-3.1.0-3rdVersion.md`
 > Supersedes: `docs/PRD.md` (v3.0 baseline)
 
@@ -382,7 +382,7 @@ for name, detail in town_areas.items():
 
 #### F-201: ExperimentConfig Pydantic Model (P0, Week 1 of Phase 2)
 
-**Status**: Planned
+**Status**: Done
 
 ```python
 from pydantic import BaseModel
@@ -415,7 +415,7 @@ class ExperimentConfig(BaseModel):
 
 #### F-202: ExperimentRunner (P0, Weeks 2-3 of Phase 2)
 
-**Status**: Planned
+**Status**: Done
 
 ```python
 class ExperimentRunner:
@@ -443,7 +443,7 @@ uv run socialsimullm list   # list all experiments
 
 #### F-203: Frontend-Backend Interface Contract (P0, Week 3 of Phase 2)
 
-**Status**: Planned
+**Status**: Done
 
 **Checkpoint Directory Structure**:
 ```
@@ -466,7 +466,7 @@ def list_experiments() -> list[dict]: ...
 
 #### F-204: Streamlit Frontend MVP (P1, Weeks 4-7 of Phase 2)
 
-**Status**: Planned
+**Status**: Done
 
 **Strictly 3 core features only**:
 
@@ -531,14 +531,15 @@ src/socialsimullm/frontend/
 
 ## 5. Architecture Evolution
 
-### 5.1 Current Architecture (After Phase 1)
+### 5.1 Current Architecture (After Phase 2)
 
 ```
-__main__.py (27 lines, CLI entry only)
-  |-- load_config() -> SimulationConfig
-  |-- SimulatorCore(config).initialize().run()
+__main__.py (96 lines, CLI entry + subcommand dispatch)
+  |-- load_experiment_config() -> "run" | "batch" | "list" | None (legacy)
+  |-- Experiment mode: ExperimentRunner.run_single() / run_batch()
+  |-- Legacy mode: load_config() -> SimulatorCore(config).initialize().run()
 
-simulator/core.py (423 lines)
+simulator/core.py (427 lines)
   |-- SimulatorCore: initialize(), step(), run()
   |     |-- _daily_planning()       (08:00 trigger)
   |     |-- _hourly_planning()      (top of hour trigger)
@@ -546,8 +547,9 @@ simulator/core.py (423 lines)
   |     |-- _movement()             (location rating + move)
   |     |-- _impressions()          (agent impression formation)
   |     |-- _run_reflection()       (scheduled + threshold trigger)
-  |     |-- _load_events()          (global event handling)
-  |-- SimulationState (dataclass, passed between methods)
+  |     |-- _load_events()          (global event handling, supports initial_event)
+  |-- initial_event param for non-interactive experiment mode
+  |-- Absolute path support: experiment runs write to runs/{project}/{id}/
 
 agents/agent.py (276 lines)
   |-- Agent class (all methods as proper class methods)
@@ -575,15 +577,48 @@ agents/reflection.py (392 lines)
   |     |-- reflect_social()     (relationship trends)
   |     |-- reflect_all()        (complete cycle, returns MemoryEntry list)
 
-simulator/state.py (46 lines)
-  |-- SimulationState dataclass (global_time, round, agents, memory, ...)
+experiment/config.py (216 lines)
+  |-- ExperimentConfig (Pydantic BaseModel)
+  |     |-- experiment_id, project, model, embedding_model, simulation_steps
+  |     |-- random_seed, checkpoint_interval, spatial_graph_path, events
+  |     |-- memory_config (MemoryConfig), reflection settings, prompt_meta
+  |-- to_simulation_config() -> SimulationConfig
+  |-- to_yaml() / from_yaml() serialization
 
-simulator/events.py (51 lines)
-  |-- EventBus: register/emit/clear (infrastructure for future use)
+experiment/runner.py (179 lines)
+  |-- ExperimentRunner: run_single(), run_batch()
+  |-- Run dir creation, config snapshot, town_data preparation
 
-utils/config.py (222 lines)
+experiment/storage.py (281 lines)
+  |-- create_run_dir(), list_experiments(), find_run_dir()
+  |-- load_checkpoint(), get_latest_checkpoint_step(), is_complete()
+
+experiment/analysis.py (179 lines)
+  |-- load_results() -> list[dict], load_results_dataframe() -> pd.DataFrame
+  |-- get_experiment_summary(), compare_experiments()
+
+frontend/app.py (32 lines)
+  |-- Streamlit two-tab layout: Configure / Results
+
+frontend/pages/configure.py (138 lines)
+  |-- Experiment form + Save & Run + auto-poll status
+
+frontend/pages/results.py (174 lines)
+  |-- Experiment selector + checkpoint viewer + viz tabs
+
+frontend/components/forms.py (104 lines)
+  |-- pydantic_to_streamlit() + form_to_config()
+
+frontend/components/viz.py (137 lines)
+  |-- render_spatial_graph() (pyvis) + render_agent_charts() (plotly)
+
+frontend/utils.py (89 lines)
+  |-- launch_experiment() subprocess + poll_experiment_status()
+
+utils/config.py (293 lines)
   |-- SimulationConfig dataclass
   |-- load_config() with CLI args + env var overrides
+  |-- load_experiment_config() subcommand parser (run/batch/list)
   |-- validate_config()
 
 utils/logger.py (312 lines)

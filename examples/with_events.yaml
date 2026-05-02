@@ -1,0 +1,14 @@
+# Experiment config with global events injection
+# Usage: uv run socialsimullm run --config examples/with_events.yaml
+# Output: runs/events_demo/{experiment_id}/
+
+experiment_id: exp_events_demo
+project: events_demo
+model: gpt-4o-mini
+simulation_steps: 288
+random_seed: 42
+checkpoint_interval: 10
+
+events:
+  - "A mysterious merchant arrives in town, offering rare goods at the market square."
+  - "Heavy rain causes flooding in the lower district."

@@ -1,0 +1,24 @@
+# Full experiment config with all parameters
+# Usage: uv run socialsimullm run --config examples/full_config.yaml --id my_experiment
+
+experiment_id: full_demo
+project: demo_project
+model: gpt-4o-mini
+embedding_model: BAAI/bge-m3
+simulation_steps: 288
+memory_limit: 10
+random_seed: 42
+checkpoint_interval: 20
+spatial_graph_path: ""
+budget_limit: 0.0
+reflection_enabled: true
+reflection_importance_threshold: 15
+reflection_min_observations: 3
+reflection_token_limit: 150
+reflection_include_in_planning: true
+
+memory_config:
+  recency_weight: 0.3
+  similarity_weight: 0.5
+  importance_weight: 0.2
+  importance_threshold: 6

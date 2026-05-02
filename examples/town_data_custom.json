@@ -1,0 +1,28 @@
+{
+  "general": {
+    "global_time_limit": 24,
+    "max_attempts": 2,
+    "memory_limit": 10,
+    "prompt_meta": "### Instruction:\n{}\n### Response:"
+  },
+  "town_areas": {
+    "市场广场": "镇中心的集市广场，四周环绕着各种商铺和摊位。",
+    "茶馆": "一家老字号茶馆，环境清幽，是镇上居民社交和休息的场所。",
+    "书院": "镇上的私塾书院，教授四书五经和诗词歌赋。",
+    "药铺": "经营中草药和方剂的药铺，掌柜对各种药材的药性了如指掌。"
+  },
+  "town_people": {
+    "李掌柜": {
+      "description": "茶馆的掌柜，为人热情好客，喜欢结交四方来客。",
+      "starting_location": "茶馆"
+    },
+    "王先生": {
+      "description": "书院的教书先生，学识渊博，注重礼仪教化。",
+      "starting_location": "书院"
+    },
+    "孙大夫": {
+      "description": "药铺的坐堂大夫，精通医理，心地善良，常为贫苦百姓义诊。",
+      "starting_location": "药铺"
+    }
+  }
+}

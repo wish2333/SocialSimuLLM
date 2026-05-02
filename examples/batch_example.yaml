@@ -1,0 +1,13 @@
+# Batch experiment config for seed comparison
+# Usage: uv run socialsimullm batch --config examples/batch_example.yaml --seeds 42,43,44
+# Output: runs/batch_demo/exp_batch_demo_seed42/, seed43/, seed44/
+
+experiment_id: exp_batch_demo
+project: batch_demo
+model: gpt-4o-mini
+embedding_model: BAAI/bge-m3
+simulation_steps: 144
+memory_limit: 10
+random_seed: 0
+checkpoint_interval: 10
+reflection_enabled: true

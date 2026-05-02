@@ -1,0 +1,11 @@
+# Experiment config using a custom town data file
+# Usage: uv run socialsimullm run --config examples/custom_town.yaml
+# Output: runs/custom_town/{experiment_id}/
+
+experiment_id: exp_custom_town
+project: custom_town
+model: gpt-4o-mini
+simulation_steps: 72
+random_seed: 42
+checkpoint_interval: 10
+spatial_graph_path: examples/town_data_custom.json

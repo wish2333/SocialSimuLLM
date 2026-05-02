@@ -3,67 +3,138 @@
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   __main__.py                        │
-│               CLI entry (27 lines)                   │
-│         load_config() -> SimulatorCore              │
-└──────────────────────┬──────────────────────────────┘
-                       │
-┌──────────────────────▼──────────────────────────────┐
-│              SimulatorCore (core.py)                 │
-│                                                      │
-│  initialize()                                        │
-│    ├── Load town_data.json                          │
-│    ├── Create Agents, Locations, WorldGraph         │
-│    ├── Create AgentMemory, StructuredLogger         │
-│    └── Assemble SimulationState                     │
-│                                                      │
-│  step() ── per 10-minute interval                   │
-│    ├── _daily_planning()     [08:00 trigger]        │
-│    ├── _hourly_planning()    [top of hour]          │
-│    ├── _execute_actions()    [all agents]            │
-│    ├── _movement()           [rate + move]           │
-│    ├── _impressions()        [co-located agents]     │
-│    ├── _run_reflection()     [scheduled/threshold]   │
-│    └── _load_events()        [global events]         │
-│                                                      │
-│  run(max_steps)                                      │
-│    └── loop step() + checkpoint + summary            │
-└──────────┬──────────┬──────────┬───────────────────┘
-           │          │          │
-    ┌──────▼──────┐ ┌▼────────┐ ┌▼──────────────┐
-    │  agents/    │ │ utils/  │ │ simulator/     │
-    │            │ │         │ │                 │
-    │ Agent      │ │ Config  │ │ SimulationState │
-    │ AgentMemory│ │ Logger  │ │ EventBus        │
-    │ MemoryEntry│ │ TextGen │ │                 │
-    │ Reflection │ │ Helpers │ │                 │
-    └────────────┘ └─────────┘ └─────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                      __main__.py                         │
+│               CLI entry (96 lines)                        │
+│                                                          │
+│  Experiment mode:  run | batch | list                   │
+│  Legacy mode:      load_config() -> SimulatorCore       │
+└────────────────────────┬────────────────────────────────┘
+                         │
+          ┌──────────────┴──────────────┐
+          │                             │
+┌─────────▼──────────┐    ┌─────────────▼─────────────────┐
+│  ExperimentRunner   │    │      SimulatorCore (core.py)  │
+│  (runner.py)        │    │                                │
+│                    │    │  initialize()                  │
+│  run_single()       │    │    ├── Load town_data.json     │
+│  run_batch()        │    │    ├── Create Agents, ...     │
+│                    │    │    └── Assemble SimulationState │
+│  ExperimentConfig   │    │                                │
+│    ↓ to_simulation  │    │  step() per 10-min interval   │
+│      _config()      │    │    ├── _daily_planning()      │
+│                    │    │    ├── _hourly_planning()     │
+│  runs/{proj}/{id}/  │    │    ├── _execute_actions()     │
+└────────┬───────────┘    │    ├── _movement()            │
+         │                │    ├── _impressions()         │
+         │                │    ├── _run_reflection()      │
+         │                │    └── _load_events()         │
+         │                │                                │
+         │                │  run(max_steps)                │
+         │                │    └── loop step() + ...      │
+         │                └──────────┬────────────────────┘
+         │                           │
+    ┌────▼───────────────────────────▼───────────────────┐
+    │  experiment/storage.py + analysis.py               │
+    │                                                    │
+    │  create_run_dir()  list_experiments()               │
+    │  load_checkpoint() find_run_dir()                  │
+    │  load_results()    get_experiment_summary()         │
+    │  compare_experiments()                              │
+    └────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────┐
+│              Streamlit Frontend (frontend/)            │
+│                                                        │
+│  app.py ── tabs: Configure | Results                  │
+│  configure.py ── form + launch_experiment subprocess   │
+│  results.py ── checkpoint viewer + spatial graph + viz │
+│  components/forms.py ── pydantic-to-streamlit mapping  │
+│  components/viz.py ── pyvis + plotly rendering        │
+└────────────────────────────────────────────────────────┘
 ```
 
 ## Module Dependency Graph
 
 ```
 __main__.py
-  └── simulator/core.py
-        ├── simulator/state.py
-        ├── simulator/events.py
-        ├── agents/agent.py
-        │     └── agents/memory_entry.py
-        ├── agents/memory.py
-        │     └── agents/memory_entry.py
-        ├── agents/reflection.py
-        │     └── agents/memory_entry.py
-        ├── locations/locations.py
-        ├── utils/config.py
-        ├── utils/logger.py
-        ├── utils/text_generation.py
-        └── utils/global_methods.py
+  ├── utils/config.py (load_config, load_experiment_config)
+  ├── simulator/core.py
+  │     ├── simulator/state.py
+  │     ├── simulator/events.py
+  │     ├── agents/agent.py
+  │     │     └── agents/memory_entry.py
+  │     ├── agents/memory.py
+  │     │     └── agents/memory_entry.py
+  │     ├── agents/reflection.py
+  │     │     └── agents/memory_entry.py
+  │     ├── locations/locations.py
+  │     ├── utils/config.py
+  │     ├── utils/logger.py
+  │     ├── utils/text_generation.py
+  │     └── utils/global_methods.py
+  └── experiment/ (lazy import on subcommand)
+        ├── experiment/config.py
+        │     └── pydantic, yaml
+        ├── experiment/runner.py
+        │     ├── experiment/config.py
+        │     ├── experiment/storage.py
+        │     └── simulator/core.py (lazy)
+        ├── experiment/storage.py
+        │     └── yaml
+        └── experiment/analysis.py
+              └── experiment/storage.py
+
+frontend/ (optional deps, runs as separate Streamlit process)
+  ├── frontend/pages/configure.py
+  │     ├── experiment/config.py
+  │     └── frontend/utils.py
+  ├── frontend/pages/results.py
+  │     ├── experiment/storage.py
+  │     ├── experiment/analysis.py
+  │     └── frontend/components/viz.py
+  ├── frontend/components/forms.py
+  │     └── pydantic
+  └── frontend/utils.py
+        ├── experiment/config.py
+        └── experiment/storage.py
 ```
 
-No circular dependencies. `memory_entry.py` is the leaf dependency -- imported by agent.py, memory.py, and reflection.py.
+No circular dependencies. `memory_entry.py` is the leaf dependency. `experiment/` and `frontend/` are isolated from each other (communication via files).
 
 ## Data Flow
+
+### Experiment Run Flow
+
+```
+CLI: socialsimullm run --config exp.yaml --id test001
+  └── ExperimentConfig.from_yaml("exp.yaml")
+      └── ExperimentRunner.run_single(config)
+            ├── random.seed(config.random_seed)
+            ├── create_run_dir(project, experiment_id)
+            ├── _prepare_project_data(config, run_dir)
+            │     └── copy town_data.json -> runs/{proj}/{id}/
+            ├── config.to_yaml(run_dir / "config.yaml")
+            ├── config.to_simulation_config() -> SimulationConfig
+            │     └── project_name = str(run_dir)  # absolute path
+            ├── _apply_config_to_globals() + validate_config()
+            └── SimulatorCore(sim_config, initial_event)
+                  ├── .initialize()
+                  └── .run(max_steps)
+                        └── logger.finalize() -> done.flag
+```
+
+### Batch Run Flow
+
+```
+CLI: socialsimullm batch --config exp.yaml --seeds 42,43,44
+  └── ExperimentRunner.run_batch(config, [42, 43, 44])
+        ├── For each seed:
+        │     ├── Check no existing experiment (FileExistsError guard)
+        │     ├── batch_config = config.model_copy(update={experiment_id, random_seed})
+        │     └── runner.run_single(batch_config)
+        └── Return list[experiment_id]
+```
 
 ### Memory Storage Flow
 
@@ -93,13 +164,8 @@ AgentMemory.recall_semantic(query, top_k)
 AgentMemory.recall_by_location(location_id)
 AgentMemory.recall_time_span(start, end)
 AgentMemory.recall_by_importance(min_importance)
-AgentMemory.recall_filtered(...)          ← combined filtering
+AgentMemory.recall_filtered(...)          <-- combined filtering
   └── Returns list[MemoryEntry]
-
-format_recent_for_agent(agent_name)        ← string for LLM prompt
-format_semantic_for_agent(agent_name)      ← string for LLM prompt
-format_locations_for_agent(agent_name)     ← string for LLM prompt
-format_impressions_for_agent(agent_name)   ← string for LLM prompt
 ```
 
 ### Reflection Flow
@@ -124,12 +190,19 @@ reflect_all():
 Priority (highest to lowest):
 
 1. CLI arguments (--project, --model, --steps, etc.)
-2. Environment variables (OPENAI_API_KEY, OPENAI_BASE_URL, DEFAULT_MODEL)
+2. Environment variables (OPENAI_API_KEY, OPENAI_BASE_URL)
 3. SimulationConfig defaults in config.py
 4. Town data (town_data.json, per-project)
+
+Experiment mode adds:
+5. ExperimentConfig YAML file (experiment_id, random_seed, events, etc.)
+   - Converts to SimulationConfig via to_simulation_config()
+   - API keys always from env vars, never from YAML
 ```
 
 ## Storage Layout
+
+### Legacy Mode (projects/)
 
 ```
 projects/{name}/
@@ -145,4 +218,24 @@ projects/{name}/
 └── agent_data/
     ├── {name}_memory.json      # Memory records (MemoryEntry dicts)
     └── {name}_memory.db        # SQLite embedding DB
+```
+
+### Experiment Mode (runs/)
+
+```
+runs/{project}/{experiment_id}/
+├── config.yaml                # Full experiment config snapshot
+├── town_data.json             # Copied town configuration
+├── simulation_log.txt         # Human-readable text log
+├── events.jsonl               # Structured JSONL event log
+├── done.flag                  # Completion marker
+├── checkpoints/
+│   └── step_{N}/
+│       ├── spatial_graph.json  # NetworkX graph snapshot
+│       ├── agent_states.json   # All agent state snapshots
+│       ├── memory_summary.json # Memory statistics
+│       └── meta.json           # Run metadata
+└── agent_data/
+    ├── {name}_memory.json     # Memory records (MemoryEntry dicts)
+    └── {name}_memory.db       # SQLite embedding DB
 ```

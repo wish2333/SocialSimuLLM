@@ -1,0 +1,8 @@
+# Minimal experiment config
+# Usage: uv run socialsimullm run --config examples/minimal.yaml
+# Output: runs/{project}/{experiment_id}/
+
+model: gpt-4o-mini
+simulation_steps: 144
+random_seed: 42
+checkpoint_interval: 10
