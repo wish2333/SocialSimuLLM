@@ -17,11 +17,15 @@ Comment format: Use standard Google style docstring format for comments, bilingu
 from __future__ import annotations
 
 import json
+import logging
 import os
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 
 import networkx as nx
+
+_run_logger = logging.getLogger("socialsimullm")
 
 
 @dataclass
@@ -39,6 +43,31 @@ class LogConfig:
     log_to_jsonl: bool = True
     print_to_console: bool = True
     include_in_summary: bool = True
+
+
+def setup_error_logging(output_dir: str) -> None:
+    """Configure Python logging to write ERROR+ to error.log in the run directory.
+
+    Also hooks uncaught exceptions so crash tracebacks are captured.
+
+    Args:
+        output_dir: Directory to write error.log into.
+    """
+    log_path = os.path.join(output_dir, "error.log")
+    handler = logging.FileHandler(log_path, encoding="utf-8", delay=False)
+    handler.setLevel(logging.ERROR)
+    handler.setFormatter(logging.Formatter(
+        "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    ))
+    _run_logger.addHandler(handler)
+    _run_logger.setLevel(logging.DEBUG)
+
+    def _handle_uncaught(exc_type, exc_value, exc_tb):
+        _run_logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_tb))
+        sys.__excepthook__(exc_type, exc_value, exc_tb)
+
+    sys.excepthook = _handle_uncaught
 
 
 class StructuredLogger:

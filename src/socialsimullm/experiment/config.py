@@ -196,8 +196,7 @@ class ExperimentConfig(BaseModel):
         return v
 
     def model_post_init(self, __context: Any) -> None:
-        if not self.project:
-            object.__setattr__(self, "project", self.experiment_id)
+        pass
 
     def to_simulation_config(self) -> "SimulationConfig":
         """Convert to SimulationConfig for SimulatorCore consumption.
@@ -219,6 +218,8 @@ class ExperimentConfig(BaseModel):
             openai_base_url=os.environ.get("OPENAI_BASE_URL", ""),
             key_owner=os.environ.get("SOCIALSIMU_KEY_OWNER", ""),
             embedding_model=self.embedding_model or os.environ.get("OPENAI_EMBEDDING_MODEL", ""),
+            embedding_base_url=os.environ.get("EMBEDDING_BASE_URL", ""),
+            embedding_api_key=os.environ.get("EMBEDDING_API_KEY", ""),
             completion_model=self.model or os.environ.get("OPENAI_MODEL", ""),
             max_steps=self.simulation_steps,
             memory_limit=self.memory_limit,

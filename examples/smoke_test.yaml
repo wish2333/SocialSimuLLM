@@ -1,0 +1,10 @@
+# Smoke test config (v3.1.0)
+# Usage: uv run socialsimullm run --config examples/smoke_test.yaml
+# Output: runs/smoke_test_<id>/
+#
+# A quick 10-step run for code testing and CI validation.
+# Covers: init, daily planning, hourly planning, action, movement, reflection.
+
+simulation_steps: 10
+random_seed: 42
+checkpoint_interval: 0

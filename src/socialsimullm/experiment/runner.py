@@ -55,9 +55,16 @@ class ExperimentRunner:
         if config.random_seed > 0:
             random.seed(config.random_seed)
 
-        # 2. Create run directory
-        project = config.project or config.experiment_id
-        run_dir = create_run_dir(project, config.experiment_id)
+        # 2. Create run directory (flat structure when no project specified)
+        from socialsimullm.experiment.storage import get_runs_root
+
+        project = config.project
+        if project:
+            run_dir = create_run_dir(project, config.experiment_id)
+        else:
+            run_dir = get_runs_root() / config.experiment_id
+            run_dir.mkdir(parents=True, exist_ok=True)
+            (run_dir / "agent_data").mkdir(exist_ok=True)
 
         # 3. Copy town_data.json into run directory (or generate from spatial_config)
         self._prepare_project_data(config, run_dir)
@@ -73,7 +80,12 @@ class ExperimentRunner:
         sim_config = config.to_simulation_config()
         sim_config.project_name = str(run_dir)
 
-        # 6. Sync API keys from environment and validate
+        # 6. Setup error logging to run directory
+        from socialsimullm.utils.logger import setup_error_logging
+
+        setup_error_logging(str(run_dir))
+
+        # 7. Sync API keys from environment and validate
         from socialsimullm.utils.config import (
             _apply_config_to_globals,
             validate_config,
@@ -81,7 +93,7 @@ class ExperimentRunner:
         _apply_config_to_globals(sim_config)
         validate_config(sim_config)
 
-        # 7. Run the simulation
+        # 8. Run the simulation
         from socialsimullm.simulator.core import SimulatorCore
 
         spatial_cfg = self._to_world_spatial_config(config)

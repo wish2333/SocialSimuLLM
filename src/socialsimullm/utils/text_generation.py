@@ -13,8 +13,11 @@ from openai import OpenAI
 import re
 import os
 import time
+import logging
 
-from socialsimullm.utils.config import DefaultModel, openai_api_key, openai_base_url, embedding_api_key, embedding_base_url
+from socialsimullm.utils import config as _cfg
+
+_log = logging.getLogger("socialsimullm.text_generation")
 
 
 # --- DeepSeek V4 Role-Play Thinking Mode Markers ---
@@ -47,7 +50,7 @@ DEEPSEEK_V4_PURE_ANALYSIS_MARKER = (
 
 def _is_deepseek_v4(model: str | None = None) -> bool:
     """Check if the model is a DeepSeek V4 model that supports thinking mode markers."""
-    effective = model or DefaultModel.completion
+    effective = model or _cfg.DefaultModel.completion
     return effective.startswith("deepseek-v4-")
 
 
@@ -75,7 +78,7 @@ def time_sleep(sec=0.1):
 
 
 def GPT_request(system, prompt, gpt_parameter: dict = {
-        "model": DefaultModel.completion,
+        "model": "PLACEHOLDER",
         "temperature": 0.8,
         "max_tokens": 50,
         "top_p": 1.0,
@@ -110,7 +113,7 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
 
     # default parameters
     default_params = {
-        "model": DefaultModel.completion,
+        "model": _cfg.DefaultModel.completion,
         "temperature": 0.8,
         "max_tokens": 50,
         "top_p": 1.0,
@@ -122,9 +125,11 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
     merged_params = default_params.copy()
     if gpt_parameter is not None:
         merged_params.update(gpt_parameter)
+    if merged_params["model"] == "PLACEHOLDER":
+        merged_params["model"] = _cfg.DefaultModel.completion
 
     time_sleep()
-    client = OpenAI(api_key=openai_api_key, base_url=openai_base_url)
+    client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
     try:
         if not prompt.strip():
             raise ValueError("Prompt cannot be empty or whitespace only.")
@@ -149,16 +154,78 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
             n=1)
         return response.choices[0].message.content
     except Exception as e:
-        print(f"Error occurred: {str(e)}")
+        _log.error("GPT_request failed", exc_info=e)
         return f"ERROR: {str(e)}"
 
-def get_embedding(text, model=DefaultModel.embedding):
-    client = OpenAI(api_key=embedding_api_key, base_url=embedding_base_url)
+def get_embedding(text, model=None):
+    if model is None:
+        model = _cfg.DefaultModel.embedding
+    client = OpenAI(api_key=_cfg.embedding_api_key, base_url=_cfg.embedding_base_url)
     text = text.replace("\n", " ")
     if not text:
         text = "this is blank"
-    response = client.embeddings.create(input=[text], model=model)
-    return response.data[0].embedding
+    try:
+        response = client.embeddings.create(input=[text], model=model)
+        return response.data[0].embedding
+    except Exception as e:
+        _log.error("get_embedding failed", exc_info=e)
+        raise
+
+
+def test_connections() -> None:
+    """Pre-flight check for LLM and embedding API connectivity.
+
+    Tests both endpoints with minimal requests. Prints results and
+    exits with code 1 if the completion API is unreachable.
+    """
+    import sys
+
+    print("Testing API connections...")
+    print(f"  OPENAI_BASE_URL:       {_cfg.openai_base_url or '(empty)'}")
+    print(f"  OPENAI_API_KEY:        {_cfg.openai_api_key[:8]}...{_cfg.openai_api_key[-4:]}")
+    print(f"  OPENAI_MODEL:          {_cfg.DefaultModel.completion}")
+    print(f"  EMBEDDING_BASE_URL:    {_cfg.embedding_base_url}")
+    print(f"  EMBEDDING_API_KEY:     {_cfg.embedding_api_key[:8]}...{_cfg.embedding_api_key[-4:]}")
+    print(f"  EMBEDDING_MODEL:       {_cfg.DefaultModel.embedding}")
+    print()
+
+    # Completion API
+    try:
+        client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
+        resp = client.chat.completions.create(
+            model=_cfg.DefaultModel.completion,
+            messages=[{"role": "user", "content": "hi"}],
+            max_tokens=5,
+        )
+        output = resp.choices[0].message.content or "(empty)"
+        print(f"  Completion API: OK")
+        print(f"    input:  [user] 'hi'")
+        print(f"    output: {repr(output)}")
+        print(f"    model:  {resp.model}")
+        print(f"    usage:  prompt_tokens={resp.usage.prompt_tokens}, completion_tokens={resp.usage.completion_tokens}")
+    except Exception as e:
+        print(f"  Completion API: FAILED - {e}")
+        print("\nFix OPENAI_API_KEY / OPENAI_BASE_URL in .env and retry.")
+        sys.exit(1)
+
+    print()
+
+    # Embedding API
+    try:
+        client = OpenAI(api_key=_cfg.embedding_api_key, base_url=_cfg.embedding_base_url)
+        resp = client.embeddings.create(input=["test"], model=_cfg.DefaultModel.embedding)
+        vec = resp.data[0].embedding
+        print(f"  Embedding API: OK")
+        print(f"    input:  'test'")
+        print(f"    output: dim={len(vec)}, first_5={vec[:5]}")
+        print(f"    model:  {_cfg.DefaultModel.embedding}")
+        print(f"    usage:  prompt_tokens={resp.usage.prompt_tokens}, total_tokens={resp.usage.total_tokens}")
+    except Exception as e:
+        print(f"  Embedding API: FAILED - {e}")
+        print("\nWarning: embedding unavailable, memory retrieval will degrade.")
+
+    print("\nDone.")
+
 
 def get_rating(x):
     """

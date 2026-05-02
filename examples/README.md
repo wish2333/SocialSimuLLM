@@ -18,13 +18,23 @@ export OPENAI_BASE_URL="http://your-server/v1"
 #    Method C: CLI arguments
 # --api-key <key> --base-url <url>
 
-# Priority: CLI args > system env vars > .env file > built-in defaults
+# Priority: CLI args > .env > system env vars > built-in defaults
 
-# 2. Run the minimal example (1-day simulation, 144 steps)
+# 2. Verify API connectivity (recommended before first run)
+uv run socialsimullm doctor
+
+# 3. Smoke test (10 steps, ~1 min, for code testing)
+uv run socialsimullm run --config examples/smoke_test.yaml
+
+# 3. Full run (1-day simulation, 144 steps)
 uv run socialsimullm run --config examples/minimal.yaml
 
-# 3. View results
+# 4. View results
 uv run streamlit run src/socialsimullm/frontend/app.py
+
+# Other commands:
+#   uv run socialsimullm doctor   - Test API connectivity
+#   uv run socialsimullm list     - List all experiment runs
 ```
 
 ---
@@ -34,7 +44,7 @@ uv run streamlit run src/socialsimullm/frontend/app.py
 | File | Category | Description |
 |------|----------|-------------|
 | `minimal.yaml` | Basic | Minimal config, 1-day run, all defaults |
-| `full_config.yaml` | Reference | All v3.1.0 parameters documented |
+| `smoke_test.yaml` | Testing | 10-step quick run for code testing |
 | `batch_example.yaml` | Methodology | Multi-seed comparison |
 | `custom_town.yaml` | Basic | Custom world (Chinese setting) |
 | `town_data_custom.json` | Data | Custom town data file |
@@ -91,22 +101,32 @@ The simulation engine runs a step-based loop (each step = 10 sim-minutes):
 
 ## Testing Guide
 
-### Test 1: Basic Run (no extra features)
+### Test 1: Smoke Test (code verification)
 
-**Purpose**: Verify the core simulation loop works.
+**Purpose**: Quick 10-step run to verify the pipeline works end-to-end.
 
 ```bash
-uv run socialsimullm run --config examples/minimal.yaml
+uv run socialsimullm run --config examples/smoke_test.yaml
 ```
 
-**Expected**: Creates `runs/minimal_demo/<id>/` with events.jsonl, checkpoints/, done.flag.
+**Expected**: Creates `runs/smoke_test_<id>/` with events.jsonl and done.flag.
 
 **Verify**:
 ```bash
 uv run socialsimullm list
 ```
 
-### Test 2: Full Configuration
+### Test 2: Basic Run (no extra features)
+
+**Purpose**: Verify the core simulation loop works with a full 1-day run.
+
+```bash
+uv run socialsimullm run --config examples/minimal.yaml
+```
+
+**Expected**: Creates `runs/<id>/` with events.jsonl, checkpoints/, done.flag.
+
+### Test 3: Full Configuration
 
 **Purpose**: Verify all config fields are parsed correctly.
 
@@ -116,7 +136,7 @@ uv run socialsimullm run --config examples/full_config.yaml
 
 **Expected**: Run completes with spatial_config, FOV, path planner, and goals enabled.
 
-### Test 3: Batch Seed Comparison
+### Test 4: Batch Seed Comparison
 
 **Purpose**: Verify reproducibility and batch infrastructure.
 
@@ -128,7 +148,7 @@ uv run socialsimullm batch --config examples/batch_example.yaml --seeds 42,43,44
 
 **Analyze**: Open Streamlit -> View Results -> compare the runs.
 
-### Test 4: Custom World
+### Test 5: Custom World
 
 **Purpose**: Verify custom town_data.json loading.
 
@@ -138,7 +158,7 @@ uv run socialsimullm run --config examples/custom_town.yaml
 
 **Expected**: Agents use Chinese-named locations and characters from `town_data_custom.json`.
 
-### Test 5: Global Events
+### Test 6: Global Events
 
 **Purpose**: Verify event injection affects agent behavior.
 
@@ -148,7 +168,7 @@ uv run socialsimullm run --config examples/with_events.yaml
 
 **Expected**: Events appear in agent daily plans and reflections.
 
-### Test 6: Spatial Topology Comparison (Phase 3)
+### Test 7: Spatial Topology Comparison (Phase 3)
 
 **Purpose**: Compare how graph topology affects movement and interactions.
 
@@ -164,7 +184,7 @@ uv run socialsimullm run --config examples/spatial_variants.yaml --id exp_ring
 - Compare location transition heatmaps across topologies
 - Use `02_spatial_analysis.ipynb` for detailed transition matrices
 
-### Test 7: Goal-Driven Planning (Phase 3)
+### Test 8: Goal-Driven Planning (Phase 3)
 
 **Purpose**: Verify hierarchical goal decomposition and daily review.
 
@@ -179,7 +199,7 @@ uv run socialsimullm run --config examples/cognitive_enhanced.yaml
 
 **Verify**: Check events.jsonl for `"event_type": "goal_review"` entries.
 
-### Test 8: NL Scenario Generation (Phase 3)
+### Test 9: NL Scenario Generation (Phase 3)
 
 **Purpose**: Create a world from natural language and run it.
 
@@ -189,7 +209,7 @@ uv run python examples/python_runner.py --demo scenario
 
 **Expected**: Generates `examples/generated_town.json` with locations and characters.
 
-### Test 9: Research Assistant (Phase 3)
+### Test 10: Research Assistant (Phase 3)
 
 **Purpose**: LLM-powered experiment analysis.
 
@@ -200,7 +220,7 @@ uv run python examples/python_runner.py --demo scenario
 3. Select a completed experiment
 4. Click "Generate Summary" / "Identify Patterns" / "Generate Report"
 
-### Test 10: Jupyter Analysis Notebooks
+### Test 11: Jupyter Analysis Notebooks
 
 **Prerequisite**: Complete at least one experiment.
 
@@ -210,7 +230,7 @@ cd notebooks
 # Start with 00_quick_start.ipynb, then 01/02/03
 ```
 
-### Test 11: Replay & Heatmaps (Phase 3)
+### Test 12: Replay & Heatmaps (Phase 3)
 
 **Prerequisite**: An experiment with checkpoint_interval > 0.
 

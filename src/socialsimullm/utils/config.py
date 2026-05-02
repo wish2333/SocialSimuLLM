@@ -29,11 +29,11 @@ def _load_dotenv() -> None:
       1. ./.env  (current working directory)
       2. .env    (same directory as this source file, i.e. project root)
 
-    Does not override existing environment variables (system env > .env).
+    .env values override existing environment variables (CLI > .env > system env).
     """
-    load_dotenv(os.path.join(os.getcwd(), ".env"), override=False)
+    load_dotenv(os.path.join(os.getcwd(), ".env"), override=True)
     src_dir = os.path.dirname(os.path.abspath(__file__))
-    load_dotenv(os.path.join(src_dir, "..", "..", "..", ".env"), override=False)
+    load_dotenv(os.path.join(src_dir, "..", "..", "..", ".env"), override=True)
 
 
 # Load .env as early as possible so all os.environ.get() calls pick it up
@@ -151,7 +151,7 @@ def validate_config(config: SimulationConfig) -> None:
 def load_config(argv: list[str] | None = None) -> SimulationConfig:
     """Parse CLI arguments and environment variables into SimulationConfig.
 
-    Priority (highest to lowest): CLI args > env vars > defaults.
+    Priority (highest to lowest): CLI args > .env > system env vars > defaults.
 
     Args:
         argv: Command-line arguments. None means sys.argv is used.
@@ -282,7 +282,7 @@ def load_experiment_config(
         When command is None, the caller should use load_config() instead.
     """
     check_argv = argv if argv is not None else _get_argv()[1:]
-    if not check_argv or check_argv[0] not in ("run", "batch", "list"):
+    if not check_argv or check_argv[0] not in ("run", "batch", "list", "doctor"):
         return None, None
 
     parser = argparse.ArgumentParser(
@@ -324,6 +324,9 @@ def load_experiment_config(
         default=None,
         help="Filter by project name",
     )
+
+    # "doctor" subcommand
+    subparsers.add_parser("doctor", help="Test LLM and embedding API connectivity")
 
     args = parser.parse_args(argv)
     return args.command, args

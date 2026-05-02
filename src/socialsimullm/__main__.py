@@ -74,6 +74,28 @@ def _handle_list_command(args: Any) -> None:
         )
 
 
+def _handle_doctor_command(args: Any) -> None:
+    """Handle the 'doctor' subcommand - pre-flight API connectivity check."""
+    import os
+    from socialsimullm.utils.config import (
+        SimulationConfig, _apply_config_to_globals,
+    )
+
+    cfg = SimulationConfig(
+        project_name="doctor",
+        openai_api_key=os.environ.get("OPENAI_API_KEY", ""),
+        openai_base_url=os.environ.get("OPENAI_BASE_URL", ""),
+        embedding_model=os.environ.get("OPENAI_EMBEDDING_MODEL", "BAAI/bge-m3"),
+        embedding_base_url=os.environ.get("EMBEDDING_BASE_URL", ""),
+        embedding_api_key=os.environ.get("EMBEDDING_API_KEY", ""),
+        completion_model=os.environ.get("OPENAI_MODEL", "deepseek-v4-flash"),
+    )
+    _apply_config_to_globals(cfg)
+
+    from socialsimullm.utils.text_generation import test_connections
+    test_connections()
+
+
 def main() -> None:
     """Parse CLI arguments and dispatch to the appropriate handler."""
     command, args = load_experiment_config()
@@ -84,6 +106,8 @@ def main() -> None:
         _handle_batch_command(args)
     elif command == "list":
         _handle_list_command(args)
+    elif command == "doctor":
+        _handle_doctor_command(args)
     else:
         # Legacy mode (backward compatible with Phase 1)
         config = load_config()

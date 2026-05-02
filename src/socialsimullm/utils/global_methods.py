@@ -22,10 +22,11 @@ def _get_template_path():
 def load_meta_data(project_folder, project_name, global_time):
     meta_file = os.path.join(project_folder, "meta.json")
 
-    if not os.path.exists(project_folder):
-        os.makedirs(project_folder)
-        os.makedirs(os.path.join(project_folder, "agent_data"))
-        print(f"The project folder {project_folder} is created.")
+    if not os.path.exists(meta_file):
+        if not os.path.exists(project_folder):
+            os.makedirs(project_folder)
+            os.makedirs(os.path.join(project_folder, "agent_data"))
+            print(f"The project folder {project_folder} is created.")
         meta_data = {
             "project_name": project_name,
             "global_time": global_time,
