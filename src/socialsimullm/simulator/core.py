@@ -51,10 +51,14 @@ class SimulatorCore:
         core.run(max_steps=100)
     """
 
-    def __init__(self, config: SimulationConfig) -> None:
+    def __init__(self, config: SimulationConfig, initial_event: str | None = None) -> None:
         self.config = config
         self.project_name = config.project_name
-        self.project_folder = os.path.join(os.getcwd(), "projects", config.project_name)
+        if os.path.isabs(config.project_name):
+            self.project_folder = config.project_name
+        else:
+            self.project_folder = os.path.join(os.getcwd(), "projects", config.project_name)
+        self._initial_event = initial_event
         self.state: SimulationState | None = None
         self.logger: StructuredLogger | None = None
         self.reflection_engine: ReflectionEngine | None = None
@@ -109,7 +113,7 @@ class SimulatorCore:
         )
 
         # Handle global events
-        events = self._load_events(memory, global_time)
+        events = self._load_events(memory, global_time, new_event=self._initial_event)
 
         # Initialize agent memories
         for agent in agents:

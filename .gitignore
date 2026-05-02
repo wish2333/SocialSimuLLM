@@ -22,3 +22,6 @@ build/
 
 # ClaudeCode
 runCC-*
+
+# Experiment runs (output data, not source)
+runs/

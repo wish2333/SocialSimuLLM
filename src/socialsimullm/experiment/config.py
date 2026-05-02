@@ -1,0 +1,216 @@
+# socialsimullm/experiment/config.py
+
+# -*- coding: utf-8 -*-
+
+"""
+Experiment configuration models for SocialSimuLLM.
+
+Provides Pydantic-based ExperimentConfig for reproducible experiment
+setup, YAML serialization, and conversion to SimulationConfig for
+the simulation engine.
+
+@author: Huang Miaosen
+"""
+
+from __future__ import annotations
+
+import uuid
+from pathlib import Path
+from typing import TYPE_CHECKING, Any
+
+import yaml
+from pydantic import BaseModel, Field, field_validator
+
+if TYPE_CHECKING:
+    from socialsimullm.utils.config import SimulationConfig
+
+
+class MemoryConfig(BaseModel):
+    """Memory retrieval weight configuration for experiment runs.
+
+    Controls how memories are scored during recall:
+        score = recency_weight * recency + similarity_weight * similarity
+              + importance_weight * importance
+    """
+
+    recency_weight: float = Field(default=0.3, ge=0.0, le=1.0)
+    similarity_weight: float = Field(default=0.5, ge=0.0, le=1.0)
+    importance_weight: float = Field(default=0.2, ge=0.0, le=1.0)
+    importance_threshold: int = Field(default=6, ge=1, le=9)
+
+    @field_validator("recency_weight", "similarity_weight", "importance_weight")
+    @classmethod
+    def weights_sum_to_one(cls, v: float, info) -> float:
+        return v
+
+
+class ExperimentConfig(BaseModel):
+    """Full experiment configuration with validation.
+
+    Wraps SimulationConfig fields and adds experiment-specific parameters
+    (experiment_id, random_seed, budget_limit, events) for reproducible
+    batch execution. Converts to SimulationConfig via to_simulation_config().
+
+    API keys are NOT stored here -- they come from environment variables
+    and are applied by _apply_config_to_globals() at runtime.
+
+    Usage::
+
+        config = ExperimentConfig(model="deepseek-chat", simulation_steps=144)
+        config.to_yaml("experiments/exp001.yaml")
+
+        loaded = ExperimentConfig.from_yaml("experiments/exp001.yaml")
+        sim_config = loaded.to_simulation_config()
+    """
+
+    experiment_id: str = Field(
+        default_factory=lambda: f"exp_{uuid.uuid4().hex[:8]}",
+        description="Unique experiment identifier (auto-generated or manual)",
+    )
+    project: str = Field(
+        default="",
+        description="Project name under runs/. Defaults to experiment_id.",
+    )
+    model: str = Field(default="gpt-4o-mini", description="LLM completion model")
+    embedding_model: str = Field(
+        default="BAAI/bge-m3", description="Embedding model for memory retrieval"
+    )
+    simulation_steps: int = Field(
+        default=144, ge=1, description="Number of 10-minute simulation steps"
+    )
+    memory_limit: int = Field(
+        default=10, ge=1, description="Number of recent experiences to consider"
+    )
+    random_seed: int = Field(
+        default=42, ge=0, description="Random seed for reproducibility (0 = no seed)"
+    )
+    checkpoint_interval: int = Field(
+        default=10, ge=0, description="Steps between checkpoint saves (0 = disabled)"
+    )
+    spatial_graph_path: str = Field(
+        default="",
+        description="Path to town_data.json (absolute or relative to project)",
+    )
+    events: list[str] = Field(
+        default_factory=list,
+        description="Initial global events (one per simulation day boundary)",
+    )
+    budget_limit: float = Field(
+        default=0.0, ge=0.0, description="USD budget cap (0 = unlimited)"
+    )
+    memory_config: MemoryConfig = Field(
+        default_factory=MemoryConfig, description="Memory retrieval weight config"
+    )
+
+    # Reflection settings (mirrors SimulationConfig)
+    reflection_enabled: bool = Field(default=True, description="Enable reflection system")
+    reflection_importance_threshold: int = Field(
+        default=15, ge=1, description="Cumulative importance to trigger mid-day reflection"
+    )
+    reflection_min_observations: int = Field(
+        default=3, ge=1, description="Min observations before reflection triggers"
+    )
+    reflection_token_limit: int = Field(
+        default=150, ge=10, description="Token limit for reflection generation"
+    )
+    reflection_include_in_planning: bool = Field(
+        default=True, description="Inject past reflections into daily planning"
+    )
+
+    # Prompt config
+    prompt_meta: str = Field(
+        default="### Instruction:\n{}\n### Response:",
+        description="Prompt template wrapper for LLM calls",
+    )
+
+    @field_validator("project")
+    @classmethod
+    def project_defaults_to_id(cls, v: str) -> str:
+        return v
+
+    def model_post_init(self, __context: Any) -> None:
+        if not self.project:
+            object.__setattr__(self, "project", self.experiment_id)
+
+    def to_simulation_config(self) -> "SimulationConfig":
+        """Convert to SimulationConfig for SimulatorCore consumption.
+
+        Maps ExperimentConfig fields to SimulationConfig fields.
+        API keys are resolved from environment variables by
+        _apply_config_to_globals() at runtime.
+
+        Returns:
+            A SimulationConfig dataclass instance.
+        """
+        from socialsimullm.utils.config import SimulationConfig as _SC
+
+        return _SC(
+            project_name=self.project,
+            openai_api_key="",  # resolved from env vars
+            openai_base_url="",  # resolved from env vars
+            key_owner="",  # resolved from env vars
+            embedding_model=self.embedding_model,
+            completion_model=self.model,
+            max_steps=self.simulation_steps,
+            memory_limit=self.memory_limit,
+            checkpoint_interval=self.checkpoint_interval,
+            prompt_meta=self.prompt_meta,
+            reflection_enabled=self.reflection_enabled,
+            reflection_importance_threshold=self.reflection_importance_threshold,
+            reflection_min_observations=self.reflection_min_observations,
+            reflection_token_limit=self.reflection_token_limit,
+            reflection_include_in_planning=self.reflection_include_in_planning,
+        )
+
+    def to_yaml(self, path: str | Path) -> None:
+        """Export configuration to a YAML file.
+
+        Args:
+            path: Output file path for the YAML config.
+        """
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        data = self.model_dump(exclude_none=True)
+        with open(path, "w", encoding="utf-8") as f:
+            yaml.dump(data, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+
+    @classmethod
+    def from_yaml(cls, path: str | Path) -> ExperimentConfig:
+        """Import configuration from a YAML file.
+
+        Args:
+            path: Path to the YAML config file.
+
+        Returns:
+            A validated ExperimentConfig instance.
+
+        Raises:
+            FileNotFoundError: If the YAML file does not exist.
+            ValueError: If the YAML content fails Pydantic validation.
+        """
+        path = Path(path)
+        if not path.exists():
+            raise FileNotFoundError(f"Config file not found: {path}")
+        with open(path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+        if not isinstance(data, dict):
+            raise ValueError(f"Invalid YAML content in {path}: expected mapping")
+
+        from pydantic import ValidationError
+        try:
+            return cls.model_validate(data)
+        except ValidationError as e:
+            errors = "; ".join(
+                f"{err['loc'][-1]}: {err['msg']}" for err in e.errors()
+            )
+            raise ValueError(f"Config validation failed in {path}: {errors}") from e
+
+    def get_event_string(self) -> str:
+        """Join events list into a single string for _load_events().
+
+        Returns:
+            Semicolon-joined events string, or 'No new event.' if empty.
+        """
+        if not self.events:
+            return "No new event."
+        return "; ".join(self.events)

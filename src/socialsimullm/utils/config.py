@@ -220,3 +220,74 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
     validate_config(config)
 
     return config
+
+
+def load_experiment_config(
+    argv: list[str] | None = None,
+) -> tuple[str | None, Any]:
+    """Parse experiment CLI subcommands.
+
+    Detects whether the invocation uses a subcommand (run, batch, list)
+    or falls through to legacy mode. The detection checks if the first
+    non-script argument is a known subcommand name.
+
+    Args:
+        argv: Command-line arguments. None means sys.argv is used.
+
+    Returns:
+        Tuple of (command, args_namespace).
+        command is one of: "run", "batch", "list", None (legacy mode).
+        When command is None, the caller should use load_config() instead.
+    """
+    check_argv = argv if argv is not None else _get_argv()[1:]
+    if not check_argv or check_argv[0] not in ("run", "batch", "list"):
+        return None, None
+
+    parser = argparse.ArgumentParser(
+        prog="socialsimullm",
+        description="SocialSimuLLM experiment subcommands",
+    )
+    subparsers = parser.add_subparsers(dest="command")
+
+    # "run" subcommand
+    run_parser = subparsers.add_parser("run", help="Run a single experiment")
+    run_parser.add_argument(
+        "--config",
+        required=True,
+        help="Path to experiment config YAML file",
+    )
+    run_parser.add_argument(
+        "--id",
+        default=None,
+        help="Override experiment ID",
+    )
+
+    # "batch" subcommand
+    batch_parser = subparsers.add_parser("batch", help="Run batch experiments")
+    batch_parser.add_argument(
+        "--config",
+        required=True,
+        help="Path to experiment config YAML file",
+    )
+    batch_parser.add_argument(
+        "--seeds",
+        required=True,
+        help="Comma-separated random seed list (e.g., 42,43,44)",
+    )
+
+    # "list" subcommand
+    list_parser = subparsers.add_parser("list", help="List all experiments")
+    list_parser.add_argument(
+        "--project",
+        default=None,
+        help="Filter by project name",
+    )
+
+    args = parser.parse_args(argv)
+    return args.command, args
+
+
+def _get_argv() -> list[str]:
+    """Get sys.argv in a testable way."""
+    import sys
+    return sys.argv
