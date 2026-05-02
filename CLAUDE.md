@@ -8,34 +8,33 @@
 
 ## Project Metadata
 
-<!-- TODO: Fill in your project info -->
-
-- **Name**: [Your Project Name]
-- **Domain**: [e.g., Video Processing / E-commerce / Data Analytics]
-- **Type**: [Desktop App / Web App / CLI Tool / Library / API Service]
+- **Name**: SocialSimuLLM
+- **Domain**: Multi-Agent Social Simulation / Computational Social Science
+- **Type**: CLI Tool + Library (with optional Streamlit frontend)
+- **Version**: 3.1.0
+- **Repository**: `socialsimullm` (GitHub)
 
 ## Tech Stack
 
 | Layer | Technology | Version |
 |-------|-----------|---------|
-| Frontend | [e.g., Vue 3 / React / Svelte] | [version] |
-| Backend | [e.g., Python / Node.js / Go] | [version] |
-| Database | [e.g., SQLite / PostgreSQL / None] | [version] |
-| UI Framework | [e.g., Tailwind + DaisyUI / Ant Design] | [version] |
-| Build | [e.g., Vite / Webpack / PyInstaller] | [version] |
-| Package Manager | [e.g., bun / npm / uv / pip] | - |
-| Testing | [e.g., Vitest / pytest / jest] | [version] |
+| Frontend | Streamlit | >=1.30 |
+| Backend | Python | >=3.10 |
+| Database | JSON file-based / SQLite | - |
+| Visualization | Plotly + PyVis | >=5.0 / >=0.3 |
+| Data Processing | Pandas + NumPy | >=2.0 |
+| LLM Integration | OpenAI API | - |
+| Validation | Pydantic | >=2.0 |
+| Build | setuptools | >=61.0 |
+| Package Manager (backend) | uv | - |
 
 ## Development Environment
 
-<!-- TODO: Fill in your environment -->
-
-- **OS**: [e.g., Windows 11 / macOS / Linux]
-- **Runtime**: [e.g., Python 3.11+ / Node 20+]
-- **Package Manager (frontend)**: [e.g., bun]
-- **Package Manager (backend)**: [e.g., uv]
-- **Build Check (frontend)**: [e.g., cd frontend && bun run build]
-- **Build Check (backend)**: [e.g., cd backend && uv build]
+- **OS**: Windows 11
+- **Runtime**: Python 3.11+ / Node 20+
+- **Package Manager (frontend)**: bun
+- **Package Manager (backend)**: uv
+- **Build Check (frontend)**: cd frontend && bun run build
 
 ## AI Behavior Rules
 
@@ -82,7 +81,7 @@ Before ending a task, the AI MUST:
 project-root/
   CLAUDE.md                    # This file (constitution)
   docs/                        # Documentation layer
-    PRD.md                     # Product Requirements Document
+    PRD-x.x.x.md               # Product Requirements Document
     design/                    # System design artifacts
       system_design.md         # Architecture and module design
       state_machine.md         # State machine definitions
