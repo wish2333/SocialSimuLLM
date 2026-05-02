@@ -198,3 +198,301 @@ Frontend
 Launch: uv run streamlit run src/socialsimullm/frontend/app.py
 Optional dependencies: streamlit>=1.30, pyvis>=0.3, plotly>=5.0, pandas>=2.0
 ```
+# Phase 3 Implementation Plan: SocialSimuLLM Extended Exploration
+
+## Context
+
+Phase 1 (refactoring + cognitive core) and Phase 2 (experiment infrastructure + Streamlit frontend) are complete. Phase 3 transforms the simulation from a basic ring-graph prototype into a research platform with spatial awareness, intentional movement, goal-driven planning, and AI-assisted analysis. This enables the PRD-defined Experiments 2 (Spatial Structure Impact) and 3 (Environment Robustness).
+
+**Scope**: Balanced path (F-301~F-305) + selected Aggressive features (F-306, F-307, F-310, F-311).
+
+---
+
+## Sprint Breakdown
+
+### Sprint 1: Spatial Foundation (F-305 + F-301)
+~5 days | Establish `world/` module, weighted graphs, proximity perception
+
+### Sprint 2: Intelligent Movement (F-302 + F-303)
+~6 days | A* pathfinding, LLM movement intent, goal-driven planning
+
+### Sprint 3: Research Productivity (F-304 + F-307 + F-306)
+~6 days | Jupyter templates, ROMA decomposition, NL scenario generation
+
+### Sprint 4: Advanced Analysis (F-310 + F-311)
+~5 days | Replay visualization, heatmaps, AI research assistant
+
+---
+
+## Sprint 1: Spatial Foundation
+
+### F-305: WorldVariationGenerator
+
+**Create**:
+- `src/socialsimullm/world/__init__.py`
+- `src/socialsimullm/world/spatial.py` (~300 lines)
+
+**Key interfaces**:
+```python
+@dataclass(frozen=True)
+class SpatialConfig:
+    topology: str = "ring"  # ring | small_world | grid | random | scale_free
+    num_locations: int = 4
+    edge_weight_range: tuple[float, float] = (1.0, 1.0)
+    seed: int = 42
+    extra_params: dict[str, Any] = field(default_factory=dict)
+
+class WorldVariationGenerator:
+    def generate_graph(self, area_names: list[str]) -> nx.Graph: ...
+    def generate_town_data(self, base_template: dict) -> dict: ...
+    @staticmethod
+    def topology_presets() -> dict[str, dict[str, Any]]: ...
+```
+
+**Modify**:
+- `experiment/config.py` -- add `SpatialConfig` Pydantic model
+- `experiment/runner.py` -- call generator when `spatial_config` set
+- `simulator/core.py` -- refactor `_create_world_graph()` to delegate to generator
+
+### F-301: FieldOfView
+
+**Create**:
+- `src/socialsimullm/world/field_of_view.py` (~250 lines)
+
+**Key interfaces**:
+```python
+@dataclass(frozen=True)
+class FOVConfig:
+    enabled: bool = False
+    distance_threshold: float = 0.0  # 0 = same location only (legacy)
+
+@dataclass(frozen=True)
+class PerceptibleAgent:
+    name: str; description: str; location: str; distance: float; is_co_located: bool
+
+class FieldOfView:
+    def get_visible_agents(self, observer, all_agents) -> list[PerceptibleAgent]: ...
+    def format_visible_agents(self, observer, all_agents) -> str: ...
+    def format_nearby_context(self, observer, all_agents) -> str: ...
+```
+
+**Modify**:
+- `simulator/core.py` -- inject FOV data into `_hourly_planning()` and `_execute_actions()`
+- `experiment/config.py` -- add `fov_enabled`, `fov_distance` fields
+- `utils/config.py` -- add FOV to `SimulationConfig`
+
+**Verify**:
+- Generate each topology, verify connectedness
+- FOV `distance_threshold=0` matches legacy behavior
+- Existing experiments without `spatial_config` still produce ring graphs
+
+---
+
+## Sprint 2: Intelligent Movement
+
+### F-302: PathPlanner (LLM intent + A*)
+
+**Create**:
+- `src/socialsimullm/world/path_planner.py` (~350 lines)
+
+**Key interfaces**:
+```python
+@dataclass
+class MovementIntent:
+    destination: str; reason: str; urgency: float
+
+@dataclass
+class PlannedPath:
+    agent_name: str; origin: str; destination: str
+    path: list[str]; total_distance: float; steps_remaining: int
+
+class PathPlanner:
+    def infer_movement_intent(self, agent, hourly_plan, visible_agents) -> MovementIntent: ...
+    def find_path(self, origin, destination) -> list[str]: ...
+    def plan_movement(self, agent, hourly_plan, visible_agents) -> PlannedPath | None: ...
+    def execute_step(self, planned_path) -> str | None: ...
+    def format_path_context(self, agent) -> str: ...
+```
+
+**Modify**:
+- `agents/agent.py` -- add `planned_path` attribute
+- `simulator/core.py` -- replace `_movement()` with PathPlanner integration
+- `prompt_templates/template_agents.py` -- add movement intent prompt
+- `experiment/config.py` -- add `path_planner_enabled`, `multi_hop_movement`
+
+### F-303: Goal-Driven Planning
+
+**Create**:
+- `src/socialsimullm/cognition/__init__.py`
+- `src/socialsimullm/cognition/goal.py` (~400 lines)
+
+**Key interfaces**:
+```python
+class GoalStatus(Enum): ACTIVE | IN_PROGRESS | COMPLETED | ABANDONED | BLOCKED
+
+@dataclass
+class Goal:
+    id: str; description: str; status: GoalStatus; priority: int
+    created_at: str; deadline: str | None; parent_id: str | None
+    sub_goals: list[Goal]; completion_conditions: str
+
+class GoalManager:
+    def initialize_goals(self, agent_description, initial_events) -> list[Goal]: ...
+    def review_and_update_goals(self, agent, recent_memories, current_time) -> list[Goal]: ...
+    def decompose_goal(self, goal, context) -> list[Goal]: ...
+    def format_goals_context(self, goals) -> str: ...
+    def check_completion(self, goal, recent_actions) -> GoalStatus: ...
+    def serialize_goals(self, goals) -> list[dict]: ...
+    def deserialize_goals(self, data) -> list[Goal]: ...
+```
+
+**Modify**:
+- `agents/agent.py` -- add `goals` attribute
+- `simulator/core.py` -- call goal management in daily planning
+- `prompt_templates/template_agents.py` -- add goal planning prompts
+- `utils/logger.py` -- add goal event types, checkpoint save/restore goals
+
+**Verify**:
+- A* returns correct paths on weighted graphs
+- Multi-hop: agent traverses one node per step
+- Goals persist across daily boundaries via checkpoints
+- Legacy mode (all disabled) runs identically to Phase 2
+
+---
+
+## Sprint 3: Research Productivity
+
+### F-304: Jupyter Analysis Templates
+
+**Create**:
+- `notebooks/data_loader.py` (~150 lines) -- shared import module
+- `notebooks/00_quick_start.ipynb`
+- `notebooks/01_behavioral_analysis.ipynb`
+- `notebooks/02_spatial_analysis.ipynb`
+- `notebooks/03_experiment_comparison.ipynb`
+
+**Modify**:
+- `experiment/analysis.py` -- add helper functions for notebooks
+
+### F-307: Simplified ROMA Planning
+
+**Modify** (extends F-303 `cognition/goal.py`):
+```python
+class RecursiveTaskDecomposer:
+    def decompose(self, goal, context, depth=0) -> list[Goal]: ...
+    def order_by_dependency(self, goals) -> list[Goal]: ...
+    def get_immediate_tasks(self, goals) -> list[Goal]: ...
+    def format_task_plan(self, tasks) -> str: ...
+```
+- `prompt_templates/template_agents.py` -- add recursive decomposition prompts
+
+### F-306: NL Scenario Construction
+
+**Create**:
+- `src/socialsimullm/experiment/scenario.py` (~250 lines)
+
+**Key interfaces**:
+```python
+class ScenarioGenerator:
+    def generate(self, scenario_description: str) -> dict: ...
+    def validate_town_data(self, town_data: dict) -> list[str]: ...
+    def refine(self, scenario_description, feedback, existing_town_data) -> dict: ...
+```
+
+**Modify**:
+- `experiment/config.py` -- add `scenario_description` field
+- `experiment/runner.py` -- call scenario generator before run
+- `__main__.py` -- add `generate` subcommand
+- `frontend/pages/configure.py` -- add NL scenario text area
+
+**Verify**:
+- All 4 notebooks run end-to-end against existing data
+- `uv run socialsimullm generate --description "..."` produces valid JSON
+- ROMA decomposition produces ordered task tree
+
+---
+
+## Sprint 4: Advanced Analysis
+
+### F-310: Advanced Visualization (Replay + Heatmap)
+
+**Create**:
+- `src/socialsimullm/frontend/components/replay.py` (~200 lines)
+- `src/socialsimullm/frontend/components/heatmap.py` (~150 lines)
+
+**Modify**:
+- `frontend/pages/results.py` -- add Replay and Heatmaps tabs
+- `experiment/analysis.py` -- add timeline/interaction helpers
+
+### F-311: Semi-Auto Research Assistant
+
+**Create**:
+- `src/socialsimullm/experiment/assistant.py` (~300 lines)
+- `src/socialsimullm/frontend/pages/assistant.py` (~200 lines)
+
+**Key interfaces**:
+```python
+class ResearchAssistant:
+    def summarize_experiment(self, experiment_id, project) -> str: ...
+    def identify_patterns(self, experiment_id, project) -> list[str]: ...
+    def suggest_hypotheses(self, experiment_id, project) -> list[str]: ...
+    def compare_runs(self, experiment_ids, project) -> str: ...
+    def generate_report(self, experiment_id, project) -> str: ...
+```
+
+**Modify**:
+- `frontend/app.py` -- add "Research Assistant" tab
+
+**Verify**:
+- Replay slider navigates checkpoints, agent positions update
+- Heatmaps render with color scale
+- Assistant generates non-empty summaries from experiment data
+
+---
+
+## Dependency Graph
+
+```
+F-305 (WorldVariation) --> F-301 (FOV) --> F-302 (PathPlanner) --> F-303 (Goals) --> F-307 (ROMA)
+                                                                        |
+F-304 (Jupyter) [independent]                                          |
+F-306 (NL Scenario) [independent]                                     v
+F-311 (Research Assistant) [independent]                          F-310 (Adv Viz)
+```
+
+---
+
+## New Config Fields (cumulative)
+
+**ExperimentConfig**: `spatial_config`, `fov_enabled`, `fov_distance`, `path_planner_enabled`, `multi_hop_movement`, `goal_enabled`, `max_active_goals`, `scenario_description`
+
+**SimulationConfig**: `fov_enabled`, `fov_distance`, `path_planner_enabled`, `goal_enabled`
+
+---
+
+## File Creation Summary
+
+| Sprint | File | Lines |
+|--------|------|-------|
+| 1 | `world/__init__.py` | 5 |
+| 1 | `world/spatial.py` | 300 |
+| 1 | `world/field_of_view.py` | 250 |
+| 2 | `world/path_planner.py` | 350 |
+| 2 | `cognition/__init__.py` | 5 |
+| 2 | `cognition/goal.py` | 400 |
+| 3 | `experiment/scenario.py` | 250 |
+| 3 | `notebooks/data_loader.py` | 150 |
+| 3 | `notebooks/*.ipynb` (4 files) | ~1000 |
+| 4 | `frontend/components/replay.py` | 200 |
+| 4 | `frontend/components/heatmap.py` | 150 |
+| 4 | `experiment/assistant.py` | 300 |
+| 4 | `frontend/pages/assistant.py` | 200 |
+| **Total new** | | **~3,560** |
+
+## Critical Files to Modify (all sprints)
+
+- `simulator/core.py` -- step loop integration for all features
+- `agents/agent.py` -- goals, planned_path attributes
+- `experiment/config.py` -- all new config fields
+- `prompt_templates/template_agents.py` -- new prompts
+- `utils/config.py` -- SimulationConfig additions

@@ -36,6 +36,10 @@ from socialsimullm.utils.global_methods import (
 )
 from socialsimullm.utils.logger import LogConfig, StructuredLogger
 from socialsimullm.utils.text_generation import summarize_simulation
+from socialsimullm.world.field_of_view import FOVConfig, FieldOfView
+from socialsimullm.world.path_planner import PathPlanner, PathPlannerConfig, PlannedPath
+from socialsimullm.world.spatial import SpatialConfig, WorldVariationGenerator
+from socialsimullm.cognition.goal import GoalConfig, GoalManager
 
 
 class SimulatorCore:
@@ -51,7 +55,12 @@ class SimulatorCore:
         core.run(max_steps=100)
     """
 
-    def __init__(self, config: SimulationConfig, initial_event: str | None = None) -> None:
+    def __init__(
+        self,
+        config: SimulationConfig,
+        initial_event: str | None = None,
+        spatial_config: SpatialConfig | None = None,
+    ) -> None:
         self.config = config
         self.project_name = config.project_name
         if os.path.isabs(config.project_name):
@@ -59,9 +68,13 @@ class SimulatorCore:
         else:
             self.project_folder = os.path.join(os.getcwd(), "projects", config.project_name)
         self._initial_event = initial_event
+        self._spatial_config = spatial_config
         self.state: SimulationState | None = None
         self.logger: StructuredLogger | None = None
         self.reflection_engine: ReflectionEngine | None = None
+        self.fov: FieldOfView | None = None
+        self.path_planner: PathPlanner | None = None
+        self.goal_manager: GoalManager | None = None
 
     def initialize(self) -> None:
         """Initialize the simulation world from project data.
@@ -87,9 +100,36 @@ class SimulatorCore:
         print(f"=== CONFIGURATIONS for {self.project_name} LOADED ===")
         print(f"==Global time: {global_time} Round: {round_num}==")
 
-        # Create world graph (ring topology)
-        world_graph = self._create_world_graph(town_areas)
+        # Create world graph (ring topology by default, configurable via spatial_config)
+        world_graph = self._create_world_graph(town_areas, self._spatial_config)
         print("Nodes in world_graph:", world_graph.nodes())
+
+        # Initialize field of view
+        if getattr(self.config, "fov_enabled", False):
+            fov_config = FOVConfig(
+                enabled=True,
+                distance_threshold=getattr(self.config, "fov_distance", 0.0),
+            )
+            self.fov = FieldOfView(fov_config, world_graph)
+            print(f"FOV enabled: distance_threshold={fov_config.distance_threshold}")
+
+        # Initialize path planner
+        if getattr(self.config, "path_planner_enabled", False):
+            pp_config = PathPlannerConfig(
+                enabled=True,
+                multi_hop=getattr(self.config, "multi_hop_movement", True),
+            )
+            self.path_planner = PathPlanner(pp_config, world_graph, self.config.prompt_meta)
+            print("Path planner enabled")
+
+        # Initialize goal manager
+        if getattr(self.config, "goal_enabled", False):
+            goal_cfg = GoalConfig(
+                enabled=True,
+                max_active_goals=getattr(self.config, "max_active_goals", 3),
+            )
+            self.goal_manager = GoalManager(goal_cfg, self.config.prompt_meta)
+            print("Goal manager enabled")
 
         # Create agents
         agents = self._create_agents(town_people, world_graph)
@@ -252,11 +292,98 @@ class SimulatorCore:
 
     # --- Private helper methods ---
 
-    def _create_world_graph(self, town_areas: dict) -> nx.Graph:
-        """Create a ring graph from town areas."""
-        world_graph = nx.Graph()
+    def _get_fov_context(self, agent: Agent, s: SimulationState) -> str:
+        """Get FOV-aware nearby context string for an agent.
+
+        Returns empty string if FOV is disabled (legacy behavior:
+        agents build their own people list from co-located agents).
+        """
+        if self.fov is None:
+            return ""
+        return self.fov.format_visible_agents(agent, s.agents)
+
+    def _movement_with_planner(self, agent: Agent, s: SimulationState) -> None:
+        """Move agent using path planner (LLM intent + A*)."""
+        assert self.logger is not None
+        assert self.path_planner is not None
+
+        fov_ctx = self._get_fov_context(agent, s)
+
+        # If agent already has a planned path, execute next step
+        if getattr(agent, "planned_path", None) is not None and agent.planned_path is not None:
+            if agent.planned_path.steps_remaining > 0:
+                new_loc = self.path_planner.execute_step(agent.planned_path)
+                if new_loc and new_loc != agent.location:
+                    old = agent.location
+                    agent.move(new_loc)
+                    agent.memory_location_change(s.global_time, old, new_loc)
+                    save_location_change(s.project_folder, agent.name, new_loc)
+                    self.logger.log_event("movement", step=s.round, agent_id=agent.name,
+                                          data={
+                                              "from": old, "to": new_loc,
+                                              "hop": f"{agent.planned_path.steps_remaining + 1} remaining",
+                                          })
+                    if agent.planned_path.steps_remaining <= 0:
+                        agent.planned_path = None
+                    return
+                else:
+                    agent.planned_path = None
+
+        # Plan new movement
+        planned = self.path_planner.plan_movement(agent, agent.hourly_plan, fov_ctx)
+        if planned is not None:
+            agent.planned_path = planned
+
+            if self.path_planner._config.multi_hop and planned.steps_remaining > 0:
+                # Multi-hop: move one step
+                new_loc = self.path_planner.execute_step(planned)
+                if new_loc and new_loc != agent.location:
+                    old = agent.location
+                    agent.move(new_loc)
+                    agent.memory_location_change(s.global_time, old, new_loc)
+                    save_location_change(s.project_folder, agent.name, new_loc)
+                    self.logger.log_event("movement", step=s.round, agent_id=agent.name,
+                                          data={
+                                              "from": old, "to": new_loc,
+                                              "destination": planned.destination,
+                                              "hop": f"{planned.steps_remaining} remaining",
+                                              "path": planned.path,
+                                          })
+            else:
+                # Single-hop: move directly
+                old = agent.location
+                agent.move(planned.destination)
+                agent.memory_location_change(s.global_time, old, planned.destination)
+                save_location_change(s.project_folder, agent.name, planned.destination)
+                self.logger.log_event("movement", step=s.round, agent_id=agent.name,
+                                      data={
+                                          "from": old, "to": planned.destination,
+                                          "reason": planned.intent.reason if planned.intent else "",
+                                      })
+                agent.planned_path = None
+        else:
+            self.logger.log_event("movement", step=s.round, agent_id=agent.name,
+                                  data={"action": "stay", "reason": "no movement intent"})
+
+    def _create_world_graph(self, town_areas: dict, spatial_config: SpatialConfig | None = None) -> nx.Graph:
+        """Create world graph from town areas.
+
+        Args:
+            town_areas: Dict of area_name -> area_description.
+            spatial_config: Optional SpatialConfig for non-ring topologies.
+                           When None, uses legacy ring topology.
+
+        Returns:
+            A NetworkX Graph with named location nodes.
+        """
         area_names = list(town_areas.keys())
 
+        if spatial_config is not None:
+            generator = WorldVariationGenerator(spatial_config)
+            return generator.generate_graph(area_names)
+
+        # Legacy: ring topology
+        world_graph = nx.Graph()
         for area_name in area_names:
             world_graph.add_node(area_name)
 
@@ -316,6 +443,16 @@ class SimulatorCore:
             recent_reflections = ""
             if self.config.reflection_include_in_planning:
                 recent_reflections = s.memory.format_reflections(agent.name, 3)
+
+            # Goal management: review and update goals before planning
+            if self.goal_manager is not None and hasattr(agent, "goals"):
+                recent_memories = s.memory.recall_recent(agent.name, 10)
+                agent.goals = self.goal_manager.review_and_update_goals(
+                    agent, recent_memories, s.global_time,
+                )
+                self.logger.log_event("goal_review", step=s.round, agent_id=agent.name,
+                                      data={"active_goals": len(self.goal_manager.get_active_goals(agent.goals))})
+
             experience = agent.daily_planning(
                 s.global_time, prompt_meta,
                 s.memory.format_impressions(agent.name, 3),
@@ -336,6 +473,7 @@ class SimulatorCore:
                 s.global_time, s.town_areas, prompt_meta,
                 s.memory.format_impressions(agent.name, 3),
                 s.memory.format_recent(agent.name, s.memory.memory_limit),
+                fov_context=self._get_fov_context(agent, s),
             )
             agent.related_things = s.memory.format_semantic(agent.name, agent.hourly_plan, 5)
             s.memory.store(experience)
@@ -370,6 +508,12 @@ class SimulatorCore:
         """Rate locations and move agents."""
         assert self.logger is not None
         for agent in s.agents:
+            # Path planner flow
+            if self.path_planner is not None:
+                self._movement_with_planner(agent, s)
+                continue
+
+            # Legacy: rate_locations flow
             place_ratings = agent.rate_locations(
                 s.locations, s.global_time, prompt_meta,
                 s.memory.format_impressions(agent.name, 3),

@@ -73,6 +73,8 @@ class Agent:
         self.world_graph: nx.Graph = world_graph
 
         self.related_things: str = ""
+        self.goals: list = []
+        self.planned_path: object | None = None
         self.event: str = ""
 
         self.place_ratings: list[tuple[str, int, str]] = []
@@ -107,13 +109,18 @@ class Agent:
         prompt_meta: str,
         recent_impressions: str,
         newthings: str,
+        fov_context: str = "",
     ) -> dict:
         """Generate the agent's hourly plan."""
         people = [agent.name for agent in agents if agent.location == location]
         system = hourly_planning_system.format(self.name, self.description, recent_impressions, newthings, self.daily_plans)
         prompt = hourly_planning_prompt.format(location.name, town_areas[location.name], str(global_time), ", ".join(people))
-        people_description = [f"{agent.name}: {agent.description}" for agent in agents if agent.location == location.name]
-        prompt += " You know the following about people: " + ". ".join(people_description)
+
+        if fov_context:
+            prompt += f" You can see: {fov_context}"
+        else:
+            people_description = [f"{agent.name}: {agent.description}" for agent in agents if agent.location == location.name]
+            prompt += " You know the following about people: " + ". ".join(people_description)
         self.hourly_action_prompt = prompt.replace(str(global_time), "{}")
         prompt += "You can choose to interact with them or not. What do you do in the next hour? Use at most 20 words to explain."
 

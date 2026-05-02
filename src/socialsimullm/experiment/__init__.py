@@ -15,6 +15,7 @@ from socialsimullm.experiment.analysis import (
 )
 from socialsimullm.experiment.config import ExperimentConfig, MemoryConfig
 from socialsimullm.experiment.runner import ExperimentRunner
+from socialsimullm.experiment.scenario import ScenarioGenerator
 from socialsimullm.experiment.storage import (
     create_run_dir,
     find_run_dir,
@@ -29,6 +30,7 @@ __all__ = [
     "ExperimentConfig",
     "ExperimentRunner",
     "MemoryConfig",
+    "ScenarioGenerator",
     "compare_experiments",
     "create_run_dir",
     "find_run_dir",

@@ -59,8 +59,12 @@ class ExperimentRunner:
         project = config.project or config.experiment_id
         run_dir = create_run_dir(project, config.experiment_id)
 
-        # 3. Copy town_data.json into run directory
+        # 3. Copy town_data.json into run directory (or generate from spatial_config)
         self._prepare_project_data(config, run_dir)
+
+        # 3b. If spatial_config is set, generate a custom town_data.json
+        if config.spatial_config is not None:
+            self._generate_spatial_town_data(config, run_dir)
 
         # 4. Save config snapshot
         config.to_yaml(str(run_dir / "config.yaml"))
@@ -80,8 +84,12 @@ class ExperimentRunner:
         # 7. Run the simulation
         from socialsimullm.simulator.core import SimulatorCore
 
+        spatial_cfg = self._to_world_spatial_config(config)
+
         core = SimulatorCore(
-            sim_config, initial_event=config.get_event_string()
+            sim_config,
+            initial_event=config.get_event_string(),
+            spatial_config=spatial_cfg,
         )
         core.initialize()
         core.run(max_steps=config.simulation_steps)
@@ -177,3 +185,66 @@ class ExperimentRunner:
             "..", "data", "town_data_template.json",
         )
         return os.path.normpath(template_path)
+
+    def _generate_spatial_town_data(
+        self, config: ExperimentConfig, run_dir: Path
+    ) -> None:
+        """Generate a town_data.json using the spatial config.
+
+        Reads the base template and replaces the topology with
+        the configured graph variant.
+
+        Args:
+            config: ExperimentConfig with spatial_config set.
+            run_dir: Target run directory.
+        """
+        import json
+
+        from socialsimullm.world.spatial import WorldVariationGenerator
+
+        world_spatial_config = self._to_world_spatial_config(config)
+        if world_spatial_config is None:
+            return
+
+        template_path = config.spatial_graph_path or self._get_template_path()
+        with open(template_path, "r", encoding="utf-8") as f:
+            base_template = json.load(f)
+
+        generator = WorldVariationGenerator(world_spatial_config)
+        town_data = generator.generate_town_data(base_template)
+
+        dst = run_dir / "town_data.json"
+        with open(dst, "w", encoding="utf-8") as f:
+            json.dump(town_data, f, indent=2, ensure_ascii=False)
+
+    def _to_world_spatial_config(
+        self, config: ExperimentConfig
+    ) -> SpatialConfig | None:
+        """Convert ExperimentConfig.spatial_config to world.SpatialConfig.
+
+        Args:
+            config: ExperimentConfig with optional spatial_config.
+
+        Returns:
+            World SpatialConfig or None if spatial_config is not set.
+        """
+        if config.spatial_config is None:
+            return None
+
+        from socialsimullm.world.spatial import SpatialConfig as WorldSpatialConfig
+
+        sc = config.spatial_config
+        return WorldSpatialConfig(
+            topology=sc.topology,
+            num_locations=sc.num_locations,
+            edge_weight_range=(sc.edge_weight_min, sc.edge_weight_max),
+            seed=sc.seed,
+            extra_params={
+                "k": sc.small_world_k,
+                "p": sc.small_world_p,
+                "rows": sc.grid_rows,
+                "cols": sc.grid_cols,
+                "random_p": sc.random_p,
+                "m": sc.scale_free_m,
+            },
+        )

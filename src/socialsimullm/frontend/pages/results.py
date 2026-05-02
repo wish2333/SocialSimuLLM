@@ -90,8 +90,8 @@ def render_results() -> None:
         return
 
     # Visualization tabs
-    tab_graph, tab_agents, tab_events = st.tabs(
-        ["Spatial Graph", "Agent States", "Event Summary"]
+    tab_graph, tab_agents, tab_events, tab_replay, tab_heatmaps = st.tabs(
+        ["Spatial Graph", "Agent States", "Event Summary", "Replay", "Heatmaps"]
     )
 
     with tab_graph:
@@ -102,6 +102,12 @@ def render_results() -> None:
 
     with tab_events:
         _render_event_summary(eid, proj)
+
+    with tab_replay:
+        _render_replay(eid, proj)
+
+    with tab_heatmaps:
+        _render_heatmaps(eid, proj)
 
 
 def _render_spatial_graph(checkpoint: dict) -> None:
@@ -172,3 +178,89 @@ def _render_event_summary(experiment_id: str, project: str) -> None:
                 st.write(f"  {etype}: {count}")
     else:
         st.info("No events recorded yet.")
+
+
+def _render_replay(experiment_id: str, project: str) -> None:
+    """Render the checkpoint replay interface."""
+    try:
+        from socialsimullm.frontend.components.replay import render_replay
+        from socialsimullm.experiment.analysis import load_results
+
+        checkpoints = _load_all_checkpoints(experiment_id, project)
+        events = load_results(experiment_id, project)
+        render_replay(checkpoints, events)
+    except FileNotFoundError:
+        st.warning("No checkpoint or event data found for replay.")
+    except ImportError as e:
+        st.warning(f"Replay dependencies not available: {e}")
+
+
+def _render_heatmaps(experiment_id: str, project: str) -> None:
+    """Render heatmap analysis tabs."""
+    try:
+        from socialsimullm.frontend.components.heatmap import (
+            render_agent_activity_heatmap,
+            render_location_heatmap,
+            render_transition_heatmap,
+        )
+        from socialsimullm.experiment.analysis import load_results
+    except ImportError as e:
+        st.warning(f"Heatmap dependencies not available: {e}")
+        return
+
+    try:
+        checkpoints = _load_all_checkpoints(experiment_id, project)
+        events = load_results(experiment_id, project)
+    except FileNotFoundError:
+        st.warning("No data found for heatmaps.")
+        return
+
+    sub_location, sub_activity, sub_transition = st.tabs(
+        ["Location Occupancy", "Agent Activity", "Transitions"]
+    )
+
+    with sub_location:
+        render_location_heatmap(checkpoints)
+
+    with sub_activity:
+        render_agent_activity_heatmap(events)
+
+    with sub_transition:
+        render_transition_heatmap(events)
+
+
+def _load_all_checkpoints(
+    experiment_id: str, project: str
+) -> list[dict]:
+    """Load all checkpoint dicts for an experiment."""
+    import json
+
+    run_dir = find_run_dir(experiment_id, project)
+    checkpoints_dir = run_dir / "checkpoints"
+
+    if not checkpoints_dir.exists():
+        return []
+
+    checkpoints: list[dict] = []
+    for cp_dir in sorted(checkpoints_dir.iterdir()):
+        if not cp_dir.is_dir():
+            continue
+        agent_file = cp_dir / "agent_states.json"
+        graph_file = cp_dir / "spatial_graph.json"
+        if agent_file.exists():
+            checkpoint: dict = {}
+            try:
+                with open(agent_file, "r", encoding="utf-8") as f:
+                    checkpoint["agent_states"] = json.load(f)
+            except json.JSONDecodeError:
+                continue
+            if graph_file.exists():
+                try:
+                    with open(graph_file, "r", encoding="utf-8") as f:
+                        checkpoint["spatial_graph"] = json.load(f)
+                except json.JSONDecodeError:
+                    pass
+            checkpoint["step"] = cp_dir.name.replace("step_", "")
+            checkpoints.append(checkpoint)
+
+    return checkpoints

@@ -52,6 +52,12 @@ class SimulationConfig:
     reflection_min_observations: int = 3
     reflection_token_limit: int = 150
     reflection_include_in_planning: bool = True
+    fov_enabled: bool = False
+    fov_distance: float = 0.0
+    path_planner_enabled: bool = False
+    multi_hop_movement: bool = True
+    goal_enabled: bool = False
+    max_active_goals: int = 3
 
 
 class DefaultModel:

@@ -25,6 +25,44 @@ if TYPE_CHECKING:
     from socialsimullm.utils.config import SimulationConfig
 
 
+class SpatialConfig(BaseModel):
+    """Spatial graph generation configuration.
+
+    Controls the topology and edge weights of the simulation world graph.
+    When set, the world graph is generated instead of loaded from town_data.json.
+    """
+
+    topology: str = Field(
+        default="ring",
+        description="Graph topology: ring, small_world, grid, random, scale_free",
+    )
+    num_locations: int = Field(
+        default=4, ge=2, le=15, description="Number of location nodes"
+    )
+    edge_weight_min: float = Field(
+        default=1.0, ge=0.1, description="Minimum edge weight (distance)"
+    )
+    edge_weight_max: float = Field(
+        default=1.0, ge=0.1, description="Maximum edge weight (distance)"
+    )
+    seed: int = Field(
+        default=42, ge=0, description="Random seed for graph generation"
+    )
+    small_world_k: int = Field(default=4, ge=2, description="Watts-Strogatz k parameter")
+    small_world_p: float = Field(default=0.3, ge=0.0, le=1.0, description="Watts-Strogatz p parameter")
+    grid_rows: int = Field(default=2, ge=1, description="Grid rows")
+    grid_cols: int = Field(default=2, ge=1, description="Grid columns")
+    random_p: float = Field(default=0.4, ge=0.0, le=1.0, description="Erdos-Renyi edge probability")
+    scale_free_m: int = Field(default=2, ge=1, description="Barabasi-Albert m parameter")
+
+    @field_validator("edge_weight_max")
+    @classmethod
+    def edge_weights_valid(cls, v: float, info) -> float:
+        if "edge_weight_min" in info.data and v < info.data["edge_weight_min"]:
+            raise ValueError("edge_weight_max must be >= edge_weight_min")
+        return v
+
+
 class MemoryConfig(BaseModel):
     """Memory retrieval weight configuration for experiment runs.
 
@@ -102,6 +140,35 @@ class ExperimentConfig(BaseModel):
         default_factory=MemoryConfig, description="Memory retrieval weight config"
     )
 
+    # Spatial configuration
+    spatial_config: SpatialConfig | None = Field(
+        default=None, description="Spatial graph generation config (None = use town_data.json)"
+    )
+
+    # FOV configuration
+    fov_enabled: bool = Field(
+        default=False, description="Enable proximity-based agent perception"
+    )
+    fov_distance: float = Field(
+        default=0.0, ge=0.0, description="Max graph distance for visibility (0 = same location only)"
+    )
+
+    # PathPlanner configuration
+    path_planner_enabled: bool = Field(
+        default=False, description="Enable LLM intent + A* path planning"
+    )
+    multi_hop_movement: bool = Field(
+        default=True, description="Agents traverse one node per step (False = teleport)"
+    )
+
+    # Goal configuration
+    goal_enabled: bool = Field(
+        default=False, description="Enable goal-driven hierarchical planning"
+    )
+    max_active_goals: int = Field(
+        default=3, ge=1, le=10, description="Max concurrent active goals per agent"
+    )
+
     # Reflection settings (mirrors SimulationConfig)
     reflection_enabled: bool = Field(default=True, description="Enable reflection system")
     reflection_importance_threshold: int = Field(
@@ -160,6 +227,12 @@ class ExperimentConfig(BaseModel):
             reflection_min_observations=self.reflection_min_observations,
             reflection_token_limit=self.reflection_token_limit,
             reflection_include_in_planning=self.reflection_include_in_planning,
+            fov_enabled=self.fov_enabled,
+            fov_distance=self.fov_distance,
+            path_planner_enabled=self.path_planner_enabled,
+            multi_hop_movement=self.multi_hop_movement,
+            goal_enabled=self.goal_enabled,
+            max_active_goals=self.max_active_goals,
         )
 
     def to_yaml(self, path: str | Path) -> None:
