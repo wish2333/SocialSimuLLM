@@ -24,15 +24,27 @@ from pathlib import Path
 from typing import Any
 
 
+def _get_runs_root() -> Path:
+    """Return the runs/ directory relative to the project root."""
+    # data_loader.py lives under notebooks/, so project root is one level up.
+    return Path(__file__).resolve().parent.parent / "runs"
+
+
 def _find_run_dir(experiment_id: str, project: str | None = None) -> Path | None:
     """Locate an experiment run directory."""
+    runs_root = _get_runs_root()
+    candidates: list[Path] = []
+
     if project:
-        candidates = [Path("runs") / project / experiment_id]
+        candidates = [runs_root / project / experiment_id]
     else:
-        runs_dir = Path("runs")
-        if not runs_dir.exists():
+        if not runs_root.exists():
             return None
-        candidates = list(runs_dir.rglob(f"*/{experiment_id}"))
+        # Check direct child (flat layout) and nested layouts
+        direct = runs_root / experiment_id
+        if direct.is_dir():
+            candidates.append(direct)
+        candidates.extend(runs_root.rglob(f"*/{experiment_id}"))
 
     for c in candidates:
         if (c / "done.flag").exists() or (c / "events.jsonl").exists():
