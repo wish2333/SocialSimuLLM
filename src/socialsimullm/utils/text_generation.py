@@ -10,6 +10,7 @@ Comment format: Use standard Google style docstring format for comments, bilingu
 """
 
 from openai import OpenAI
+import json
 import re
 import os
 import time
@@ -156,6 +157,171 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
     except Exception as e:
         _log.error("GPT_request failed", exc_info=e)
         return f"ERROR: {str(e)}"
+
+
+def GPT_request_json(
+    system: str,
+    prompt: str,
+    gpt_parameter: dict | None = None,
+    *,
+    required_keys: list[str] | None = None,
+    fallback: dict | None = None,
+    thinking_mode: str = "role_immersion",
+) -> dict:
+    """Generate a JSON response via OpenAI-compatible API.
+
+    For DeepSeek V4 models, uses response_format=json_object to ensure
+    parseable output even when thinking tokens consume the token budget.
+    For non-DeepSeek models, falls back to plain text and attempts
+    JSON parsing of the response.
+
+    Retry strategy (DeepSeek V4 only):
+      1. Attempt 1: JSON mode (response_format=json_object)
+      2. Attempt 2: JSON mode retry (same params)
+      3. Attempt 3: Plain text mode (no response_format)
+      4. Final: if plain text is also empty, return preset fallback dict.
+
+    Non-DeepSeek models skip directly to plain text mode with a
+    single attempt, then fallback if that fails.
+
+    Args:
+        system: System message content.
+        prompt: User message content (NOT wrapped in prompt_meta by this function).
+        gpt_parameter: Override parameters (max_tokens, temperature, etc.).
+        required_keys: Keys that must be present in parsed JSON. Triggers retry if missing.
+        fallback: Preset dict returned when all attempts fail (e.g. {"rating": 5}).
+                  Must contain all required_keys. If None, returns {"_error": True, "text": ...}.
+        thinking_mode: DeepSeek V4 thinking mode marker.
+
+    Returns:
+        Parsed JSON dict. On exhausted retries: fallback dict with "_error": True,
+        or {"_error": True, "text": "<raw>"} if no fallback provided.
+    """
+    _make_fallback = lambda raw: dict(fallback) if fallback is not None else {"_error": True, "text": raw}
+
+    def _is_valid(result: dict) -> bool:
+        if result.get("_error"):
+            return False
+        if required_keys:
+            return all(k in result for k in required_keys)
+        return True
+
+    # --- Non-DeepSeek / JSON mode disabled: single plain text attempt ---
+    if not _is_deepseek_v4() or not _cfg.json_mode_enabled:
+        raw = GPT_request(system, prompt, gpt_parameter)
+        if raw.startswith("ERROR:"):
+            _log.error("GPT_request_json: API error (non-DeepSeek): %s", raw)
+            fb = _make_fallback(raw)
+            fb["_error"] = True
+            return fb
+        if not raw.strip():
+            _log.warning("GPT_request_json: empty response from non-DeepSeek, using fallback")
+            fb = _make_fallback("")
+            fb["_error"] = True
+            return fb
+        try:
+            parsed = json.loads(raw)
+        except (json.JSONDecodeError, TypeError):
+            _log.warning("GPT_request_json: non-DeepSeek response is not valid JSON, returning raw text")
+            return _make_fallback(raw)
+        if required_keys:
+            missing = [k for k in required_keys if k not in parsed]
+            if missing:
+                _log.warning("GPT_request_json: non-DeepSeek response missing keys %s, returning raw text", missing)
+                return _make_fallback(raw)
+        return parsed
+
+    # --- DeepSeek V4 JSON mode: 3-attempt strategy ---
+    default_params = {
+        "model": _cfg.DefaultModel.completion,
+        "temperature": 0.8,
+        "max_tokens": 300,
+        "top_p": 1.0,
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+    }
+    merged_params = default_params.copy()
+    if gpt_parameter is not None:
+        merged_params.update(gpt_parameter)
+    if merged_params["model"] == "PLACEHOLDER":
+        merged_params["model"] = _cfg.DefaultModel.completion
+
+    user_content = prompt + deepseek_v4_marker(thinking_mode)
+
+    # Attempt 1 & 2: JSON mode
+    for attempt in range(2):
+        time_sleep()
+        try:
+            client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
+            if not user_content.strip():
+                raise ValueError("Prompt cannot be empty or whitespace only.")
+            response = client.chat.completions.create(
+                model=merged_params["model"],
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user_content},
+                ],
+                temperature=merged_params["temperature"],
+                max_tokens=merged_params["max_tokens"],
+                top_p=merged_params["top_p"],
+                frequency_penalty=merged_params["frequency_penalty"],
+                presence_penalty=merged_params["presence_penalty"],
+                response_format={"type": "json_object"},
+                n=1,
+            )
+            content = response.choices[0].message.content or ""
+            if not content.strip():
+                _log.warning("GPT_request_json: attempt %d returned empty content", attempt + 1)
+                continue
+            result = json.loads(content)
+            if _is_valid(result):
+                return result
+            _log.warning("GPT_request_json: attempt %d missing keys or error in parsed result", attempt + 1)
+        except json.JSONDecodeError:
+            _log.warning("GPT_request_json: attempt %d JSON parse failed", attempt + 1)
+        except Exception as e:
+            _log.warning("GPT_request_json: attempt %d API error: %s", attempt + 1, e)
+
+    # Attempt 3: plain text mode (no response_format)
+    _log.info("GPT_request_json: JSON mode failed after 2 attempts, falling back to plain text mode")
+    plain_params = dict(merged_params)
+    plain_params.pop("response_format", None)
+    time_sleep()
+    try:
+        client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
+        response = client.chat.completions.create(
+            model=plain_params["model"],
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user_content},
+            ],
+            temperature=plain_params["temperature"],
+            max_tokens=plain_params["max_tokens"],
+            top_p=plain_params["top_p"],
+            frequency_penalty=plain_params["frequency_penalty"],
+            presence_penalty=plain_params["presence_penalty"],
+            n=1,
+        )
+        raw_content = response.choices[0].message.content or ""
+        if raw_content.strip():
+            _log.info("GPT_request_json: plain text mode returned content successfully")
+            try:
+                parsed = json.loads(raw_content)
+                if _is_valid(parsed):
+                    return parsed
+            except (json.JSONDecodeError, TypeError):
+                pass
+            return _make_fallback(raw_content)
+        _log.warning("GPT_request_json: plain text mode also returned empty, using preset fallback")
+    except Exception as e:
+        _log.warning("GPT_request_json: plain text mode API error: %s", e)
+
+    # All attempts exhausted: return preset fallback
+    _log.error("GPT_request_json: all 3 attempts failed, returning preset fallback")
+    fb = _make_fallback("")
+    fb["_error"] = True
+    return fb
+
 
 def get_embedding(text, model=None):
     if model is None:

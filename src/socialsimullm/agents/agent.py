@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import logging
 import networkx as nx
 
 from socialsimullm.prompt_templates.template_agents import (
@@ -34,12 +35,19 @@ from socialsimullm.prompt_templates.template_agents import (
     rate_experiences_system,
     rate_location_prompt,
     rate_location_system,
+    JSON_ACTION_SUFFIX,
+    JSON_IMPRESSION_SUFFIX,
+    JSON_PLAN_SUFFIX,
+    JSON_RATING_SUFFIX,
+    JSON_SUMMARY_SUFFIX,
 )
 from socialsimullm.agents.memory_entry import MemoryEntry
-from socialsimullm.utils.text_generation import GPT_request, get_rating, deepseek_v4_marker
+from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, get_rating, deepseek_v4_marker
 
 if TYPE_CHECKING:
     from socialsimullm.locations.locations import Locations
+
+_log = logging.getLogger("socialsimullm.agent")
 
 
 class Agent:
@@ -96,7 +104,14 @@ class Agent:
         system = agent_plan_system.format(self.name, self.description, self.event, recent_impressions, newthings + reflection_context)
         global_hour = global_time.split(":")[0]
         prompt = agent_plan_prompt.format(str(global_hour))
-        self.daily_plans = GPT_request(system, prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"), gpt_parameter={"max_tokens": 300})
+        result = GPT_request_json(
+            system + JSON_PLAN_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 800},
+            required_keys=["plan"],
+            fallback={"plan": "[8:00 - Wake up and start the day.\n20:00 - Go to bed.]"},
+            thinking_mode="role_immersion",
+        )
+        self.daily_plans = result.get("plan", "")
         experience = self.memory_daily_plans(global_time)
         return experience
 
@@ -124,7 +139,14 @@ class Agent:
         self.hourly_action_prompt = prompt.replace(str(global_time), "{}")
         prompt += "You can choose to interact with them or not. What do you do in the next hour? Use at most 20 words to explain."
 
-        self.hourly_plan = GPT_request(system, prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"), gpt_parameter={"max_tokens": 45})
+        result = GPT_request_json(
+            system + JSON_PLAN_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["plan"],
+            fallback={"plan": "Continue with current activity."},
+            thinking_mode="role_immersion",
+        )
+        self.hourly_plan = result.get("plan", "")
         experience = self.memory_hourly_plan(global_time)
         return experience
 
@@ -135,14 +157,28 @@ class Agent:
         system = agent_execute_action_system.format(self.name, self.description, self.event, recent_impressions, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
         prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, self.related_things, nearby_situations)
-        self.action = GPT_request(system, prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"), gpt_parameter={"max_tokens": 80})
+        result = GPT_request_json(
+            system + JSON_ACTION_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["action"],
+            fallback={"action": "Idle[action]: Observing surroundings.[details]"},
+            thinking_mode="role_immersion",
+        )
+        self.action = result.get("action", "")
         return self.action
 
     def form_impression(self, global_time: str, prompt_meta: str, nearby_situations: str) -> dict:
         """Form an impression based on recent events."""
         system = agent_impressions_system.format(self.name, self.description)
         prompt = agent_impressions_prompt.format(self.daily_plans, global_time, nearby_situations)
-        self.impression = GPT_request(system, prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"), gpt_parameter={"max_tokens": 80})
+        result = GPT_request_json(
+            system + JSON_IMPRESSION_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["impression"],
+            fallback={"impression": "Neutral, observing."},
+            thinking_mode="role_immersion",
+        )
+        self.impression = result.get("impression", "")
         experience = self.memory_impression(global_time, self.impression)
         return experience
 
@@ -168,16 +204,17 @@ class Agent:
                 locations.get_location(self.location), self.description,
                 recent_impressions, nearby_situations, location.name,
             )
-            res = GPT_request(rate_location_system, prompt_meta.format(prompt) + deepseek_v4_marker("pure_analysis"), {"max_tokens": 5, "temperature": 0.7})
-            rating = get_rating(res)
-            max_attempts = 2
-            current_attempt = 0
-            while rating is None and current_attempt < max_attempts:
-                rating = get_rating(res)
-                current_attempt += 1
-            if rating is None:
-                rating = 0
-            place_ratings.append((location.name, rating, res))
+            result = GPT_request_json(
+                rate_location_system + JSON_RATING_SUFFIX, prompt,
+                gpt_parameter={"max_tokens": 300, "temperature": 0.7},
+                required_keys=["rating"],
+                fallback={"rating": 5},
+                thinking_mode="pure_analysis",
+            )
+            rating = result.get("rating")
+            if not isinstance(rating, int) or not (1 <= rating <= 9):
+                rating = 5
+            place_ratings.append((location.name, rating, str(rating)))
         self.place_ratings = place_ratings
         return sorted(place_ratings, key=lambda x: x[1], reverse=True)
 
@@ -208,8 +245,16 @@ class Agent:
         """Rate the poignancy/importance of a recent experience."""
         system = rate_experiences_system
         prompt = rate_experiences_prompt.format(self.name, self.description, recent_impressions, nearby_situations, experience)
-        res = GPT_request(system, prompt_meta.format(prompt) + deepseek_v4_marker("pure_analysis"), {"max_tokens": 5, "temperature": 0.7})
-        rating = get_rating(res)
+        result = GPT_request_json(
+            system + JSON_RATING_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 300, "temperature": 0.7},
+            required_keys=["rating"],
+            fallback={"rating": 5},
+            thinking_mode="pure_analysis",
+        )
+        rating = result.get("rating")
+        if not isinstance(rating, int) or not (1 <= rating <= 9):
+            rating = 5
         return rating
 
     def memory_actions(self, agents: list[Agent], global_time: str, priority: int | None) -> MemoryEntry:
@@ -231,10 +276,14 @@ class Agent:
         """Simplify the current action into 1-2 SVO sentences."""
         system = action_simpilfy_system
         prompt = action_simpilfy_system_prompt.format(self.name, self.action)
-        prompt_meta = "### Instruction:\n{}\n### Response:"
-        prompt = prompt_meta.format(prompt)
-        res = GPT_request(system, prompt + deepseek_v4_marker("pure_analysis"), {"max_tokens": 30, "temperature": 0.7})
-        return res
+        result = GPT_request_json(
+            system + JSON_SUMMARY_SUFFIX, prompt,
+            gpt_parameter={"max_tokens": 200, "temperature": 0.7},
+            required_keys=["summary"],
+            fallback={"summary": f"{self.name} did something."},
+            thinking_mode="pure_analysis",
+        )
+        return result.get("summary", "")
 
     def memory_daily_plans(self, global_time: str) -> MemoryEntry:
         """Format daily plans as a MemoryEntry."""

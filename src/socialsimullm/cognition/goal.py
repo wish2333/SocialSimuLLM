@@ -19,7 +19,8 @@ from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import TYPE_CHECKING, Any
 
-from socialsimullm.utils.text_generation import GPT_request, deepseek_v4_marker
+from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, deepseek_v4_marker
+from socialsimullm.prompt_templates.template_agents import JSON_TEXT_SUFFIX
 
 if TYPE_CHECKING:
     from socialsimullm.agents.agent import Agent
@@ -200,11 +201,15 @@ class GoalManager:
             max_goals=self._config.max_active_goals,
         )
 
-        response = GPT_request(
-            system,
-            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 120},
+        result = GPT_request_json(
+            system + JSON_TEXT_SUFFIX,
+            prompt,
+            gpt_parameter={"max_tokens": 400},
+            required_keys=["text"],
+            fallback={"text": "5: Explore the surroundings"},
+            thinking_mode="role_immersion",
         )
+        response = result.get("text", "")
 
         return self._parse_goal_creation(response, current_time)
 
@@ -245,11 +250,15 @@ class GoalManager:
             recent_memories=memories_text,
         )
 
-        response = GPT_request(
+        result = GPT_request_json(
+            system + JSON_TEXT_SUFFIX,
             system,
-            self._prompt_meta.format(system) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 80},
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["text"],
+            fallback={"text": "CONTINUE"},
+            thinking_mode="role_immersion",
         )
+        response = result.get("text", "")
 
         return self._apply_goal_review(agent.goals, response, current_time)
 
@@ -275,11 +284,15 @@ class GoalManager:
             depth=depth,
         )
 
-        response = GPT_request(
+        result = GPT_request_json(
+            system + JSON_TEXT_SUFFIX,
             system,
-            self._prompt_meta.format(system) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 100},
+            gpt_parameter={"max_tokens": 400},
+            required_keys=["text"],
+            fallback={"text": f"5: Take first step toward {goal.description[:50]}"},
+            thinking_mode="role_immersion",
         )
+        response = result.get("text", "")
 
         return self._parse_decomposition(response, goal, current_time=goal.created_at)
 
@@ -638,11 +651,15 @@ class RecursiveTaskDecomposer:
             for g in goals
         )
 
-        response = GPT_request(
-            TASK_ORDERING_SYSTEM.format(tasks=tasks_text),
-            self._gm._prompt_meta.format("List the tasks in execution order:") + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 100},
+        result = GPT_request_json(
+            TASK_ORDERING_SYSTEM.format(tasks=tasks_text) + JSON_TEXT_SUFFIX,
+            "List the tasks in execution order:",
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["text"],
+            fallback={"text": "\n".join(f"[{g.id}] {g.description}" for g in goals)},
+            thinking_mode="role_immersion",
         )
+        response = result.get("text", "")
 
         ordered_ids = self._extract_ordered_ids(response, goals)
 

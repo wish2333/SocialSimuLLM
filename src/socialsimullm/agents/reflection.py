@@ -142,12 +142,17 @@ class ReflectionEngine:
         prompt = daily_reflection_prompt.format(
             important_observations=important or "Nothing notable happened today.",
         )
-        from socialsimullm.utils.text_generation import GPT_request, deepseek_v4_marker
-        reflection_text = GPT_request(
-            system,
-            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
+        from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, deepseek_v4_marker
+        from socialsimullm.prompt_templates.template_agents import JSON_REFLECTION_SUFFIX
+        result = GPT_request_json(
+            system + JSON_REFLECTION_SUFFIX,
+            prompt,
             gpt_parameter={"max_tokens": self._config.reflection_token_limit},
+            required_keys=["reflection"],
+            fallback={"reflection": "Nothing notable happened."},
+            thinking_mode="role_immersion",
         )
+        reflection_text = result.get("reflection", "")
         self._last_reflection_cache[agent.name] = global_time
         return self._build_observation_dict(
             agent.name, global_time, reflection_text, ReflectionType.DAILY,
@@ -191,12 +196,17 @@ class ReflectionEngine:
         )
         prompt = pattern_reflection_prompt.format()
 
-        from socialsimullm.utils.text_generation import GPT_request, deepseek_v4_marker
-        reflection_text = GPT_request(
-            system,
-            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 60},
+        from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, deepseek_v4_marker
+        from socialsimullm.prompt_templates.template_agents import JSON_REFLECTION_SUFFIX
+        result = GPT_request_json(
+            system + JSON_REFLECTION_SUFFIX,
+            prompt,
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["reflection"],
+            fallback={"reflection": "No clear pattern identified."},
+            thinking_mode="role_immersion",
         )
+        reflection_text = result.get("reflection", "")
         return self._build_observation_dict(
             agent.name, global_time, reflection_text, ReflectionType.PATTERN,
         )
@@ -246,12 +256,17 @@ class ReflectionEngine:
             interaction_summary=interaction_summary,
         )
 
-        from socialsimullm.utils.text_generation import GPT_request, deepseek_v4_marker
-        reflection_text = GPT_request(
-            system,
-            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 60},
+        from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, deepseek_v4_marker
+        from socialsimullm.prompt_templates.template_agents import JSON_REFLECTION_SUFFIX
+        result = GPT_request_json(
+            system + JSON_REFLECTION_SUFFIX,
+            prompt,
+            gpt_parameter={"max_tokens": 300},
+            required_keys=["reflection"],
+            fallback={"reflection": "No social observations yet."},
+            thinking_mode="role_immersion",
         )
+        reflection_text = result.get("reflection", "")
         return self._build_observation_dict(
             agent.name, global_time, reflection_text, ReflectionType.SOCIAL,
         )

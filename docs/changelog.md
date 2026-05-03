@@ -4,6 +4,28 @@ All notable changes to SocialSimuLLM will be documented in this file.
 
 ## [3.1.0] - 2026-05-03
 
+### Changed (DeepSeek JSON Output Mode)
+
+- **GPT_request_json()** in `utils/text_generation.py`: New function for structured LLM output
+  - DeepSeek V4: uses `response_format=json_object` for reliable parsing regardless of thinking token consumption
+  - Non-DeepSeek models: falls back to plain text + `json.loads()` -- completely unaffected
+  - `experiment/assistant.py` and `experiment/scenario.py` continue using `GPT_request()` unchanged
+  - 3-attempt retry strategy: 2x JSON mode -> 1x plain text mode -> preset fallback
+  - `json_mode_enabled` config flag (default True) for instant rollback via `--no-json-mode` CLI arg
+- **max_tokens budget** increased for DeepSeek V4 calls to accommodate thinking tokens:
+  - daily_planning: 300 -> 800, hourly_planning: 45 -> 300, execute_action: 80 -> 300
+  - form_impression: 80 -> 300, rate_locations/experience: 5 -> 300, simplify_action: 30 -> 200
+  - reflect_daily: 150 -> 400, reflect_pattern/social: 60 -> 300
+- **All 15 simulation LLM call sites** migrated to `GPT_request_json()` with preset fallbacks:
+  - `agents/agent.py` (7 calls): daily_planning, hourly_planning, execute_action, form_impression, rate_locations, rate_experience, simplify_action
+  - `agents/reflection.py` (3 calls): reflect_daily, reflect_pattern, reflect_social
+  - `cognition/goal.py` (4 calls): initialize_goals, review_and_update_goals, decompose_goal, order_by_dependency
+  - `world/path_planner.py` (1 call): infer_movement_intent
+- **Bug fix**: `rate_locations()` retry loop was calling `get_rating(res)` on the same string -- now handled by built-in retry in `GPT_request_json()`
+- **Prompt templates**: JSON instruction suffix constants added to `template_agents.py`
+
+## [3.1.0] - 2026-05-03 (earlier entries)
+
 ### Added (Phase 3 - Sprint 1: Spatial Foundation)
 
 - **F-305**: `WorldVariationGenerator` for diverse spatial graph topologies

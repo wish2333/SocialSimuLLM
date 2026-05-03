@@ -82,6 +82,7 @@ class SimulationConfig:
     multi_hop_movement: bool = True
     goal_enabled: bool = False
     max_active_goals: int = 3
+    json_mode_enabled: bool = True
 
 
 class DefaultModel:
@@ -97,6 +98,7 @@ openai_base_url: str = ""
 key_owner: str = ""
 embedding_api_key: str = ""
 embedding_base_url: str = ""
+json_mode_enabled: bool = True
 
 
 def _apply_config_to_globals(config: SimulationConfig) -> None:
@@ -105,7 +107,7 @@ def _apply_config_to_globals(config: SimulationConfig) -> None:
     Why: text_generation.py imports openai_api_key and openai_base_url
     as module-level names. This keeps them in sync with the config.
     """
-    global openai_api_key, openai_base_url, key_owner, embedding_api_key, embedding_base_url
+    global openai_api_key, openai_base_url, key_owner, embedding_api_key, embedding_base_url, json_mode_enabled
     openai_api_key = config.openai_api_key
     openai_base_url = config.openai_base_url
     key_owner = config.key_owner
@@ -113,6 +115,7 @@ def _apply_config_to_globals(config: SimulationConfig) -> None:
     embedding_base_url = config.embedding_base_url or config.openai_base_url
     DefaultModel.embedding = config.embedding_model
     DefaultModel.completion = config.completion_model
+    json_mode_enabled = config.json_mode_enabled
 
 
 def validate_config(config: SimulationConfig) -> None:
@@ -223,6 +226,12 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
         default=15,
         help="Cumulative importance to trigger mid-day reflection (default: 15)",
     )
+    parser.add_argument(
+        "--no-json-mode",
+        action="store_true",
+        default=False,
+        help="Disable JSON output mode for DeepSeek V4 models",
+    )
 
     args = parser.parse_args(argv)
 
@@ -256,6 +265,7 @@ def load_config(argv: list[str] | None = None) -> SimulationConfig:
         checkpoint_interval=args.checkpoint_interval,
         reflection_enabled=not args.no_reflection,
         reflection_importance_threshold=args.reflection_threshold,
+        json_mode_enabled=not args.no_json_mode,
     )
 
     _apply_config_to_globals(config)

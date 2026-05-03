@@ -20,7 +20,8 @@ from typing import TYPE_CHECKING
 
 import networkx as nx
 
-from socialsimullm.utils.text_generation import GPT_request, get_rating, deepseek_v4_marker
+from socialsimullm.utils.text_generation import GPT_request, GPT_request_json, get_rating, deepseek_v4_marker
+from socialsimullm.prompt_templates.template_agents import JSON_DESTINATION_SUFFIX
 
 if TYPE_CHECKING:
     from socialsimullm.agents.agent import Agent
@@ -152,11 +153,17 @@ class PathPlanner:
         )
         prompt = MOVEMENT_INTENT_PROMPT.format(locations=", ".join(location_names))
 
-        response = GPT_request(
-            system,
-            self._prompt_meta.format(prompt) + deepseek_v4_marker("role_immersion"),
-            gpt_parameter={"max_tokens": 30},
+        result = GPT_request_json(
+            system + JSON_DESTINATION_SUFFIX,
+            prompt,
+            gpt_parameter={"max_tokens": 200},
+            required_keys=["destination"],
+            fallback={"destination": "STAY", "reason": "No clear destination."},
+            thinking_mode="role_immersion",
         )
+        destination = result.get("destination", "STAY")
+        reason = result.get("reason", "")
+        response = f"{destination}|{reason}"
 
         return self._parse_intent_response(response, location_names)
 

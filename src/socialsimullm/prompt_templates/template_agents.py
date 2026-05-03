@@ -150,3 +150,16 @@ social_reflection_prompt = """You have interacted with the following people rece
 Reflect on your relationship dynamics. Who do you enjoy interacting with?
 Are there any social patterns or tensions? What social goals do you have?
 Use at most 60 words."""
+
+# --- JSON Output Mode Suffixes for DeepSeek V4 ---
+# Appended to system prompts when using GPT_request_json() to instruct
+# the model to respond with valid JSON containing a specific key.
+
+JSON_PLAN_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "plan" with your plan text as the value.'
+JSON_ACTION_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "action" with your action text as the value.'
+JSON_IMPRESSION_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "impression" with your impression text as the value.'
+JSON_RATING_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "rating" with an integer value between 1 and 9.'
+JSON_SUMMARY_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "summary" with the simplified text as the value.'
+JSON_REFLECTION_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "reflection" with your reflection text as the value.'
+JSON_TEXT_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "text" with your response text as the value.'
+JSON_DESTINATION_SUFFIX = '\n\nYou MUST respond with valid JSON containing two keys: "destination" (the location name) and "reason" (why you want to go there).'

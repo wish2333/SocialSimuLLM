@@ -48,11 +48,11 @@ SocialSimuLLM/
 │   ├── locations/                     # Location management
 │   │   └── locations.py               # Location/Locations classes (71 lines)
 │   ├── prompt_templates/              # LLM prompt templates
-│   │   └── template_agents.py         # All prompt strings (152 lines)
+│   │   └── template_agents.py         # All prompt strings + JSON suffixes (170 lines)
 │   ├── utils/                         # Infrastructure utilities
-│   │   ├── config.py                  # SimulationConfig + experiment config parser (299 lines)
+│   │   ├── config.py                  # SimulationConfig + experiment config parser (343 lines)
 │   │   ├── logger.py                  # StructuredLogger JSONL+text (312 lines)
-│   │   ├── text_generation.py         # OpenAI API integration (125 lines)
+│   │   ├── text_generation.py         # GPT_request + GPT_request_json (310 lines)
 │   │   └── global_methods.py          # File I/O, time helpers (144 lines)
 │   └── data/                          # Template data files
 │       └── town_data_template.json    # Town configuration template
@@ -63,22 +63,7 @@ SocialSimuLLM/
 │   ├── 02_spatial_analysis.ipynb      # Spatial analysis notebook
 │   └── 03_experiment_comparison.ipynb # Experiment comparison notebook
 ├── projects/                          # Legacy simulation output data
-│   └── {project_name}/
-│       ├── town_data.json
-│       ├── simulation_log.txt
-│       ├── events.jsonl
-│       ├── agent_data/
-│       │   ├── {name}_memory.json
-│       │   └── {name}_memory.db
-│       └── checkpoints/
 ├── runs/                              # Experiment output data (gitignored)
-│   └── {project}/{experiment_id}/
-│       ├── config.yaml
-│       ├── town_data.json
-│       ├── events.jsonl
-│       ├── done.flag
-│       ├── checkpoints/
-│       └── agent_data/
 ├── docs/                              # Documentation
 ├── references/                        # Reference materials
 └── tests/                             # Test files
@@ -150,12 +135,6 @@ uv run socialsimullm list --project my_project
 uv run streamlit run src/socialsimullm/frontend/app.py
 ```
 
-### Jupyter Notebooks (Phase 3)
-
-```bash
-uv run jupyter notebook notebooks/
-```
-
 ### CLI Arguments
 
 | Argument | Default | Description |
@@ -166,8 +145,9 @@ uv run jupyter notebook notebooks/
 | `--checkpoint-interval` | 10 | Steps between checkpoint saves |
 | `--no-reflection` | (disabled) | Disable the reflection system |
 | `--reflection-threshold` | 15 | Importance threshold for mid-day reflection |
+| `--no-json-mode` | (enabled) | Disable JSON output mode for DeepSeek V4 |
 | `--fov-enabled` | (disabled) | Enable proximity-based agent perception |
-| `--fov-distance` | 0 | Max graph distance for visibility (0 = same location only) |
+| `fov-distance` | 0 | Max graph distance for visibility (0 = same location only) |
 | `--path-planner-enabled` | (disabled) | Enable LLM intent + A* path planning |
 | `--multi-hop-movement` | (disabled) | Agents traverse one graph node per step |
 | `--goal-enabled` | (disabled) | Enable goal-driven hierarchical planning |
@@ -239,6 +219,57 @@ Each step in `SimulatorCore.step()` executes:
 6. **Impression Formation**: Agents form impressions of co-located agents
 7. **Reflection**: Daily (end of day) or threshold-based (mid-day) reflection
 8. **Global Events**: Configured or random events may occur
+
+### LLM Integration: JSON Output Mode
+
+Two parallel LLM call functions in `utils/text_generation.py`:
+
+| Function | Return Type | Used By | JSON Mode |
+|----------|-----------|---------|-----------|
+| `GPT_request()` | `str` | experiment/assistant.py, experiment/scenario.py | No |
+| `GPT_request_json()` | `dict` | agents, reflection, goal, path_planner | DeepSeek V4 only |
+
+**Retry strategy (DeepSeek V4 only):**
+
+```
+Attempt 1: JSON mode (response_format=json_object)
+    |
+    +-- parse failure? --> Attempt 2: JSON mode retry
+    |                       |
+    |                       +-- parse failure? --> Attempt 3: Plain text mode (no response_format)
+    |                                               |
+    |                                               +-- empty response? --> Return preset fallback dict
+    |                                               |                       with "_error": True flag
+    |                                               +-- non-empty? --> Return {"text": raw_content}
+    +-- success --> Return parsed dict
+```
+
+Non-DeepSeek models: single plain text attempt, then fallback. No `response_format` is ever sent.
+
+**Preset fallback values** (injected when all attempts fail):
+
+| Call Site | Key | Fallback |
+|-----------|-----|----------|
+| daily_planning | `plan` | `[8:00 - Wake up and start the day.\n20:00 - Go to bed.]` |
+| hourly_planning | `plan` | `Continue with current activity.` |
+| execute_action | `action` | `Idle[action]: Observing surroundings.[details]` |
+| form_impression | `impression` | `Neutral, observing.` |
+| rate_locations | `rating` | `5` |
+| rate_experience | `rating` | `5` |
+| simplify_action | `summary` | `{agent_name} did something.` |
+| reflect_daily | `reflection` | `Nothing notable happened.` |
+| reflect_pattern | `reflection` | `No clear pattern identified.` |
+| reflect_social | `reflection` | `No social observations yet.` |
+| initialize_goals | `text` | `5: Explore the surroundings` |
+| review_and_update_goals | `text` | `CONTINUE` |
+| decompose_goal | `text` | `5: Take first step toward ...` |
+| order_by_dependency | `text` | `[id] description` for each goal |
+| infer_movement_intent | `destination` | `STAY` |
+
+**Configuration:**
+- `json_mode_enabled: bool = True` in `SimulationConfig` (default: enabled)
+- `--no-json-mode` CLI flag to disable
+- Falls back to `GPT_request()` path when disabled or model is not DeepSeek V4
 
 ### Memory System
 
@@ -312,6 +343,7 @@ Three-tab Streamlit application:
 5. **Config isolation**: `ExperimentConfig` (Pydantic) never stores API keys; `SimulatorCore` only sees `SimulationConfig` (dataclass)
 6. **Frontend decoupling**: Streamlit frontend communicates via files (subprocess + done.flag polling), never imports simulator core
 7. **Optional complexity**: Phase 3 features (world, FOV, path planner, goals) are all opt-in via config flags; legacy mode runs identically to Phase 2
+8. **JSON Output Mode for DeepSeek V4**: All simulation calls use `GPT_request_json()` with structured retry; non-DeepSeek models and experiment tools are completely unaffected
 
 ## Coding Conventions
 
