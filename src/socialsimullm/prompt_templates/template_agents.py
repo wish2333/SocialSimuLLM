@@ -49,10 +49,10 @@ Your daily plans are: {}."""
 agent_execute_action_prompt = """{}
 You are going to do this thing-"{}" for this hour. And here are your related memories: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
-What are you going to do for this 10 minutes? If you intend to communicate with someone, please write down who you are talking to and what you want to say. Or you can just do something. You can use the following templates to help you write your executing actions and the specific details:
-1. "Communicate with Tom[action]: Tom, This tool is amazing! I can't wait to use it for my research.[details]"(Note that this is just a template)
-2. "Do something[action]: I'm going to continue my research on this tool. I'll write a paper on it.[details]"(Note that this is just a template)
-Please Use at most 50 words to explain.
+Your recent actions:
+{}
+
+Based on your recent actions, what do you do in this 10 minutes? Some activities span multiple rounds (e.g. walking somewhere, having a conversation) -- that is fine, but each round must describe a concrete next step with new detail, not copy a previous action verbatim. Never write vague summaries like "do something" or "continue". If you intend to communicate with someone, write down who and what you want to say. Use at most 50 words.
 """
 
 

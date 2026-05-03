@@ -74,7 +74,7 @@ class SimulationConfig:
     reflection_enabled: bool = True
     reflection_importance_threshold: int = 15
     reflection_min_observations: int = 3
-    reflection_token_limit: int = 150
+    reflection_token_limit: int = 500
     reflection_include_in_planning: bool = True
     fov_enabled: bool = False
     fov_distance: float = 0.0

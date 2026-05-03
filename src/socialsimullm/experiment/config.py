@@ -178,7 +178,7 @@ class ExperimentConfig(BaseModel):
         default=3, ge=1, description="Min observations before reflection triggers"
     )
     reflection_token_limit: int = Field(
-        default=150, ge=10, description="Token limit for reflection generation"
+        default=500, ge=10, description="Token limit for reflection generation"
     )
     reflection_include_in_planning: bool = Field(
         default=True, description="Inject past reflections into daily planning"

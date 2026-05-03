@@ -77,6 +77,7 @@ class Agent:
         self.impression: str = ""
         self.hourly_action_prompt: str = ""
         self.action: str = ""
+        self.recent_actions: list[str] = []
         self.reflection: str = ""
         self.world_graph: nx.Graph = world_graph
 
@@ -156,7 +157,11 @@ class Agent:
         """Execute an action for the agent based on current context."""
         system = agent_execute_action_system.format(self.name, self.description, self.event, recent_impressions, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
-        prompt = agent_execute_action_prompt.format(hourly_prompt, self.hourly_plan, self.related_things, nearby_situations)
+        recent_actions_text = "\n".join(f"- {a}" for a in self.recent_actions[-5:]) if self.recent_actions else "No previous actions yet."
+        prompt = agent_execute_action_prompt.format(
+            hourly_prompt, self.hourly_plan, self.related_things,
+            nearby_situations, recent_actions_text,
+        )
         result = GPT_request_json(
             system + JSON_ACTION_SUFFIX, prompt,
             gpt_parameter={"max_tokens": 300},
@@ -165,6 +170,7 @@ class Agent:
             thinking_mode="role_immersion",
         )
         self.action = result.get("action", "")
+        self.recent_actions.append(self.action)
         return self.action
 
     def form_impression(self, global_time: str, prompt_meta: str, nearby_situations: str) -> dict:

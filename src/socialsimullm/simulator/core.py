@@ -221,7 +221,7 @@ class SimulatorCore:
             and not approaching_day_boundary
         ):
             for agent in s.agents:
-                if self.reflection_engine.should_reflect(agent.name, s.global_time):
+                if self.reflection_engine.should_reflect(agent.name, s.global_time, current_step=s.round):
                     self._run_reflection(s, agent, "threshold")
 
         # Location rating and movement
@@ -554,6 +554,7 @@ class SimulatorCore:
         observations = self.reflection_engine.run_reflection_cycle(
             agent, s.global_time, s.agents,
         )
+        self.reflection_engine._last_reflection_step[agent.name] = s.round
         for obs in observations:
             s.memory.store(obs)
             if obs.event_type == "reflection":

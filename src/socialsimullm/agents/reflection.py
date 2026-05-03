@@ -39,7 +39,8 @@ class ReflectionConfig:
     """
     threshold_importance: int = 15
     threshold_min_observations: int = 3
-    reflection_token_limit: int = 150
+    reflection_token_limit: int = 500
+    min_cooldown_steps: int = 6
     daily_priority: int = 9
     pattern_priority: int = 8
     social_priority: int = 9
@@ -92,24 +93,35 @@ class ReflectionEngine:
         self._memory = memory
         self._prompt_meta = prompt_meta
         self._last_reflection_cache: dict[str, str | None] = {}
+        self._last_reflection_step: dict[str, int] = {}
 
     # --- Public API ---
 
-    def should_reflect(self, agent_name: str, global_time: str) -> bool:
+    def should_reflect(self, agent_name: str, global_time: str, current_step: int = 0) -> bool:
         """Check if cumulative importance of un-reflected observations exceeds threshold.
 
         Args:
             agent_name: Name of the agent to check.
             global_time: Current simulation time string.
+            current_step: Current simulation round number (for cooldown check).
 
         Returns:
             True if a mid-day reflection should be triggered.
         """
+        last_step = self._last_reflection_step.get(agent_name, 0)
+        if current_step - last_step < self._config.min_cooldown_steps:
+            return False
         last_time = self._get_last_reflection_time(agent_name)
         observations = self._get_unreflected_observations(agent_name, last_time)
         if len(observations) < self._config.threshold_min_observations:
             return False
-        cumulative = self._calculate_cumulative_importance(observations)
+        non_reflection_obs = [
+            o for o in observations
+            if getattr(o, "event_type", None) != "reflection"
+        ]
+        if len(non_reflection_obs) < self._config.threshold_min_observations:
+            return False
+        cumulative = self._calculate_cumulative_importance(non_reflection_obs)
         return cumulative >= self._config.threshold_importance
 
     def reflect_daily(self, agent: AgentData, global_time: str) -> MemoryEntry:

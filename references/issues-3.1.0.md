@@ -631,3 +631,75 @@ F-311 (Research Assistant) [independent]                          F-310 (Adv Viz
 - `experiment/config.py` -- all new config fields
 - `prompt_templates/template_agents.py` -- new prompts
 - `utils/config.py` -- SimulationConfig additions
+
+# 测试
+
+## Based on Test1 - smoke test
+
+- max-token自查
+
+- 完成后请自查
+
+- Smoke Test 自查报告
+
+  ### 一、发现的问题
+
+  | #    | 问题                        | 严重度 | 现象                                                         |
+  | ---- | --------------------------- | ------ | ------------------------------------------------------------ |
+  | 1    | `list` 命令目录扫描逻辑错误 | P0     | 实验已完成(done.flag 存在, events.jsonl 有 138 行)，但 `list` 输出 0 steps / 0 events / status=running |
+  | 2    | reflection_token_limit 过小 | P0     | error.log 记录 23 次 "all 3 attempts failed"，DeepSeek V4 的思考 token 耗尽预算导致 JSON 输出空间为零 |
+  | 3    | "Do something" 泛化回复     | P1     | prompt 模板中直接给出了 `"Do something[action]: ..."` 作为示例，模型学会了这种写法 |
+  | 4    | 反思过度触发                | P1     | 无冷却机制 + 反思产物计入 importance 形成正反馈循环，导致每轮刷 2-3 条重复反思 |
+  | 5    | 行为缺乏递进感              | 提升   | agent 每 round 只知道 hourly_plan，不知道自己上一步做了什么，导致重复编独立动作 |
+
+  ### 二、修复方案
+
+  **问题 1 -- storage.py**
+
+  - `list_experiments` 只扫描 `runs/{project}/{exp_id}/` 两级结构，但 `project=''` 时目录是扁平的 `runs/{exp_id}/`
+  - 新增 `_is_experiment_dir()` 辅助函数，支持扁平和嵌套两种布局
+  - 用 `seen` 集合去重，防止同一实验被两种扫描路径重复计数
+  - Steps 列改为优先从 `meta.json` 的 `round` 字段读取，而非依赖 checkpoint
+
+  **问题 2 -- 三处默认值 150 -> 500**
+
+  - `ReflectionConfig`、`SimulationConfig`、`ExperimentConfig` 的 `reflection_token_limit` 全部从 150 提升到 500
+  - 为 DeepSeek V4 的思考过程留出足够空间
+
+  **问题 3 -- prompt 模板重写**
+
+  - 删除 `"Do something[action]: ..."` 模板示例
+  - 指令中明确禁止泛化回复
+
+  **问题 4 -- 反思冷却机制**
+
+  - `ReflectionConfig` 新增 `min_cooldown_steps=6`（即 1 小时内最多触发一次）
+  - `should_reflect` 新增冷却时间检查
+  - 累计 importance 计算中排除 `event_type == "reflection"` 的条目，打破正反馈循环
+  - `_run_reflection` 执行后记录 step 到 `_last_reflection_step`
+
+  **问题 5 -- 行为递进感**（经一轮讨论后调整）
+
+  - Agent 新增 `recent_actions: list[str]` 属性，每轮执行后追加
+  - prompt 中注入最近 5 条动作历史
+  - 初始方案：禁止重复动作
+  - 用户反馈：有些活动（走路、对话）不可能 10 分钟完成
+  - 最终方案：允许跨 round 持续活动，但要求每轮描述具体的下一步新细节，禁止逐字复制和泛化总结
+
+  ### 三、调整过程
+
+  用户指出只看上一步动作不够，在一个小时的计划下仍可能循环。改为展示最近 5 条动作。随后用户进一步指出有些事情不是 10 分钟能做完的，不能一刀切禁止重复。最终把约束从"禁止重复"改为"允许延续但要求递进"：
+
+  > Some activities span multiple rounds (e.g. walking somewhere, having a conversation) -- that is fine, but each round must describe a concrete next step with new detail, not copy a previous action verbatim.
+
+  ### 四、修改文件清单
+
+  | 文件                                                         | 改动                                |
+  | ------------------------------------------------------------ | ----------------------------------- |
+  | [storage.py](app://localhost/epitaxy/src/socialsimullm/experiment/storage.py) | 扁平布局支持 + meta.json 读取 steps |
+  | [reflection.py](app://localhost/epitaxy/src/socialsimullm/agents/reflection.py) | 冷却机制 + reflection 排除          |
+  | [template_agents.py](app://localhost/epitaxy/src/socialsimullm/prompt_templates/template_agents.py) | action prompt 重写                  |
+  | [agent.py](app://localhost/epitaxy/src/socialsimullm/agents/agent.py) | `recent_actions` 列表 + 传入 prompt |
+  | [core.py](app://localhost/epitaxy/src/socialsimullm/simulator/core.py) | 传递 step + 记录冷却                |
+  | [config.py](app://localhost/epitaxy/src/socialsimullm/utils/config.py) | token limit 150->500                |
+  | [experiment/config.py](app://localhost/epitaxy/src/socialsimullm/experiment/config.py) | token limit 150->500                |
