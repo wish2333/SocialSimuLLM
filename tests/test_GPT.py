@@ -1,6 +1,11 @@
 import unittest
+
+import pytest
+
 from socialsimullm.utils.text_generation import GPT_request
 
+
+@pytest.mark.integration
 class TestGPTRequest(unittest.TestCase):
     def test_gpt_request_success(self):
         prompt = "Tell me a joke."

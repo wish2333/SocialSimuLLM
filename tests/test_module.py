@@ -1,5 +1,4 @@
 from socialsimullm.agents.memory import *
-from socialsimullm.agents.movement import rate_locations
 
 class Agent:
     def __init__(self, name, description, starting_location, world_graph):
@@ -13,4 +12,3 @@ class Agent:
         self.hourly_plans = ""
         self.hourly_action_prompt = ""
         self.world_graph = world_graph
-        self.rate_locations = rate_locations

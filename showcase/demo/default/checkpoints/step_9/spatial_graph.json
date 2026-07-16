@@ -1,0 +1,24 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "Phandalin Town Square",
+      "description": "Town square of the town of Phandalin."
+    },
+    {
+      "id": "Stonehill Inn",
+      "description": "In the center of town stands a large, newly built roadhouse of fieldstone and rough-hewn timbers. The common room is filled with locals nursing mugs of ale or cider, all of them eyeing you with curiosity."
+    },
+    {
+      "id": "Barthen's Provisions",
+      "description": "Barthen’s is the biggest trading post in Phandalin. Its shelves stock most ordinary goods and supplies, including backpacks, bedrolls, rope, and rations. The place is open from sunup to sundown."
+    },
+    {
+      "id": "Edermath Orchard",
+      "description": "A tidy little cottage beside an apple orchard."
+    }
+  ],
+  "links": []
+}

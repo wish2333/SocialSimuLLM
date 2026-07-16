@@ -17,6 +17,8 @@ from typing import Any
 
 import streamlit as st
 
+from socialsimullm.frontend.adapters import normalize_agent_states
+
 
 def render_location_heatmap(checkpoints: list[dict[str, Any]]) -> None:
     """Render a heatmap showing agent occupancy per location over time.
@@ -175,24 +177,22 @@ def _compute_occupancy_data(
 
     for cp in checkpoints:
         steps.append(int(cp.get("step", 0)))
-        states = cp.get("agent_states", {})
-        if isinstance(states, dict):
-            for state in states.values():
-                if isinstance(state, dict):
-                    locations_set.add(state.get("location", ""))
+        states = normalize_agent_states(cp.get("agent_states"))
+        for state in states:
+            location = state.get("location", "")
+            if location:
+                locations_set.add(location)
 
     locations = sorted(locations_set)
 
     matrix: list[list[int]] = []
     for cp in checkpoints:
-        states = cp.get("agent_states", {})
+        states = normalize_agent_states(cp.get("agent_states"))
         loc_counts: dict[str, int] = Counter()
-        if isinstance(states, dict):
-            for state in states.values():
-                if isinstance(state, dict):
-                    loc = state.get("location", "")
-                    if loc:
-                        loc_counts[loc] += 1
+        for state in states:
+            loc = state.get("location", "")
+            if loc:
+                loc_counts[loc] += 1
         row = [loc_counts.get(loc, 0) for loc in locations]
         matrix.append(row)
 

@@ -34,7 +34,7 @@ def render_assistant() -> None:
     options = [
         e["experiment_id"]
         for e in experiments
-        if e["status"] == "complete"
+        if e["status"] == "completed"
     ]
 
     if not options:

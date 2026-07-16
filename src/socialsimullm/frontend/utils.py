@@ -14,6 +14,7 @@ status checks for the Streamlit frontend.
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 import sys
 from typing import Any
@@ -22,11 +23,24 @@ from socialsimullm.experiment.config import ExperimentConfig
 from socialsimullm.experiment.storage import create_run_dir, find_run_dir, is_complete
 
 
+_SENSITIVE_ERROR_FIELD = re.compile(
+    r"(?i)(authorization|x-api-key|api[-_ ]?key)"
+    r"(\s*['\"]?\s*[:=]\s*['\"]?)([^,\r\n}]+)"
+)
+_SECRET_TOKEN = re.compile(r"\bsk-[A-Za-z0-9_-]{8,}\b")
+
+
+def _sanitize_launch_error(message: str) -> str:
+    """Redact common credential fields before showing stderr in the UI."""
+    message = _SENSITIVE_ERROR_FIELD.sub(r"\1\2[REDACTED]", message)
+    return _SECRET_TOKEN.sub("[REDACTED]", message)
+
+
 def launch_experiment(config: ExperimentConfig) -> str:
     """Launch an experiment as an independent subprocess.
 
     Saves the config YAML to the run directory, then spawns
-    `uv run socialsimullm run --config <path>` as a background process.
+    `python -m socialsimullm run --config <path>` as a background process.
     The simulation runs independently and survives browser close.
 
     Args:
@@ -42,27 +56,39 @@ def launch_experiment(config: ExperimentConfig) -> str:
     config_path = str(run_dir / "config.yaml")
     config.to_yaml(config_path)
 
-    # Determine the uv/socialsimullm executable path
-    # On Windows, use the same Python that's running Streamlit
+    # Use the same Python environment that is running Streamlit.
     python_exe = sys.executable
-    module_path = "socialsimullm.__main__:main"
 
-    # Launch as subprocess (non-blocking)
-    proc = subprocess.Popen(
-        [python_exe, "-m", module_path, "run", "--config", config_path],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        cwd=os.getcwd(),
-    )
+    # Redirect long-running output to disk so OS pipe buffers cannot fill and
+    # block the simulation. The files also preserve diagnostics for failed
+    # launches without keeping parent-side file descriptors open.
+    stdout_path = run_dir / "experiment.stdout.log"
+    stderr_path = run_dir / "experiment.stderr.log"
+    with (
+        open(stdout_path, "ab") as stdout_log,
+        open(stderr_path, "ab") as stderr_log,
+    ):
+        proc = subprocess.Popen(
+            [python_exe, "-m", "socialsimullm", "run", "--config", config_path],
+            stdout=stdout_log,
+            stderr=stderr_log,
+            cwd=os.getcwd(),
+        )
 
     # Brief check: if process exits immediately, it likely failed
     import time
     time.sleep(2)
     if proc.poll() is not None:
-        stderr_output = proc.stderr.read().decode("utf-8", errors="replace") if proc.stderr else ""
+        try:
+            stderr_output = stderr_path.read_text(
+                encoding="utf-8", errors="replace"
+            )[-4000:]
+            stderr_output = _sanitize_launch_error(stderr_output)
+        except OSError:
+            stderr_output = ""
         raise RuntimeError(
             f"Experiment failed to start (exit code {proc.returncode}). "
-            f"stderr: {stderr_output}"
+            f"stderr: {stderr_output or f'see {stderr_path}'}"
         )
 
     return config.experiment_id

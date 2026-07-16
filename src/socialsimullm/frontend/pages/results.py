@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import streamlit as st
 
+from socialsimullm.frontend.adapters import normalize_agent_states
 from socialsimullm.experiment.storage import (
     find_run_dir,
     get_latest_checkpoint_step,
@@ -113,7 +114,7 @@ def render_results() -> None:
 def _render_spatial_graph(checkpoint: dict) -> None:
     """Render the spatial graph visualization."""
     graph_data = checkpoint.get("spatial_graph")
-    agent_states = checkpoint.get("agent_states")
+    agent_states = normalize_agent_states(checkpoint.get("agent_states"))
 
     if not graph_data:
         st.info("No spatial graph data in this checkpoint.")
@@ -129,7 +130,7 @@ def _render_spatial_graph(checkpoint: dict) -> None:
 
 def _render_agent_states(checkpoint: dict) -> None:
     """Render agent state information."""
-    agent_states = checkpoint.get("agent_states")
+    agent_states = normalize_agent_states(checkpoint.get("agent_states"))
 
     if not agent_states:
         st.info("No agent state data in this checkpoint.")

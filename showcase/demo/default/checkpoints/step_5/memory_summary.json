@@ -1,0 +1,45 @@
+{
+  "memory_limit": 10,
+  "agents": {
+    "Toblen Stonehill": {
+      "total_entries": 8,
+      "by_type": {
+        "action": 5,
+        "daily_plan": 1,
+        "hourly_plan": 1,
+        "impression": 1
+      },
+      "latest_timestamp": "Day 1, 08:40"
+    },
+    "Daran Edermath": {
+      "total_entries": 8,
+      "by_type": {
+        "action": 5,
+        "daily_plan": 1,
+        "hourly_plan": 1,
+        "impression": 1
+      },
+      "latest_timestamp": "Day 1, 08:40"
+    },
+    "Linene Graywind": {
+      "total_entries": 8,
+      "by_type": {
+        "action": 5,
+        "daily_plan": 1,
+        "hourly_plan": 1,
+        "impression": 1
+      },
+      "latest_timestamp": "Day 1, 08:40"
+    },
+    "Halia Thornton": {
+      "total_entries": 8,
+      "by_type": {
+        "action": 5,
+        "daily_plan": 1,
+        "hourly_plan": 1,
+        "impression": 1
+      },
+      "latest_timestamp": "Day 1, 08:40"
+    }
+  }
+}

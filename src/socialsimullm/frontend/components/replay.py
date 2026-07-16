@@ -17,6 +17,8 @@ from typing import Any
 
 import streamlit as st
 
+from socialsimullm.frontend.adapters import normalize_agent_states
+
 
 def render_replay(
     checkpoints: list[dict[str, Any]],
@@ -63,19 +65,17 @@ def render_replay(
 
 def _render_agent_positions(checkpoint: dict[str, Any]) -> None:
     """Render agent position cards for the current checkpoint."""
-    agent_states = checkpoint.get("agent_states", {})
+    agent_states = normalize_agent_states(checkpoint.get("agent_states"))
     if not agent_states:
         st.info("No agent states in this checkpoint.")
         return
 
     cols = st.columns(min(len(agent_states), 4))
 
-    for i, (name, state) in enumerate(agent_states.items()):
-        if not isinstance(state, dict):
-            state = {"location": str(state)}
-
+    for i, state in enumerate(agent_states):
         col = cols[i % len(cols)]
         with col:
+            name = state.get("name", "Unknown")
             location = state.get("location", "Unknown")
             daily = state.get("daily_plans", "")
             hourly = state.get("hourly_plan", "")
@@ -92,7 +92,7 @@ def _render_agent_positions(checkpoint: dict[str, Any]) -> None:
 def _render_spatial_graph_snapshot(checkpoint: dict[str, Any]) -> None:
     """Render spatial graph for the current checkpoint."""
     graph_data = checkpoint.get("spatial_graph")
-    agent_states = checkpoint.get("agent_states", {})
+    agent_states = normalize_agent_states(checkpoint.get("agent_states"))
 
     if not graph_data:
         return
@@ -100,14 +100,7 @@ def _render_spatial_graph_snapshot(checkpoint: dict[str, Any]) -> None:
     try:
         from socialsimullm.frontend.components.viz import render_spatial_graph
 
-        agent_list = (
-            [{"name": n, "location": s.get("location", "")}
-             for n, s in agent_states.items()
-             if isinstance(s, dict)]
-            if agent_states
-            else None
-        )
-        render_spatial_graph(graph_data, agent_list)
+        render_spatial_graph(graph_data, agent_states or None)
     except ImportError:
         st.code(str(graph_data)[:500])
 
