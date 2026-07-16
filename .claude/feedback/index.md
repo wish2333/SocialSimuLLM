@@ -22,6 +22,7 @@
 |----|--------|--------|-------|------------|--------|
 | F001 | [Example: no emojis in code] | user-correction | 1 | YYYY-MM-DD | active |
 | F002 | [Example: validate input at boundary] | bug-fix | 1 | YYYY-MM-DD | active |
+| F003 | Agent / Harness-first showcase; preserve the full archive | user-correction | 1 | 2026-07-16 | active |
 
 ---
 

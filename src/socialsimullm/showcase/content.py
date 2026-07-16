@@ -177,6 +177,140 @@ PAPER_TOWN_VALIDATION: Final = {
 }
 
 
+HARNESS_PIPELINE: Final = [
+    {
+        "stage": "01",
+        "title": "感知",
+        "input": "地点、邻居、事件、可见范围",
+        "output": "bounded context",
+        "path": "src/socialsimullm/world/field_of_view.py",
+    },
+    {
+        "stage": "02",
+        "title": "记忆召回",
+        "input": "近期、语义、重要度、时间窗口",
+        "output": "related memories",
+        "path": "src/socialsimullm/agents/memory.py",
+    },
+    {
+        "stage": "03",
+        "title": "规划",
+        "input": "人设、目标、计划与反思",
+        "output": "daily/hourly plan",
+        "path": "src/socialsimullm/agents/agent.py",
+    },
+    {
+        "stage": "04",
+        "title": "结构化行动",
+        "input": "计划、环境、协作上下文",
+        "output": "AgentAction",
+        "path": "src/socialsimullm/agents/agent.py",
+    },
+    {
+        "stage": "05",
+        "title": "状态写回",
+        "input": "action / plan / thought / event",
+        "output": "MemoryEntry + log",
+        "path": "src/socialsimullm/agents/memory_entry.py",
+    },
+    {
+        "stage": "06",
+        "title": "反思检查",
+        "input": "重要度阈值、日边界、冷却步数",
+        "output": "daily/pattern/social reflection",
+        "path": "src/socialsimullm/agents/reflection.py",
+    },
+]
+
+
+HARNESS_CONTRACTS: Final = [
+    {
+        "title": "输入边界",
+        "rule": "Agent 只接收当前可见环境与显式召回记忆，不读取全局隐状态。",
+        "evidence": "FieldOfView + AgentMemory",
+        "path": "src/socialsimullm/world/field_of_view.py",
+    },
+    {
+        "title": "动作边界",
+        "rule": "LLM 输出先归一化为 action / action_type / target / utterance / continues_task。",
+        "evidence": "AgentAction.from_response()",
+        "path": "src/socialsimullm/agents/agent.py",
+    },
+    {
+        "title": "记忆边界",
+        "rule": "MemoryEntry 固定身份、时间、地点、事件类型、实体与重要度。",
+        "evidence": "frozen dataclass + from_dict compatibility",
+        "path": "src/socialsimullm/agents/memory_entry.py",
+    },
+    {
+        "title": "反思边界",
+        "rule": "反思必须满足阈值/观察数，并受 cooldown 控制，避免每轮重复生成。",
+        "evidence": "ReflectionEngine.should_reflect()",
+        "path": "src/socialsimullm/agents/reflection.py",
+    },
+]
+
+
+COLLABORATION_RULES: Final = [
+    {
+        "title": "可见性",
+        "detail": "FOV 按空间距离裁剪邻居信息；Agent 不直接读取全体角色状态。",
+        "path": "src/socialsimullm/world/field_of_view.py",
+    },
+    {
+        "title": "对话",
+        "detail": "InteractionCoordinator 统一处理对话参与者、连续步数与 cooldown。",
+        "path": "src/socialsimullm/simulator/interactions.py",
+    },
+    {
+        "title": "移动",
+        "detail": "PathPlanner 把目标地点转成路径，再由主循环逐步执行，避免行动直接瞬移。",
+        "path": "src/socialsimullm/world/path_planner.py",
+    },
+    {
+        "title": "记忆传播",
+        "detail": "action 写入行动者并按 entities 扩散；event 写入所有 Agent；plan/reflection 只写自身。",
+        "path": "src/socialsimullm/agents/memory.py",
+    },
+]
+
+
+PROMPT_LAYERS: Final = [
+    {
+        "layer": "人设",
+        "question": "这个 Agent 是谁？",
+        "fields": "name · description · goals · relationships",
+        "path": "src/socialsimullm/agents/agent.py",
+    },
+    {
+        "layer": "环境",
+        "question": "它现在能看到什么、去哪里？",
+        "fields": "location · town_areas · FOV · path graph",
+        "path": "src/socialsimullm/world/field_of_view.py",
+    },
+    {
+        "layer": "记忆",
+        "question": "它带着什么经验进入本轮？",
+        "fields": "recent · semantic · importance · reflection",
+        "path": "src/socialsimullm/agents/memory.py",
+    },
+    {
+        "layer": "事件",
+        "question": "研究者改变了什么条件？",
+        "fields": "time · recipients · intensity · direction",
+        "path": "src/socialsimullm/simulator/events.py",
+    },
+]
+
+
+HARNESS_FAILURE_MODES: Final = [
+    ("结构化输出不完整", "AgentAction 使用默认 action_type / 空 target 归一化，保留可执行结果。"),
+    ("反思条件不足", "ReflectionEngine 返回 false，不额外调用模型，不污染记忆。"),
+    ("事件越界", "定时事件在 active window 外不进入 prompt，并在日志中记录开始/结束。"),
+    ("运行中断", "ExperimentRunner 保留 config、事件日志和 checkpoint，支持恢复与复核。"),
+]
+
+
 def declared_metric_labels(available_metrics: list[str]) -> tuple[tuple[str, str], ...]:
     """Map only manifest-declared metrics to their curated display labels."""
     return tuple(

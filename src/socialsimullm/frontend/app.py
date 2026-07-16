@@ -70,7 +70,7 @@ from socialsimullm.showcase.loader import ShowcaseLoadError, load_showcase_demo
 
 with st.sidebar:
     st.markdown("## SocialSimuLLM")
-    mode = st.radio("视图", ["研究档案", "实验工作台"], horizontal=True)
+    mode = st.radio("视图", ["研究档案", "Agent / Harness", "实验工作台"], horizontal=True)
 
 if mode == "研究档案":
     pages = [
@@ -117,6 +117,35 @@ if mode == "研究档案":
     else:
         from socialsimullm.frontend.pages.evolution import render_evolution
         render_evolution()
+elif mode == "Agent / Harness":
+    with st.sidebar:
+        page = st.radio(
+            "Agent / Harness",
+            ["Agent 总览", "Harness 设计", "协作协议", "Prompt 实验", "结果证据"],
+        )
+        st.caption("技术讲解版 · 只读展示 · 不调用模型 API")
+
+    try:
+        demo = load_showcase_demo()
+    except ShowcaseLoadError as exc:
+        st.error(f"研究档案加载失败：{exc}")
+        st.stop()
+
+    if page == "Agent 总览":
+        from socialsimullm.frontend.pages.agent_harness import render_agent_overview
+        render_agent_overview()
+    elif page == "Harness 设计":
+        from socialsimullm.frontend.pages.agent_harness import render_harness_design
+        render_harness_design()
+    elif page == "协作协议":
+        from socialsimullm.frontend.pages.agent_harness import render_collaboration_protocol
+        render_collaboration_protocol()
+    elif page == "Prompt 实验":
+        from socialsimullm.frontend.pages.agent_harness import render_prompt_experiment
+        render_prompt_experiment(demo)
+    else:
+        from socialsimullm.frontend.pages.agent_harness import render_evidence
+        render_evidence(demo)
 else:
     with st.sidebar:
         tool = st.radio("实验工作台", ["实验配置", "运行结果", "研究助手"])
