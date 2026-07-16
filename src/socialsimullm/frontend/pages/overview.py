@@ -37,7 +37,7 @@ def render_overview(demo: ShowcaseDemo) -> None:
 
     if using_research_scale:
         st.info(
-            "主指标来自论文研究案例；微观回放使用独立工程快照验证运行链路，"
+            "主指标来自论文研究案例；系统验证页单独使用论文中的四人小镇环境，"
             "两层证据不混用规模或结论。"
         )
         provenance = _as_mapping(_value(getattr(demo, "research_case", None), "provenance", default={}))

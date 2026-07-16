@@ -115,16 +115,14 @@
 **Files:**
 - Create: `scripts/build_showcase_demo.py`
 - Create: `src/socialsimullm/showcase/schema.py`
-- Create: `showcase/demo/default/manifest.yaml`
-- Create: `showcase/demo/default/events.jsonl`
-- Create: `showcase/demo/default/checkpoints/`
+- Create: `showcase/research/t7_phandalin/manifest.yaml`
 - Create: `tests/unit/test_showcase_builder.py`
 
 **Steps:**
 
 1. 定义只读 `ShowcaseManifest` 和 demo 数据契约：项目介绍、来源说明、agent、location、step、event、checkpoint、可用指标列表。
 2. 写失败测试：输入 `projects/t7` 旧版 `meta.json`、`town_data.json`、memory JSON 和文本日志后，能生成当前统一的 list 型 `agent_states` 与 JSONL 事件。
-3. 实现构建脚本，只在开发时读取 `projects/`；输出到 `showcase/demo/default/`，禁止修改源项目。
+3. 论文档案只保留四人小镇的归纳性验证记录；不再输出 `showcase/demo/default/` 十步快照，禁止运行时读取旧项目。
 4. 从旧 memory 的 `global_time/location/action/exp_type` 映射为 `step/location/content/event_type`；无法可靠推导的字段设为空并记录 `migration_warnings`，禁止编造。
 5. 根据每个时间点最近的 agent memory 构造回放 checkpoint；数据不足时降低 checkpoint 密度，不用插值制造不存在的行动。
 6. manifest 记录 `source_project`、构建时间、转换规则版本和免责声明，确保面试时能说明“数据来自旧实验，但展示结构已迁移”。
@@ -154,7 +152,7 @@
 2. 技术路线页展示 `YAML -> ExperimentRunner -> SimulatorCore -> Agent cognition -> JSONL/checkpoint -> analysis/Streamlit` 数据流，并可展开查看对应模块。
 3. Agent 设计页展示“感知→记忆检索→规划→行动→记忆写回→反思”的闭环；每个节点附一段职责和真实文件路径。
 4. 工程演进页用 V1/V2/V3.1 时间线说明从可运行原型到研究平台的重构动机、关键决策和结果，不展示无法证实的性能提升百分比。
-5. 仿真演示页只读取 `showcase/demo/default/`，提供时间轴、空间位置、agent 当前计划/行动/反思和同 step 事件流。
+5. 系统验证页只读取论文四人小镇档案，展示角色分工、社会协调和行为趋势边界。
 6. 结果页根据 manifest 的 `available_metrics` 决定显示哪些图；普通旧项目 demo 默认展示活动、交互、位置和记忆分布，不强行展示创新扩散指标。
 7. 增加“一键进入演示”入口，启动后默认定位到信息最完整的 step，而不是空的第一帧。
 8. 验收：断网、无 API key、无 `.git`、无 `projects/` 时，讲解页与 demo 均能完整运行。

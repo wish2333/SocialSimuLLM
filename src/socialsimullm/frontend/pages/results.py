@@ -192,22 +192,9 @@ def _render_next_tests(case: Any) -> None:
 
 
 def _render_engineering_snapshot_metrics(demo: ShowcaseDemo) -> None:
-    st.markdown("### 十轮工程快照指标")
-    st.caption("本区只证明运行链路与回放数据存在，不与论文正式实验规模混用。")
-    metrics = enabled_showcase_metrics(demo)
-    if not metrics:
-        st.info("当前 manifest 没有声明可用指标。")
-        return
-    labels = dict(declared_metric_labels(demo.manifest.available_metrics))
-    tabs = st.tabs([labels[metric] for metric in metrics])
-    renderers = {
-        "activity_distribution": _render_showcase_activity,
-        "location_occupancy": _render_showcase_occupancy,
-        "memory_distribution": _render_showcase_memory,
-    }
-    for tab, metric in zip(tabs, metrics):
-        with tab:
-            renderers[metric](demo)
+    st.markdown("### 论文小镇验证档案")
+    st.caption("当前展示包不包含逐步工程快照；四人小镇的论文归纳结果请在“系统验证”页查看。")
+    st.info("校园 GE / NA 正式归档的描述性指标已在本页前五个分析标签中展示。")
 
 
 def archive_metric_rows(case: Any) -> list[dict[str, Any]]:

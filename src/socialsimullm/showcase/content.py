@@ -159,11 +159,10 @@ METRIC_LABELS: Final = {
 
 
 # The paper reports the original Stanford Generative Agents / Phandalin
-# validation separately from the compact, migrated showcase bundle.  Keeping
-# this provenance next to the curated copy makes the distinction explicit in
-# the UI and prevents the 78-round paper run being mistaken for the 10-step
-# offline snapshot shipped with the app.
-T7_PAPER_VALIDATION: Final = {
+# validation as a paper-derived record. Keeping this provenance next to the
+# curated copy makes the distinction explicit in the UI and prevents the
+# small-town baseline being conflated with the formal campus experiment.
+PAPER_TOWN_VALIDATION: Final = {
     "rounds": 78,
     "agents": 4,
     "locations": 4,

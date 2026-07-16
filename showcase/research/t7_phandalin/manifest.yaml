@@ -1,0 +1,48 @@
+schema_version: '1.0'
+project_id: phandalin-paper-validation
+title: 论文小镇验证：Phandalin 四人环境
+summary: >-
+  论文中用于验证 Generative Agents 行为趋势的四人、四地点 Phandalin 环境。
+  当前展示读取论文归纳结果，不再加载只运行十步的本地 t7 快照。
+source:
+  source_project: paper / Phandalin Generative Agents validation
+  source_format: PDF-derived paper validation record
+  source_files:
+    - 20250618-毕业论文-突破互动边界：大学生群体中新技术创新扩散的大模型社会仿真研究.pdf
+  built_at: '2026-07-16T06:00:00Z'
+  conversion_rule_version: paper-town-v1
+  disclaimer: >-
+    本页只展示论文对四人小镇实验的归纳性证据；论文正文报告约一日、78 轮运行。
+    这不是重新运行模型所得的新结果。
+agents:
+  - name: Toblen Stonehill
+    description: 交易站经营者，负责补货、供应链协调与迎客。
+    starting_location: Phandalin Town Square
+  - name: Daran Edermath
+    description: 退休冒险者，居住在果园旁并进行果园劳作。
+    starting_location: Edermath Orchard
+  - name: Linene Graywind
+    description: 交易站经营者，负责待客、陈列与商品整理。
+    starting_location: Barthen's Provisions
+  - name: Halia Thornton
+    description: 矿工交易所管理者，关注促销、财务与预算。
+    starting_location: Phandalin Town Square
+locations:
+  - name: Phandalin Town Square
+    description: Town square of the town of Phandalin.
+  - name: Stonehill Inn
+    description: Central roadhouse where locals gather.
+  - name: Barthen's Provisions
+    description: Phandalin's largest trading post for ordinary goods.
+  - name: Edermath Orchard
+    description: A cottage beside an apple orchard.
+steps: []
+event_log: null
+research_case: ../campus_ivmodel/case.yaml
+available_metrics:
+  - activity_distribution
+  - location_occupancy
+  - memory_distribution
+migration_warnings:
+  - 论文小镇数据以四人环境的归纳性结果呈现，不提供当前十步快照的逐步事件回放。
+  - 论文正文未提供独立的反思稳定性统计；反思能力只作为当前工程扩展说明。

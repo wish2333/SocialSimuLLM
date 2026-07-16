@@ -391,7 +391,9 @@ class ShowcaseManifest(_ReadOnlyModel):
     agents: list[ShowcaseAgent]
     locations: list[ShowcaseLocation]
     steps: list[ShowcaseStep]
-    event_log: str = "events.jsonl"
+    # Research-only showcases may intentionally omit normalized event logs;
+    # their evidence is carried by the validated ResearchCase archives.
+    event_log: str | None = None
     research_case: str | None = None
     available_metrics: list[str]
     migration_warnings: list[str]

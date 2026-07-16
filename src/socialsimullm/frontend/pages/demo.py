@@ -2,79 +2,26 @@
 
 from __future__ import annotations
 
-from collections import Counter
 from collections.abc import Mapping
 from html import escape
 from typing import Any
 
 import streamlit as st
 
-from socialsimullm.showcase.loader import ShowcaseDemo, select_default_step
+from socialsimullm.showcase.loader import ShowcaseDemo
 
 
 def render_demo(demo: ShowcaseDemo) -> None:
-    """Render the paper run archive and the independent micro replay."""
-    manifest = demo.manifest
+    """Render the paper run archive without a synthetic micro replay."""
     st.markdown('<p class="archive-kicker">RUN ARCHIVE / INTERVENTION LEDGER</p>', unsafe_allow_html=True)
     st.title("运行与介入：从统一基线到动态分支")
-    st.caption("论文档案说明研究如何运行与介入；十轮工程快照独立提供逐 step 微观回放。")
+    st.caption("论文档案说明研究如何运行与介入；页面不再加载本地十步工程快照。")
 
-    paper_tab, replay_tab = st.tabs(["论文运行档案", "十轮微观回放"])
-    with paper_tab:
-        case = getattr(demo, "research_case", None)
-        if case is None:
-            st.info("当前展示包未附论文研究档案，但不影响微观回放。")
-        else:
-            _render_research_archive(case)
-
-    with replay_tab:
-        st.markdown("### 工程快照·逐步状态")
-        st.caption(f"{manifest.title} · 来源 {manifest.source.source_project} · 运行时不读取旧项目")
-        _render_micro_replay(demo)
-
-
-def _render_micro_replay(demo: ShowcaseDemo) -> None:
-    """Render the original t7 step-level replay without mixing paper counts."""
-    manifest = demo.manifest
-
-    available_steps = [item.step for item in manifest.steps]
-    default_step = select_default_step(demo)
-    selected_step = st.select_slider(
-        "观测时间轴",
-        options=available_steps,
-        value=default_step,
-        format_func=lambda step: _step_label(demo, step),
-    )
-    checkpoint = demo.checkpoint(selected_step)
-    events = demo.events_at(selected_step)
-    states = checkpoint["agent_states"]
-
-    a, b, c, d = st.columns(4)
-    a.metric("STEP", selected_step)
-    b.metric("当前角色", len(states))
-    c.metric("当轮事件", len(events))
-    d.metric("占用地点", len({state.get("location") for state in states if state.get("location")}))
-
-    tab_scene, tab_agents, tab_events, tab_provenance = st.tabs(
-        ["空间观测", "Agent 档案", "事件切片", "数据来源"]
-    )
-    with tab_scene:
-        _render_scene(manifest.locations, states)
-    with tab_agents:
-        _render_agents(states)
-    with tab_events:
-        _render_events(events)
-    with tab_provenance:
-        st.write(manifest.source.disclaimer)
-        st.code(
-            f"source_project: {manifest.source.source_project}\n"
-            f"conversion_rule_version: {manifest.source.conversion_rule_version}\n"
-            f"checkpoint: checkpoints/step_{selected_step}\n"
-            f"event_log: {manifest.event_log}"
-        )
-        with st.expander("迁移边界"):
-            for warning in manifest.migration_warnings:
-                st.write(f"— {warning}")
+    case = getattr(demo, "research_case", None)
+    if case is None:
+        st.info("当前展示包未附论文研究档案。")
+        return
+    _render_research_archive(case)
 
 
 def _render_research_archive(case: Any) -> None:
@@ -231,54 +178,3 @@ def _as_mapping(value: Any) -> Mapping[str, Any]:
     if callable(model_dump):
         return model_dump(mode="json")
     return {}
-
-
-def _step_label(demo: ShowcaseDemo, step: int) -> str:
-    item = next(value for value in demo.manifest.steps if value.step == step)
-    return f"{item.global_time}  /  Step {step}"
-
-
-def _render_scene(locations, states: list[dict]) -> None:
-    occupancy = Counter(state.get("location", "") for state in states)
-    columns = st.columns(2, gap="medium")
-    for index, location in enumerate(locations):
-        agents = [state["name"] for state in states if state.get("location") == location.name]
-        agent_text = " · ".join(escape(name) for name in agents) or "暂无角色"
-        with columns[index % 2]:
-            st.markdown(
-                '<div class="location-card">'
-                f'<span class="location-count">{occupancy[location.name]:02d}</span>'
-                f'<h4>{escape(location.name)}</h4>'
-                f'<p>{escape(location.description)}</p>'
-                f'<small>{agent_text}</small>'
-                '</div>',
-                unsafe_allow_html=True,
-            )
-
-
-def _render_agents(states: list[dict]) -> None:
-    for state in states:
-        with st.expander(f'{state.get("name", "Unknown")}　·　{state.get("location", "Unknown")}', expanded=True):
-            action, plan = st.columns(2)
-            action.markdown("**当前行动**")
-            action.write(state.get("action") or "源数据未记录")
-            plan.markdown("**短时计划**")
-            plan.write(state.get("hourly_plan") or "源数据未记录")
-            st.markdown("**当轮印象**")
-            st.write(state.get("impression") or "源数据未记录")
-            if state.get("reflection"):
-                st.markdown("**反思**")
-                st.write(state["reflection"])
-
-
-def _render_events(events: list[dict]) -> None:
-    if not events:
-        st.info("该时间点没有可展示的事件。")
-        return
-    for event in events:
-        data = event.get("data", {})
-        summary = data.get("summary") or data.get("content") or "无摘要"
-        st.markdown(f'**{event.get("agent_id", "Unknown")}**　`{event.get("event_type", "unknown")}`')
-        st.write(summary)
-        st.caption(f'{data.get("location", "Unknown")} · importance {data.get("importance", "—")}')
-        st.divider()

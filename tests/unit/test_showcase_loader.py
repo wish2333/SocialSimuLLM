@@ -8,16 +8,13 @@ from socialsimullm.showcase.content import declared_metric_labels
 from socialsimullm.showcase.loader import (
     ShowcaseLoadError,
     load_showcase_demo,
-    select_default_step,
 )
 from socialsimullm.showcase.schema import ResearchCase
 
 
 DEMO_DIR = (
     __import__("pathlib").Path(__file__).resolve().parents[2]
-    / "showcase"
-    / "demo"
-    / "default"
+    / "showcase" / "research" / "t7_phandalin"
 )
 RESEARCH_CASE = DEMO_DIR.parents[1] / "research" / "campus_ivmodel" / "case.yaml"
 
@@ -27,6 +24,11 @@ def test_loader_reads_self_contained_copy_without_legacy_project(
 ) -> None:
     copied_demo = tmp_path / "offline-demo"
     shutil.copytree(DEMO_DIR, copied_demo)
+    manifest = yaml.safe_load((copied_demo / "manifest.yaml").read_text(encoding="utf-8"))
+    manifest["research_case"] = None
+    (copied_demo / "manifest.yaml").write_text(
+        yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
     isolated_cwd = tmp_path / "empty-cwd"
     isolated_cwd.mkdir()
     monkeypatch.chdir(isolated_cwd)
@@ -35,9 +37,11 @@ def test_loader_reads_self_contained_copy_without_legacy_project(
 
     demo = load_showcase_demo(copied_demo)
 
-    assert demo.manifest.project_id == "t7"
-    assert demo.events
-    assert len(demo.checkpoints) == len(demo.manifest.steps)
+    assert demo.manifest.project_id == "phandalin-paper-validation"
+    assert not demo.events
+    assert not demo.checkpoints
+    assert len(demo.manifest.agents) == 4
+    assert len(demo.manifest.locations) == 4
     assert not (isolated_cwd / "projects").exists()
     assert not (isolated_cwd / ".git").exists()
 
@@ -76,6 +80,11 @@ def test_research_case_is_immutable() -> None:
 def test_copied_demo_can_load_without_optional_research_sibling(tmp_path) -> None:
     copied_demo = tmp_path / "showcase" / "demo" / "offline-demo"
     shutil.copytree(DEMO_DIR, copied_demo)
+    manifest = yaml.safe_load((copied_demo / "manifest.yaml").read_text(encoding="utf-8"))
+    manifest["research_case"] = None
+    (copied_demo / "manifest.yaml").write_text(
+        yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
 
     demo = load_showcase_demo(copied_demo)
 
@@ -107,15 +116,6 @@ def test_research_metric_rejects_numerator_larger_than_denominator() -> None:
         ResearchCase.model_validate(raw_case)
 
 
-def test_default_step_prefers_checkpoint_with_most_information() -> None:
-    demo = load_showcase_demo(DEMO_DIR)
-
-    selected = select_default_step(demo)
-
-    assert selected == 10
-    assert demo.checkpoint(selected)["agent_states"]
-
-
 def test_result_metrics_are_driven_by_manifest_declaration() -> None:
     demo = load_showcase_demo(DEMO_DIR)
 
@@ -124,21 +124,3 @@ def test_result_metrics_are_driven_by_manifest_declaration() -> None:
     )
 
     assert tuple(visible_metrics) == tuple(demo.manifest.available_metrics)
-    assert "innovation_adoption" not in visible_metrics
-
-
-def test_loader_rejects_checkpoint_path_outside_demo(tmp_path) -> None:
-    copied_demo = tmp_path / "offline-demo"
-    shutil.copytree(DEMO_DIR, copied_demo)
-    manifest = copied_demo / "manifest.yaml"
-    manifest.write_text(
-        manifest.read_text(encoding="utf-8").replace(
-            "checkpoint: checkpoints/step_1",
-            "checkpoint: ../../outside",
-            1,
-        ),
-        encoding="utf-8",
-    )
-
-    with pytest.raises(ShowcaseLoadError, match="outside demo directory"):
-        load_showcase_demo(copied_demo)

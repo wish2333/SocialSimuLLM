@@ -46,7 +46,7 @@ class ShowcaseDemo:
 
 def get_default_demo_dir() -> Path:
     """Resolve the bundled demo independently from the process cwd."""
-    return Path(__file__).resolve().parents[3] / "showcase" / "demo" / "default"
+    return Path(__file__).resolve().parents[3] / "showcase" / "research" / "t7_phandalin"
 
 
 def load_showcase_demo(demo_dir: str | Path | None = None) -> ShowcaseDemo:
@@ -75,8 +75,11 @@ def load_showcase_demo(demo_dir: str | Path | None = None) -> ShowcaseDemo:
     except (OSError, yaml.YAMLError, ValidationError) as exc:
         raise ShowcaseLoadError(f"Invalid showcase manifest: {exc}") from exc
 
-    event_path = _safe_child(root, manifest.event_log)
-    events = _load_events(event_path)
+    events = (
+        _load_events(_safe_child(root, manifest.event_log))
+        if manifest.event_log
+        else tuple()
+    )
     checkpoints = tuple(
         _load_checkpoint(root, item.step, item.checkpoint)
         for item in manifest.steps
