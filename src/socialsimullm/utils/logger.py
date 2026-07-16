@@ -17,11 +17,19 @@ Comment format: Use standard Google style docstring format for comments, bilingu
 from __future__ import annotations
 
 import json
+import hashlib
 import logging
 import os
+import random
+import shutil
 import sys
-from dataclasses import dataclass, field
+import tempfile
+import subprocess
+from dataclasses import asdict, dataclass, field, is_dataclass
 from datetime import datetime
+from enum import Enum
+from pathlib import Path
+from typing import Any
 
 import networkx as nx
 
@@ -54,6 +62,14 @@ def setup_error_logging(output_dir: str) -> None:
         output_dir: Directory to write error.log into.
     """
     log_path = os.path.join(output_dir, "error.log")
+    absolute_log_path = os.path.abspath(log_path)
+    for existing in list(_run_logger.handlers):
+        if (
+            isinstance(existing, logging.FileHandler)
+            and os.path.abspath(existing.baseFilename) == absolute_log_path
+        ):
+            _run_logger.removeHandler(existing)
+            existing.close()
     handler = logging.FileHandler(log_path, encoding="utf-8", delay=False)
     handler.setLevel(logging.ERROR)
     handler.setFormatter(logging.Formatter(
@@ -95,9 +111,24 @@ class StructuredLogger:
         self.events_file = os.path.join(output_dir, "events.jsonl")
         self.log_file = os.path.join(output_dir, "simulation_log.txt")
         self.summary_file = os.path.join(output_dir, "simulation_summary.txt")
+        self.model_calls_file = os.path.join(output_dir, "model_calls.jsonl")
+        self.run_metadata_file = os.path.join(output_dir, "run_metadata.json")
         self._summary_buffer: list[str] = []
         self._text_buffer: list[str] = []
         self._jsonl_initialized = False
+        self._runtime_sources: dict[str, object | None] = {}
+
+    def bind_runtime(
+        self,
+        *,
+        reflection_engine: object | None = None,
+        interaction_coordinator: object | None = None,
+    ) -> None:
+        """Attach mutable coordinator state that is not owned by SimulationState."""
+        self._runtime_sources = {
+            "reflection_engine": reflection_engine,
+            "interaction_coordinator": interaction_coordinator,
+        }
 
     # --- Event logging ---
 
@@ -207,13 +238,22 @@ class StructuredLogger:
                 memory_summary.json   - Memory statistics
                 meta.json             - Metadata snapshot
         """
-        checkpoint_dir = os.path.join(self.output_dir, "checkpoints", f"step_{step}")
-        os.makedirs(checkpoint_dir, exist_ok=True)
-
-        self._save_spatial_graph(getattr(state, "world_graph", None), checkpoint_dir)
-        self._save_agent_states(getattr(state, "agents", []), checkpoint_dir)
-        self._save_memory_summary(getattr(state, "memory", None), checkpoint_dir)
-        self._save_meta(getattr(state, "meta_data", {}), checkpoint_dir)
+        checkpoints_dir = Path(self.output_dir) / "checkpoints"
+        checkpoints_dir.mkdir(parents=True, exist_ok=True)
+        target = checkpoints_dir / f"step_{step}"
+        temporary = Path(tempfile.mkdtemp(prefix=f".step_{step}-", dir=checkpoints_dir))
+        try:
+            checkpoint_dir = str(temporary)
+            self._save_spatial_graph(getattr(state, "world_graph", None), checkpoint_dir)
+            self._save_agent_states(getattr(state, "agents", []), checkpoint_dir)
+            self._save_memory_summary(getattr(state, "memory", None), checkpoint_dir)
+            self._save_meta(state, step, checkpoint_dir)
+            self._save_full_project_state(state, checkpoint_dir)
+            self._save_runtime_state(state, checkpoint_dir)
+            self._replace_checkpoint_directory(temporary, target)
+        finally:
+            if temporary.exists():
+                shutil.rmtree(temporary)
 
     def finalize(self) -> None:
         """Write done.flag and flush all remaining buffers."""
@@ -221,6 +261,92 @@ class StructuredLogger:
         done_path = os.path.join(self.output_dir, "done.flag")
         with open(done_path, "w", encoding="utf-8") as f:
             f.write(f"completed_at: {datetime.now().isoformat()}\n")
+
+    def log_model_call(self, record: dict[str, Any]) -> None:
+        """Persist prompt-free model call metadata as one JSON line."""
+        safe_record = {
+            "timestamp": datetime.now().isoformat(),
+            "call_type": str(record.get("call_type", "unknown")),
+            "model": str(record.get("model", "")),
+            "retry_count": int(record.get("retry_count", 0)),
+            "fallback_used": bool(record.get("fallback_used", False)),
+            "token_usage": {
+                key: int(record.get("token_usage", {}).get(key, 0))
+                for key in ("prompt_tokens", "completion_tokens", "total_tokens")
+            },
+        }
+        with open(self.model_calls_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(safe_record, ensure_ascii=False) + "\n")
+
+    def start_run_metadata(
+        self,
+        config_summary: dict[str, Any],
+        prompt_template: str,
+        *,
+        resumed_from_step: int | None = None,
+    ) -> None:
+        """Create safe run metadata without storing prompts or credentials."""
+        path = Path(self.run_metadata_file)
+        existing: dict[str, Any] = {}
+        if path.is_file():
+            try:
+                existing = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                existing = {}
+        now = datetime.now().isoformat()
+        history = list(existing.get("resume_history", []))
+        if resumed_from_step is not None:
+            history.append({"from_step": resumed_from_step, "started_at": now})
+        metadata = {
+            "schema_version": 1,
+            "status": "running",
+            "git_commit": existing.get("git_commit") or self._git_commit(),
+            "config_summary": config_summary,
+            "prompt_template_version": hashlib.sha256(
+                prompt_template.encode("utf-8")
+            ).hexdigest()[:16],
+            "started_at": existing.get("started_at", now),
+            "last_started_at": now,
+            "finished_at": None,
+            "resume_history": history,
+        }
+        self._atomic_write_json(path, metadata)
+
+    def finish_run_metadata(self, status: str) -> None:
+        """Mark the current run metadata completed or failed."""
+        path = Path(self.run_metadata_file)
+        if not path.is_file():
+            return
+        try:
+            metadata = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return
+        metadata["status"] = status
+        metadata["finished_at"] = datetime.now().isoformat()
+        self._atomic_write_json(path, metadata)
+
+    @staticmethod
+    def _git_commit() -> str:
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                check=True,
+                capture_output=True,
+                cwd=Path(__file__).resolve().parents[3],
+                text=True,
+                timeout=2,
+            )
+            return result.stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            return ""
+
+    @staticmethod
+    def _atomic_write_json(path: Path, value: dict[str, Any]) -> None:
+        temporary = path.with_name(f".{path.name}.tmp")
+        temporary.write_text(
+            json.dumps(value, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        os.replace(temporary, path)
 
     # --- Private: JSONL ---
 
@@ -334,8 +460,136 @@ class StructuredLogger:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2, ensure_ascii=False)
 
-    def _save_meta(self, meta_data: dict, checkpoint_dir: str) -> None:
-        """Save metadata snapshot."""
+    def _save_meta(self, state: object, step: int, checkpoint_dir: str) -> None:
+        """Save metadata representing the next runnable point after this step."""
+        from socialsimullm.utils.global_methods import add_ten_minutes
+
+        meta_data = dict(getattr(state, "meta_data", {}))
+        current_time = str(getattr(state, "global_time", meta_data.get("global_time", "")))
+        try:
+            next_time = add_ten_minutes(current_time)
+        except (ValueError, IndexError):
+            next_time = current_time
+        meta_data["round"] = step
+        meta_data["global_time"] = next_time
+        meta_data["active_event_ids"] = list(
+            getattr(state, "active_event_ids", meta_data.get("active_event_ids", []))
+        )
         path = os.path.join(checkpoint_dir, "meta.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(meta_data, f, indent=2, ensure_ascii=False)
+
+    def _save_full_project_state(self, state: object, checkpoint_dir: str) -> None:
+        """Copy all file-backed simulation state and the log prefix."""
+        project_folder = Path(
+            str(getattr(state, "project_folder", self.output_dir))
+        )
+        target = Path(checkpoint_dir)
+        town_data = project_folder / "town_data.json"
+        if town_data.is_file():
+            shutil.copy2(town_data, target / "town_data.json")
+        agent_data = project_folder / "agent_data"
+        if agent_data.is_dir():
+            shutil.copytree(agent_data, target / "agent_data")
+        for filename in (
+            "events.jsonl",
+            "simulation_log.txt",
+            "simulation_summary.txt",
+            "model_calls.jsonl",
+        ):
+            source = project_folder / filename
+            if source.is_file():
+                shutil.copy2(source, target / filename)
+
+    def _save_runtime_state(self, state: object, checkpoint_dir: str) -> None:
+        """Serialize mutable in-memory state needed for deterministic continuation."""
+        agents: dict[str, dict[str, Any]] = {}
+        for agent in getattr(state, "agents", []):
+            agents[str(agent.name)] = {
+                "location": getattr(agent, "location", ""),
+                "daily_plans": getattr(agent, "daily_plans", ""),
+                "hourly_plan": getattr(agent, "hourly_plan", ""),
+                "impression": getattr(agent, "impression", ""),
+                "action": getattr(agent, "action", ""),
+                "action_detail": self._jsonable(getattr(agent, "action_detail", None)),
+                "recent_actions": self._jsonable(getattr(agent, "recent_actions", [])),
+                "reflection": getattr(agent, "reflection", ""),
+                "related_things": self._jsonable(getattr(agent, "related_things", "")),
+                "event": self._jsonable(getattr(agent, "event", "")),
+                "place_ratings": self._jsonable(getattr(agent, "place_ratings", [])),
+                "goals": self._jsonable(getattr(agent, "goals", [])),
+                "planned_path": self._jsonable(getattr(agent, "planned_path", None)),
+            }
+
+        reflection = self._runtime_sources.get("reflection_engine")
+        coordinator = self._runtime_sources.get("interaction_coordinator")
+        payload = {
+            "schema_version": 1,
+            "active_event_ids": list(getattr(state, "active_event_ids", [])),
+            "events": self._jsonable(getattr(state, "events", [])),
+            "timed_events": self._jsonable(getattr(state, "timed_events", [])),
+            "agents": agents,
+            "reflection": {
+                "last_reflection_cache": self._jsonable(
+                    getattr(reflection, "_last_reflection_cache", {})
+                ),
+                "last_reflection_step": self._jsonable(
+                    getattr(reflection, "_last_reflection_step", {})
+                ),
+            },
+            "interactions": self._serialize_interactions(coordinator),
+            "logger": {
+                "summary_buffer": list(self._summary_buffer),
+            },
+            "random_state": self._jsonable(random.getstate()),
+        }
+        path = Path(checkpoint_dir) / "runtime_state.json"
+        path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    @classmethod
+    def _jsonable(cls, value: Any) -> Any:
+        """Convert dataclasses, enums, tuples, and simple objects to JSON values."""
+        if isinstance(value, Enum):
+            return value.value
+        if is_dataclass(value) and not isinstance(value, type):
+            return cls._jsonable(asdict(value))
+        if isinstance(value, dict):
+            return {str(key): cls._jsonable(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple, set)):
+            return [cls._jsonable(item) for item in value]
+        if value is None or isinstance(value, (str, int, float, bool)):
+            return value
+        if hasattr(value, "__dict__"):
+            return cls._jsonable(vars(value))
+        return str(value)
+
+    @classmethod
+    def _serialize_interactions(cls, coordinator: object | None) -> dict[str, Any]:
+        if coordinator is None:
+            return {"participation": {}, "sessions": []}
+        participation = {
+            str(name): cls._jsonable(value)
+            for name, value in getattr(coordinator, "_participation", {}).items()
+        }
+        sessions = [
+            {"pair": list(pair), **cls._jsonable(session)}
+            for pair, session in getattr(coordinator, "_sessions", {}).items()
+        ]
+        return {"participation": participation, "sessions": sessions}
+
+    @staticmethod
+    def _replace_checkpoint_directory(temporary: Path, target: Path) -> None:
+        """Publish a complete checkpoint without exposing partial files."""
+        backup = target.with_name(f".{target.name}.previous")
+        if backup.exists():
+            shutil.rmtree(backup)
+        if target.exists():
+            os.replace(target, backup)
+        try:
+            os.replace(temporary, target)
+        except Exception:
+            if backup.exists() and not target.exists():
+                os.replace(backup, target)
+            raise
+        if backup.exists():
+            shutil.rmtree(backup)

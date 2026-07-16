@@ -7,7 +7,7 @@ Unified agent memory with structured storage and multi-dim retrieval.
 
 Replaces the previous Memory class from retrieve/memory.py.
 Storage format: per-agent JSON files + per-agent SQLite embedding DBs.
-Scoring formula: 0.5*similarity + 0.3*recency + 0.2*importance.
+Default scoring formula: 0.5*similarity + 0.3*recency + 0.2*importance.
 
 @author: Huang Miaosen
 """
@@ -37,10 +37,31 @@ class AgentMemory:
         memory_limit: Default number of recent experiences to consider.
     """
 
-    def __init__(self, project_folder: str, agents: list[Any], memory_limit: int) -> None:
+    def __init__(
+        self,
+        project_folder: str,
+        agents: list[Any],
+        memory_limit: int,
+        memory_config: Any | None = None,
+    ) -> None:
         self.project_folder = project_folder
         self.agents = agents
         self.memory_limit = memory_limit
+
+        def config_value(name: str, default: float | int) -> float | int:
+            if isinstance(memory_config, dict):
+                return memory_config.get(name, default)
+            return getattr(memory_config, name, default)
+
+        self.retrieval_weights = {
+            "similarity": float(config_value("similarity_weight", 0.5)),
+            "recency": float(config_value("recency_weight", 0.3)),
+            "importance": float(config_value("importance_weight", 0.2)),
+        }
+        # Legacy semantic recall included importance-7 thoughts. Configured
+        # runs may widen or narrow that candidate set explicitly.
+        self._memory_configured = memory_config is not None
+        self.importance_threshold = int(config_value("importance_threshold", 7))
 
     # --- Store ---
 
@@ -118,11 +139,16 @@ class AgentMemory:
             entry = MemoryEntry.from_dict(raw)
             if entry.event_type == "action":
                 action_entries.append(entry)
-            elif entry.event_type == "thought" and entry.importance == 7:
+            elif (
+                entry.event_type == "thought"
+                and (
+                    entry.importance >= self.importance_threshold
+                    if self._memory_configured
+                    else entry.importance == 7
+                )
+            ):
                 action_entries.append(entry)
         action_map: dict[str, MemoryEntry] = {e.summary: e for e in action_entries if e.summary}
-
-        weights = {"similarity": 0.5, "recency": 0.3, "importance": 0.2}
 
         scored: list[tuple[float, MemoryEntry]] = []
         for idx, (action_des, emb_json) in enumerate(rows):
@@ -135,9 +161,9 @@ class AgentMemory:
             recency = 1 - (idx / len(rows)) if rows else 0
             normalized_importance = (min(max(entry.importance, 1), 9) - 1) / 8
             score = (
-                weights["similarity"] * similarity
-                + weights["recency"] * recency
-                + weights["importance"] * normalized_importance
+                self.retrieval_weights["similarity"] * similarity
+                + self.retrieval_weights["recency"] * recency
+                + self.retrieval_weights["importance"] * normalized_importance
                 + 0.0001
             )
             scored.append((score, entry))

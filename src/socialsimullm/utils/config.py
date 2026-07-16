@@ -87,6 +87,7 @@ class SimulationConfig:
     conversation_cooldown_steps: int = 2
     json_mode_enabled: bool = True
     timed_events: list[Any] = field(default_factory=list)
+    memory_config: Any | None = None
 
 
 class DefaultModel:
@@ -283,7 +284,7 @@ def load_experiment_config(
 ) -> tuple[str | None, Any]:
     """Parse experiment CLI subcommands.
 
-    Detects whether the invocation uses a subcommand (run, batch, list)
+    Detects whether the invocation uses a subcommand (run, resume, batch, list)
     or falls through to legacy mode. The detection checks if the first
     non-script argument is a known subcommand name.
 
@@ -292,11 +293,13 @@ def load_experiment_config(
 
     Returns:
         Tuple of (command, args_namespace).
-        command is one of: "run", "batch", "list", None (legacy mode).
+        command is one of: "run", "resume", "batch", "list", None (legacy mode).
         When command is None, the caller should use load_config() instead.
     """
     check_argv = argv if argv is not None else _get_argv()[1:]
-    if not check_argv or check_argv[0] not in ("run", "batch", "list", "doctor"):
+    if not check_argv or check_argv[0] not in (
+        "run", "resume", "batch", "list", "doctor"
+    ):
         return None, None
 
     parser = argparse.ArgumentParser(
@@ -316,6 +319,21 @@ def load_experiment_config(
         "--id",
         default=None,
         help="Override experiment ID",
+    )
+
+    # "resume" subcommand
+    resume_parser = subparsers.add_parser(
+        "resume", help="Resume an experiment from a full checkpoint"
+    )
+    resume_parser.add_argument(
+        "--config",
+        required=True,
+        help="Path to experiment config YAML file",
+    )
+    resume_parser.add_argument(
+        "--step",
+        default="latest",
+        help="Checkpoint step number, or 'latest' (default)",
     )
 
     # "batch" subcommand

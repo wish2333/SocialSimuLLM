@@ -1,6 +1,6 @@
 ## 项目介绍
 
-SocialSimuLLM 是一个基于大语言模型的多智能体社会仿真框架，基于生成式智能体架构（Park et al. 2023）。本项目旨在模拟社会互动和智能体行为，提供一个可复现、可分析的研究平台，用于探索各种社会场景。
+SocialSimuLLM 是一个基于大语言模型的多智能体社会仿真框架，基于生成式智能体架构（Park et al. 2023）。本项目旨在模拟社会互动和智能体行为，提供一个配置可复现、过程可追溯且可分析的研究平台，用于探索各种社会场景。
 
 ## 功能特性
 
@@ -12,7 +12,7 @@ SocialSimuLLM 是一个基于大语言模型的多智能体社会仿真框架，
 - **智能路径规划**: LLM 驱动的移动意图推断 + A* 最短路径 + 多跳遍历
 - **目标驱动规划**: 层次化目标管理与递归任务分解（ROMA 风格）
 - **自然语言场景构建**: 从自然语言描述生成完整的仿真配置
-- **可复现实验**: Pydantic 配置模型、JSONL 结构化日志、检查点保存/恢复、随机种子管理
+- **可追溯实验**: Pydantic 配置快照、JSONL 结构化日志、检查点和随机种子管理；不承诺随机 LLM 输出逐字一致
 - **批量实验**: 使用不同随机种子运行多次实验，支持统计分析
 - **Web 界面**: Streamlit 前端，支持实验配置、回放可视化、热力图和 AI 研究助手
 - **Jupyter 笔记本**: 行为分析、空间分析和对比研究的即用型分析模板
@@ -94,7 +94,7 @@ SocialSimuLLM/
 uv run socialsimullm --project my_town --steps 288 --model deepseek-chat
 ```
 
-### 实验模式（可复现）
+### 实验模式（配置可复现）
 
 ```bash
 # 单次实验
@@ -150,6 +150,13 @@ events:
   - "一场奇怪的雾气笼罩了小镇。"
 reflection_enabled: true
 
+# 仅影响 recall_semantic 的候选阈值和三项评分权重
+memory_config:
+  similarity_weight: 0.5
+  recency_weight: 0.3
+  importance_weight: 0.2
+  importance_threshold: 6
+
 # Phase 3: 空间拓扑
 spatial_config:
   topology: small_world
@@ -169,6 +176,13 @@ goal_enabled: true
 max_active_goals: 5
 ```
 
+### 实验可复现性与配置边界
+
+- 相同 YAML、输入数据和随机种子可以复现实验配置与运行条件，并通过 JSONL、检查点和模型调用元数据追踪过程。
+- LLM 服务端模型版本、采样和供应商实现可能变化，因此不保证两次运行的自然语言输出或最终状态逐字一致。
+- `memory_config` 只影响 `AgentMemory.recall_semantic()`：三项权重用于语义相似度、时近性和重要性评分，`importance_threshold` 控制进入语义召回候选集的 thought 记忆。它不改变最近记忆、时间、位置、过滤检索或记忆容量。
+- `budget_limit` 当前是保留字段，尚未执行费用估算、调用阻断或预算告警，不应将其视为有效的成本上限。
+
 ## 输出结构
 
 **传统模式：**
@@ -177,6 +191,8 @@ projects/{project_name}/
 ├── town_data.json              # 城镇配置
 ├── simulation_log.txt          # 文本日志
 ├── events.jsonl                # 结构化 JSONL 事件日志
+├── model_calls.jsonl           # 不含提示词与密钥的模型调用元数据
+├── run_metadata.json           # 版本、配置摘要、模板指纹与起止时间
 ├── done.flag                   # 完成标记
 ├── checkpoints/                # 状态快照
 └── agent_data/                 # 智能体记忆文件
@@ -188,6 +204,8 @@ runs/{project}/{experiment_id}/
 ├── config.yaml                # 完整实验配置快照
 ├── town_data.json             # 城镇配置副本
 ├── events.jsonl               # 结构化 JSONL 事件日志
+├── model_calls.jsonl          # 不含提示词与密钥的模型调用元数据
+├── run_metadata.json          # 版本、配置摘要、模板指纹与起止时间
 ├── done.flag                  # 完成标记
 ├── checkpoints/               # 状态快照
 └── agent_data/                # 智能体记忆文件
@@ -211,7 +229,7 @@ runs/{project}/{experiment_id}/
 
 ## 版本历史
 
-- **v3.1.0**: 架构重构、结构化记忆、反思系统、可复现实验、Streamlit 前端、空间世界建模、目标驱动规划、AI 研究助手
+- **v3.1.0**: 架构重构、结构化记忆、可追溯实验基础设施、反思系统、Streamlit 前端、空间世界建模、目标驱动规划、AI 研究助手
 - **v3.0**: 增强智能体记忆和反思能力
 - **v2.0**: 优化记忆检索、改进 Agent 状态评估、数据库交互基础
 

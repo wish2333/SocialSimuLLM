@@ -16,6 +16,9 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
+import tempfile
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -140,6 +143,7 @@ def _build_experiment_entry(
 
     # Read round/step count from meta.json (more reliable than checkpoints)
     total_steps = 0
+    resumed_from_step: int | None = None
     meta_path = exp_dir / "meta.json"
     if meta_path.exists():
         try:
@@ -147,6 +151,9 @@ def _build_experiment_entry(
                 meta = json.load(f)
             total_steps = meta.get("round", 0)
             created_at = meta.get("global_time", "")
+            resume_data = meta.get("resume", {})
+            if isinstance(resume_data, dict) and "from_step" in resume_data:
+                resumed_from_step = int(resume_data["from_step"])
         except Exception:
             created_at = ""
     else:
@@ -190,6 +197,7 @@ def _build_experiment_entry(
         "model": config_data.get("model", ""),
         "seed": config_data.get("random_seed", 0),
         "created_at": created_at,
+        "resumed_from_step": resumed_from_step,
     })
 
 
@@ -315,3 +323,153 @@ def load_checkpoint(
             result[filename.replace(".json", "")] = None
 
     return result
+
+
+def restore_checkpoint(
+    experiment_id: str,
+    step: int | None = None,
+    project: str | None = None,
+) -> dict[str, Any]:
+    """Atomically restore a runnable experiment state from a full checkpoint.
+
+    Unlike :func:`load_checkpoint`, this function mutates the run directory.
+    Current log tails are archived first, the saved file-backed state is
+    restored, and any stale completion marker is removed.
+    """
+    run_dir = find_run_dir(experiment_id, project)
+    if step is None:
+        step = get_latest_checkpoint_step(run_dir)
+    if step is None:
+        raise FileNotFoundError(
+            f"No checkpoints found for experiment '{experiment_id}'"
+        )
+    checkpoint_dir = run_dir / "checkpoints" / f"step_{step}"
+    if not checkpoint_dir.is_dir():
+        raise FileNotFoundError(
+            f"Checkpoint step_{step} not found for experiment '{experiment_id}'"
+        )
+
+    required = ("town_data.json", "agent_data", "meta.json", "runtime_state.json")
+    missing = [name for name in required if not (checkpoint_dir / name).exists()]
+    if missing:
+        raise ValueError(
+            f"Checkpoint step_{step} is display-only and cannot be resumed; "
+            f"missing: {', '.join(missing)}"
+        )
+
+    try:
+        runtime_state = json.loads(
+            (checkpoint_dir / "runtime_state.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Invalid runtime state in checkpoint step_{step}") from exc
+
+    archive_dir = _archive_resume_tail(run_dir, step)
+    stage = Path(tempfile.mkdtemp(prefix=".resume-stage-", dir=run_dir))
+    try:
+        for filename in ("town_data.json", "meta.json"):
+            shutil.copy2(checkpoint_dir / filename, stage / filename)
+        shutil.copytree(checkpoint_dir / "agent_data", stage / "agent_data")
+        for filename in (
+            "events.jsonl",
+            "simulation_log.txt",
+            "simulation_summary.txt",
+            "model_calls.jsonl",
+        ):
+            source = checkpoint_dir / filename
+            if source.is_file():
+                shutil.copy2(source, stage / filename)
+
+        _replace_path(stage / "town_data.json", run_dir / "town_data.json")
+        _replace_directory(stage / "agent_data", run_dir / "agent_data")
+        _replace_path(stage / "meta.json", run_dir / "meta.json")
+        for filename in (
+            "events.jsonl",
+            "simulation_log.txt",
+            "simulation_summary.txt",
+            "model_calls.jsonl",
+        ):
+            staged_log = stage / filename
+            current_log = run_dir / filename
+            if staged_log.exists():
+                _replace_path(staged_log, current_log)
+            elif current_log.exists():
+                current_log.unlink()
+    finally:
+        if stage.exists():
+            shutil.rmtree(stage)
+
+    done_flag = run_dir / "done.flag"
+    if done_flag.exists():
+        done_flag.unlink()
+    error_log = run_dir / "error.log"
+    if error_log.exists():
+        error_log.unlink()
+
+    meta_path = run_dir / "meta.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["resume"] = {
+        "from_step": step,
+        "restored_at": datetime.now().isoformat(),
+        "archive": str(archive_dir.relative_to(run_dir)),
+    }
+    _atomic_write_json(meta_path, meta)
+
+    return {
+        "experiment_id": experiment_id,
+        "project": run_dir.parent.name,
+        "step": step,
+        "run_dir": run_dir,
+        "archive_dir": archive_dir,
+        "runtime_state": runtime_state,
+    }
+
+
+def _archive_resume_tail(run_dir: Path, step: int) -> Path:
+    """Archive mutable logs before replacing them with checkpoint prefixes."""
+    stamp = datetime.now().strftime("%Y%m%dT%H%M%S%f")
+    archive = run_dir / "resume_archive" / f"step_{step}_{stamp}"
+    archive.mkdir(parents=True)
+    for filename in (
+        "events.jsonl",
+        "simulation_log.txt",
+        "simulation_summary.txt",
+        "model_calls.jsonl",
+        "run_metadata.json",
+        "error.log",
+        "done.flag",
+    ):
+        source = run_dir / filename
+        if source.is_file():
+            shutil.copy2(source, archive / filename)
+    return archive
+
+
+def _replace_path(source: Path, target: Path) -> None:
+    """Publish one staged file atomically on the same filesystem."""
+    os.replace(source, target)
+
+
+def _replace_directory(source: Path, target: Path) -> None:
+    """Swap a staged directory while retaining rollback on failure."""
+    backup = target.with_name(f".{target.name}.resume-backup")
+    if backup.exists():
+        shutil.rmtree(backup)
+    if target.exists():
+        os.replace(target, backup)
+    try:
+        os.replace(source, target)
+    except Exception:
+        if backup.exists() and not target.exists():
+            os.replace(backup, target)
+        raise
+    if backup.exists():
+        shutil.rmtree(backup)
+
+
+def _atomic_write_json(path: Path, value: dict[str, Any]) -> None:
+    temporary = path.with_name(f".{path.name}.tmp")
+    temporary.write_text(
+        json.dumps(value, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    os.replace(temporary, path)

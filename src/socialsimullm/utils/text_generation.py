@@ -15,10 +15,138 @@ import re
 import os
 import time
 import logging
+from threading import Lock
+from typing import Callable
 
 from socialsimullm.utils import config as _cfg
 
 _log = logging.getLogger("socialsimullm.text_generation")
+
+_model_call_metadata: list[dict] = []
+_model_call_metadata_lock = Lock()
+_model_call_metadata_sink: Callable[[dict], None] | None = None
+
+
+def set_model_call_metadata_sink(sink: Callable[[dict], None] | None) -> None:
+    """Register an optional sink for prompt-free model call metadata."""
+    global _model_call_metadata_sink
+    with _model_call_metadata_lock:
+        _model_call_metadata_sink = sink
+
+
+def get_model_call_metadata() -> list[dict]:
+    """Return a copy of metadata collected for model calls in this process."""
+    with _model_call_metadata_lock:
+        return [
+            dict(item, token_usage=dict(item["token_usage"]))
+            for item in _model_call_metadata
+        ]
+
+
+def clear_model_call_metadata() -> None:
+    """Clear buffered model call metadata."""
+    with _model_call_metadata_lock:
+        _model_call_metadata.clear()
+
+
+def drain_model_call_metadata() -> list[dict]:
+    """Atomically return and clear buffered model call metadata."""
+    with _model_call_metadata_lock:
+        items = [
+            dict(item, token_usage=dict(item["token_usage"]))
+            for item in _model_call_metadata
+        ]
+        _model_call_metadata.clear()
+    return items
+
+
+def _token_usage(response: object) -> dict[str, int]:
+    """Extract token counts without retaining request or response content."""
+    usage = getattr(response, "usage", None)
+    if usage is None:
+        return {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+
+    def value(name: str) -> int:
+        if isinstance(usage, dict):
+            raw = usage.get(name, 0)
+        else:
+            raw = getattr(usage, name, 0)
+        return int(raw or 0)
+
+    prompt_tokens = value("prompt_tokens")
+    completion_tokens = value("completion_tokens")
+    total_tokens = value("total_tokens") or prompt_tokens + completion_tokens
+    return {
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "total_tokens": total_tokens,
+    }
+
+
+def _add_token_usage(total: dict[str, int], response: object) -> None:
+    usage = _token_usage(response)
+    for key in total:
+        total[key] += usage[key]
+
+
+def _record_model_call(
+    *,
+    call_type: str,
+    model: str,
+    retry_count: int,
+    fallback_used: bool,
+    token_usage: dict[str, int],
+) -> None:
+    """Buffer and emit safe metadata that never includes prompts or keys."""
+    record = {
+        "call_type": call_type,
+        "model": model,
+        "retry_count": retry_count,
+        "fallback_used": fallback_used,
+        "token_usage": dict(token_usage),
+    }
+    with _model_call_metadata_lock:
+        _model_call_metadata.append(record)
+        sink = _model_call_metadata_sink
+    if sink is not None:
+        try:
+            sink(
+                dict(record, token_usage=dict(record["token_usage"]))
+            )
+        except Exception:
+            _log.exception("model call metadata sink failed")
+
+
+def _create_chat_completion(
+    system: str,
+    prompt: str,
+    params: dict,
+    *,
+    response_format: dict | None = None,
+) -> object:
+    """Execute one chat API attempt without recording request content."""
+    if not prompt.strip():
+        raise ValueError("Prompt cannot be empty or whitespace only.")
+    time_sleep()
+    client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
+    request = {
+        "model": params["model"],
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": params["temperature"],
+        "max_tokens": params["max_tokens"],
+        "top_p": params["top_p"],
+        "frequency_penalty": params["frequency_penalty"],
+        "presence_penalty": params["presence_penalty"],
+        "n": 1,
+    }
+    if "stop" in params:
+        request["stop"] = params["stop"]
+    if response_format is not None:
+        request["response_format"] = response_format
+    return client.chat.completions.create(**request)
 
 
 # --- DeepSeek V4 Role-Play Thinking Mode Markers ---
@@ -129,32 +257,24 @@ def GPT_request(system, prompt, gpt_parameter: dict = {
     if merged_params["model"] == "PLACEHOLDER":
         merged_params["model"] = _cfg.DefaultModel.completion
 
-    time_sleep()
-    client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
     try:
-        if not prompt.strip():
-            raise ValueError("Prompt cannot be empty or whitespace only.")
-        response = client.chat.completions.create(
-            model=merged_params["model"],
-            messages=[
-                {
-                'role': 'system',
-                'content': system
-                },
-                {
-                'role': 'user',
-                'content': prompt
-                }
-            ],
-            temperature=merged_params["temperature"],
-            max_tokens=merged_params["max_tokens"],
-            top_p=merged_params["top_p"],
-            frequency_penalty=merged_params["frequency_penalty"],
-            presence_penalty=merged_params["presence_penalty"],
-            stop=merged_params["stop"],
-            n=1)
+        response = _create_chat_completion(system, prompt, merged_params)
+        _record_model_call(
+            call_type="completion",
+            model=str(merged_params["model"]),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(response),
+        )
         return response.choices[0].message.content
     except Exception as e:
+        _record_model_call(
+            call_type="completion",
+            model=str(merged_params["model"]),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(object()),
+        )
         _log.error("GPT_request failed", exc_info=e)
         return f"ERROR: {str(e)}"
 
@@ -208,28 +328,63 @@ def GPT_request_json(
 
     # --- Non-DeepSeek / JSON mode disabled: single plain text attempt ---
     if not _is_deepseek_v4() or not _cfg.json_mode_enabled:
-        raw = GPT_request(system, prompt, gpt_parameter)
-        if raw.startswith("ERROR:"):
-            _log.error("GPT_request_json: API error (non-DeepSeek): %s", raw)
-            fb = _make_fallback(raw)
+        plain_params = {
+            "model": _cfg.DefaultModel.completion,
+            "temperature": 0.8,
+            "max_tokens": 50,
+            "top_p": 1.0,
+            "frequency_penalty": 0,
+            "presence_penalty": 0,
+            "stop": None,
+        }
+        if gpt_parameter is not None:
+            plain_params.update(gpt_parameter)
+        if plain_params["model"] == "PLACEHOLDER":
+            plain_params["model"] = _cfg.DefaultModel.completion
+
+        try:
+            response = _create_chat_completion(system, prompt, plain_params)
+            usage = _token_usage(response)
+            raw = response.choices[0].message.content or ""
+        except Exception as exc:
+            _log.error("GPT_request_json: API error (non-DeepSeek)", exc_info=exc)
+            _record_model_call(
+                call_type="completion_json",
+                model=str(plain_params["model"]),
+                retry_count=0,
+                fallback_used=True,
+                token_usage=_token_usage(object()),
+            )
+            fb = _make_fallback("")
             fb["_error"] = True
             return fb
+
+        def finish_non_deep(result: dict, fallback_used: bool) -> dict:
+            _record_model_call(
+                call_type="completion_json",
+                model=str(plain_params["model"]),
+                retry_count=0,
+                fallback_used=fallback_used,
+                token_usage=usage,
+            )
+            return result
+
         if not raw.strip():
             _log.warning("GPT_request_json: empty response from non-DeepSeek, using fallback")
             fb = _make_fallback("")
             fb["_error"] = True
-            return fb
+            return finish_non_deep(fb, True)
         try:
             parsed = json.loads(raw)
         except (json.JSONDecodeError, TypeError):
             _log.warning("GPT_request_json: non-DeepSeek response is not valid JSON, returning raw text")
-            return _make_fallback(raw)
+            return finish_non_deep(_make_fallback(raw), True)
         if required_keys:
             missing = [k for k in required_keys if k not in parsed]
             if missing:
                 _log.warning("GPT_request_json: non-DeepSeek response missing keys %s, returning raw text", missing)
-                return _make_fallback(raw)
-        return parsed
+                return finish_non_deep(_make_fallback(raw), True)
+        return finish_non_deep(parsed, False)
 
     # --- DeepSeek V4 JSON mode: 3-attempt strategy ---
     default_params = {
@@ -247,35 +402,39 @@ def GPT_request_json(
         merged_params["model"] = _cfg.DefaultModel.completion
 
     user_content = prompt + deepseek_v4_marker(thinking_mode)
+    accumulated_usage = {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+    }
+
+    def finish_deep(result: dict, retry_count: int, fallback_used: bool) -> dict:
+        _record_model_call(
+            call_type="completion_json",
+            model=str(merged_params["model"]),
+            retry_count=retry_count,
+            fallback_used=fallback_used,
+            token_usage=accumulated_usage,
+        )
+        return result
 
     # Attempt 1 & 2: JSON mode
     for attempt in range(2):
-        time_sleep()
         try:
-            client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
-            if not user_content.strip():
-                raise ValueError("Prompt cannot be empty or whitespace only.")
-            response = client.chat.completions.create(
-                model=merged_params["model"],
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user_content},
-                ],
-                temperature=merged_params["temperature"],
-                max_tokens=merged_params["max_tokens"],
-                top_p=merged_params["top_p"],
-                frequency_penalty=merged_params["frequency_penalty"],
-                presence_penalty=merged_params["presence_penalty"],
+            response = _create_chat_completion(
+                system,
+                user_content,
+                merged_params,
                 response_format={"type": "json_object"},
-                n=1,
             )
+            _add_token_usage(accumulated_usage, response)
             content = response.choices[0].message.content or ""
             if not content.strip():
                 _log.warning("GPT_request_json: attempt %d returned empty content", attempt + 1)
                 continue
             result = json.loads(content)
             if _is_valid(result):
-                return result
+                return finish_deep(result, attempt, False)
             _log.warning("GPT_request_json: attempt %d missing keys or error in parsed result", attempt + 1)
         except json.JSONDecodeError:
             _log.warning("GPT_request_json: attempt %d JSON parse failed", attempt + 1)
@@ -286,32 +445,19 @@ def GPT_request_json(
     _log.info("GPT_request_json: JSON mode failed after 2 attempts, falling back to plain text mode")
     plain_params = dict(merged_params)
     plain_params.pop("response_format", None)
-    time_sleep()
     try:
-        client = OpenAI(api_key=_cfg.openai_api_key, base_url=_cfg.openai_base_url)
-        response = client.chat.completions.create(
-            model=plain_params["model"],
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user_content},
-            ],
-            temperature=plain_params["temperature"],
-            max_tokens=plain_params["max_tokens"],
-            top_p=plain_params["top_p"],
-            frequency_penalty=plain_params["frequency_penalty"],
-            presence_penalty=plain_params["presence_penalty"],
-            n=1,
-        )
+        response = _create_chat_completion(system, user_content, plain_params)
+        _add_token_usage(accumulated_usage, response)
         raw_content = response.choices[0].message.content or ""
         if raw_content.strip():
             _log.info("GPT_request_json: plain text mode returned content successfully")
             try:
                 parsed = json.loads(raw_content)
                 if _is_valid(parsed):
-                    return parsed
+                    return finish_deep(parsed, 2, True)
             except (json.JSONDecodeError, TypeError):
                 pass
-            return _make_fallback(raw_content)
+            return finish_deep(_make_fallback(raw_content), 2, True)
         _log.warning("GPT_request_json: plain text mode also returned empty, using preset fallback")
     except Exception as e:
         _log.warning("GPT_request_json: plain text mode API error: %s", e)
@@ -320,7 +466,7 @@ def GPT_request_json(
     _log.error("GPT_request_json: all 3 attempts failed, returning preset fallback")
     fb = _make_fallback("")
     fb["_error"] = True
-    return fb
+    return finish_deep(fb, 2, True)
 
 
 def get_embedding(text, model=None):
@@ -332,8 +478,22 @@ def get_embedding(text, model=None):
         text = "this is blank"
     try:
         response = client.embeddings.create(input=[text], model=model)
+        _record_model_call(
+            call_type="embedding",
+            model=str(model),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(response),
+        )
         return response.data[0].embedding
     except Exception as e:
+        _record_model_call(
+            call_type="embedding",
+            model=str(model),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(object()),
+        )
         _log.error("get_embedding failed", exc_info=e)
         raise
 
@@ -363,6 +523,13 @@ def test_connections() -> None:
             messages=[{"role": "user", "content": "hi"}],
             max_tokens=5,
         )
+        _record_model_call(
+            call_type="connection_test_completion",
+            model=str(_cfg.DefaultModel.completion),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(resp),
+        )
         output = resp.choices[0].message.content or "(empty)"
         print(f"  Completion API: OK")
         print(f"    input:  [user] 'hi'")
@@ -370,6 +537,13 @@ def test_connections() -> None:
         print(f"    model:  {resp.model}")
         print(f"    usage:  prompt_tokens={resp.usage.prompt_tokens}, completion_tokens={resp.usage.completion_tokens}")
     except Exception as e:
+        _record_model_call(
+            call_type="connection_test_completion",
+            model=str(_cfg.DefaultModel.completion),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(object()),
+        )
         print(f"  Completion API: FAILED - {e}")
         print("\nFix OPENAI_API_KEY / OPENAI_BASE_URL in .env and retry.")
         sys.exit(1)
@@ -380,6 +554,13 @@ def test_connections() -> None:
     try:
         client = OpenAI(api_key=_cfg.embedding_api_key, base_url=_cfg.embedding_base_url)
         resp = client.embeddings.create(input=["test"], model=_cfg.DefaultModel.embedding)
+        _record_model_call(
+            call_type="connection_test_embedding",
+            model=str(_cfg.DefaultModel.embedding),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(resp),
+        )
         vec = resp.data[0].embedding
         print(f"  Embedding API: OK")
         print(f"    input:  'test'")
@@ -387,6 +568,13 @@ def test_connections() -> None:
         print(f"    model:  {_cfg.DefaultModel.embedding}")
         print(f"    usage:  prompt_tokens={resp.usage.prompt_tokens}, total_tokens={resp.usage.total_tokens}")
     except Exception as e:
+        _record_model_call(
+            call_type="connection_test_embedding",
+            model=str(_cfg.DefaultModel.embedding),
+            retry_count=0,
+            fallback_used=False,
+            token_usage=_token_usage(object()),
+        )
         print(f"  Embedding API: FAILED - {e}")
         print("\nWarning: embedding unavailable, memory retrieval will degrade.")
 

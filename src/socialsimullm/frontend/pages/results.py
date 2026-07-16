@@ -158,6 +158,9 @@ def render_results() -> None:
         st.metric("Events", exp_info.get("event_count", 0))
     with col3:
         st.metric("Latest Checkpoint", exp_info.get("latest_checkpoint_step", 0))
+    resumed_from = exp_info.get("resumed_from_step")
+    if resumed_from is not None:
+        st.info(f"This run was resumed from step {resumed_from}.")
 
     # Load checkpoint
     try:

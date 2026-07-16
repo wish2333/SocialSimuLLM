@@ -11,6 +11,7 @@ Usage:
 
     # Experiment mode (Phase 2)
     uv run socialsimullm run --config <config.yaml> [--id <experiment_id>]
+    uv run socialsimullm resume --config <config.yaml> [--step latest]
     uv run socialsimullm batch --config <config.yaml> --seeds 42,43,44
     uv run socialsimullm list [--project <name>]
 
@@ -48,6 +49,29 @@ def _handle_batch_command(args: Any) -> None:
     runner = ExperimentRunner()
     eids = runner.run_batch(config, seeds)
     print(f"Batch completed: {eids}")
+
+
+def _handle_resume_command(args: Any) -> None:
+    """Handle the 'resume' subcommand."""
+    from socialsimullm.experiment.config import ExperimentConfig
+    from socialsimullm.experiment.runner import ExperimentRunner
+
+    config = ExperimentConfig.from_yaml(args.config)
+    raw_step = str(args.step).strip().lower()
+    if raw_step == "latest":
+        step = None
+    else:
+        try:
+            step = int(raw_step)
+        except ValueError as exc:
+            raise ValueError("--step must be an integer or 'latest'") from exc
+        if step < 0:
+            raise ValueError("--step must be non-negative")
+
+    runner = ExperimentRunner()
+    eid = runner.resume_single(config, step=step)
+    selected = "latest checkpoint" if step is None else f"step {step}"
+    print(f"Experiment {eid} resumed from {selected} and completed.")
 
 
 def _handle_list_command(args: Any) -> None:
@@ -102,6 +126,8 @@ def main() -> None:
 
     if command == "run":
         _handle_run_command(args)
+    elif command == "resume":
+        _handle_resume_command(args)
     elif command == "batch":
         _handle_batch_command(args)
     elif command == "list":

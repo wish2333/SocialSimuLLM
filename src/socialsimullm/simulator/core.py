@@ -143,7 +143,12 @@ class SimulatorCore:
         # Initialize memory
         for agent in agents:
             exist_memory_file(agent.name, self.project_folder)
-        memory = AgentMemory(self.project_folder, agents, memory_limit)
+        memory = AgentMemory(
+            self.project_folder,
+            agents,
+            memory_limit,
+            memory_config=getattr(self.config, "memory_config", None),
+        )
 
         # Initialize reflection engine
         reflection_config = ReflectionConfig(
