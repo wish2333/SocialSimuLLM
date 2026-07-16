@@ -77,6 +77,7 @@ if mode == "研究档案":
         "项目总览",
         "技术路线",
         "Agent 设计",
+        "系统验证",
         "实验设计",
         "运行与介入",
         "结果分析",
@@ -101,6 +102,9 @@ if mode == "研究档案":
     elif page == "Agent 设计":
         from socialsimullm.frontend.pages.agent_design import render_agent_design
         render_agent_design()
+    elif page == "系统验证":
+        from socialsimullm.frontend.pages.system_validation import render_system_validation
+        render_system_validation(demo)
     elif page == "实验设计":
         from socialsimullm.frontend.pages.experiment_design import render_experiment_design
         render_experiment_design(demo)

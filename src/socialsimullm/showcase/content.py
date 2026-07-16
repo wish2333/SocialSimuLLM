@@ -158,6 +158,26 @@ METRIC_LABELS: Final = {
 }
 
 
+# The paper reports the original Stanford Generative Agents / Phandalin
+# validation separately from the compact, migrated showcase bundle.  Keeping
+# this provenance next to the curated copy makes the distinction explicit in
+# the UI and prevents the 78-round paper run being mistaken for the 10-step
+# offline snapshot shipped with the app.
+T7_PAPER_VALIDATION: Final = {
+    "rounds": 78,
+    "agents": 4,
+    "locations": 4,
+    "source": "论文 PDF pp.29–30（正文 22–23）",
+    "finding": "角色身份与地点约束形成稳定的分工趋势，并在互动中出现社会协调与制度化秩序。",
+    "roles": [
+        ("Toblen Stonehill", "补货、供应链协调", "交易站经营者"),
+        ("Daran Edermath", "果园劳作、写信", "退休冒险者 / 果园居住者"),
+        ("Linene Graywind", "待客、商品整理", "交易站经营者"),
+        ("Halia Thornton", "促销、财务与预算", "矿工交易所管理者"),
+    ],
+}
+
+
 def declared_metric_labels(available_metrics: list[str]) -> tuple[tuple[str, str], ...]:
     """Map only manifest-declared metrics to their curated display labels."""
     return tuple(
