@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD) - v3.1.0 Upgrade
 
 > Version: 3.1.0
-> Last Updated: 2026-05-02
-> Status: Phase 1 + Phase 2 + Phase 3 Complete
+> Last Updated: 2026-05-03
+> Status: Phase 1 + Phase 2 + Phase 3 Complete + Smoke Test Refinements
 > Based on: `references/reference-3.1.0-3rdVersion.md`
 > Supersedes: `docs/PRD.md` (v3.0 baseline)
 

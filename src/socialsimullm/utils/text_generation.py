@@ -374,16 +374,32 @@ def GPT_request_json(
             fb = _make_fallback("")
             fb["_error"] = True
             return finish_non_deep(fb, True)
+        # Strip markdown code fences (```json ... ```) that some models add
+        stripped = re.sub(r"^```(?:json)?\s*\n?", "", raw.strip())
+        stripped = re.sub(r"\n?```\s*$", "", stripped)
         try:
-            parsed = json.loads(raw)
+            parsed = json.loads(stripped)
         except (json.JSONDecodeError, TypeError):
-            _log.warning("GPT_request_json: non-DeepSeek response is not valid JSON, returning raw text")
-            return finish_non_deep(_make_fallback(raw), True)
+            _log.info("GPT_request_json: non-DeepSeek response is not JSON, falling back")
+            # Prefer explicit caller-provided fallback (preserves its contract);
+            # otherwise wrap the raw text into required_keys so downstream still
+            # gets expected fields, marked with _error so callers can detect it.
+            if fallback is not None:
+                fb = _make_fallback(raw)
+            else:
+                fb = {k: raw.strip() for k in required_keys} if required_keys else {"_raw": raw.strip()}
+                fb["_error"] = True
+            return finish_non_deep(fb, True)
         if required_keys:
             missing = [k for k in required_keys if k not in parsed]
             if missing:
-                _log.warning("GPT_request_json: non-DeepSeek response missing keys %s, returning raw text", missing)
-                return finish_non_deep(_make_fallback(raw), True)
+                _log.info("GPT_request_json: non-DeepSeek JSON missing keys %s, falling back", missing)
+                if fallback is not None:
+                    fb = _make_fallback(raw)
+                else:
+                    fb = {k: raw.strip() for k in required_keys}
+                    fb["_error"] = True
+                return finish_non_deep(fb, True)
         return finish_non_deep(parsed, False)
 
     # --- DeepSeek V4 JSON mode: 3-attempt strategy ---

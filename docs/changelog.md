@@ -4,6 +4,65 @@ All notable changes to SocialSimuLLM will be documented in this file.
 
 ## [3.1.0] - 2026-05-03
 
+### Added (Smoke Test Fixes & Agent Interaction)
+
+- **Agent dialogue system**: Agents can now converse with each other during action execution
+  - `template_agents.py`: New `JSON_ACTION_DIALOGUE_SUFFIX` requiring `action` + `dialogue_target` + `dialogue` fields
+  - `agent.py`: New `dialogue_target` / `dialogue_content` attributes and `memory_dialogue()` method
+  - `core.py`: Bidirectional dialogue storage -- both speaker and listener retain the exchange in memory
+  - Design principle: dialogue is embedded within actions, no extra turns consumed
+- **Nearby agent awareness**: Agents can perceive what other co-located agents are doing
+  - `core.py`: New `_format_nearby_agents()` collects recent actions of agents at the same location
+  - `agent.py`: `execute_action` accepts new `nearby_agents_info` parameter injected into prompts
+  - Prompt highlights dialogues directed at the current agent for contextual response
+- **Time-bounded global events**: Events now support time ranges for temporary occurrences
+  - `global_methods.py`: New `parse_sim_time()` and `is_time_in_range()` time comparison utilities
+  - `memory.py`: New `load_active_events(global_time)` method filters events by time range
+  - `core.py`: `_load_events` parses time format `"Event | Day 1, 08:00 - Day 3, 20:00"`; new `_refresh_events()` called each step
+  - Events without time ranges remain permanently active (backward compatible)
+- **Reflection cooldown mechanism**: Prevents reflection flooding
+  - `reflection.py`: `ReflectionConfig` gains `min_cooldown_steps=6` (max once per in-game hour)
+  - `should_reflect` checks cooldown; cumulative importance excludes `event_type=="reflection"` entries
+  - `core.py`: `_last_reflection_step` tracking, step number passed to reflection
+- **Recent action history**: Reduces repetitive agent behavior
+  - `agent.py`: New `recent_actions: list[str]` appended each step (last 5 entries)
+  - Prompt injected with recent actions; instruction allows cross-round sustained activities but forbids verbatim copy
+
+### Fixed (Smoke Test & Production)
+
+- **GPT_request_json fallback**: Non-DeepSeek models returning empty plans for all agents
+  - Root cause: `_make_fallback` discarded model's actual text output when fallback dict was provided
+  - Fix: wraps raw model text as `{key: raw_text}` instead of discarding; added markdown code fence preprocessing
+- **Experiment list command**: `list` showing 0 steps / 0 events / status=running
+  - `storage.py`: `_is_experiment_dir()` heuristic; scans both flat (`runs/{id}/`) and nested (`runs/{project}/{id}/`) layouts
+  - Steps read from `meta.json` `round` field when checkpoints unavailable
+- **Notebook data loader**: Jupyter notebooks unable to read experiment files
+  - `data_loader.py`: Path resolution changed from relative `Path("runs")` to `Path(__file__).resolve().parent.parent / "runs"`
+  - Falls back to `rglob` search for nested layouts
+- **Generic agent responses**: Agents outputting "Do something[action]: ..." verbatim from prompt template
+  - Removed misleading template example from `template_agents.py`
+  - Recent action history prevents verbatim repetition
+- **Reflection flooding**: 2-3 reflections per round with highly repetitive content
+  - Cooldown mechanism (min_cooldown_steps=6) limits reflection frequency
+  - Importance accumulation excludes reflection entries to prevent positive feedback loop
+- **Reflection token exhaustion**: 23 "all 3 attempts failed" in error.log
+  - `reflection_token_limit` raised from 150 to 500 in `ReflectionConfig`, `SimulationConfig`, `ExperimentConfig`
+- **rate_locations retry loop**: Infinite loop calling `get_rating(res)` on the same string
+  - Removed manual retry; unified with `GPT_request_json()` internal 3-attempt retry
+
+### Changed
+
+- `agents/agent.py`: +27 lines (dialogue attributes, memory_dialogue, nearby_agents_info param, recent_actions)
+- `agents/memory.py`: +28 lines (load_active_events with time range filtering)
+- `prompt_templates/template_agents.py`: +11 lines (dialogue suffix, nearby agents, time-bounded event wording)
+- `simulator/core.py`: +86 lines (_format_nearby_agents, dialogue storage, _refresh_events, cooldown tracking)
+- `utils/global_methods.py`: refactored time parsing utilities (+parse_sim_time, +is_time_in_range)
+- `utils/text_generation.py`: +15 lines (markdown code fence preprocessing in fallback path)
+- `experiment/storage.py`: flat layout support + meta.json step reading (if not already in changelog)
+- `notebooks/data_loader.py`: project root path resolution fix (if not already in changelog)
+
+## [3.1.0] - 2026-05-03 (DeepSeek JSON Output Mode)
+
 ### Changed (DeepSeek JSON Output Mode)
 
 - **GPT_request_json()** in `utils/text_generation.py`: New function for structured LLM output

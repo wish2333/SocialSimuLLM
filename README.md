@@ -6,17 +6,19 @@ A multi-agent social simulation framework powered by Large Language Models, base
 
 - **Modular architecture**: Clean separation between simulation engine, agent cognition, memory, reflection, world modeling, and goal planning
 - **Structured memory system**: Typed `MemoryEntry` dataclass with multi-dimensional retrieval (semantic, temporal, spatial, importance)
-- **Multi-level reflection**: Daily summary, cross-day pattern recognition, and social relationship analysis
+- **Multi-level reflection**: Daily summary, cross-day pattern recognition, and social relationship analysis with cooldown throttle
+- **Agent interaction**: Agents perceive nearby agents' actions and engage in natural dialogue (embedded within action turns, bidirectional memory storage)
 - **Spatial world modeling**: Diverse graph topologies (ring, small-world, grid, random, scale-free) via `WorldVariationGenerator`
 - **Proximity perception**: Graph distance-based `FieldOfView` for realistic agent awareness
 - **Intelligent path planning**: LLM-driven movement intent with A* shortest path and multi-hop traversal
 - **Goal-driven planning**: Hierarchical goal management with recursive task decomposition (ROMA-inspired)
+- **Time-bounded events**: Global events support time ranges (`"Event | Day 1, 08:00 - Day 3, 20:00"`) for temporary occurrences
 - **NL scenario construction**: Generate complete simulation setups from natural language descriptions
 - **Reproducible experiments**: Pydantic-based config, JSONL structured logging, checkpoint save/restore, random seed management
 - **Batch execution**: Run multiple experiments with different seeds for statistical analysis
 - **Web UI**: Streamlit frontend with experiment configuration, replay visualization, heatmaps, and AI research assistant
 - **Jupyter notebooks**: Ready-to-use analysis templates for behavioral, spatial, and comparative studies
-- **OpenAI-compatible**: Works with any OpenAI-compatible API endpoint (customizable base URL and model)
+- **OpenAI-compatible**: Works with any OpenAI-compatible API endpoint (customizable base URL and model); DeepSeek V4 JSON output mode with structured retry
 
 ## Project Structure
 
@@ -143,6 +145,7 @@ random_seed: 42
 checkpoint_interval: 10
 events:
   - "A strange fog rolls into town."
+  - "A traveling merchant arrives | Day 2, 10:00 - Day 4, 18:00"
 reflection_enabled: true
 
 # Phase 3: Spatial topology
@@ -206,7 +209,7 @@ runs/{project}/{experiment_id}/
 
 ## Version History
 
-- **v3.1.0**: Architecture refactoring, structured memory, reflection system, reproducible experiments, Streamlit frontend, spatial world modeling, goal-driven planning, AI research assistant
+- **v3.1.0**: Architecture refactoring, structured memory, reflection system with cooldown, agent dialogue and nearby awareness, time-bounded events, reproducible experiments, Streamlit frontend, spatial world modeling, goal-driven planning, AI research assistant, DeepSeek V4 JSON output mode
 - **v3.0**: Enhanced agent memory and reflection capabilities
 - **v2.0**: Memory retrieval optimization, agent state evaluation, database groundwork
 

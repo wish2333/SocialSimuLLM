@@ -8,12 +8,12 @@ SocialSimuLLM/
 ├── src/socialsimullm/                 # Source package
 │   ├── __main__.py                    # CLI entry point (96 lines)
 │   ├── agents/                        # Agent behavior, memory, reflection
-│   │   ├── agent.py                   # Agent class (283 lines)
-│   │   ├── memory.py                  # AgentMemory unified store/recall (374 lines)
+│   │   ├── agent.py                   # Agent class + dialogue + nearby awareness (310 lines)
+│   │   ├── memory.py                  # AgentMemory unified store/recall + active events (402 lines)
 │   │   ├── memory_entry.py            # MemoryEntry frozen dataclass (153 lines)
-│   │   └── reflection.py              # ReflectionEngine (392 lines)
+│   │   └── reflection.py              # ReflectionEngine + cooldown (395 lines)
 │   ├── simulator/                     # Simulation engine
-│   │   ├── core.py                    # SimulatorCore: step(), run() (571 lines)
+│   │   ├── core.py                    # SimulatorCore: dialogue, nearby, events (657 lines)
 │   │   ├── state.py                   # SimulationState dataclass (46 lines)
 │   │   └── events.py                  # EventBus pub/sub (51 lines)
 │   ├── world/                         # Spatial world modeling (Phase 3)
@@ -48,12 +48,12 @@ SocialSimuLLM/
 │   ├── locations/                     # Location management
 │   │   └── locations.py               # Location/Locations classes (71 lines)
 │   ├── prompt_templates/              # LLM prompt templates
-│   │   └── template_agents.py         # All prompt strings + JSON suffixes (170 lines)
+│   │   └── template_agents.py         # Prompts + dialogue + nearby agent suffixes (181 lines)
 │   ├── utils/                         # Infrastructure utilities
 │   │   ├── config.py                  # SimulationConfig + experiment config parser (343 lines)
 │   │   ├── logger.py                  # StructuredLogger JSONL+text (312 lines)
-│   │   ├── text_generation.py         # GPT_request + GPT_request_json (310 lines)
-│   │   └── global_methods.py          # File I/O, time helpers (144 lines)
+│   │   ├── text_generation.py         # GPT_request + GPT_request_json (325 lines)
+│   │   └── global_methods.py          # File I/O, time parse + compare (154 lines)
 │   └── data/                          # Template data files
 │       └── town_data_template.json    # Town configuration template
 ├── notebooks/                         # Jupyter analysis templates (Phase 3)
@@ -168,6 +168,7 @@ spatial_graph_path: ""   # empty = default template
 events:
   - "A strange fog rolls into town."
   - "The merchant announces a festival."
+  - "A traveling circus arrives | Day 2, 10:00 - Day 4, 18:00"  # time-bounded event
 reflection_enabled: true
 
 # Phase 3: Spatial configuration
@@ -206,19 +207,24 @@ memory_config:
 Each step in `SimulatorCore.step()` executes:
 
 1. **Time Advancement**: Increment 10-minute clock, check for day boundary
-2. **Daily Planning** (08:00): All agents generate full-day plans via LLM
+2. **Event Refresh**: Filter global events by time range, update active events for all agents
+3. **Daily Planning** (08:00): All agents generate full-day plans via LLM
    - Goal management: `GoalManager.review_and_update_goals()`
    - Goals context injected into planning prompt
-3. **Hourly Planning**: Agents generate next-hour plans
+4. **Hourly Planning**: Agents generate next-hour plans
    - FOV context: visible agents within graph distance
    - Path context: current planned path if multi-hop movement
-4. **Action Execution**: Each agent acts based on their plan and current context
-5. **Location Rating + Movement**: Agents rate locations and may move
+   - Recent actions: last 5 actions to prevent repetitive behavior
+5. **Action Execution**: Each agent acts based on their plan and current context
+   - **Nearby agents**: sees what other co-located agents are doing (including dialogues directed at them)
+   - **Dialogue output**: agent may produce `dialogue_target` + `dialogue_content` alongside action
+6. **Dialogue Storage**: Bidirectional -- both speaker and listener store the exchange in memory
+7. **Location Rating + Movement**: Agents rate locations and may move
    - With PathPlanner: LLM infers movement intent, A* finds shortest path
    - Multi-hop: agent moves one graph node per step
-6. **Impression Formation**: Agents form impressions of co-located agents
-7. **Reflection**: Daily (end of day) or threshold-based (mid-day) reflection
-8. **Global Events**: Configured or random events may occur
+8. **Impression Formation**: Agents form impressions of co-located agents
+9. **Reflection**: Daily (end of day) or threshold-based (mid-day) reflection
+   - Cooldown: `min_cooldown_steps=6` (max once per in-game hour) prevents flooding
 
 ### LLM Integration: JSON Output Mode
 
@@ -276,14 +282,30 @@ Non-DeepSeek models: single plain text attempt, then fallback. No `response_form
 - **MemoryEntry**: Immutable frozen dataclass with 13 fields (id, agent_name, timestamp, location_id, event_type, content, summary, entities, importance, embedding, reflection_link, reflection_type, metadata)
 - **Storage**: Per-agent JSON files + per-agent SQLite embedding databases
 - **Retrieval Scoring**: `0.5*similarity + 0.3*recency + 0.2*importance`
-- **Event Types**: `action`, `plan`, `thought`, `event`, `reflection`
+- **Event Types**: `action`, `plan`, `thought`, `event`, `reflection`, `dialogue`
+- **Active events**: `load_active_events(global_time)` filters events by time range; events without ranges remain permanently active
 
 ### Reflection System
 
 - **ReflectionEngine**: Standalone class with Protocol-based coupling
 - **Three types**: daily (end-of-day), pattern (cross-day), social (relationship)
 - **Two triggers**: scheduled (day end) + threshold (cumulative importance)
+- **Cooldown**: `min_cooldown_steps=6` (max once per in-game hour); cumulative importance excludes `event_type="reflection"` to prevent positive feedback loop
 - Reflections are stored as `MemoryEntry` with `event_type="reflection"`
+
+### Agent Interaction System
+
+- **Dialogue**: Agents produce `dialogue_target` + `dialogue_content` during action execution
+  - Prompt requires JSON output with `action`, `dialogue_target`, `dialogue` fields
+  - Bidirectional storage: both speaker and listener retain the exchange in memory
+  - Dialogue is embedded within actions (no extra turns consumed)
+- **Nearby agent awareness**: `_format_nearby_agents()` in `SimulatorCore`
+  - Collects recent actions of agents at the same location
+  - Highlights dialogues directed at the current agent
+  - Injected into `execute_action` prompt as `nearby_agents_info`
+- **Recent action history**: Agent tracks last 5 actions in `recent_actions: list[str]`
+  - Injected into planning and action prompts
+  - Allows cross-round sustained activities (walking, talking) but forbids verbatim copy
 
 ### Spatial World (Phase 3)
 
@@ -304,7 +326,7 @@ Non-DeepSeek models: single plain text attempt, then fallback. No `response_form
 - **ExperimentConfig (Pydantic)**: Validated config with YAML serialization, wraps SimulationConfig
 - **ExperimentRunner**: Single and batch execution with seed management
 - **ScenarioGenerator**: Natural language -> town_data.json via LLM synthesis
-- **Storage**: Standardized `runs/{project}/{id}/` directory layout
+- **Storage**: Standardized `runs/{project}/{id}/` directory layout; also supports flat `runs/{id}/` layout
 - **Analysis**: JSONL loading, DataFrame export, cross-run comparison
 - **ResearchAssistant**: AI-powered experiment analysis (summary, patterns, hypotheses, reports)
 
@@ -344,6 +366,9 @@ Three-tab Streamlit application:
 6. **Frontend decoupling**: Streamlit frontend communicates via files (subprocess + done.flag polling), never imports simulator core
 7. **Optional complexity**: Phase 3 features (world, FOV, path planner, goals) are all opt-in via config flags; legacy mode runs identically to Phase 2
 8. **JSON Output Mode for DeepSeek V4**: All simulation calls use `GPT_request_json()` with structured retry; non-DeepSeek models and experiment tools are completely unaffected
+9. **Embedded dialogue**: Conversations happen within action turns (no extra LLM calls), stored bidirectionally in both agents' memories
+10. **Time-bounded events**: Events support optional time ranges (`"Event | Day 1, 08:00 - Day 3, 20:00"`); backward compatible with permanent events
+11. **Reflection throttle**: Cooldown mechanism (`min_cooldown_steps=6`) prevents reflection flooding; importance scoring excludes reflection entries to avoid positive feedback
 
 ## Coding Conventions
 

@@ -10,7 +10,7 @@ First version created on 2025-02-19 15:25.
 
 agent_plan_system = """You are {}.
 The following is your description: {}.
-The following is very popular things recently: {}.
+The following are current events happening around you: {}.
 The following is your recent impressions: {}.
 Just now these things happened: {}(including any actions you took in the past hour)
 You just woke up."""
@@ -43,7 +43,7 @@ The following people are in this area: {}."""
 
 agent_execute_action_system = """You are {}.
 The following is your description: {}.
-The following is very popular things recently: {}.
+The following are current events happening around you: {}.
 The following is your recent impressions: {}.
 Your daily plans are: {}."""
 agent_execute_action_prompt = """{}

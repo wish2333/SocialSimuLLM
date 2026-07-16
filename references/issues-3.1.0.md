@@ -632,74 +632,284 @@ F-311 (Research Assistant) [independent]                          F-310 (Adv Viz
 - `prompt_templates/template_agents.py` -- new prompts
 - `utils/config.py` -- SimulationConfig additions
 
+# 扩展功能
+
+让我查看一下项目文档和代码，来了解扩展功能。
+
+以下是 SocialSimuLLM 的拓展功能总览：
+
+## 核心拓展功能
+
+| 功能                            | 作用                                     | 激活阶段          |
+| ------------------------------- | ---------------------------------------- | ----------------- |
+| **空间感知系统 (FOV)**          | 基于图距离感知附近智能体，支持跨地点社交 | 每小时规划/行动时 |
+| **智能路径规划 (Path Planner)** | LLM推理移动意图 + A*最短路径，多跳移动   | 移动决策时        |
+| **目标驱动规划 (Goal-Driven)**  | 分层目标管理，递归任务分解，长期行为指导 | 每日计划时        |
+| **对话系统**                    | 嵌入行动的社交对话，双向记忆             | 行动执行时        |
+
+## 仿真前拓展
+
+| 功能                   | 作用                                       |
+| ---------------------- | ------------------------------------------ |
+| **空间世界生成器**     | 支持环形/小世界/网格/随机/无标度等拓扑结构 |
+| **自然语言场景生成器** | 用自然语言描述生成城镇数据，简化实验配置   |
+
+## 仿真后分析
+
+| 功能                 | 作用                                   |
+| -------------------- | -------------------------------------- |
+| **回放系统**         | 时间轴位置回放，可视化移动和交互       |
+| **热力图**           | 地点占用频率、活动模式、转换统计       |
+| **研究助手**         | 自动实验总结、模式识别、假设生成       |
+| **Jupyter 分析模板** | 行为分析/空间分析/实验比较的标准化流程 |
+
+## 仿真阶段集成流程
+
+```
+初始化: 空间拓扑 + 路径规划器 + 目标管理器
+    |
+每日计划: 目标管理器更新目标 -> 反思系统参考历史目标
+    |
+每小时规划: FOV感知周围智能体 -> 路径规划器生成移动计划
+    |
+行动执行: 路径规划器执行移动 -> 对话系统处理社交
+    |
+反思阶段: 目标完成度评估 -> 行为模式分析
+```
+
+这些功能都通过配置文件按需启用（`fov_enabled`、`path_planner_enabled`、`goal_enabled` 等），不启用时保持传统行为，互不干扰。
+
 # 测试
 
-## Based on Test1 - smoke test
+## 诊断报告与解决方案
 
-- max-token自查
+### BUG-1: DeepSeek V4 思考token耗尽输出预算（严重）
 
-- 完成后请自查
+**现象**: 测试运行 `runs/exp_a58c0b42` 中约 **80% 的 LLM 调用返回空值**，agent 行为完全瘫痪（全部 idle / fallback 行为）。
 
-- Smoke Test 自查报告
+**根因**: DeepSeek V4 的思考链 token 计入 `max_tokens` 预算。短输出调用（如 `rate_locations` 仅 5 tokens、`hourly_planning` 仅 45 tokens）的预算被思考过程完全消耗，导致实际输出为空。
 
-  ### 一、发现的问题
+**影响范围**: 全部 15 个模拟 LLM 调用点。
 
-  | #    | 问题                        | 严重度 | 现象                                                         |
-  | ---- | --------------------------- | ------ | ------------------------------------------------------------ |
-  | 1    | `list` 命令目录扫描逻辑错误 | P0     | 实验已完成(done.flag 存在, events.jsonl 有 138 行)，但 `list` 输出 0 steps / 0 events / status=running |
-  | 2    | reflection_token_limit 过小 | P0     | error.log 记录 23 次 "all 3 attempts failed"，DeepSeek V4 的思考 token 耗尽预算导致 JSON 输出空间为零 |
-  | 3    | "Do something" 泛化回复     | P1     | prompt 模板中直接给出了 `"Do something[action]: ..."` 作为示例，模型学会了这种写法 |
-  | 4    | 反思过度触发                | P1     | 无冷却机制 + 反思产物计入 importance 形成正反馈循环，导致每轮刷 2-3 条重复反思 |
-  | 5    | 行为缺乏递进感              | 提升   | agent 每 round 只知道 hourly_plan，不知道自己上一步做了什么，导致重复编独立动作 |
+**解决方案**: 使用 DeepSeek JSON Output 模式（`response_format={"type": "json_object"}`），强制模型返回可解析的 JSON，不受思考 token 消耗影响。
 
-  ### 二、修复方案
+### BUG-2: `rate_locations()` 重试循环无效（中等）
 
-  **问题 1 -- storage.py**
+**现象**: `agent.py` 中 `rate_locations()` 方法存在死循环重试——对同一个字符串反复调用 `get_rating(res)`，永远得到相同结果。
 
-  - `list_experiments` 只扫描 `runs/{project}/{exp_id}/` 两级结构，但 `project=''` 时目录是扁平的 `runs/{exp_id}/`
-  - 新增 `_is_experiment_dir()` 辅助函数，支持扁平和嵌套两种布局
-  - 用 `seen` 集合去重，防止同一实验被两种扫描路径重复计数
-  - Steps 列改为优先从 `meta.json` 的 `round` 字段读取，而非依赖 checkpoint
+**根因**: 原代码在解析失败时用同一个 `res` 字符串重试，不会产生不同结果。
 
-  **问题 2 -- 三处默认值 150 -> 500**
+**解决方案**: 移除手动重试循环，统一由 `GPT_request_json()` 内部的 3 次重试策略处理。
 
-  - `ReflectionConfig`、`SimulationConfig`、`ExperimentConfig` 的 `reflection_token_limit` 全部从 150 提升到 500
-  - 为 DeepSeek V4 的思考过程留出足够空间
+---
 
-  **问题 3 -- prompt 模板重写**
+### 实施方案: `GPT_request_json()` + 3 次重试
 
-  - 删除 `"Do something[action]: ..."` 模板示例
-  - 指令中明确禁止泛化回复
+**重试策略**:
+```
+Attempt 1: JSON 模式 (response_format=json_object)
+    |
+    +-- 解析失败? --> Attempt 2: JSON 模式重试
+    |                   |
+    |                   +-- 解析失败? --> Attempt 3: 纯文本模式 (无 response_format)
+    |                                       |
+    |                                       +-- 返回空? --> 写入预设 fallback
+    |                                       +-- 非空? --> 尝试 json.loads(), 失败则写 raw text
+    +-- 成功 --> 返回解析后的 dict
+```
 
-  **问题 4 -- 反思冷却机制**
+**max_tokens 预算调整**（为思考 token 留出空间）:
 
-  - `ReflectionConfig` 新增 `min_cooldown_steps=6`（即 1 小时内最多触发一次）
-  - `should_reflect` 新增冷却时间检查
-  - 累计 importance 计算中排除 `event_type == "reflection"` 的条目，打破正反馈循环
-  - `_run_reflection` 执行后记录 step 到 `_last_reflection_step`
+| 调用 | 原值 | 新值 |
+|------|------|------|
+| daily_planning | 300 | 800 |
+| hourly_planning | 45 | 300 |
+| execute_action | 80 | 300 |
+| form_impression | 80 | 300 |
+| rate_locations/experience | 5 | 300 |
+| simplify_action | 30 | 200 |
+| reflect_daily | 150 | 400 |
+| reflect_pattern/social | 60 | 300 |
 
-  **问题 5 -- 行为递进感**（经一轮讨论后调整）
+**15 个预设 fallback 值**（所有重试失败时注入，保证模拟不中断）:
 
-  - Agent 新增 `recent_actions: list[str]` 属性，每轮执行后追加
-  - prompt 中注入最近 5 条动作历史
-  - 初始方案：禁止重复动作
-  - 用户反馈：有些活动（走路、对话）不可能 10 分钟完成
-  - 最终方案：允许跨 round 持续活动，但要求每轮描述具体的下一步新细节，禁止逐字复制和泛化总结
+| 调用 | Key | 预设值 |
+|------|-----|--------|
+| daily_planning | plan | `[8:00 - Wake up...\n20:00 - Go to bed.]` |
+| hourly_planning | plan | `Continue with current activity.` |
+| execute_action | action | `Idle[action]: Observing surroundings.[details]` |
+| form_impression | impression | `Neutral, observing.` |
+| rate_locations | rating | `5` |
+| rate_experience | rating | `5` |
+| simplify_action | summary | `{agent_name} did something.` |
+| reflect_daily | reflection | `Nothing notable happened.` |
+| reflect_pattern | reflection | `No clear pattern identified.` |
+| reflect_social | reflection | `No social observations yet.` |
+| initialize_goals | text | `5: Explore the surroundings` |
+| review_and_update_goals | text | `CONTINUE` |
+| decompose_goal | text | `5: Take first step toward ...` |
+| order_by_dependency | text | 每个目标的 `[id] description` |
+| infer_movement_intent | destination | `STAY` |
 
-  ### 三、调整过程
+**回滚机制**: `--no-json-mode` CLI 参数关闭 JSON 模式，退回原有行为。
 
-  用户指出只看上一步动作不够，在一个小时的计划下仍可能循环。改为展示最近 5 条动作。随后用户进一步指出有些事情不是 10 分钟能做完的，不能一刀切禁止重复。最终把约束从"禁止重复"改为"允许延续但要求递进"：
+**未受影响的模块**: `experiment/assistant.py` 和 `experiment/scenario.py` 继续使用 `GPT_request()`（纯文本），完全不受影响。
 
-  > Some activities span multiple rounds (e.g. walking somewhere, having a conversation) -- that is fine, but each round must describe a concrete next step with new detail, not copy a previous action verbatim.
+## 本次会话完整问题诊断与修复记录
 
-  ### 四、修改文件清单
+### 一、Smoke Test 自查发现的问题
 
-  | 文件                                                         | 改动                                |
-  | ------------------------------------------------------------ | ----------------------------------- |
-  | [storage.py](app://localhost/epitaxy/src/socialsimullm/experiment/storage.py) | 扁平布局支持 + meta.json 读取 steps |
-  | [reflection.py](app://localhost/epitaxy/src/socialsimullm/agents/reflection.py) | 冷却机制 + reflection 排除          |
-  | [template_agents.py](app://localhost/epitaxy/src/socialsimullm/prompt_templates/template_agents.py) | action prompt 重写                  |
-  | [agent.py](app://localhost/epitaxy/src/socialsimullm/agents/agent.py) | `recent_actions` 列表 + 传入 prompt |
-  | [core.py](app://localhost/epitaxy/src/socialsimullm/simulator/core.py) | 传递 step + 记录冷却                |
-  | [config.py](app://localhost/epitaxy/src/socialsimullm/utils/config.py) | token limit 150->500                |
-  | [experiment/config.py](app://localhost/epitaxy/src/socialsimullm/experiment/config.py) | token limit 150->500                |
+| # | 问题 | 严重度 | 根因 |
+|---|------|--------|------|
+| 1 | `list` 命令输出 0 steps / 0 events / status=running | P0 | `list_experiments` 只扫描 `runs/{project}/{exp_id}/` 两级结构，`project=''` 时目录为扁平 `runs/{exp_id}/`，扫描器跳过；Steps 列依赖 checkpoint 而非 meta.json |
+| 2 | error.log 记录 23 次 "all 3 attempts failed" | P0 | `reflection_token_limit=150`，DeepSeek V4 的思考 token 耗尽预算，JSON 输出空间为零 |
+| 3 | Agent 输出 "Do something" 泛化回复 | P1 | prompt 模板中 `"Do something[action]: ..."` 被当作示例模板，模型学会了这种写法 |
+| 4 | 反思每轮刷 2-3 条，内容高度重复 | P1 | 无冷却机制 + 反思产物计入 importance 形成正反馈循环 |
+| 5 | 行为缺乏递进感，同一动作反复出现 | 提升 | agent 不知道自己上一步做了什么，每轮独立生成动作 |
+| 6 | notebook 无法读取实验文件 | P0 | `data_loader.py` 用 `Path("runs")` 相对路径，notebook 工作目录为 `notebooks/`，解析到错误位置；`rglob` 模式无法匹配扁平目录结构 |
+
+### 二、修复方案
+
+**问题 1 -- storage.py**
+- 新增 `_is_experiment_dir()` 判断目录是否为实验目录
+- `list_experiments` 同时扫描扁平和嵌套两种布局，用 `seen` 集合去重
+- Steps 优先从 `meta.json` 的 `round` 字段读取
+
+**问题 2 -- 三处默认值**
+- `ReflectionConfig`、`SimulationConfig`、`ExperimentConfig` 的 `reflection_token_limit` 从 150 提升到 500
+
+**问题 3 + 5 -- template_agents.py + agent.py**
+- 删除 `"Do something[action]: ..."` 模板示例
+- Agent 新增 `recent_actions: list[str]`，每轮追加
+- prompt 注入最近 5 条动作历史
+- 初始指令："禁止重复" -> 经用户反馈后改为："允许跨 round 持续活动（走路、对话等），但每轮必须描述具体下一步新细节，禁止逐字复制"
+
+**问题 4 -- reflection.py + core.py**
+- `ReflectionConfig` 新增 `min_cooldown_steps=6`（1 小时最多触发一次）
+- `should_reflect` 增加冷却时间检查
+- 累计 importance 排除 `event_type=="reflection"` 的条目
+- `_run_reflection` 执行后记录 step 到 `_last_reflection_step`
+
+**问题 6 -- notebooks/data_loader.py**
+- 用 `Path(__file__).resolve().parent.parent / "runs"` 推导项目根目录，不依赖工作目录
+- 先检查 `runs_root / experiment_id`（扁平布局），再用 `rglob` 搜索嵌套布局
+
+### 三、修改文件清单
+
+| 文件 | 改动摘要 |
+|------|----------|
+| `src/socialsimullm/experiment/storage.py` | 扁平布局支持 + meta.json 读取 steps |
+| `src/socialsimullm/agents/reflection.py` | 冷却机制 + reflection 排除 |
+| `src/socialsimullm/prompt_templates/template_agents.py` | action prompt 重写 |
+| `src/socialsimullm/agents/agent.py` | `recent_actions` 列表 + 传入 prompt |
+| `src/socialsimullm/simulator/core.py` | 传递 step + 记录冷却 |
+| `src/socialsimullm/utils/config.py` | token limit 150->500 |
+| `src/socialsimullm/experiment/config.py` | token limit 150->500 |
+| `notebooks/data_loader.py` | 路径解析修复 |
+
+## Smoke Test 发现的问题与解决方案
+
+### 问题：无 checkpoint 生成
+
+**现象**：smoke test 运行完毕后，`runs/` 目录下没有 `checkpoints/` 文件夹。
+
+**原因**：[smoke_test.yaml:10](examples/smoke_test.yaml#L10) 中设置了 `checkpoint_interval: 0`，即关闭 checkpoint 保存。
+
+**触发逻辑**：[core.py:257](src/socialsimullm/simulator/core.py#L257) — 只有当 `checkpoint_interval > 0` 且当前步数是其整数倍时才保存：
+
+```python
+if self.config.checkpoint_interval > 0 and s.round % self.config.checkpoint_interval == 0:
+    logger.save_checkpoint(s, s.round)
+```
+
+**解决方案**：按需修改 `checkpoint_interval` 值：
+
+| 值 | 行为 | 适用场景 |
+|----|------|---------|
+| `0` | 不保存 | smoke test、快速验证 |
+| `1` | 每步保存 | 调试、精细分析 |
+| `5` | 每 5 步保存 | 一般实验 |
+| `10` | 每 10 步保存（默认） | 标准实验 |
+
+注意：smoke test 中设为 `0` 是**正确的设计**，它只需要验证代码管线能跑通，不需要保存中间状态。如果你需要 checkpoint 来测试 Replay/Heatmap 功能，用 `minimal.yaml` 或修改 smoke test 配置即可。
+
+## 本次会话发现的问题与修复总结
+
+---
+
+### 问题 1：非 DeepSeek 模型计划为空（全员 fallback）
+
+**现象**：非 DeepSeek 模型运行时，所有智能体的每日计划都是 `[8:00 - Wake up and start the day. 20:00 - Go to bed.]`，完全相同。
+
+**根因**：`GPT_request_json` 中非 DeepSeek 路径的 fallback 逻辑有 bug。`_make_fallback` 在 `fallback` 参数不为 None 时直接返回硬编码的 fallback dict，**丢弃了模型实际返回的文本**。
+
+**修复**（[text_generation.py](src/socialsimullm/utils/text_generation.py)）：
+- JSON 解析失败时，将模型原始文本包装为 `{key: raw_text}` 而非丢弃
+- 新增 markdown 代码围栏（` ```json...``` `）预处理，兼容部分模型返回带围栏的 JSON
+
+---
+
+### 问题 2：智能体无法感知周围人的行动
+
+**现象**：智能体做行动决策时，完全不知道同地点其他人在做什么，无法产生自然互动。
+
+**根因**：
+- `execute_action` 的 `nearby_situations` 参数名有误导性，实际传入的是**自身记忆**而非周围情况
+- 同一轮内顺序执行的智能体之间不可见
+- prompt 模板没有展示其他智能体行为的字段
+
+**修复**（3 个文件）：
+- `core.py` — 新增 `_format_nearby_agents()` 收集同地点其他智能体的最近行动
+- `agent.py` — `execute_action` 新增 `nearby_agents_info` 参数注入 prompt
+- `template_agents.py` — prompt 新增占位符展示周围人动态
+
+---
+
+### 问题 3：智能体之间无法产生对话交互
+
+**现象**：智能体只做自己的事，彼此之间无法聊天、回应或社交互动。
+
+**根因**：整个提示词系统和数据流都没有设计对话机制——prompt 不鼓励对话，数据结构不存储对话，记忆系统不追踪对话。
+
+**修复**（4 个文件）：
+- `template_agents.py` — 新增 `JSON_ACTION_DIALOGUE_SUFFIX`，要求模型输出 `action` + `dialogue_target` + `dialogue` 三字段；prompt 鼓励自然社交
+- `agent.py` — 新增 `dialogue_target`/`dialogue_content` 属性，`memory_dialogue()` 方法；`execute_action` 提取对话字段
+- `core.py` — `_format_nearby_agents` 高亮显示对当前智能体说的对话；`_execute_actions` 将对话**双向存入记忆**（双方都能回忆）
+- 设计原则：对话嵌入行动，不消耗额外轮次，边做事边聊天
+
+---
+
+### 问题 4：全局事件没有时效性
+
+**现象**：事件一旦添加就永远生效，无法模拟"集市今天开放""商队经过 2 天后离开"等有时限的事件。且事件只在初始化时加载一次，运行期间不刷新。
+
+**根因**：事件数据结构没有时间范围字段，`agent.event` 只在 `init_memory` 时设置一次。
+
+**修复**（4 个文件）：
+- `global_methods.py` — 新增 `parse_sim_time()` 和 `is_time_in_range()` 时间比较工具
+- `memory.py` — 新增 `load_active_events(global_time)` 方法，按时间范围过滤活跃事件
+- `core.py` — `_load_events` 支持解析时间范围格式 `"事件 | Day 1, 08:00 - Day 3, 20:00"`；新增 `_refresh_events()` 每步刷新；`step()` 中调用刷新
+- `template_agents.py` — prompt 文案从 "very popular things recently" 改为 "current events happening around you"
+
+向后兼容：不带时间范围的事件视为永久有效。
+
+---
+
+### 改动文件清单
+
+| 文件 | 改动类型 |
+|------|---------|
+| `utils/text_generation.py` | Bug fix — fallback 逻辑修复 |
+| `utils/global_methods.py` | Feature — 时间解析工具 |
+| `agents/memory_entry.py` | 无变更（metadata 字段已存在） |
+| `agents/memory.py` | Feature — 活跃事件过滤 |
+| `agents/agent.py` | Feature — 对话属性 + 记忆方法 |
+| `prompt_templates/template_agents.py` | Feature — 对话 prompt + 事件描述优化 |
+| `simulator/core.py` | Feature — 周围人感知 + 对话存储 + 事件刷新 |
+
+# 待定功能方向
+
+- 记忆系统是否可以参考claude
+- 更合理的时间配置
+- 合理的多线程（不同空间内的异步运行？）
+- 随机的行动顺序

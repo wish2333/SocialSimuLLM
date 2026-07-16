@@ -1,0 +1,4 @@
+interface:
+  display_name: "提炼项目简历经历"
+  short_description: "从代码仓库中提炼有明确证据支撑的中文简历项目经历内容"
+  default_prompt: "Use $extract-resume-experience 分析当前代码仓库，先建立证据卡并向我追问无法验证的职责和结果，最后生成中文简历项目经历。"

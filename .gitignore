@@ -21,6 +21,7 @@ build/
 
 # ClaudeCode
 runCC-*
+.omo
 
 # Experiment runs (output data, not source)
 /runs/
