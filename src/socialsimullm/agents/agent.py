@@ -15,9 +15,10 @@ Comment format: Use standard Google style docstring format for comments, bilingu
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import logging
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Any, Literal, Mapping, cast
+
 import networkx as nx
 
 from socialsimullm.prompt_templates.template_agents import (
@@ -49,6 +50,52 @@ if TYPE_CHECKING:
 
 _log = logging.getLogger("socialsimullm.agent")
 
+ActionType = Literal["task", "talk", "move", "idle"]
+_ACTION_TYPES: set[str] = {"task", "talk", "move", "idle"}
+
+
+@dataclass(frozen=True)
+class AgentAction:
+    """Backward-compatible structured result from one main action call."""
+
+    action: str
+    action_type: ActionType = "task"
+    target: str = ""
+    utterance: str = ""
+    continues_task: bool = False
+
+    @classmethod
+    def from_response(cls, response: Mapping[str, Any]) -> AgentAction:
+        """Normalize optional structured fields while retaining legacy output."""
+
+        raw_action = response.get("action", "")
+        action = raw_action if isinstance(raw_action, str) else str(raw_action or "")
+
+        raw_type = response.get("action_type", "task")
+        normalized_type = raw_type.strip().lower() if isinstance(raw_type, str) else "task"
+        action_type = cast(
+            ActionType,
+            normalized_type if normalized_type in _ACTION_TYPES else "task",
+        )
+
+        target = response.get("target", "")
+        utterance = response.get("utterance", "")
+        raw_continues = response.get("continues_task", False)
+        if isinstance(raw_continues, bool):
+            continues_task = raw_continues
+        elif isinstance(raw_continues, str):
+            continues_task = raw_continues.strip().lower() in {"true", "1", "yes"}
+        else:
+            continues_task = raw_continues == 1
+
+        return cls(
+            action=action,
+            action_type=action_type,
+            target=target.strip() if isinstance(target, str) else "",
+            utterance=utterance.strip() if isinstance(utterance, str) else "",
+            continues_task=continues_task,
+        )
+
 
 class Agent:
     """A class to represent an individual agent in a simulation similar to The Sims.
@@ -77,6 +124,7 @@ class Agent:
         self.impression: str = ""
         self.hourly_action_prompt: str = ""
         self.action: str = ""
+        self.action_detail: AgentAction = AgentAction(action="")
         self.recent_actions: list[str] = []
         self.reflection: str = ""
         self.world_graph: nx.Graph = world_graph
@@ -153,7 +201,14 @@ class Agent:
 
     # --- Action execution ---
 
-    def execute_action(self, global_time: str, prompt_meta: str, recent_impressions: str, nearby_situations: str) -> str:
+    def execute_action(
+        self,
+        global_time: str,
+        prompt_meta: str,
+        recent_impressions: str,
+        nearby_situations: str,
+        conversation_guidance: str = "",
+    ) -> str:
         """Execute an action for the agent based on current context."""
         system = agent_execute_action_system.format(self.name, self.description, self.event, recent_impressions, self.daily_plans)
         hourly_prompt = self.hourly_action_prompt.format(str(global_time))
@@ -162,6 +217,8 @@ class Agent:
             hourly_prompt, self.hourly_plan, self.related_things,
             nearby_situations, recent_actions_text,
         )
+        if conversation_guidance:
+            prompt += f"\nConversation policy for this step: {conversation_guidance}"
         result = GPT_request_json(
             system + JSON_ACTION_SUFFIX, prompt,
             gpt_parameter={"max_tokens": 300},
@@ -169,7 +226,8 @@ class Agent:
             fallback={"action": "Idle[action]: Observing surroundings.[details]"},
             thinking_mode="role_immersion",
         )
-        self.action = result.get("action", "")
+        self.action_detail = AgentAction.from_response(result)
+        self.action = self.action_detail.action
         self.recent_actions.append(self.action)
         return self.action
 

@@ -31,7 +31,9 @@ class SimulationState:
         project_folder: Absolute path to the project directory.
         meta_data: Dictionary of persistent metadata (project_name, global_time, round).
         town_areas: Dictionary of area_name -> area_description.
-        events: List of active global event description strings.
+        events: Permanent global event description strings.
+        timed_events: Configured bounded global event definitions.
+        active_event_ids: Timed event IDs active at the current round.
     """
 
     global_time: str
@@ -44,3 +46,5 @@ class SimulationState:
     meta_data: dict[str, Any]
     town_areas: dict[str, Any]
     events: list[str] = field(default_factory=list)
+    timed_events: list[Any] = field(default_factory=list)
+    active_event_ids: list[str] = field(default_factory=list)

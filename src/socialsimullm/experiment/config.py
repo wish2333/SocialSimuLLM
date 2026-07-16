@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import yaml
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 if TYPE_CHECKING:
     from socialsimullm.utils.config import SimulationConfig
@@ -82,6 +82,27 @@ class MemoryConfig(BaseModel):
         return v
 
 
+class TimedEventConfig(BaseModel):
+    """A global event that is active only for a bounded step window."""
+
+    id: str = Field(min_length=1, description="Stable event identifier")
+    content: str = Field(min_length=1, description="Event context shown to agents")
+    start_step: int = Field(ge=0, description="First active simulation step")
+    end_step: int = Field(ge=0, description="Last active simulation step")
+    locations: list[str] = Field(
+        default_factory=list,
+        description="Locations that receive the event; empty means all locations",
+    )
+    importance: int = Field(default=5, ge=1, le=9)
+
+    @model_validator(mode="after")
+    def validate_step_window(self) -> TimedEventConfig:
+        """Require an inclusive, non-empty active step window."""
+        if self.end_step < self.start_step:
+            raise ValueError("end_step must be >= start_step")
+        return self
+
+
 class ExperimentConfig(BaseModel):
     """Full experiment configuration with validation.
 
@@ -129,9 +150,9 @@ class ExperimentConfig(BaseModel):
         default="",
         description="Path to town_data.json (absolute or relative to project)",
     )
-    events: list[str] = Field(
+    events: list[str | TimedEventConfig] = Field(
         default_factory=list,
-        description="Initial global events (one per simulation day boundary)",
+        description="Permanent event strings or bounded timed event objects",
     )
     budget_limit: float = Field(
         default=0.0, ge=0.0, description="USD budget cap (0 = unlimited)"
@@ -167,6 +188,18 @@ class ExperimentConfig(BaseModel):
     )
     max_active_goals: int = Field(
         default=3, ge=1, le=10, description="Max concurrent active goals per agent"
+    )
+
+    # Conversation coordination
+    conversation_max_consecutive_steps: int = Field(
+        default=3,
+        ge=1,
+        description="Maximum consecutive steps an agent may participate in conversation",
+    )
+    conversation_cooldown_steps: int = Field(
+        default=2,
+        ge=0,
+        description="Required non-conversation steps after reaching the conversation limit",
     )
 
     # Reflection settings (mirrors SimulationConfig)
@@ -212,7 +245,7 @@ class ExperimentConfig(BaseModel):
 
         from socialsimullm.utils.config import SimulationConfig as _SC
 
-        return _SC(
+        sim_config = _SC(
             project_name=self.project,
             openai_api_key=os.environ.get("OPENAI_API_KEY", ""),
             openai_base_url=os.environ.get("OPENAI_BASE_URL", ""),
@@ -236,7 +269,15 @@ class ExperimentConfig(BaseModel):
             multi_hop_movement=self.multi_hop_movement,
             goal_enabled=self.goal_enabled,
             max_active_goals=self.max_active_goals,
+            conversation_max_consecutive_steps=self.conversation_max_consecutive_steps,
+            conversation_cooldown_steps=self.conversation_cooldown_steps,
+            timed_events=[
+                event.model_copy(deep=True)
+                for event in self.events
+                if isinstance(event, TimedEventConfig)
+            ],
         )
+        return sim_config
 
     def to_yaml(self, path: str | Path) -> None:
         """Export configuration to a YAML file.
@@ -287,6 +328,7 @@ class ExperimentConfig(BaseModel):
         Returns:
             Semicolon-joined events string, or 'No new event.' if empty.
         """
-        if not self.events:
+        legacy_events = [event for event in self.events if isinstance(event, str)]
+        if not legacy_events:
             return "No new event."
-        return "; ".join(self.events)
+        return "; ".join(legacy_events)

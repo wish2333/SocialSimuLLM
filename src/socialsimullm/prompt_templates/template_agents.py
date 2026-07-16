@@ -53,6 +53,11 @@ Your recent actions:
 {}
 
 Based on your recent actions, what do you do in this 10 minutes? Some activities span multiple rounds (e.g. walking somewhere, having a conversation) -- that is fine, but each round must describe a concrete next step with new detail, not copy a previous action verbatim. Never write vague summaries like "do something" or "continue". If you intend to communicate with someone, write down who and what you want to say. Use at most 50 words.
+
+Use action_type "talk" only for a direct utterance to one named target. Set
+continues_task to true when you can keep making progress on the current task
+while speaking. Otherwise prefer task, move, or idle so conversation does not
+replace practical work indefinitely.
 """
 
 
@@ -156,7 +161,13 @@ Use at most 60 words."""
 # the model to respond with valid JSON containing a specific key.
 
 JSON_PLAN_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "plan" with your plan text as the value.'
-JSON_ACTION_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "action" with your action text as the value.'
+JSON_ACTION_SUFFIX = '''
+
+You MUST respond with valid JSON. The "action" string is required for backward
+compatibility. You may also provide "action_type" ("task", "talk", "move", or
+"idle"), "target" (agent name), "utterance" (spoken words), and
+"continues_task" (boolean). For talk, target and utterance are required. For
+all other action types, omit target and utterance.'''
 JSON_IMPRESSION_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "impression" with your impression text as the value.'
 JSON_RATING_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "rating" with an integer value between 1 and 9.'
 JSON_SUMMARY_SUFFIX = '\n\nYou MUST respond with valid JSON containing a single key "summary" with the simplified text as the value.'

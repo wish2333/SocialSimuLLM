@@ -56,6 +56,10 @@ multi_hop_movement: true
 goal_enabled: true
 max_active_goals: 3
 
+# --- Non-blocking conversation coordination (v3.1.0) ---
+conversation_max_consecutive_steps: 3
+conversation_cooldown_steps: 2
+
 # --- Global events ---
 events:
   - "A traveling merchant arrives at the town square with exotic goods."

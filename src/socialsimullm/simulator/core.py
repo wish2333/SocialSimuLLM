@@ -23,6 +23,7 @@ from socialsimullm.agents.memory import AgentMemory
 from socialsimullm.agents.reflection import ReflectionConfig, ReflectionEngine
 from socialsimullm.locations.locations import Locations
 from socialsimullm.simulator.state import SimulationState
+from socialsimullm.simulator.interactions import InteractionCoordinator
 from socialsimullm.utils.config import SimulationConfig
 from socialsimullm.utils.global_methods import (
     add_ten_minutes,
@@ -69,12 +70,17 @@ class SimulatorCore:
             self.project_folder = os.path.join(os.getcwd(), "projects", config.project_name)
         self._initial_event = initial_event
         self._spatial_config = spatial_config
+        self._timed_events = list(getattr(config, "timed_events", []))
         self.state: SimulationState | None = None
         self.logger: StructuredLogger | None = None
         self.reflection_engine: ReflectionEngine | None = None
         self.fov: FieldOfView | None = None
         self.path_planner: PathPlanner | None = None
         self.goal_manager: GoalManager | None = None
+        self.interaction_coordinator = InteractionCoordinator(
+            max_consecutive_steps=config.conversation_max_consecutive_steps,
+            cooldown_steps=config.conversation_cooldown_steps,
+        )
 
     def initialize(self) -> None:
         """Initialize the simulation world from project data.
@@ -178,6 +184,8 @@ class SimulatorCore:
             meta_data=meta_data,
             town_areas=town_areas,
             events=events,
+            timed_events=self._timed_events,
+            active_event_ids=list(meta_data.get("active_event_ids", [])),
         )
 
     def step(self) -> str:
@@ -197,6 +205,9 @@ class SimulatorCore:
         new_hour = if_new_hour(s.global_time)
 
         logger.log_round_start(s.round, s.global_time)
+
+        # Refresh bounded event context before any planning or action prompt.
+        self._update_timed_events(s)
 
         # Daily planning
         if new_day:
@@ -420,7 +431,10 @@ class SimulatorCore:
         if new_event is None:
             new_event = str(input("Please enter a new event: ") or "No new event.")
         if new_event == "No new event.":
-            return [event_json["action"] for event_json in memory.load_events()["event"]]
+            return [
+                self._stored_event_content(event_json)
+                for event_json in memory.load_events()["event"]
+            ]
 
         from socialsimullm.agents.memory_entry import MemoryEntry
 
@@ -434,7 +448,89 @@ class SimulatorCore:
         )
         memory.store(new_event_entry)
         event_record = new_event_entry.to_dict()
-        return [event_json["action"] for event_json in memory.save_event(event_record)["event"]]
+        return [
+            self._stored_event_content(event_json)
+            for event_json in memory.save_event(event_record)["event"]
+        ]
+
+    @staticmethod
+    def _stored_event_content(event: dict) -> str:
+        """Read both legacy ``action`` and current ``content`` event fields."""
+        return str(event.get("content", event.get("action", "")))
+
+    def _update_timed_events(self, s: SimulationState) -> None:
+        """Refresh active timed events and emit lifecycle transitions once."""
+        assert self.logger is not None
+
+        def value(event: object, key: str, default: object = None) -> object:
+            if isinstance(event, dict):
+                return event.get(key, default)
+            return getattr(event, key, default)
+
+        event_by_id = {
+            str(value(event, "id", "")): event
+            for event in s.timed_events
+            if value(event, "id", "")
+        }
+        active_events = [
+            event
+            for event in s.timed_events
+            if int(value(event, "start_step", 0))
+            <= s.round
+            <= int(value(event, "end_step", -1))
+        ]
+        active_ids = [str(value(event, "id", "")) for event in active_events]
+        previous_ids = list(s.active_event_ids)
+
+        for event_id in active_ids:
+            if event_id not in previous_ids:
+                event = event_by_id[event_id]
+                self.logger.log_event(
+                    "global_event_started",
+                    step=s.round,
+                    data=self._timed_event_log_data(event),
+                )
+
+        for event_id in previous_ids:
+            if event_id not in active_ids:
+                event = event_by_id.get(event_id)
+                data = (
+                    self._timed_event_log_data(event)
+                    if event is not None
+                    else {"event_id": event_id}
+                )
+                self.logger.log_event(
+                    "global_event_ended",
+                    step=s.round,
+                    data=data,
+                )
+
+        s.active_event_ids = active_ids
+        s.meta_data["active_event_ids"] = list(active_ids)
+
+        for agent in s.agents:
+            contexts = list(s.events)
+            for event in active_events:
+                locations = list(value(event, "locations", []))
+                if not locations or agent.location in locations:
+                    contexts.append(str(value(event, "content", "")))
+            agent.event = ";".join(context for context in contexts if context)
+
+    @staticmethod
+    def _timed_event_log_data(event: object) -> dict[str, object]:
+        """Build the stable JSONL payload for a timed event transition."""
+        if isinstance(event, dict):
+            value = event.get
+        else:
+            value = lambda key, default=None: getattr(event, key, default)
+        return {
+            "event_id": str(value("id", "")),
+            "content": str(value("content", "")),
+            "start_step": int(value("start_step", 0)),
+            "end_step": int(value("end_step", 0)),
+            "locations": list(value("locations", [])),
+            "importance": int(value("importance", 5)),
+        }
 
     def _daily_planning(self, s: SimulationState, prompt_meta: str) -> None:
         """Execute daily planning for all agents."""
@@ -491,7 +587,37 @@ class SimulatorCore:
             action = agent.execute_action(
                 s.global_time, prompt_meta, gotten_impression,
                 s.memory.format_recent(agent.name, s.memory.memory_limit),
+                conversation_guidance=self.interaction_coordinator.prompt_guidance(
+                    agent.name, s.round
+                ),
             )
+
+            visible_agent_names: set[str] | None = None
+            if self.fov is not None:
+                visible_agent_names = {
+                    visible.name
+                    for visible in self.fov.get_visible_agents(agent, s.agents)
+                }
+            interaction = self.interaction_coordinator.coordinate(
+                actor=agent,
+                action=agent.action_detail,
+                all_agents=s.agents,
+                step=s.round,
+                global_time=s.global_time,
+                memory=s.memory,
+                visible_agent_names=visible_agent_names,
+            )
+            agent.action_detail = interaction.action
+            agent.action = interaction.action.action
+            action = agent.action
+            if interaction.event_type is not None:
+                self.logger.log_event(
+                    interaction.event_type,
+                    step=s.round,
+                    agent_id=agent.name,
+                    data=interaction.event_data,
+                )
+
             priority = agent.rate_experience(
                 prompt_meta, gotten_impression,
                 s.memory.format_recent(agent.name, s.memory.memory_limit), action,

@@ -17,7 +17,8 @@ from __future__ import annotations
 
 import argparse
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any
 
 from dotenv import load_dotenv
 
@@ -82,7 +83,10 @@ class SimulationConfig:
     multi_hop_movement: bool = True
     goal_enabled: bool = False
     max_active_goals: int = 3
+    conversation_max_consecutive_steps: int = 3
+    conversation_cooldown_steps: int = 2
     json_mode_enabled: bool = True
+    timed_events: list[Any] = field(default_factory=list)
 
 
 class DefaultModel:

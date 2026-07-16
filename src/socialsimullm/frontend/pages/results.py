@@ -16,12 +16,104 @@ from __future__ import annotations
 import streamlit as st
 
 from socialsimullm.frontend.adapters import normalize_agent_states
+from socialsimullm.showcase.content import declared_metric_labels
+from socialsimullm.showcase.loader import ShowcaseDemo
 from socialsimullm.experiment.storage import (
     find_run_dir,
     get_latest_checkpoint_step,
     list_experiments,
     load_checkpoint,
 )
+
+
+_SHOWCASE_METRIC_RENDERERS = {
+    "activity_distribution": "_render_showcase_activity",
+    "location_occupancy": "_render_showcase_occupancy",
+    "memory_distribution": "_render_showcase_memory",
+}
+
+
+def enabled_showcase_metrics(demo: ShowcaseDemo) -> tuple[str, ...]:
+    """Return only metrics both declared by the manifest and implemented here."""
+    return tuple(
+        metric
+        for metric, _label in declared_metric_labels(demo.manifest.available_metrics)
+        if metric in _SHOWCASE_METRIC_RENDERERS
+    )
+
+
+def render_showcase_results(demo: ShowcaseDemo) -> None:
+    """Render metric panels allowed by the offline demo manifest."""
+    st.markdown('<p class="archive-kicker">EVIDENCE DESK / DECLARED METRICS</p>', unsafe_allow_html=True)
+    st.title("结果分析：只展示源数据能够支持的指标")
+    st.caption("指标入口由 manifest.available_metrics 控制；未声明的研究结论不会出现在界面中。")
+
+    metrics = enabled_showcase_metrics(demo)
+    if not metrics:
+        st.info("当前演示 manifest 没有声明可用指标。")
+        return
+
+    labels = dict(declared_metric_labels(demo.manifest.available_metrics))
+    tabs = st.tabs([labels[metric] for metric in metrics])
+    renderers = {
+        "activity_distribution": _render_showcase_activity,
+        "location_occupancy": _render_showcase_occupancy,
+        "memory_distribution": _render_showcase_memory,
+    }
+    for tab, metric in zip(tabs, metrics):
+        with tab:
+            renderers[metric](demo)
+
+    unsupported = [
+        metric for metric in demo.manifest.available_metrics
+        if metric not in _SHOWCASE_METRIC_RENDERERS
+    ]
+    if unsupported:
+        st.caption("尚无展示组件：" + "、".join(unsupported))
+
+
+def _render_showcase_activity(demo: ShowcaseDemo) -> None:
+    from collections import Counter
+
+    import pandas as pd
+
+    counts = Counter(event.get("event_type", "unknown") for event in demo.events)
+    if not counts:
+        st.info("没有活动事件。")
+        return
+    frame = pd.DataFrame(
+        [{"事件类型": key, "记录数": value} for key, value in counts.most_common()]
+    ).set_index("事件类型")
+    st.bar_chart(frame, color="#e5a85c")
+    st.caption(f"来源 · {demo.manifest.event_log} · 共 {len(demo.events)} 条结构化事件")
+
+
+def _render_showcase_occupancy(demo: ShowcaseDemo) -> None:
+    from socialsimullm.frontend.components.heatmap import render_location_heatmap
+
+    render_location_heatmap(list(demo.checkpoints))
+    st.caption("来源 · checkpoints/*/agent_states.json；只统计有真实 checkpoint 的时间点。")
+
+
+def _render_showcase_memory(demo: ShowcaseDemo) -> None:
+    from collections import Counter
+
+    import pandas as pd
+
+    latest = max(demo.checkpoints, key=lambda checkpoint: int(checkpoint.get("step", 0)))
+    agents = latest.get("memory_summary", {}).get("agents", {})
+    totals: Counter[str] = Counter()
+    for summary in agents.values():
+        if isinstance(summary, dict):
+            totals.update(summary.get("by_type", {}))
+    if not totals:
+        st.info("没有记忆摘要。")
+        return
+    frame = pd.DataFrame(
+        [{"记忆类型": key, "记录数": value} for key, value in totals.most_common()]
+    ).set_index("记忆类型")
+    st.bar_chart(frame, color="#6fb3a8")
+    st.caption(f'来源 · checkpoints/step_{latest["step"]}/memory_summary.json')
 
 
 def render_results() -> None:

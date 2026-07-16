@@ -2,8 +2,7 @@
 # Usage: uv run socialsimullm run --config examples/with_events.yaml
 # Output: runs/events_demo/exp_events_demo/
 #
-# Demonstrates how to inject global events that shape agent behavior.
-# Events are joined and passed to all agents at initialization.
+# Demonstrates permanent legacy events and bounded timed events.
 
 experiment_id: exp_events_demo
 project: events_demo
@@ -12,5 +11,13 @@ random_seed: 42
 checkpoint_interval: 10
 
 events:
+  # Legacy string events remain active for the full run.
   - "A mysterious merchant arrives in town, offering rare goods at the market square."
-  - "Heavy rain causes flooding in the lower district."
+  # Timed events are active for the inclusive start/end step window.
+  - id: lower-district-flood
+    content: "Heavy rain causes flooding in the lower district."
+    start_step: 24
+    end_step: 72
+    locations:
+      - "Phandalin Town Square"
+    importance: 8
