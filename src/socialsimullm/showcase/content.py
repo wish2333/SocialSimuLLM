@@ -1,4 +1,4 @@
-"""Curated, evidence-linked Chinese copy for the interview showcase."""
+"""Curated, evidence-linked Chinese copy for the research archive."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ PROJECT_OVERVIEW: Final = {
     "responsibilities": [
         "设计并实现 Agent 感知、记忆检索、规划、行动与反思闭环",
         "搭建配置化实验、JSONL 过程日志、检查点和批量运行基础设施",
-        "将历史实验迁移为无需模型 API 的只读演示快照",
+        "将历史实验迁移为无需模型 API 的只读研究记录",
     ],
     "evidence": [
         ("仿真主循环", "src/socialsimullm/simulator/core.py"),
@@ -89,10 +89,63 @@ EVOLUTION: Final = [
     {
         "version": "V3.1",
         "label": "研究平台化",
-        "problem": "单次运行不足以支撑批量实验、过程追踪和面试现场稳定演示。",
+        "problem": "单次运行不足以支撑批量实验、过程追踪和历史记录稳定回放。",
         "decision": "引入 Pydantic 配置、标准运行目录、JSONL、checkpoint 与离线展示契约。",
         "result": "配置输入、运行过程和展示输出形成同一条可核验链路。",
     },
+]
+
+
+VARIABLE_TRANSLATION: Final = [
+    {
+        "theory": "技术属性",
+        "question": "新技术是否被感知为有用、易用并与既有实践相容？",
+        "entity": "角色经验、技术认知与行动记忆",
+        "control": "技术曝光内容、接触时点与信息强度",
+    },
+    {
+        "theory": "组织条件",
+        "question": "资源、规范和同伴关系如何改变采纳机会？",
+        "entity": "Agent 身份、目标、关系与地点网络",
+        "control": "目标对象、可见范围、互动结构与场景约束",
+    },
+    {
+        "theory": "环境压力",
+        "question": "政策与外部事件如何推动、抑制或重塑采纳？",
+        "entity": "有起止时间的全局或定向事件",
+        "control": "介入方向、覆盖地点、持续时间与重要度",
+    },
+    {
+        "theory": "扩散结果",
+        "question": "认知变化如何转化为讨论、试用与持续行动？",
+        "entity": "结构化行动、对话、位置和记忆事件",
+        "control": "编码口径、观察窗口与跨情景比较维度",
+    },
+]
+
+
+INTERVENTION_BOUNDARIES: Final = [
+    (
+        "运行前",
+        "设定角色异质性、空间与关系结构、模型参数、记忆规则和共享基线。",
+    ),
+    (
+        "运行中",
+        "按时间、地点和目标对象注入有边界的事件，或从共同检查点产生对照分支。",
+    ),
+    (
+        "运行后",
+        "固定编码口径、排除规则和比较维度；原始事件与状态快照保持只读。",
+    ),
+]
+
+
+DEFAULT_BRANCH_TIMELINE: Final = [
+    ("Day 1", "共享基线", "所有分支继承相同角色、场景与初始状态"),
+    ("Day 2", "技术曝光", "按分支设置接触内容、目标对象与强度"),
+    ("Day 3", "自然扩散", "观察同伴互动、位置流动与自主行动"),
+    ("Day 4", "政策介入", "注入促进、约束或中性的环境信号"),
+    ("Day 6", "归档比较", "冻结过程记录并按统一口径进行跨情景分析"),
 ]
 
 

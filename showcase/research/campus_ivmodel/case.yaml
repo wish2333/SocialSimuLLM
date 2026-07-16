@@ -1,0 +1,438 @@
+schema_version: '1.0'
+case_id: campus-ivmodel-diffusion
+title: 大学生群体中新技术创新扩散仿真
+summary: >-
+  以创新扩散与 TOE 框架为理论入口，将技术特征、组织资源、关系网络和政策事件映射为
+  可介入的社会仿真变量；正式设计包含五个动态分支，仓库保留 GE、NA 两组可审计运行档案。
+provenance:
+  paper_title: 突破互动边界：大学生群体中新技术创新扩散的大模型社会仿真研究
+  paper_file: 20250618-毕业论文-突破互动边界：大学生群体中新技术创新扩散的大模型社会仿真研究.pdf
+  paper_pages: [31, 32, 33, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+  repository_branch: paper
+  repository_commit: cfedfc5689fb8cc43f9e68046f28a0469bef968f
+  source_paths:
+    - simulation/projects/breaking_en_ge_IVModel_Round420_Day6
+    - simulation/projects/breaking_en_na_IVModel_Round420_Day6
+  archive_note: >-
+    论文描述五个正式分支；paper 分支仅归档 GE、NA 两组完整结果，因此档案指标不外推为五组实测结果。
+
+research_questions:
+  - id: rq-diffusion
+    title: 技术如何跨越互动边界
+    question: 新技术信息如何沿同辈、项目和师生关系进入异质大学生的行动议程？
+    theoretical_lens: [创新扩散理论, 社会网络]
+    pdf_pages: [36, 37, 41, 42]
+  - id: rq-context
+    title: 场景与资源如何塑造采纳
+    question: 技术兼容性、使用场景和可用资源如何共同影响技术的选择性转译？
+    theoretical_lens: [TOE 框架, 场景需求]
+    pdf_pages: [38, 39, 40, 41]
+  - id: rq-policy
+    title: 政策信息如何产生非线性响应
+    question: 鼓励、限制与重复信息如何改变不同角色的关注和行动路径？
+    theoretical_lens: [环境维度, 信息冗余]
+    pdf_pages: [37, 38, 39, 40]
+
+scale:
+  branch_count: 5
+  archived_branch_count: 2
+  agents_per_branch: 10
+  locations: 10
+  rounds_per_branch: 420
+  planned_rounds: 2100
+  time_step_minutes: 10
+  starts_at: Day 1, 08:00
+  ends_at: Day 6, 08:00
+  execution_note: 2,100 是五个分支各 420 轮的设计规模求和；分支继承共享前缀，不表示 2,100 轮完全独立执行。
+
+config:
+  language: English simulation records with Chinese research reporting
+  model: Doubao-1.5-pro-32k（论文报告；归档元数据未记录）
+  embedding_model: BAAI/bge-m3
+  memory_limit: 15
+  global_time_limit: 24
+  max_attempts: 2
+  output_artifacts:
+    - per-agent JSON memory
+    - SQLite embedding index
+    - simulation text log
+    - staged simulation summary
+    - event archive
+  missing_reproducibility_fields:
+    - archive-level model identifier
+    - random seed
+    - temperature and sampling parameters
+    - repeated-run identifiers
+    - model-call cost and token ledger
+
+variables:
+  - id: technology-exposure
+    name: 技术信息接触
+    role: independent
+    theoretical_source: 创新扩散理论
+    operationalization: 在指定仿真时间向部分或全部 Agent 注入 IVModel 爆火事件。
+    measurement: 接触对象、接触范围与接触后的技术词行动轨迹。
+    pdf_pages: [33]
+  - id: policy-direction
+    name: 政策方向
+    role: independent
+    theoretical_source: TOE 环境维度
+    operationalization: Day 4 注入鼓励部署或学术限制与医疗鼓励并存的政策事件。
+    measurement: 政策词主行动的阶段计数及角色分布。
+    pdf_pages: [33]
+  - id: compatibility
+    name: 技术—任务兼容性
+    role: moderator
+    theoretical_source: TOE 技术维度
+    operationalization: Agent 是否能将模型能力转译到编程、教学、金融、科研或公益任务。
+    measurement: 行动和阶段摘要中的具体应用场景链条。
+    pdf_pages: [38, 39, 40, 41]
+  - id: social-network
+    name: 同辈、项目与师生网络
+    role: mechanism
+    theoretical_source: 创新扩散理论与社会网络
+    operationalization: 由角色共处、讨论与项目协作形成的信息传递路径。
+    measurement: 可追溯互动片段与跨角色的议题延续。
+    pdf_pages: [36, 37, 41, 42]
+  - id: role-resources
+    name: 角色目标与资源条件
+    role: context
+    theoretical_source: TOE 组织维度
+    operationalization: 专业、职业目标、设备和地点资源写入 Agent 与环境描述。
+    measurement: 不同角色的技术与政策行动计数差异。
+    pdf_pages: [38, 39, 40]
+  - id: agenda-action
+    name: 技术进入行动议程
+    role: dependent
+    theoretical_source: 过程型创新扩散
+    operationalization: 主行动文本出现 IVModel 或 policy 词项，作为描述性议题显著性指标。
+    measurement: 以每组 4,200 条主行动为分母的词项编码计数。
+    pdf_pages: []
+
+branches:
+  - id: branch-1
+    name: 分支 1 · 自然发展
+    branch_type: natural_development
+    baseline: 所有 Agent 从共同的 Day 1 初始状态自然运行，不追加技术或政策事件。
+    interventions: []
+  - id: branch-2
+    name: 分支 2 · 部分技术接触
+    branch_type: partial_exposure
+    parent_id: branch-1
+    baseline: 继承分支 1 的共同基线。
+    interventions:
+      - intervention_type: technology_exposure
+        global_time: Day 2, 08:00
+        recipients: [Lin Lingyue, Su Nuanyang, Qin Yanqiu, Lin Xingya]
+        intensity: partial
+        direction: neutral
+        content: IVModel 因易部署、高性能和兼容性而快速流行。
+        pdf_pages: [33]
+  - id: branch-3
+    name: 分支 3 · 全体技术接触
+    branch_type: full_exposure
+    parent_id: branch-1
+    baseline: 继承分支 1 的共同基线。
+    interventions:
+      - intervention_type: technology_exposure
+        global_time: Day 2, 08:00
+        recipients: [all agents]
+        intensity: all
+        direction: neutral
+        content: IVModel 因易部署、高性能和兼容性而快速流行。
+        pdf_pages: [33]
+  - id: branch-4
+    name: 分支 4 · 鼓励部署
+    branch_type: encouragement_policy
+    parent_id: branch-2
+    baseline: 继承分支 2 的部分接触轨迹。
+    interventions:
+      - intervention_type: policy_encouragement
+        global_time: Day 4, 08:00
+        recipients: [all agents]
+        intensity: all
+        direction: encourage
+        content: 鼓励学校与企业部署本地 AI，并使用工具提高效率。
+        pdf_pages: [33]
+  - id: branch-5
+    name: 分支 5 · 分阶段混合政策
+    branch_type: mixed_policy
+    parent_id: branch-3
+    baseline: 继承分支 3 的全体接触轨迹。
+    interventions:
+      - intervention_type: policy_restriction
+        global_time: Day 4, 08:00
+        recipients: [Lin Lingyue, Wang Mingzhe, Qin Yanqiu]
+        intensity: staged
+        direction: mixed
+        content: 学术内容生产被要求谨慎使用 AI，同时医疗案例应用受到鼓励；首批角色接收。
+        pdf_pages: [33]
+      - intervention_type: policy_restriction
+        global_time: Day 4, 13:00
+        recipients: [Qin Yanqiu, Bai Qingyu, Wang Mingzhe]
+        intensity: staged
+        direction: mixed
+        content: 同一混合政策进入第二批角色的信息环境。
+        pdf_pages: [33]
+      - intervention_type: policy_restriction
+        global_time: Day 4, 19:00
+        recipients: [Shen Ranxi, Bai Qingyu, Jiang Yanzhou]
+        intensity: staged
+        direction: mixed
+        content: 同一混合政策进入第三批角色的信息环境。
+        pdf_pages: [33]
+
+archives:
+  - id: archive-ge
+    repository_label: GE
+    display_name: GE 归档组 · 技术热度轨迹
+    total_actions: 4200
+    coverage: 10 名 Agent 从 Day 1 08:00 运行至 Day 6 08:00；仓库事件记录含 Day 2 全局技术热度事件。
+    interventions_from_archive:
+      - 'Day 2, 08:00 · IVModel 全国流行、易部署、高性能且兼容性强'
+    source_paths:
+      - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/meta.json
+      - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/town_data.json
+      - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/agent_data/event.json
+      - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_summary.txt
+    metrics:
+      - id: ge-ivmodel-actions
+        label: 主行动中出现 IVModel
+        numerator: 1014
+        denominator: 4200
+        coding_unit: primary_action
+        temporal:
+          - {label: Day 1, starts_at: 'Day 1, 08:00', ends_at: 'Day 2, 08:00', count: 0}
+          - {label: Day 2–3, starts_at: 'Day 2, 08:00', ends_at: 'Day 4, 08:00', count: 443}
+          - {label: Day 4–5, starts_at: 'Day 4, 08:00', ends_at: 'Day 6, 08:00', count: 571}
+        by_agent:
+          - {agent: Bai Qingyu, count: 256}
+          - {agent: Xu Yuanzhe, count: 210}
+          - {agent: Lin Lingyue, count: 187}
+          - {agent: Shen Ranxi, count: 119}
+          - {agent: Qin Yanqiu, count: 107}
+          - {agent: Wang Mingzhe, count: 80}
+          - {agent: Su Nuanyang, count: 40}
+          - {agent: Jiang Yanzhou, count: 15}
+          - {agent: Lin Xingya, count: 0}
+          - {agent: Jiang Qiaowei, count: 0}
+        interpretation: 技术词项在事件后持续进入多类专业角色的主行动，属于描述性议题显著性证据。
+        source_paths:
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log_Day2.txt
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log_Day4.txt
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log.txt
+      - id: ge-policy-actions
+        label: 主行动中出现 policy 词项
+        numerator: 18
+        denominator: 4200
+        coding_unit: primary_action
+        temporal:
+          - {label: Day 1–3, starts_at: 'Day 1, 08:00', ends_at: 'Day 4, 08:00', count: 1}
+          - {label: Day 4–5, starts_at: 'Day 4, 08:00', ends_at: 'Day 6, 08:00', count: 17}
+        by_agent:
+          - {agent: Qin Yanqiu, count: 15}
+          - {agent: Lin Lingyue, count: 2}
+          - {agent: Su Nuanyang, count: 1}
+          - {agent: Wang Mingzhe, count: 0}
+          - {agent: Bai Qingyu, count: 0}
+          - {agent: Jiang Qiaowei, count: 0}
+          - {agent: Jiang Yanzhou, count: 0}
+          - {agent: Lin Xingya, count: 0}
+          - {agent: Shen Ranxi, count: 0}
+          - {agent: Xu Yuanzhe, count: 0}
+        interpretation: 政策词并非 GE 归档的主要议题，不据此推断政策因果效应。
+        source_paths:
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log_Day2.txt
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log_Day4.txt
+          - simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_log.txt
+  - id: archive-na
+    repository_label: NA
+    display_name: NA 归档组 · 政策部署轨迹
+    total_actions: 4200
+    coverage: 10 名 Agent 从 Day 1 08:00 运行至 Day 6 08:00；仓库事件记录含 Day 4 本地 AI 部署政策事件。
+    interventions_from_archive:
+      - 'Day 4, 08:00 · 学校与企业部署本地 AI，鼓励使用工具提高效率'
+    source_paths:
+      - simulation/projects/breaking_en_na_IVModel_Round420_Day6/meta.json
+      - simulation/projects/breaking_en_na_IVModel_Round420_Day6/town_data.json
+      - simulation/projects/breaking_en_na_IVModel_Round420_Day6/agent_data/event.json
+      - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_summary.txt
+    metrics:
+      - id: na-ivmodel-actions
+        label: 主行动中出现 IVModel
+        numerator: 130
+        denominator: 4200
+        coding_unit: primary_action
+        temporal:
+          - {label: Day 1, starts_at: 'Day 1, 08:00', ends_at: 'Day 2, 08:00', count: 0}
+          - {label: Day 2–3, starts_at: 'Day 2, 08:00', ends_at: 'Day 4, 08:00', count: 122}
+          - {label: Day 4–5, starts_at: 'Day 4, 08:00', ends_at: 'Day 6, 08:00', count: 8}
+        by_agent:
+          - {agent: Lin Lingyue, count: 47}
+          - {agent: Qin Yanqiu, count: 37}
+          - {agent: Lin Xingya, count: 29}
+          - {agent: Wang Mingzhe, count: 8}
+          - {agent: Su Nuanyang, count: 6}
+          - {agent: Jiang Qiaowei, count: 3}
+          - {agent: Bai Qingyu, count: 0}
+          - {agent: Jiang Yanzhou, count: 0}
+          - {agent: Shen Ranxi, count: 0}
+          - {agent: Xu Yuanzhe, count: 0}
+        interpretation: IVModel 词项在后半程明显减少，提示技术议题未在所有角色中持续。
+        source_paths:
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log_Day2.txt
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log_Day4.txt
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log.txt
+      - id: na-policy-actions
+        label: 主行动中出现 policy 词项
+        numerator: 110
+        denominator: 4200
+        coding_unit: primary_action
+        temporal:
+          - {label: Day 1–3, starts_at: 'Day 1, 08:00', ends_at: 'Day 4, 08:00', count: 1}
+          - {label: Day 4–5, starts_at: 'Day 4, 08:00', ends_at: 'Day 6, 08:00', count: 109}
+        by_agent:
+          - {agent: Wang Mingzhe, count: 54}
+          - {agent: Lin Lingyue, count: 27}
+          - {agent: Qin Yanqiu, count: 18}
+          - {agent: Su Nuanyang, count: 5}
+          - {agent: Jiang Qiaowei, count: 5}
+          - {agent: Jiang Yanzhou, count: 1}
+          - {agent: Bai Qingyu, count: 0}
+          - {agent: Lin Xingya, count: 0}
+          - {agent: Shen Ranxi, count: 0}
+          - {agent: Xu Yuanzhe, count: 0}
+        interpretation: Day 4 后政策词进入部分角色行动，但响应高度集中，不能等同于全体采纳。
+        source_paths:
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log_Day2.txt
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log_Day4.txt
+          - simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_log.txt
+
+findings:
+  - id: network-diffusion
+    title: 信息沿同辈与项目网络扩散
+    evidence_level: mechanism_evidence
+    claim: 技术议题通过室友讨论、项目协作与研究指导进入不同角色的任务安排。
+    mechanism: 关系网络提供重复接触、解释和把抽象技术连接到既有任务的机会。
+    alternative_explanations: [共同地点造成同时暴露, 角色提示词预先强化了技术兴趣]
+    pdf_pages: [36, 37, 41, 42]
+    archive_metric_ids: [ge-ivmodel-actions]
+  - id: compatibility-scenes
+    title: 兼容性需要通过具体场景兑现
+    evidence_level: paper_interpretation
+    claim: 编程、教学机器人、生物医学和金融等角色把同一技术信息转译为不同用途。
+    mechanism: 相对优势只有与角色目标、设备和场景需求匹配时才进入持续行动。
+    alternative_explanations: [专业角色文本更容易生成技术词, 词项计数未衡量实际使用深度]
+    pdf_pages: [38, 39, 40, 41]
+    archive_metric_ids: [ge-ivmodel-actions]
+  - id: policy-nonlinearity
+    title: 政策响应具有非线性与信息冗余
+    evidence_level: paper_interpretation
+    claim: 政策信息并未均匀改变所有角色，响应集中于能连接实习、项目或公益任务的少数 Agent。
+    mechanism: 已有目标和关系网络筛选政策信息；重复信息可能强化关注，也可能形成冗余。
+    alternative_explanations: [单次生成波动, 不同分支历史并非完全可观测, 关键词遗漏隐含政策响应]
+    pdf_pages: [37, 38, 39, 40]
+    archive_metric_ids: [ge-policy-actions, na-policy-actions]
+  - id: reverse-teacher-student
+    title: 师生关系存在反向扩散
+    evidence_level: mechanism_evidence
+    claim: 学生的项目探索也可能进入教师的研究或教学议程，而非只有自上而下传播。
+    mechanism: 共同项目把学生的新用法转化为教师可评估的实践证据。
+    alternative_explanations: [角色设定中的共同技术兴趣, 摘要压缩放大了少量互动]
+    pdf_pages: [39]
+    archive_metric_ids: [ge-ivmodel-actions]
+  - id: triple-coupling
+    title: 社交网络、场景需求与政策响应三重耦合
+    evidence_level: paper_interpretation
+    claim: 扩散不是单一事件的线性结果，而是关系传播、任务适配和环境信号共同塑造的过程。
+    mechanism: 网络决定信息到达，场景决定信息能否被使用，政策改变收益与风险解释。
+    alternative_explanations: [模型文本惯性, 缺少组织与校外对照, 无重复实验无法分离三类机制]
+    pdf_pages: [44]
+    archive_metric_ids: [ge-ivmodel-actions, na-ivmodel-actions, na-policy-actions]
+  - id: causal-effect-unverified
+    title: 事件对采纳率的因果效应尚未识别
+    evidence_level: unverified_alternative
+    claim: 当前归档支持过程比较和假设生成，不支持总体因果效应或统计显著性声明。
+    mechanism: 两组均为单次生成，且归档未覆盖全部五个正式分支和重复运行。
+    alternative_explanations: [随机生成差异, 未归档配置差异, 编码规则敏感性]
+    pdf_pages: [43]
+    archive_metric_ids: []
+
+limitations:
+  - id: archived-coverage
+    description: paper 分支只保留 GE、NA 两组结果，未保留五个正式分支的完整同构档案。
+    consequence: 展示必须分开“正式设计”和“可审计归档”，不能填造缺失组结果。
+    pdf_pages: []
+  - id: no-replication
+    description: 归档没有随机种子、重复实验编号或统计检验。
+    consequence: 所有组间数字只能作为描述性探索，不报告 p 值、置信区间或显著差异。
+    pdf_pages: []
+  - id: lexical-coding
+    description: IVModel 与 policy 指标来自词项规则，不能完整覆盖隐含采纳、抵制或使用深度。
+    consequence: 指标必须与行动摘录和机制证据共同解释。
+    pdf_pages: []
+  - id: context-boundary
+    description: 组织制度、安全治理与校外对照仍不充分。
+    consequence: 不能直接外推到其他高校、企业或更广泛社会群体。
+    pdf_pages: [43]
+  - id: copied-memory
+    description: 同一地点可见行动会复制到多个 Agent 的 memory 文件。
+    consequence: memory 词频不能作为采纳率分母；本案例使用主行动日志的 4,200 条记录。
+    pdf_pages: []
+  - id: malformed-event
+    description: 两组 event.json 均包含 Day 1 18:00 内容仅为“23”的异常事件。
+    consequence: 该记录从研究事件和二次编码中排除，并保留为数据质量说明。
+    pdf_pages: []
+
+evidence_excerpts:
+  - id: excerpt-ge-lin
+    archive_id: archive-ge
+    agent: Lin Lingyue
+    global_time: Day 2, 11:00
+    excerpt: 开始为黑客松项目编写代码，并把 IVModel 相关想法整合进项目。
+    supports: [network-diffusion, compatibility-scenes]
+    evidence_level: archive_descriptive
+    source_path: simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_summary.txt#round-114
+  - id: excerpt-ge-bai
+    archive_id: archive-ge
+    agent: Bai Qingyu
+    global_time: Day 2, 11:00
+    excerpt: 在教学机器人开发中加入 IVModel 功能，并把技术示例带入教学内容。
+    supports: [compatibility-scenes, reverse-teacher-student]
+    evidence_level: archive_descriptive
+    source_path: simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_summary.txt#round-114
+  - id: excerpt-ge-xu
+    archive_id: archive-ge
+    agent: Xu Yuanzhe
+    global_time: Day 3
+    excerpt: 持续撰写 IVModel 对生物医学影响的白皮书，并通过研究讨论推进应用判断。
+    supports: [network-diffusion, compatibility-scenes]
+    evidence_level: archive_descriptive
+    source_path: simulation/projects/breaking_en_ge_IVModel_Round420_Day6/simulation_summary.txt#round-228
+  - id: excerpt-na-wang
+    archive_id: archive-na
+    agent: Wang Mingzhe
+    global_time: Day 5, 15:00
+    excerpt: 分析 AI 政策对股票交易和实习工作的影响，并把政策信息连接到既有任务。
+    supports: [policy-nonlinearity, triple-coupling]
+    evidence_level: archive_descriptive
+    source_path: simulation/projects/breaking_en_na_IVModel_Round420_Day6/simulation_summary.txt#round-396
+
+coding_notes:
+  unit: 每一轮、每一 Agent 的 ACTION EXECUTION 主行动文本；每组分母固定为 4,200。
+  deduplication: 不使用 memory 文件计数；同地观察造成的 memory 副本不进入指标。
+  rules:
+    - metric_id: ivmodel-actions
+      match_terms: [IVModel]
+      case_sensitive: false
+    - metric_id: policy-actions
+      match_terms: [policy, policies]
+      case_sensitive: false
+  exclusions:
+    - Day 1 18:00 内容为“23”的异常 event
+    - daily plan、hourly plan、impression、reflection 与自动摘要
+    - SQLite embedding 记录和复制到观察者 memory 的行动
+  cautions:
+    - 词项出现表示议题进入行动文本，不等于真实世界采纳率或使用强度。
+    - GE、NA 在仓库中没有正式全称，界面只使用归档标签和事件内容。
+    - 单次生成、无重复实验，不进行显著性或因果效应声明。

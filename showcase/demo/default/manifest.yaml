@@ -82,6 +82,7 @@ steps:
   global_time: Day 1, 09:30
   checkpoint: checkpoints/step_10
 event_log: events.jsonl
+research_case: ../../research/campus_ivmodel/case.yaml
 available_metrics:
 - activity_distribution
 - location_occupancy

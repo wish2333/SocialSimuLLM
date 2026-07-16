@@ -2,7 +2,7 @@
 
 # -*- coding: utf-8 -*-
 
-"""Streamlit entry point for the interview archive and research tools."""
+"""Streamlit entry point for the research archive and experiment workspace."""
 
 import streamlit as st
 
@@ -52,6 +52,10 @@ st.markdown(
     .location-card p { color: var(--archive-muted); font-size: .9rem; min-height: 3.8rem; }
     .location-card small { color: var(--archive-amber); }
     .location-count { float: right; color: var(--archive-mint); font: 2rem/1 Georgia, serif; }
+    .design-card { min-height: 180px; padding: 1.1rem 1.2rem; border: 1px solid var(--archive-line); border-top: 3px solid var(--archive-amber); background: rgba(16,35,56,.78); }
+    .design-card small { color: var(--archive-mint); font: 700 .68rem Georgia, serif; letter-spacing: .12em; }
+    .design-card p { color: var(--archive-muted); }
+    .branch-track { padding: .9rem 1rem; border-left: 3px solid var(--archive-mint); background: rgba(16,35,56,.72); margin-bottom: .65rem; }
     [data-testid="stMetric"] { background: rgba(16,35,56,.72); border: 1px solid var(--archive-line); border-radius: 0; padding: 1rem; }
     [data-testid="stMetricValue"] { color: var(--archive-amber); font-family: Georgia, serif; }
     div[data-testid="stExpander"], div[data-testid="stAlert"] { border-radius: 0; border-color: var(--archive-line); }
@@ -66,18 +70,26 @@ from socialsimullm.showcase.loader import ShowcaseLoadError, load_showcase_demo
 
 with st.sidebar:
     st.markdown("## SocialSimuLLM")
-    mode = st.radio("视图", ["面试演示", "研究工具"], horizontal=True)
+    mode = st.radio("视图", ["研究档案", "实验工作台"], horizontal=True)
 
-if mode == "面试演示":
-    pages = ["项目总览", "技术路线", "Agent 设计", "工程演进", "仿真演示", "结果分析"]
+if mode == "研究档案":
+    pages = [
+        "项目总览",
+        "技术路线",
+        "Agent 设计",
+        "实验设计",
+        "运行与介入",
+        "结果分析",
+        "工程演进",
+    ]
     with st.sidebar:
         page = st.radio("档案目录", pages)
-        st.caption("离线快照 · 不调用模型 API")
+        st.caption("只读研究记录 · 不调用模型 API")
 
     try:
         demo = load_showcase_demo()
     except ShowcaseLoadError as exc:
-        st.error(f"离线演示加载失败：{exc}")
+        st.error(f"研究档案加载失败：{exc}")
         st.stop()
 
     if page == "项目总览":
@@ -89,18 +101,21 @@ if mode == "面试演示":
     elif page == "Agent 设计":
         from socialsimullm.frontend.pages.agent_design import render_agent_design
         render_agent_design()
-    elif page == "工程演进":
-        from socialsimullm.frontend.pages.evolution import render_evolution
-        render_evolution()
-    elif page == "仿真演示":
+    elif page == "实验设计":
+        from socialsimullm.frontend.pages.experiment_design import render_experiment_design
+        render_experiment_design(demo)
+    elif page == "运行与介入":
         from socialsimullm.frontend.pages.demo import render_demo
         render_demo(demo)
-    else:
+    elif page == "结果分析":
         from socialsimullm.frontend.pages.results import render_showcase_results
         render_showcase_results(demo)
+    else:
+        from socialsimullm.frontend.pages.evolution import render_evolution
+        render_evolution()
 else:
     with st.sidebar:
-        tool = st.radio("研究工具", ["实验配置", "运行结果", "研究助手"])
+        tool = st.radio("实验工作台", ["实验配置", "运行结果", "研究助手"])
     if tool == "实验配置":
         from socialsimullm.frontend.pages.configure import render_configure
         render_configure()

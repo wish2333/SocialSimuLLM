@@ -1,4 +1,4 @@
-"""Technical route page for the interview narrative."""
+"""Technical route page for the research archive."""
 
 from __future__ import annotations
 
@@ -25,6 +25,6 @@ def render_architecture() -> None:
 
     with st.expander("为什么选择单体数据链？"):
         st.write(
-            "面试演示优先强调可解释与稳定：同一运行目录同时保存配置、过程事件和状态快照，"
+            "研究档案强调可解释与稳定复核：同一运行目录同时保存配置、过程事件和状态快照，"
             "分析层只读这些产物。这样无需实时服务或消息队列，也能逐步定位实验输入、执行过程与展示结果。"
         )

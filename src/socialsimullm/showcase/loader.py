@@ -11,7 +11,11 @@ import yaml
 from pydantic import ValidationError
 
 from socialsimullm.frontend.adapters import normalize_agent_states
-from socialsimullm.showcase.schema import ShowcaseEvent, ShowcaseManifest
+from socialsimullm.showcase.schema import (
+    ResearchCase,
+    ShowcaseEvent,
+    ShowcaseManifest,
+)
 
 
 class ShowcaseLoadError(RuntimeError):
@@ -26,6 +30,7 @@ class ShowcaseDemo:
     manifest: ShowcaseManifest
     events: tuple[dict[str, Any], ...]
     checkpoints: tuple[dict[str, Any], ...]
+    research_case: ResearchCase | None = None
 
     def checkpoint(self, step: int) -> dict[str, Any]:
         """Return a checkpoint by exact step number."""
@@ -64,7 +69,8 @@ def load_showcase_demo(demo_dir: str | Path | None = None) -> ShowcaseDemo:
         _load_checkpoint(root, item.step, item.checkpoint)
         for item in manifest.steps
     )
-    return ShowcaseDemo(root, manifest, events, checkpoints)
+    research_case = _load_research_case(root, manifest.research_case)
+    return ShowcaseDemo(root, manifest, events, checkpoints, research_case)
 
 
 def select_default_step(demo: ShowcaseDemo) -> int:
@@ -95,6 +101,26 @@ def _safe_child(root: Path, relative_path: str) -> Path:
     if candidate != root and root not in candidate.parents:
         raise ShowcaseLoadError(f"Path points outside demo directory: {relative_path}")
     return candidate
+
+
+def _load_research_case(root: Path, relative_path: str | None) -> ResearchCase | None:
+    """Load an optional case only from the showcase bundle's research folder."""
+    if not relative_path:
+        return None
+    research_root = (root.parents[1] / "research").resolve()
+    candidate = (root / relative_path).resolve()
+    if candidate != research_root and research_root not in candidate.parents:
+        raise ShowcaseLoadError(
+            "Research case path points outside showcase research directory: "
+            f"{relative_path}"
+        )
+    if not candidate.is_file():
+        return None
+    try:
+        raw_case = yaml.safe_load(candidate.read_text(encoding="utf-8")) or {}
+        return ResearchCase.model_validate(raw_case)
+    except (OSError, yaml.YAMLError, ValidationError) as exc:
+        raise ShowcaseLoadError(f"Invalid research case: {exc}") from exc
 
 
 def _load_events(path: Path) -> tuple[dict[str, Any], ...]:
