@@ -59,7 +59,19 @@ def load_showcase_demo(demo_dir: str | Path | None = None) -> ShowcaseDemo:
 
     try:
         raw_manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
-        manifest = ShowcaseManifest.model_validate(raw_manifest)
+        # ``research_case`` was added after the original showcase contract.
+        # Keep it outside the manifest validation payload so a long-lived
+        # Streamlit process with the older model can still reload the bundle;
+        # the case is validated independently below.
+        research_case_path = (
+            raw_manifest.get("research_case")
+            if isinstance(raw_manifest, dict)
+            else None
+        )
+        manifest_payload = dict(raw_manifest) if isinstance(raw_manifest, dict) else raw_manifest
+        if isinstance(manifest_payload, dict):
+            manifest_payload.pop("research_case", None)
+        manifest = ShowcaseManifest.model_validate(manifest_payload)
     except (OSError, yaml.YAMLError, ValidationError) as exc:
         raise ShowcaseLoadError(f"Invalid showcase manifest: {exc}") from exc
 
@@ -69,7 +81,7 @@ def load_showcase_demo(demo_dir: str | Path | None = None) -> ShowcaseDemo:
         _load_checkpoint(root, item.step, item.checkpoint)
         for item in manifest.steps
     )
-    research_case = _load_research_case(root, manifest.research_case)
+    research_case = _load_research_case(root, research_case_path)
     return ShowcaseDemo(root, manifest, events, checkpoints, research_case)
 
 
